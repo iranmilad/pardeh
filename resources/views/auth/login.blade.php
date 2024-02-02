@@ -43,7 +43,7 @@
                                 مرا بخاطر بسپار
                             </label>
                         </div>
-                        <a class="fs-7" href="{{ route('register.form') }}">فراموشی رمز عبور</a>
+                        <a class="fs-7" href="{{ route('mobile.form') }}">فراموشی رمز عبور</a>
                     </div>
 
                     <div class="d-grid gap-2 mt-3">

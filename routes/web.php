@@ -181,6 +181,7 @@ Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('
 Route::post('/register', [AuthController::class, 'registerSubmit'])->name('register.submit');
 Route::post('/send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send.verification.code');
 Route::post('/resend-verification-code', [AuthController::class, 'resendVerifyCode'])->name('resend.verification.code');
+Route::get('/mobile-verification', [AuthController::class, 'showMobileVerificationForm'])->name('mobile.form');
 Route::get('/verify/{id}/{mobile}', [AuthController::class, 'showVerificationForm'])->name('verify.form');
 Route::post('/verify', [AuthController::class, 'verifyCode'])->name('verify.code');
 Route::get('/registration-success', function () {
