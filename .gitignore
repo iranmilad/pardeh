@@ -17,3 +17,11 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+
+/app/Http
+/app/Traits
+/app/Jobs
+/app/Models
+/app/database
+

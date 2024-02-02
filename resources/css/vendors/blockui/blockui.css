@@ -1,0 +1,44 @@
+:root {
+    --blockui-overlay-bg: rgb(209, 213, 219,0.4); /* Default overlay background color */
+    --blockui-message-bg: #333; /* Default message background color */
+    --blockui-message-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Default message box shadow */
+}
+
+.blockui {
+    position: relative;
+}
+
+.blockui-overlay {
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blockui-overlay-bg);
+}
+
+.blockui .spinner-border {
+    height: 1.35rem;
+    width: 1.35rem;
+}
+
+.blockui-message {
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    box-shadow: var(--blockui-message-box-shadow);
+    background-color: var(--blockui-message-bg);
+    color: #1e293b;
+    font-weight: bold;
+    margin: 0 !important;
+    width: auto;
+    padding: 0.85rem 1.75rem !important;
+}
+
+.blockui-message .spinner-border {
+    margin-right: 0.65rem;
+}
