@@ -832,7 +832,11 @@ label.required {
 }
 
 .searchButton.searchLoading .loadingBtn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 46px;
 }
 
 .messages-private-box {
@@ -1280,7 +1284,7 @@ label.required {
 }
 
 .cs-main-menu .dropdown-item {
-    @apply tw-w-full tw-flex tw-items-center tw-text-sm tw-p-1 tw-px-2 tw-font-semibold tw-text-gray-600 tw-transition-all tw-cursor-pointer tw-rounded-lg;
+    @apply tw-w-[200px] tw-flex tw-items-center tw-text-sm tw-p-1 tw-px-2 tw-font-semibold tw-text-gray-600 tw-transition-all tw-cursor-pointer tw-rounded-lg;
 }
 
 .cs-main-menu .dropdown-item span {
@@ -1294,6 +1298,8 @@ label.required {
 
 .parde-color.parde-color-row {
     flex-direction: row;
+    justify-content: start;
+    width: 100%;
 }
 
 .main-navbar-container {
@@ -1437,11 +1443,8 @@ label.required {
 }
 
 .login-register-btn {
-    height: 49px;
     display: flex;
     align-items: center;
-    margin-left: 20px;
-    padding: 10px 20px;
     line-height: 50px;
     background-color: #fff;
     -webkit-box-shadow: 0 5px 15px rgba(33, 35, 65, 0.07);
@@ -1455,7 +1458,11 @@ label.required {
     -moz-border-radius: 15px;
     border-radius: 15px;
     font-weight: 700;
-    @apply hover:tw-bg-[#0f002b] hover:tw-text-white tw-transition-all;
+    @apply hover:tw-bg-[#0f002b] hover:tw-text-white tw-transition-all tw-px-3 lg:tw-px-[20px] tw-py-[10px];
+}
+
+.login-register-btn span{
+    margin-right: 15px;
 }
 
 .login-register-btn:hover {
@@ -1463,9 +1470,7 @@ label.required {
 }
 
 .login-register-btn i {
-    @apply tw-text-indigo-500 tw-transition-all;
-    margin-left: 15px;
-    font-size: 18px;
+    @apply tw-text-indigo-500 tw-transition-all;    font-size: 18px;
 }
 
 .login-register-btn:hover i {
@@ -1483,7 +1488,6 @@ label.required {
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-left: 20px;
 }
 
 .navbar-cart span {
@@ -1509,15 +1513,28 @@ label.required {
     font-size: 20px;
     border-radius: 15px;
     color: white;
-    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
 
+.navbar-menu {
+    @apply tw-size-[41px] tw-bg-slate-400 tw-relative hover:tw-bg-slate-500 tw-transition-all hover:tw-text-white;
+    box-shadow: 0px 10px 15px 0px
+        rgba(95.99999999999994, 0, 140.00000000000003, 0.09);
+    font-size: 20px;
+    border-radius: 15px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: none;
+}
+
 .navbar-logo{
     height: auto;
     width: 160px;
+    @apply lg:tw-ml-0;
 }
 
 .navbar-link-menu{
@@ -1550,15 +1567,37 @@ label.required {
     color: theme('colors.gray.400');
 }
 
+@media screen and (max-width: 992px){
+    .main-search{
+        max-width: 90% !important;
+    }
+}
+
 .main-search{
     max-width: 455px;
     background: theme('colors.indigo.500');
     width: 100%;
     padding: 1px;
     border-radius: 25px;
-    display: flex;
     align-items: center;
     position: relative;
+}
+
+.main-search-result::-webkit-scrollbar {
+    margin-left: 5px;
+    width: 10px;
+    transition: 0.2s;
+}
+
+.main-search-result::-webkit-scrollbar-thumb {
+    background-color: #D1D7DE;
+    border-radius: 4px;
+    padding-left: 20px;
+}
+
+.pre-main-search{
+    max-width: 455px;
+    width: 100%;
 }
 
 .main-search input{
@@ -1594,25 +1633,25 @@ label.required {
     top: 100%;
     width: 100%;
     height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     min-height: 100px;
     max-height: 400px;
     background: #f1f2f4;
     border-radius: 25px;
     left: 0;
     padding: 10px;
-    @apply tw-shadow-md tw-shadow-gray-400/20;
-    display: none;
+    @apply tw-shadow-md tw-shadow-gray-400/20 tw-z-50;
 }
 
 .navbar-link-main{
-    position: relative;
+    position: unset;
     padding: 0 20px;
     max-width: 100%;
     margin: auto;
-    
 }
 
-.navbar-link-main::before{
+/* .navbar-link-main::before{
     content: "";
     position: absolute;
     top: 45%;
@@ -1632,4 +1671,69 @@ label.required {
     height: 4px;
     border-radius: 99px;
     background-color: theme('colors.indigo.500');
+} */
+
+
+.menu_sub_category .accordion-item .accordion-button{
+    @apply tw-px-4  tw-text-gray-600 tw-text-base tw-rounded-full !important;
+    font-weight: 600;
+    background: linear-gradient(to left ,theme('colors.slate.200'),transparent 70%) !important;
 }
+
+.menu_sub_category .accordion-item .accordion-body{
+    @apply tw-pb-4 tw-pt-3;
+}
+
+.menu_sub_category .accordion-item .accordion-button i{
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+#offcanvasRight .offcanvas-body > a{
+    @apply  tw-p-4 tw-py-3.5 tw-text-gray-600 tw-text-base tw-rounded-full;
+    font-weight: 600;
+    background: linear-gradient(to left ,theme('colors.slate.200'),transparent 70%);
+}
+
+#offcanvasRight .offcanvas-body > a i{
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+.menu_sub_category .accordion-item:first-child{
+    margin-top: 0;
+}
+
+.menu_sub_category .accordion-item{
+    margin-top: 20px;
+}
+
+.menu_sub_category .accordion-body > div{
+    margin-top: 10px;
+}
+
+.menu_sub_category .accordion-body .parde-color span{
+    margin-right: 9px;
+    @apply tw-text-gray-500 tw-text-sm;
+    font-weight: 500;
+}
+
+.title-dot {
+    padding-right: 28px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: theme('colors.gray.700');
+  }
+
+  .title-dot::before {
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_21_5)'%3E%3Cpath d='M9 5.625C8.10489 5.625 7.24645 5.98058 6.61351 6.61351C5.98058 7.24645 5.625 8.10489 5.625 9C5.625 9.89511 5.98058 10.7536 6.61351 11.3865C7.24645 12.0194 8.10489 12.375 9 12.375C9.89511 12.375 10.7536 12.0194 11.3865 11.3865C12.0194 10.7536 12.375 9.89511 12.375 9C12.375 8.10489 12.0194 7.24645 11.3865 6.61351C10.7536 5.98058 9.89511 5.625 9 5.625Z' fill='%236366f1'/%3E%3Cpath opacity='0.1' d='M9 18C11.3869 18 13.6761 17.0518 15.364 15.364C17.0518 13.6761 18 11.3869 18 9C18 6.61305 17.0518 4.32387 15.364 2.63604C13.6761 0.948212 11.3869 0 9 0C6.61305 0 4.32387 0.948212 2.63604 2.63604C0.948212 4.32387 0 6.61305 0 9C0 11.3869 0.948212 13.6761 2.63604 15.364C4.32387 17.0518 6.61305 18 9 18ZM9 5.625C9.89511 5.625 10.7536 5.98058 11.3865 6.61351C12.0194 7.24645 12.375 8.10489 12.375 9C12.375 9.89511 12.0194 10.7536 11.3865 11.3865C10.7536 12.0194 9.89511 12.375 9 12.375C8.10489 12.375 7.24645 12.0194 6.61351 11.3865C5.98058 10.7536 5.625 9.89511 5.625 9C5.625 8.10489 5.98058 7.24645 6.61351 6.61351C7.24645 5.98058 8.10489 5.625 9 5.625Z' fill='%236366f1'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_21_5'%3E%3Crect width='18' height='18' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+    position: absolute;
+    right: 0;
+    font-size: inherit;
+    width: 18px;
+    height: 18px;
+  }

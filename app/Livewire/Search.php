@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Vite;
+
 
 class Search extends Component
 {
@@ -59,21 +61,21 @@ class Search extends Component
                         'name' => 'محصول 1',
                         'category_id' => 1,
                         'description' => 'Description1',
-                        'thumbnail' => 'https://placehold.co/80x80'
+                        'thumbnail' => "resources/images/single-product/1.jpg"
                     ],
                     (object) [
                         'id' => 2,
                         'name' => 'محصول 2',
                         'category_id' => 2,
                         'description' => 'Description2',
-                        'thumbnail' => 'https://placehold.co/80x80'
+                        'thumbnail' => "resources/images/single-product/6.jpg"
                     ],
                     (object) [
                         'id' => 3,
                         'name' => 'محصول 3',
                         'category_id' => 3,
                         'description' => 'Description3',
-                        'thumbnail' => 'https://placehold.co/80x80'
+                        'thumbnail' => "resources/images/single-product/5.jpg"
                     ],
                 ]),
             ];
