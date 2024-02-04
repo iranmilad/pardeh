@@ -1,6 +1,7 @@
 @import "./vendors/blockui/blockui.css";
 @import "./vendors/toaster/toastr.css";
 @import "./vendors/dataTables/dataTables.tailwindcss.min.css";
+@import "custom.css";
 /* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
@@ -49,7 +50,7 @@ figure {
 }
 
 .cs-pagination :is(a, span) {
-    @apply tw-mx-1 tw-flex tw-items-center tw-justify-center tw-min-w-8 tw-min-h-8 tw-max-w-max tw-max-h-max tw-border-2 
+    @apply tw-mx-1 tw-flex tw-items-center tw-justify-center tw-min-w-8 tw-min-h-8 tw-max-w-max tw-max-h-max tw-border-2
     tw-border-solid tw-border-gray-300 tw-rounded-lg tw-text-sm tw-text-gray-500
     hover:tw-bg-indigo-500 hover:tw-border-indigo-500 hover:tw-text-white tw-transition-all tw-font-bold;
 }
@@ -558,7 +559,7 @@ label.required {
 }
 
 .parde-color label {
-    @apply tw-p-1 tw-border-[3px] tw-border-solid tw-border-slate-400 tw-rounded-full tw-w-[38px] 
+    @apply tw-p-1 tw-border-[3px] tw-border-solid tw-border-slate-400 tw-rounded-full tw-w-[38px]
     tw-h-[38px] tw-flex tw-items-center tw-justify-center has-[:checked]:tw-border-indigo-500 tw-transition-all tw-cursor-pointer;
 }
 
@@ -1338,7 +1339,7 @@ label.required {
 
 /* plyr js css customize */
 .cs-player{
-    @apply tw-w-full 
+    @apply tw-w-full
 }
 
 .not-exists-in-store{
@@ -1426,3 +1427,5 @@ label.required {
 .menu-accordion .accordion-body{
     @apply tw-py-1
 }
+
+

@@ -16,13 +16,14 @@
                         <p class="fs-7">شماره تلفن خود را وارد کنید</p>
                     </div>
                 </div>
-                <form method="post" action="" id="changepassForm">
+                <form method="post" action="{{ route('MobileVerificationSubmit') }}" id="changepassForm">
+
                     @csrf
                     <div class="input-group has-validation">
                         <input type="text" name="mobile" class="form-control border-radius-xl {{ $errors->has('mobile') ? 'is-invalid' : '' }}" placeholder="شماره تلفن" autocomplete="off" id="mobile" aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
                             @if($errors->has("mobile"))
-                            {{$errors->first("mobile")}}
+                                {{$errors->first("mobile")}}
                             @endif
                         </div>
                     </div>

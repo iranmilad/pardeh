@@ -1,0 +1,28 @@
+.wave {
+    position: absolute;
+    opacity: .4;
+    width: 650px;
+    height: 650px;
+    margin-left: -150px;
+    margin-top: -650px;
+    border-radius: 43%;
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    from {transform: rotate(360deg);}
+}
+
+.wave.-one {
+    animation: rotate 10000ms infinite linear;
+    opacity: 5%;
+    background: rgb(95, 184, 236);
+}
+
+.wave.-two {
+    animation: rotate 6000ms infinite linear;
+    opacity: 10%;
+    background: rgb(101, 236, 214);
+    margin-right: -190px;
+    margin-top: -329px;
+}

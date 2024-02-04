@@ -7,6 +7,7 @@
 <img class="-tw-z-10 tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0" src="{{ Vite::asset('resources/images/patternpad2.svg') }}" alt="">
 <div class="row tw-h-screen">
     <div class="col-12 col-md-6 tw-flex  tw-justify-center">
+
         <div class="tw-pt-10 tw-w-full sm:tw-w-[90%] md:tw-h-3/4 lg:tw-w-2/3 2xl:tw-w-1/2 ">
             <div class="form p-4 ">
                 <a href="/"><img src="https://placehold.co/600x300" alt="" title="" class="mx-auto d-block tw-w-full"></a>
@@ -16,6 +17,8 @@
                         <p class="fs-7">لطفا شماره موبایل و رمز عبور خود را وارد کنید</p>
                     </div>
                 </div>
+                <div class='wave -one'> </div>
+                <div class='wave -two'> </div>
                 <form method="post" action="{{ route('login') }}" id="loginForm">
                     @csrf
                     <div class="input-group has-validation">
@@ -43,7 +46,7 @@
                                 مرا بخاطر بسپار
                             </label>
                         </div>
-                        <a class="fs-7" href="{{ route('mobile.form') }}">فراموشی رمز عبور</a>
+                        <a class="fs-7" href="{{ route('mobile.verification.form') }}">فراموشی رمز عبور</a>
                     </div>
 
                     <div class="d-grid gap-2 mt-3">
@@ -59,7 +62,7 @@
         </div>
     </div>
     <div class="tw-hidden md:tw-block col-md-6 tw-p-5">
-        <img class="tw-rounded-2xl tw-object-cover tw-w-full tw-h-full tw-relative tw-block" src="{{ Vite::asset('resources/images/auth.jpg') }}" alt="">
+        <img class="tw-rounded-2xl tw-object-cover tw-w-full tw-h-full tw-relative tw-block fade-in " src="{{ Vite::asset('resources/images/auth.jpg') }}" alt="">
     </div>
 </div>
 @endsection
