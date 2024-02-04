@@ -128,10 +128,13 @@ new Swiper(".blogSwiper", {
         120: {
             slidesPerView: 1,
         },
-        567: {
-            slidesPerView: 3,
+        320: {
+            slidesPerView: 2,
         },
         768: {
+            slidesPerView: 3,
+        },
+        992: {
             slidesPerView: 4,
         },
     },
