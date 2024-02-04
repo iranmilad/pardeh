@@ -21,7 +21,7 @@
 
 <body>
   @include('partials.header')
-  <main class="mt-xx-large">
+  <main class="tw-mt-11">
     @yield('content')
     <svg>
       <symbol id="toman" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">

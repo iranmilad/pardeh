@@ -489,7 +489,7 @@ let product_review_images = new Swiper(".product-review-images", {
     spaceBetween: 10,
 });
 
-$(".main-navbar .dropdown [data-bs-toggle='dropdown']")
+$(".navbar-link-menu[data-bs-toggle='dropdown']")
     .on("mouseenter", function () {
         $(this).parent().find(".dropdown-menu").addClass("show").css({
             right: "0",
@@ -542,31 +542,38 @@ $(".swiper-product-options").each(function () {
     });
 });
 
-
 const targetElement = document.querySelector(".productImage");
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-            $(".mobile-review-product").fadeIn(300).addClass("show");
-        } else {
-            $(".mobile-review-product").fadeOut(300).remove("show");
+if (targetElement) {
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    $(".mobile-review-product").fadeIn(300).addClass("show");
+                } else {
+                    $(".mobile-review-product").fadeOut(300).remove("show");
+                }
+            });
+        },
+        {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.5,
         }
-    });
-}, {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.5
-});
+    );
 
-observer.observe(targetElement);
+    observer.observe(targetElement);
+}
 
-$(".mobile-review-product").on('click', () => {
+$(".mobile-review-product").on("click", () => {
     // scroll to top
-    $("html, body").animate({
-        scrollTop: 0
-    }, {
-        duration: 500,
-        easing: 'linear'
-    });
+    $("html, body").animate(
+        {
+            scrollTop: 0,
+        },
+        {
+            duration: 500,
+            easing: "linear",
+        }
+    );
 });
