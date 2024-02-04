@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'فروش پرده در ایران')
+@section('title', 'بازیابی رمز عبور')
 
 
 
@@ -11,9 +11,9 @@
             <a href="/"><img src="https://placehold.co/600x400" alt="" title="" class="mx-auto d-block"></a>
             <a href="login.html"><i class="fa fa-arrow-right position-absolute"></i></a>
             <div class="form-info text-right my-3">
-                <h1 class="fw-bold fs-5">کد تایید را وارد کنید</h1>
+                <h1 class="fw-bold fs-5">کد بازیابی پیامک شده را وارد کنید</h1>
             </div>
-            <form class="mt-5" id="verifyForm" method="post" action="{{ route('verify.code') }}">
+            <form class="mt-5" id="verifyForm" method="post" action="{{ route('verify.remember.submit') }}">
                 @csrf
                 <div class="enter-code d-flex justify-content-between align-items-center ltr">
                     <input type="text" name="pin1" class="pin form-control text-center fs-4 border-radius-2xl">
