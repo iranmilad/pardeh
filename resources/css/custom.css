@@ -26,3 +26,7 @@
     margin-right: -190px;
     margin-top: -329px;
 }
+
+.tw-col-span-2 {
+    grid-column: span 2 / span 2;
+}

@@ -24,11 +24,11 @@
                     <i class="fa-solid fa-user-large"></i>
                 </a>
                 @endif
-                <a href="" class="navbar-cart tw-ml-3 lg:tw-mx-4">
+                <a href="{{ route('cart') }}" class="navbar-cart tw-ml-3 lg:tw-mx-4">
                     <i class="fa-solid fa-basket-shopping"></i>
                     <span>2</span>
                 </a>
-                <a href="" class="navbar-favorite tw-hidden lg:tw-flex">
+                <a href="{{ route('dashboard.favorites') }}" class="navbar-favorite tw-hidden lg:tw-flex">
                     <i class="fa-regular fa-heart"></i>
                 </a>
             </div>

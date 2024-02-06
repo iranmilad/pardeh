@@ -4,7 +4,7 @@
             @livewire('search')
         </div>
         <nav class="tw-items-center tw-justify-center navbar-link-main tw-hidden lg:tw-flex">
-            <a href="" class="navbar-link-menu">
+            <a href="{{ route('home') }}" class="navbar-link-menu">
                 خانه
             </a>
             <div class="dropdown dropdown-center cs-main-menu">
