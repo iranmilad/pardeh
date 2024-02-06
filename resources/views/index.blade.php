@@ -145,28 +145,28 @@
         <h2 class="text-right fs-6 fw-bold">تازه ترین محصولات</h2>
         <div class="container">
             <div class="row mt-3 gy-4 newest-product-grid">
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
                 </div>
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
                 </div>
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
                 </div>
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
                 </div>
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
                 </div>
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
                 </div>
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
                 </div>
-                <div class="col-6 col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
                 </div>
             </div>
@@ -241,10 +241,10 @@
                 <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" discountedPrice="10,000,000" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
             </div>
         </div>
     </div>

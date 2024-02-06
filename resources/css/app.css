@@ -379,6 +379,12 @@ label.required {
     display: unset;
 }
 
+@media screen and (max-width: 576px){
+    .blogSwiper .swiper-slide {
+        width: 75%;
+    }
+}
+
 .blogSwiper figure .title {
     position: absolute !important;
     font-size: 16px;
@@ -1346,7 +1352,7 @@ label.required {
 
 @media screen and (max-width: 576px) {
     .newest-product-grid .index-product .thumbnail {
-        height: auto !important;
+        height: 250px !important;
         object-fit: cover !important;
     }
 }
