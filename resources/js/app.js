@@ -126,9 +126,9 @@ new Swiper(".blogSwiper", {
     spaceBetween: 20,
     breakpoints: {
         120: {
-            slidesPerView: 1,
+            slidesPerView: "auto",
         },
-        320: {
+        576: {
             slidesPerView: 2,
         },
         768: {
