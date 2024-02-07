@@ -3,8 +3,17 @@
 @section('title', config('app.name'))
 
 @section('content')
-<div class="container container-xxl" id="catergory_page">
-    <div class="row mb-4 category-main gy-3">
+<div class="container" id="catergory_page">
+    <div class="tw-flex tw-items-center tw-justify-between">
+        <span class="tw-font-bold">دسته بندی های دیگر</span>
+        <div>
+            <div class="tw-flex">
+                <button class="" id="category-products-prev"><i class="fa fa-chevron-right"></i></button>
+                <button class="" id="category-products-next"><i class="fa fa-chevron-left"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4 mt-1 category-main gy-3">
         <div class="col-12">
             <div class="swiper category-boxes-slider">
                 <div class="swiper-wrapper">
@@ -101,7 +110,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="tw-hidden lg:tw-block col-12 col-lg-3 category-filters">
+        <div class="d-none d-lg-block col-12 col-lg-3 category-filters">
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">بازه قیمت</span>
@@ -228,18 +237,18 @@
                     <option value="">گرانترین ترین</option>
                 </select>
             </div>
-            <div class="row gy-4 gx-2">
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3  position-relative tw-h-auto">
-                    <x-product mobile name="محصول 1" price="25,000,000" />
+            <div class="row gy-2 gx-3 category-post">
+                <div class="col-sm-12 col-md-6 col-lg-4 position-relative tw-h-auto">
+                    <x-product mobile name="محصول 1" nobtn price="25,000,000" image="{{ Vite::asset('resources/images/auth.jpg') }}" />
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3  position-relative tw-h-auto">
-                    <x-product mobile name="محصول 1" price="25,000,000" discountedPrice="20,000,000" discount="5%" />
+                <div class="col-sm-12 col-md-6 col-lg-4  position-relative tw-h-auto">
+                    <x-product mobile name="محصول 1" nobtn price="25,000,000" discountedPrice="20,000,000" discount="5%" image="{{ Vite::asset('resources/images/auth2.jpg') }}" />
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3  position-relative tw-h-auto">
-                    <x-product mobile name="محصول 1" stock="3" price="25,000,000" discountedPrice="20,000,000" discount="5%" />
+                <div class="col-sm-12 col-md-6 col-lg-4  position-relative tw-h-auto">
+                    <x-product mobile name="محصول 1" nobtn stock="3" price="25,000,000" discountedPrice="20,000,000" discount="5%" image="{{ Vite::asset('resources/images/auth3.jpg') }}" />
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3  position-relative tw-h-auto">
-                    <x-product mobile name="محصول 1" available="false" />
+                <div class="col-sm-12 col-md-6 col-lg-4  position-relative tw-h-auto">
+                    <x-product mobile name="محصول 1" nobtn available="false" image="{{ Vite::asset('resources/images/auth4.jpg') }}" />
                 </div>
             </div>
             <nav class="cs-pagination mt-5 tw-w-max tw-mx-auto">
@@ -346,14 +355,17 @@
                 <!-- RADIO  -->
 
                 <!-- START:COLOR -->
-                <div class="card">
+                <div class="card color-category-mobile">
                     <div class="card-header">
                         <span class="card-title">ویژگی رنگ</span>
                     </div>
                     <div class="card-body">
                         <div class="tw-flex tw-items-start tw-justify-between tw-flex-wrap">
-                            <div class="parde-color row">
-                            <img src="https://dkstatics-public.digikala.com/digikala-static/f275e126421d91ecdaaf0aa80310d3ac39510346_1670664302.png" alt="">
+                            <div class="parde-color">
+                                <label class="">
+                                    <img src="https://dkstatics-public.digikala.com/digikala-static/f275e126421d91ecdaaf0aa80310d3ac39510346_1670664302.png" alt="">
+                                    <input type="checkbox">
+                                </label>
                                 <span>بنفش</span>
                             </div>
                         </div>

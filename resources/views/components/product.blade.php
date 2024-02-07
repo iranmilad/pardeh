@@ -1,6 +1,7 @@
-<a class="product {{$mobile ? 'product-mobile' : ''}}" href="{{$link}}">
+<a class="product {{$mobile ? 'product-mobile' : ''}} {{$image2 ? 'product-two-image' : ''}} {{!$nobtn ? 'show-btn' : ''}}" href="{{$link}}">
     <!-- The whole future lies in uncertainty: live immediately. - Seneca -->
     <img class="thumbnail" src="{{ $image ?: Vite::asset('resources/images/image-broken.png') }}" alt="{{ $name }}">
+    <img class="thumbnail-2" src="{{ $image2 ?: '' }}" alt="{{ $name }}">
     <div class="body">
         <span class="title tw-text-right tw-w-full tw-font-semibold">{{$name}}</span>
         @if(!isset($available))

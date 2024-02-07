@@ -146,28 +146,44 @@
         <div class="container">
             <div class="row mt-3 gy-4 newest-product-grid">
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/1.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth.jpg')}}" />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/2.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth2.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/3.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth3.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/1.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth4.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/2.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth5.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/3.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/1.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth2.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
-                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
+                    <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
+                     image="{{Vite::asset('resources/images/single-product/2.jpg')}}"
+                     image2="{{Vite::asset('resources/images/auth3.jpg')}}"  />
                 </div>
             </div>
         </div>

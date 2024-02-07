@@ -600,7 +600,7 @@ label.required {
     }
 
     .product.product-mobile .thumbnail {
-        @apply tw-w-[36%] tw-h-24 tw-object-cover;
+        @apply tw-w-[36%] tw-h-24 tw-object-cover tw-aspect-auto !important;
     }
 
     .product.product-mobile .body {
@@ -625,6 +625,7 @@ label.required {
 
 .product .show {
     @apply tw-w-full tw-bg-emerald-500 tw-rounded-full tw-text-white tw-text-sm tw-py-2 tw-transition-all tw-border-none tw-outline-none;
+    margin-top: auto !important;
 }
 
 .product .show.unavailable {
@@ -656,7 +657,7 @@ label.required {
 }
 
 .product .body .title {
-    @apply tw-text-sm tw-text-slate-800 tw-line-clamp-2;
+    @apply tw-text-sm tw-text-slate-800 tw-line-clamp-2 tw-mb-3;
 }
 
 .product:hover .show {
@@ -1333,15 +1334,12 @@ label.required {
     @apply tw-text-indigo-500 !important;
 }
 
-.index-product .thumbnail {
+.index-product :is(.thumbnail,.thumbnail-2) {
     height: 200px !important;
     object-fit: cover !important;
-    @apply tw-transition-all;
+    @apply tw-transition-all tw-rounded-lg tw-aspect-square;
 }
 
-.index-product:hover .thumbnail {
-    filter: blur(5px);
-}
 
 .installer_product label {
     @apply tw-bg-indigo-400 tw-text-white tw-border tw-border-solid tw-border-transparent tw-cursor-pointer
@@ -1353,7 +1351,7 @@ label.required {
 }
 
 @media screen and (max-width: 576px) {
-    .newest-product-grid .index-product .thumbnail {
+    .newest-product-grid .index-product :is(.thumbnail,.thumbnail-2) {
         height: 250px !important;
         object-fit: cover !important;
     }
@@ -1839,4 +1837,68 @@ label.required {
 
 .post-box-blog .title{
     @apply tw-text-sm sm:tw-text-base lg:tw-text-base xl:tw-text-xl tw-text-center tw-text-slate-700 tw-font-semibold;
+}
+
+.category-post img{
+    @apply tw-w-full tw-aspect-square tw-object-cover !important;
+}
+
+.category-post .product{
+    border: none !important;
+    box-shadow: none !important;
+    @apply tw-bg-gray-100 !important;
+}
+
+.category-post .product .body{
+    @apply tw-flex-1 tw-justify-normal !important ;
+}
+
+:is(#category-products-prev, #category-products-next) {
+    width: 40px;
+    height: 40px;
+    color: black;
+    padding: 8px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+:is(
+        #category-products-prev,
+        #category-products-next
+    ).swiper-button-disabled {
+    @apply tw-text-gray-400;
+}
+
+.product .thumbnail-2 {
+    display: none;
+}
+
+.product.product-two-image{
+    @apply tw-transition-all;
+}
+
+.product.product-two-image .thumbnail-2{
+    display: none;
+}
+
+.product.product-two-image .thumbnail{
+    display: block;
+}
+
+.product.product-two-image:hover .thumbnail-2{
+    display: block;
+}
+
+.product.product-two-image:hover .thumbnail{
+    display: none;
+}
+
+.product.show-btn .show{
+    display: block !important;
+}
+
+.product:not(.show-btn) .show{
+    display: none !important;
 }
