@@ -4,7 +4,7 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body tw-space-y-4 tw-flex tw-flex-col tw-text-sm">
-        <a href="/">
+        <a href="{{ route('home') }}">
             <i class="fa-regular fa-house"></i>
             خانه
         </a>

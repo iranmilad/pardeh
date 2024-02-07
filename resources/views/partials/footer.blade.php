@@ -71,22 +71,8 @@
                                 <li class="my-3"><a href="#">آینه</a></li>
                             </ul>
                         </div>
-                        <div class="tw-col-span-1">
-                            <h3 class="fw-bold fs-6 title-dot text-white">رنگ ها</h3>
-                            <ul class="tw-pr-5 tw-text-xs">
-                                <li class="my-3"><a href="#">قرمز</a></li> <!-- Red -->
-                                <li class="my-3"><a href="#">نارنجی</a></li> <!-- Orange -->
-                                <li class="my-3"><a href="#">سبز</a></li> <!-- Green -->
-                                <li class="my-3"><a href="#">آبی</a></li> <!-- Blue -->
-                                <li class="my-3"><a href="#">بنفش</a></li> <!-- Violet -->
-                                <li class="my-3"><a href="#">سفید</a></li> <!-- White -->
-                                <li class="my-3"><a href="#">مشکی</a></li> <!-- Black -->
-                                <li class="my-3"><a href="#">قهوه ای</a></li> <!-- Brown -->
-                                <li class="my-3"><a href="#">طوسی</a></li> <!-- Grey -->
-                                <li class="my-3"><a href="#">صورتی</a></li> <!-- Pink -->
-                            </ul>
-                        </div>
-                        <div class="tw-col-span-1">
+
+                        <div class="tw-col-span-2">
                             <p class="fw-bold fs-6 title-dot text-white">تماس باما</p>
                             <div class="tw-flex tw-text-sm tw-items-start lg:tw-items-center mt-2">
                                 <span class="tw-ml-1 tw-font-bold">آدرس: </span>

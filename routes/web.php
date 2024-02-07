@@ -170,7 +170,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 Route::post('/check_verify',[VerifyController::class, 'index'])->name('check_verify');
 
 Route::get('login', [LoginController::class,'index'])->name('login');
@@ -217,7 +217,7 @@ Route::get('/post', function () {
 Route::get('/cart', function () {
     $uuid = Str::uuid();
     return view('cart',['uuid' => $uuid]);
-});
+})->name('cart');
 
 Route::get('/shipping', function () {
     $uuid = Str::uuid();
