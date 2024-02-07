@@ -9,7 +9,7 @@
         <div class="mobile-review-product">
             <img src="https://placehold.co/600x400" alt="">
         </div>
-        <div class="col-lg-4 tw-h-full lg:tw-sticky lg:tw-top-[126px] image-reviews">
+        <div class="col-lg-5 tw-h-full lg:tw-sticky lg:tw-top-[126px] image-reviews">
             <div class="swiper productImage">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8 px-4 product-options mt-4 mt-lg-0">
+        <div class="col-lg-7 px-4 product-options mt-4 mt-lg-0">
             <h3 class="fw-bold">پرده ی جدید طرح کتان</h3>
             <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center">
                 <i class="fa-regular fa-circle-check tw-ml-2 tw-text-base"></i>

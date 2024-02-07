@@ -1,7 +1,7 @@
 import $ from "jquery";
 import "./bootstrap.bundle.min.js";
 import KTBlockUI from "./tools/blockui.js";
-import { hydrate } from "preact";
+import { hydrate ,createElement} from "preact";
 import {ShowDetails} from "./components.jsx"
 
 var myModal = new bootstrap.Modal(document.getElementById("priceModal"), {
@@ -43,7 +43,7 @@ document.querySelectorAll(".image_dotter").forEach(function (element) {
                             "#priceModal .product_details"
                         );
                         hydrate(
-                            React.createElement(ShowDetails, product),
+                            createElement(ShowDetails, product),
                             productDetails
                         );
                     },

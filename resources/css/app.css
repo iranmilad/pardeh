@@ -1588,16 +1588,21 @@ label.required {
     position: relative;
 }
 
-.main-search-result::-webkit-scrollbar {
+.main-search-result .inside::-webkit-scrollbar {
     margin-left: 5px;
     width: 10px;
     transition: 0.2s;
 }
 
-.main-search-result::-webkit-scrollbar-thumb {
+.main-search-result .inside::-webkit-scrollbar-thumb {
     background-color: #d1d7de;
     border-radius: 4px;
     padding-left: 20px;
+}
+
+.main-search-result .inside{
+    height: 100%;
+    overflow-y: auto;
 }
 
 .pre-main-search {
@@ -1637,7 +1642,7 @@ label.required {
     position: absolute;
     top: 100%;
     width: 100%;
-    height: auto;
+    height: 400px;
     overflow-y: auto;
     overflow-x: hidden;
     min-height: 100px;
