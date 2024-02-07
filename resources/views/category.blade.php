@@ -147,6 +147,46 @@
             </div>
             <!-- END:CHECKBOX -->
 
+            <!-- START:CHECKBOX -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">دیزاین استایل</span>
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                            پرده زبرا و شید
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                            پرده چین دار
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                            پرده پانچی
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                            پرده چاپی
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                            پرده هازان
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- END:CHECKBOX -->
+
             <!-- START:SWITCH -->
             <div class="card">
                 <div class="card-header">
@@ -197,14 +237,70 @@
                 <div class="card-header">
                     <span class="card-title">ویژگی رنگ</span>
                 </div>
-                <div class="card-body">
-                    <div class="tw-flex tw-items-start tw-justify-between tw-flex-wrap">
-                        <div class="parde-color">
+                <div class="card-body tw-pr-0">
+                    <div class="flex tw-flex-col tw-justify-start tw-space-y-2">
+                        <div class="parde-color parde-color-row">
                             <label class="">
-                                <img src="https://dkstatics-public.digikala.com/digikala-static/f275e126421d91ecdaaf0aa80310d3ac39510346_1670664302.png" alt="">
+                            <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#000" />
+                                    </svg>
+                                <input type="checkbox">
+                            </label>
+                            <span>سیاه</span>
+                        </div>
+                        <div class="parde-color parde-color-row">
+                            <label class="">
+                            <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#475569" />
+                                    </svg>
+                                <input type="checkbox">
+                            </label>
+                            <span>خاکستری</span>
+                        </div>
+                        <div class="parde-color parde-color-row">
+                            <label class="">
+                            <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#f97316" />
+                                    </svg>
+                                <input type="checkbox">
+                            </label>
+                            <span>نارنجی</span>
+                        </div>
+                        <div class="parde-color parde-color-row">
+                            <label class="">
+                            <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#eab308" />
+                                    </svg>
+                                <input type="checkbox">
+                            </label>
+                            <span>زرد</span>
+                        </div>
+                        <div class="parde-color parde-color-row">
+                            <label class="">
+                            <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#0ea5e9" />
+                                    </svg>
+                                <input type="checkbox">
+                            </label>
+                            <span>آبی</span>
+                        </div>
+                        <div class="parde-color parde-color-row">
+                            <label class="">
+                            <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
+                                    </svg>
                                 <input type="checkbox">
                             </label>
                             <span>بنفش</span>
+                        </div>
+                        <div class="parde-color parde-color-row">
+                            <label class="">
+                            <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#f43f5e" />
+                                    </svg>
+                                <input type="checkbox">
+                            </label>
+                            <span>صورتی</span>
                         </div>
                     </div>
                 </div>

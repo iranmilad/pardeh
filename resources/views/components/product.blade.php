@@ -14,7 +14,7 @@
                     </svg>
                     </span>
                 </div>
-                <span class="tw-line-through tw-text-gray-400 tw-text-xs tw-ml-2 tw-text-left tw-w-full">{{$discountedPrice}}</span>
+                <span class="tw-line-through tw-text-gray-400 tw-text-xs tw-pl-[22px] tw-text-left tw-w-full">{{$discountedPrice}}</span>
                 @if(isset($stock))
                     <span class="tw-text-xs tw-text-red-500 tw-text-right tw-w-full">
                         <i class="fa-duotone fa-store"></i>

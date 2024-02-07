@@ -1312,6 +1312,10 @@ label.required {
     width: 100%;
 }
 
+.parde-color.parde-color-row span{
+    margin-right: 10px;
+}
+
 .main-navbar-container {
     justify-content: start !important;
 }
@@ -1846,7 +1850,10 @@ label.required {
 .category-post .product{
     border: none !important;
     box-shadow: none !important;
-    @apply tw-bg-gray-100 !important;
+}
+
+.category-filters .card{
+    border: none !important;
 }
 
 .category-post .product .body{
