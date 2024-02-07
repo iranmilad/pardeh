@@ -33,14 +33,14 @@ figure {
     width: 100%;
 }
 
-.indexblogswiper .swiper-slide img {
+.blogbiggrid img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: all 0.5s ease-in-out;
 }
 
-.indexblogswiper .swiper-slide:hover img {
+.blogbiggrid:hover img {
     transform: scale(1.1);
     transition: all 0.5s ease-in-out;
 }
@@ -672,20 +672,25 @@ label.required {
 }
 
 .blogGrid {
-    @apply tw-grid tw-grid-cols-12 tw-grid-rows-12 md:tw-h-96 lg:tw-h-[420px] tw-gap-4;
+    @apply tw-grid tw-grid-cols-1 md:tw-grid-cols-6 tw-grid-rows-4 md:tw-h-96 lg:tw-h-[620px] tw-gap-4;
 }
 
-.blogGrid .biggrid {
-    @apply tw-col-start-1 tw-col-end-13 md:tw-col-start-1 md:tw-col-end-7 lg:tw-col-end-9 md:tw-row-start-1 md:tw-row-end-13 tw-row-start-1 tw-row-end-5 lg:tw-row-start-1 lg:tw-row-end-13;
+.biggrid {
+    @apply tw-col-span-3 tw-row-span-4;
 }
 
 .blogGrid .smallgrid1 {
-    @apply tw-relative tw-overflow-hidden tw-rounded-lg tw-col-start-1 md:tw-col-start-7 md:tw-col-end-13 md:tw-row-start-1 md:tw-row-end-7 lg:tw-col-start-9 tw-col-end-13 tw-row-start-5 lg:tw-row-start-1 tw-row-end-9 lg:tw-row-end-7;
+    @apply tw-relative tw-overflow-hidden tw-rounded-lg tw-col-span-3 tw-row-span-2;
 }
 
-.blogGrid .smallgrid2 {
-    @apply tw-relative tw-overflow-hidden tw-rounded-lg tw-col-start-1 md:tw-col-start-7 md:tw-col-end-13 md:tw-row-start-7 md:tw-row-end-13 tw-col-end-13 lg:tw-col-start-9 lg:tw-col-end-13 tw-row-start-9 tw-row-end-13 lg:tw-row-start-7 lg:tw-row-end-13;
+.blogGrid .smallgrid{
+    @apply tw-relative tw-overflow-hidden tw-col-span-3 tw-row-span-2 ;
 }
+
+.blogGrid :is(.smallgrid2, .smallgrid3) {
+    @apply tw-relative tw-overflow-hidden tw-rounded-lg tw-h-full;
+}
+
 
 .category-boxes-slider .swiper-slide {
     width: 180px;
@@ -1804,4 +1809,34 @@ label.required {
 
 .social-media-icon img{
     @apply tw-size-7;
+}
+
+.post-box-blog{
+    display: flex;
+    flex-direction: column;
+    @apply tw-h-[480px] tw-pb-5 tw-px-4 tw-rounded-lg;
+}
+
+.post-box-blog .img{
+    @apply tw-w-full tw-my-3 tw-rounded-lg tw-h-60 tw-object-cover;
+}
+
+.post-box-blog .body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @apply tw-flex-1;
+}
+
+.post-box-blog .body p{
+    @apply tw-text-sm tw-text-gray-500 tw-line-clamp-3 tw-truncate tw-text-wrap;
+}
+
+.post-box-blog .body .footer{
+    border-top: none;
+    margin-top: auto;
+}
+
+.post-box-blog .title{
+    @apply tw-text-sm sm:tw-text-base lg:tw-text-base xl:tw-text-xl tw-text-center tw-text-slate-700 tw-font-semibold;
 }
