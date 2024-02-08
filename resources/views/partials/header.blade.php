@@ -15,12 +15,12 @@
             </div>
             <div class="tw-flex tw-items-center tw-flex-row-reverse lg:tw-flex-row  ">
                 @if(Auth::guest())
-                <a href="/login" class="login-register-btn tw-h-[46px]">
+                <a href="{{ route('login') }}" class="login-register-btn tw-h-[46px]">
                     <i class="fa-solid fa-user-large"></i>
                     <span class="tw-hidden md:tw-block">ورود/ثبت نام</span>
                 </a>
                 @else
-                <a href="/login" class="login-register-btn tw-h-[46px]">
+                <a href="{{ route('dashboard.home') }}" class="login-register-btn tw-h-[46px]">
                     <i class="fa-solid fa-user-large"></i>
                 </a>
                 @endif
