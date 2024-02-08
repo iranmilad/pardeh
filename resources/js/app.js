@@ -186,8 +186,31 @@ new Swiper(".discountedSwiper", {
 });
 
 new Swiper(".category-boxes-slider", {
-    slidesPerView: "auto",
+    modules: [Navigation],
+    slidesPerView: "8",
     spaceBetween: 15,
+    navigation: {
+        nextEl: "#category-products-next",
+        prevEl: "#category-products-prev",
+    },
+    breakpoints: {
+        120: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+        },
+        567: {
+            slidesPerView: 3,
+        },
+        756: {
+            slidesPerView: 4,
+        },
+        992: {
+            slidesPerView: 6,
+        },
+        1320: {
+            slidesPerView: 8,
+        },
+    },
 });
 
 $(document).on("DOMContentLoaded", function () {
