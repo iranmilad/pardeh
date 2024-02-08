@@ -544,7 +544,7 @@ label.required {
 }
 
 .category-filters .card .card-body {
-    @apply tw-pb-0 tw-max-h-80 tw-overflow-y-auto !important;
+    @apply tw-max-h-80 tw-overflow-y-auto !important;
 }
 
 .category-filters :is(.minPrice, .maxPrice) {
@@ -1854,6 +1854,40 @@ label.required {
 
 .category-filters .card{
     border: none !important;
+}
+
+.category-filters .card .card-body::-webkit-scrollbar {
+    margin-left: 5px;
+    width: 10px;
+    transition: 0.2s;
+}
+
+.category-filters .card .card-body::-webkit-scrollbar-thumb {
+    background-color: #d1d7de;
+    border-radius: 4px;
+    padding-left: 20px;
+}
+
+.category-filters .card .card-body.collapse::-webkit-scrollbar {
+    display: none;
+}
+
+.category-filters .card [data-bs-toggle="collapse"][aria-expanded="false"] i{
+    @apply tw-transition-all;
+    transform: rotate(0);
+}
+
+.category-filters .card [data-bs-toggle="collapse"][aria-expanded="true"] i{
+    @apply tw-transition-all;
+    transform: rotate(-90deg);
+}
+
+.category-filters .card .card-body .link-item{
+    @apply tw-text-gray-500 tw-text-sm tw-font-semibold tw-block tw-my-1 hover:tw-text-indigo-500 first:tw-mt-0;
+}
+
+.category-filters .card .card-body .link-item.active{
+    @apply tw-text-indigo-500;
 }
 
 .category-post .product .body{
