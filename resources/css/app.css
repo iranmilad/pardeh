@@ -544,7 +544,7 @@ label.required {
 }
 
 .category-filters .card .card-body {
-    @apply tw-max-h-80 tw-overflow-y-auto !important;
+    @apply tw-overflow-y-auto !important;
 }
 
 .category-filters :is(.minPrice, .maxPrice) {
@@ -1857,15 +1857,7 @@ label.required {
 }
 
 .category-filters .card .card-body::-webkit-scrollbar {
-    margin-left: 5px;
-    width: 10px;
-    transition: 0.2s;
-}
-
-.category-filters .card .card-body::-webkit-scrollbar-thumb {
-    background-color: #d1d7de;
-    border-radius: 4px;
-    padding-left: 20px;
+    display: none;
 }
 
 .category-filters .card .card-body.collapse::-webkit-scrollbar {

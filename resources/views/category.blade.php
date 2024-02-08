@@ -114,9 +114,14 @@
             <!-- REMOVE FILTERS -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">حذف فیلتر ها</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRemoveFilters" aria-expanded="true">
+                            <span>حذف فیلتر ها</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse show" id="collapseRemoveFilters">
                     <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
                         <a href="#" class="tw-text-sm tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer">حذف همه فیلتر ها</a>
                         <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer"></i>
@@ -128,11 +133,18 @@
                 </div>
             </div>
             <!-- REMOVE FILTERS -->
+
+            <!-- PRICE RANGE -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">بازه قیمت</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapsePriceRange" aria-expanded="false">
+                            <span>بازه قیمت</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse" id="collapsePriceRange">
                     <!-- START:PRICE INPUT -->
                     <div class="tw-mb-3 tw-ml-2 price-range1" data-min="0" data-max="100" data-defaultmin="20" data-defaultmax="80"></div>
                     <!-- END:PRICE INPUT -->
@@ -142,27 +154,35 @@
                     </div>
                 </div>
             </div>
-            <!-- START:CHECKBOX -->
+            <!-- PRICE RANGE -->
+
+            <!-- COLLAPSIBLE CHECKBOX -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی چک باکس</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseCheckbox" aria-expanded="false">
+                            <span>ویژگی چک باکس</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse" id="collapseCheckbox">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             موجود
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault2">
                             همه
                         </label>
                     </div>
                 </div>
             </div>
-            <!-- END:CHECKBOX -->
+            <!-- COLLAPSIBLE CHECKBOX -->
+
 
             <!-- START:CHECKBOX -->
             <div class="card">
@@ -194,125 +214,144 @@
             </div>
             <!-- END:CHECKBOX -->
 
-            <!-- START:SWITCH -->
+            <!-- SWITCH BOX -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی سوییچ باکس</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseSwitchBox" aria-expanded="false">
+                            <span>ویژگی سوییچ باکس</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse" id="collapseSwitchBox">
                     <div class="form-check form-switch">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             ارسال از فردا
                         </label>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
                     </div>
                     <div class="form-check form-switch">
-                        <label class="form-check-label tw-text-sm" for="defaultx">
+                        <label class="form-check-label tw-text-sm" for="defaultx1">
                             ارسال فروشنده
                         </label>
-                        <input class="form-check-input" type="checkbox" value="" id="defaultx">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultx1">
                     </div>
                 </div>
             </div>
-            <!-- END:SWITCH -->
+            <!-- SWITCH BOX -->
 
-            <!-- RADIO  -->
+
+            <!-- RADIO BOX -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی رادیو باکس</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRadioBox" aria-expanded="false">
+                            <span>ویژگی رادیو باکس</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
-
+                <div class="card-body collapse" id="collapseRadioBox">
                     <div class="form-check">
-                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault1">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             موجود
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault2">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault2">
                             همه
                         </label>
                     </div>
                 </div>
             </div>
-            <!-- RADIO  -->
+            <!-- RADIO BOX -->
 
-            <!-- START:COLOR -->
+
+            <!-- COLOR OPTIONS -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی رنگ</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseColorOptions" aria-expanded="false">
+                            <span>ویژگی رنگ</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body tw-pr-0">
-                    <div class="flex tw-flex-col tw-justify-start tw-space-y-2">
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#000" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>سیاه</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#475569" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>خاکستری</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#f97316" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>نارنجی</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#eab308" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>زرد</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#0ea5e9" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>آبی</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>بنفش</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#f43f5e" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>صورتی</span>
+                <div class="card-body collapse" id="collapseColorOptions">
+                    <div class="tw-pr-0">
+                        <div class="flex tw-flex-col tw-justify-start tw-space-y-2">
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#000" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>سیاه</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#475569" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>خاکستری</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#f97316" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>نارنجی</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#eab308" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>زرد</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#0ea5e9" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>آبی</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>بنفش</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#f43f5e" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>صورتی</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END:COLOR -->
+            <!-- COLOR OPTIONS -->
+
         </div>
         <div class="col-12 col-lg-9" id="products_boxes">
             <div class="tw-w-full tw-items-center tw-text-sm tw-mb-5 lg:tw-flex tw-hidden">
@@ -379,9 +418,14 @@
             <!-- REMOVE FILTERS -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">حذف فیلتر ها</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRemoveFilters2" aria-expanded="true">
+                            <span>حذف فیلتر ها</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse show" id="collapseRemoveFilters2">
                     <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
                         <a href="#" class="tw-text-sm tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer">حذف همه فیلتر ها</a>
                         <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer"></i>
@@ -393,13 +437,20 @@
                 </div>
             </div>
             <!-- REMOVE FILTERS -->
+
+            <!-- PRICE RANGE -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">بازه قیمت</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapsePriceRange2" aria-expanded="false">
+                            <span>بازه قیمت</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse" id="collapsePriceRange2">
                     <!-- START:PRICE INPUT -->
-                    <div class="tw-mb-3 tw-ml-2 price-range" data-min="0" data-max="100" data-defaultmin="20" data-defaultmax="80"></div>
+                    <div class="tw-mb-3 tw-ml-2 price-range1" data-min="0" data-max="100" data-defaultmin="20" data-defaultmax="80"></div>
                     <!-- END:PRICE INPUT -->
                     <div class="tw-flex tw-items-center tw-justify-between">
                         <input class="maxPrice" type="text" />
@@ -407,39 +458,47 @@
                     </div>
                 </div>
             </div>
-            <!-- START:CHECKBOX -->
+            <!-- PRICE RANGE -->
+
+            <!-- COLLAPSIBLE CHECKBOX -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی چک باکس</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseCheckbox2" aria-expanded="false">
+                            <span>ویژگی چک باکس</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse" id="collapseCheckbox2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             موجود
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault2">
                             همه
                         </label>
                     </div>
                 </div>
             </div>
-            <!-- END:CHECKBOX -->
+            <!-- COLLAPSIBLE CHECKBOX -->
+
 
             <!-- START:CHECKBOX -->
             <div class="card">
                 <div class="card-header">
                     <div class="">
-                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false">
                             <span>دیزاین استایل</span>
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
                     </div>
                 </div>
-                <div class="card-body collapse" id="collapseWidthExample">
+                <div class="card-body collapse" id="collapseWidthExample2">
                     <a class="link-item active" href="#">
                         پرده زبرا و شید
                     </a>
@@ -459,125 +518,143 @@
             </div>
             <!-- END:CHECKBOX -->
 
-            <!-- START:SWITCH -->
+            <!-- SWITCH BOX -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی سوییچ باکس</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseSwitchBox2" aria-expanded="false">
+                            <span>ویژگی سوییچ باکس</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body collapse" id="collapseSwitchBox2">
                     <div class="form-check form-switch">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             ارسال از فردا
                         </label>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
                     </div>
                     <div class="form-check form-switch">
-                        <label class="form-check-label tw-text-sm" for="defaultx">
+                        <label class="form-check-label tw-text-sm" for="defaultx1">
                             ارسال فروشنده
                         </label>
-                        <input class="form-check-input" type="checkbox" value="" id="defaultx">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultx1">
                     </div>
                 </div>
             </div>
-            <!-- END:SWITCH -->
+            <!-- SWITCH BOX -->
 
-            <!-- RADIO  -->
+
+            <!-- RADIO BOX -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی رادیو باکس</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRadioBox2" aria-expanded="false">
+                            <span>ویژگی رادیو باکس</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body">
-
+                <div class="card-body collapse" id="collapseRadioBox2">
                     <div class="form-check">
-                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault1">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             موجود
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault">
-                        <label class="form-check-label tw-text-sm" for="flexCheckDefault">
+                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault2">
+                        <label class="form-check-label tw-text-sm" for="flexCheckDefault2">
                             همه
                         </label>
                     </div>
                 </div>
             </div>
-            <!-- RADIO  -->
+            <!-- RADIO BOX -->
 
-            <!-- START:COLOR -->
+
+            <!-- COLOR OPTIONS -->
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">ویژگی رنگ</span>
+                    <div class="">
+                        <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseColorOptions2" aria-expanded="false">
+                            <span>ویژگی رنگ</span>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body tw-pr-0">
-                    <div class="flex tw-flex-col tw-justify-start tw-space-y-2">
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#000" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>سیاه</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#475569" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>خاکستری</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#f97316" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>نارنجی</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#eab308" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>زرد</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#0ea5e9" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>آبی</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>بنفش</span>
-                        </div>
-                        <div class="parde-color parde-color-row">
-                            <label class="">
-                                <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="50" cy="50" r="50" fill="#f43f5e" />
-                                </svg>
-                                <input type="checkbox">
-                            </label>
-                            <span>صورتی</span>
+                <div class="card-body collapse" id="collapseColorOptions2">
+                    <div class="tw-pr-0">
+                        <div class="flex tw-flex-col tw-justify-start tw-space-y-2">
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#000" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>سیاه</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#475569" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>خاکستری</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#f97316" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>نارنجی</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#eab308" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>زرد</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#0ea5e9" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>آبی</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>بنفش</span>
+                            </div>
+                            <div class="parde-color parde-color-row">
+                                <label class="">
+                                    <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#f43f5e" />
+                                    </svg>
+                                    <input type="checkbox">
+                                </label>
+                                <span>صورتی</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END:COLOR -->
+            <!-- COLOR OPTIONS -->
             </div>
         </div>
     </div>
