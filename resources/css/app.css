@@ -900,6 +900,7 @@ label.required {
 
 .send-box textarea::-webkit-scrollbar {
     display: none;
+    margin-left: 100px;
 }
 
 #sendMessage :is(i, svg) {

@@ -235,7 +235,7 @@ Route::get('/contact-us', function () {
 
 Route::get('/blog', function () {
     return view('blog');
-});
+})->name('blog');;
 
 Route::get('/favorites', function () {
     return view('favorites');

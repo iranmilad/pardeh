@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <a href="/blog">
+        <a href="{{ route('blog') }}">
             <i class="fa-regular fa-newspaper"></i>
             بلاگ
         </a>

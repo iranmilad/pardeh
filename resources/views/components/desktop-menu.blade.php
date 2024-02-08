@@ -284,7 +284,7 @@
             <a href="" class="navbar-link-menu">
                 تجهیزات نصب پرده
             </a>
-            <a href="" class="navbar-link-menu">
+            <a href="{{ route('blog') }}" class="navbar-link-menu">
                 وبلاگ
             </a>
         </nav>
