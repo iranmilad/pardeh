@@ -627,6 +627,18 @@ progress {
   }
 }
 
+/* Custom breakpoints for a 32-inch monitor */
+@media (min-width: 1600px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container  {
+    max-width: 1440px; /* Adjust as needed based on the monitor's resolution and pixel density */
+  }
+}
+@media (min-width: 1920px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container  {
+    max-width: 1728px; /* Adjust as needed based on the monitor's resolution and pixel density */
+  }
+}
+
 
 
 .row {

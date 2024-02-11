@@ -31,7 +31,7 @@ import "./tools/sweetalert";
 import "./search";
 import "./messages-dashboard";
 import { StarComponent } from "./components";
-import { hydrate } from "preact";
+import { hydrate,createElement } from "preact";
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
 
@@ -501,7 +501,7 @@ $(document).ready(function () {
             const dataStars = $(this).attr("data-stars");
             const noLabel = $(this).attr("data-no-label");
             hydrate(
-                React.createElement(StarComponent, {
+                createElement(StarComponent, {
                     dataStars: dataStars,
                     no_label: noLabel !== "" ? true : false,
                 }),
@@ -511,7 +511,7 @@ $(document).ready(function () {
     });
 });
 let product_review_images = new Swiper(".product-review-images", {
-    slidesPerView: 8,
+    slidesPerView: "auto",
     spaceBetween: 10,
 });
 
@@ -539,57 +539,25 @@ const player = new Plyr(".cs-player");
  */
 
 $(".swiper-product-options").each(function () {
+    let next = $(this).parent().find(".product-option-next")[0];
+    let prev = $(this).parent().find(".product-option-prev")[0];
     const swiper = new Swiper(this, {
         modules: [Navigation],
-        slidesPerView: 3,
-        spaceBetween: 10,
         navigation: {
-            nextEl: $(this).parent().find(".product-option-next")[0],
-            prevEl: $(this).parent().find(".product-option-prev")[0],
+            nextEl: next,
+            prevEl: prev,
         },
-        breakpoints: {
-            120: {
-                slidesPerView: 4,
-                spaceBetween: 10,
-                freeMode: true,
-            },
-            768: {
-                slidesPerView: 6,
-            },
-        },
+        slidesPerView: "auto",
+        spaceBetween: 10,
     });
-
-    swiper.navigation.nextEl.addEventListener("click", function () {
-        swiper.slideNext();
-    });
-
-    swiper.navigation.prevEl.addEventListener("click", function () {
-        swiper.slidePrev();
-    });
+    // swiper.navigation.nextEl.addEventListener("click", function () {
+    //     swiper.slideNext();
+    // });
+    
+    // swiper.navigation.prevEl.addEventListener("click", function () {
+    //     swiper.slidePrev();
+    // });
 });
-
-const targetElement = document.querySelector(".productImage");
-
-if (targetElement) {
-    const observer = new IntersectionObserver(
-        (entries, observer) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                    $(".mobile-review-product").fadeIn(300).addClass("show");
-                } else {
-                    $(".mobile-review-product").fadeOut(300).remove("show");
-                }
-            });
-        },
-        {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.5,
-        }
-    );
-
-    observer.observe(targetElement);
-}
 
 $(".mobile-review-product").on("click", () => {
     // scroll to top
@@ -603,3 +571,41 @@ $(".mobile-review-product").on("click", () => {
         }
     );
 });
+
+let isStickyEnabled = true;
+// SHOW ADD TO CART BOX IN PRODUCT
+function toggleProductToggle() {
+    var scrollPosition = $(window).scrollTop();
+    var triggerPosition = window.innerWidth > 768 ? 480 : 1300; // Adjust this value based on when you want to show the button
+
+    if (scrollPosition > triggerPosition && isStickyEnabled) {
+        $(".sticky-bottom.active").addClass("show");
+    } else {
+        $(".sticky-bottom.active").removeClass("show");
+    }
+}
+
+$(window).on("scroll", function () {
+    toggleProductToggle();
+});
+
+toggleProductToggle();
+
+let isTaptoTop = true;
+// SHOW ADD TO CART BOX IN PRODUCT
+function toggleTapToTop() {
+    var scrollPosition = $(window).scrollTop();
+    var triggerPosition = window.innerWidth > 768 ? 200 : 300; // Adjust this value based on when you want to show the button
+
+    if (scrollPosition > triggerPosition && isTaptoTop) {
+        $("#backtotop").addClass("show");
+    } else {
+        $("#backtotop").removeClass("show")
+    }
+}
+
+$(window).on("scroll", function () {
+    toggleTapToTop();
+});
+
+toggleTapToTop();

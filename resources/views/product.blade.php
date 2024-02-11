@@ -3,13 +3,18 @@
 @section('title', 'محصول')
 
 @section('content')
+<div class="bigLoading">
+<div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">صبر کنید ...</span>
+</div>
+</div>
 <div class="container" id="main-product">
     <x-breadcrumb />
     <div class="row" id="product-preview">
-        <div class="mobile-review-product">
+        <!-- <div class="mobile-review-product">
             <img src="https://placehold.co/600x400" alt="">
-        </div>
-        <div class="col-lg-5 tw-h-full lg:tw-sticky lg:tw-top-[126px] image-reviews">
+        </div> -->
+        <div class="col-lg-5 tw-h-full lg:tw-sticky lg:tw-top-[5px] image-reviews">
             <div class="swiper productImage">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -59,68 +64,69 @@
                     <div class="swiper-button-prev" id="product-images-prev"></div>
                     <div class="swiper-button-next" id="product-images-next"></div>
                 </div>
-                <div class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center">
+                <a href="#" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center">
                     <i class="fa-solid fa-play"></i>
                     <span>ویدئو</span>
-                </div>
-            </div>
-            <div class="mt-4">
-                <div class="alert alert-danger tw-text-sm tw-py-2 alert-dismissible fade show">
-                    این تعداد محصول در انبار ما موجود نیست
-                    <button type="button" class="btn-close tw-py-0 not-exists-in-store fs-8" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <div class="tw-flex tw-py-2 tw-items-center lg:tw-items-start tw-justify-between tw-fixed lg:tw-relative tw-w-full tw-bottom-0 tw-right-0 tw-z-50 tw-bg-gray-100 tw-px-3">
-                    <div class="tw-flex tw-flex-col">
-                        <!-- START: PRICE -->
-                        <span class="tw-text-lg fw-bold">
-                            26,000,000
-                            <svg style="width: 16px; height: 16px; fill: var(--undefined);">
-                                <use xlink:href="#toman"></use>
-                            </svg>
-                        </span>
-                        <!-- END: PRICE -->
-
-                        <!-- START: DISCOUNT -->
-                        <span class="tw-text-gray-500 tw-line-through">20,000,000</span>
-                        <!-- END: DISCOUNT -->
-                    </div>
-                    <button class="btn custom-btn-primary btn-sm tw-rounded-md tw-py-2">افزودن به سبد خرید</button>
-                </div>
-                <div class="tw-text-sm tw-text-gray-500">
-                    <i class="fa-solid fa-timer"></i>
-                    <span>زمان تحویل</span>
-                    <strong class="tw-text-black">7 روزه</strong>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-lg-7 px-4 product-options mt-4 mt-lg-0">
             <h3 class="fw-bold">پرده ی جدید طرح کتان</h3>
-            <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center">
-                <i class="fa-regular fa-circle-check tw-ml-2 tw-text-base"></i>
-                <span>موجود در انبار</span>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center">
+                        <i class="fa-regular fa-circle-check tw-ml-2 tw-text-base"></i>
+                        <span>موجود در انبار</span>
+                    </div>
+                    <div class="tw-flex tw-items-center">
+                        <div class="stared" data-stars="4"></div>
+                        <a class="tw-text-indigo-500 tw-mr-3">دیدگاه (500)</a>
+                    </div>
+                    <p class="tw-text-sm tw-leading-loose">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته <a href="#product-tabs-card" class="tw-text-indigo-500">بیشتر ...</a>
+                    </p>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card tw-rounded-lg border-0 tw-bg-gray-100">
+                        <div class="card-body">
+                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between pb-4">
+                                <span class="tw-text-gray-500">تخفیف : </span>
+                                <span class="badge tw-bg-red-500 tw-rounded-full">50%</span>
+                            </div>
+                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
+                                <span class="tw-text-gray-500">زمان تحویل : </span>
+                                <span>7 روز</span>
+                            </div>
+                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
+                                <span class="tw-text-gray-500">قیمت : </span>
+                                <span>12,000,000
+                                    <svg style="width: 16px; height: 16px; fill: var(--undefined);">
+                                        <use xlink:href="#toman"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="tw-w-full tw-pt-4 border-top tw-flex tw-items-center tw-justify-center">
+                                <button class="btn custom-btn-primary tw-rounded-lg tw-text-sm tw-w-max">افزودن به سبد خرید</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tw-flex tw-items-center">
-                <div class="stared" data-stars="4"></div>
-                <a class="tw-text-indigo-500 tw-mr-3">دیدگاه (500)</a>
-            </div>
-            <p class="tw-text-sm tw-leading-loose">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته <a class="tw-text-indigo-500">بیشتر ...</a>
-            </p>
 
             <!-- START: ACCORDION WITH SUB OPTION -->
-            <div class="accordion subaccordion-product" id="subAcoordion">
+            <div class="accordion subaccordion-product" id="subAcoordion2">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button first-accodrdion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#first" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button collapsed first-accodrdion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#first1" aria-expanded="false" aria-controls="collapseOne">
                             پرده رو
                         </button>
                     </h2>
-                    <div id="first" class="accordion-collapse collapse show" data-bs-parent="#subAcoordion">
+                    <div id="first1" class="accordion-collapse collapse" data-bs-parent="#subAcoordion2">
                         <div class="accordion-body">
                             <div class="accordion accordion-product" id="accordionExample2">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2x" aria-expanded="true" aria-controls="collapseOne">
                                             <div class="stepNum">
                                                 <span>2</span>
                                                 <i class="fa-regular fa-circle-exclamation"></i>
@@ -129,7 +135,7 @@
                                         </button>
                                     </h2>
                                 </div>
-                                <div id="collapseOne2" class="accordion-collapse collapse show" data-bs-parent="#accordionExample2">
+                                <div id="collapseOne2x" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
                                     <div class="accordion-body">
                                         <div class="alert alert-danger tw-text-sm">
                                             <i class="fa-regular fa-circle-exclamation"></i>
@@ -222,26 +228,37 @@
                                             </div>
                                         </div>
                                         <div class="box">
-                                            <span class="title">طول و عرض</span>
-                                            <div class="row mt-2">
-                                                <div class="col-2">
-                                                    <div class="product-type" for="">
-                                                        <img src="{{ Vite::asset('resources/images/product/Default_Width.jpg') }}" alt="">
-                                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
-                                                            <span>عرض(متر)</span>
-                                                            <input class="form-control w-50" type="number" value="5">
-                                                        </div>
-                                                        <input type="radio">
-                                                    </div>
+                                            <div class="tw-flex tw-items-center tw-justify-between mb-3">
+                                                <span class="title">
+                                                    طول و عرض
+                                                    <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                                                </span>
+                                                <div class="product-option-next-prev">
+                                                    <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
+                                                    <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
                                                 </div>
-                                                <div class="col-2">
-                                                    <div class="product-type" for="">
-                                                        <img src="{{ Vite::asset('resources/images/product/Default_Height.jpg') }}" alt="">
-                                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1">
-                                                            <span>طول(متر)</span>
-                                                            <input class="form-control w-50" type="number" value="8">
+                                            </div>
+                                            <div class="swiper swiper-product-options">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">
+                                                        <div class="product-type" for="">
+                                                            <img src="{{ Vite::asset('resources/images/product/Default_Width.jpg') }}" alt="">
+                                                            <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                                <span>عرض(متر)</span>
+                                                                <input class="form-control" type="number" value="5">
+                                                            </div>
+                                                            <input type="radio">
                                                         </div>
-                                                        <input type="radio">
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="product-type" for="">
+                                                            <img src="{{ Vite::asset('resources/images/product/Default_Height.jpg') }}" alt="">
+                                                            <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                                <span>طول(متر)</span>
+                                                                <input class="form-control" type="number" value="8" placeholder="عدد">
+                                                            </div>
+                                                            <input type="radio">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,11 +271,11 @@
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed first-accodrdion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#second" aria-expanded="false" aria-controls="second">
+                        <button class="accordion-button collapsed first-accodrdion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#second2" aria-expanded="false" aria-controls="second">
                             پرده زیر
                         </button>
                     </h2>
-                    <div id="second" class="accordion-collapse collapse" data-bs-parent="#subAcoordion">
+                    <div id="second2" class="accordion-collapse collapse" data-bs-parent="#subAcoordion2">
                         <div class="accordion-body">
                             آیتم های نمونه پایین در اینجا قرار میگیرد
                         </div>
@@ -342,20 +359,27 @@
             <div class="accordion accordion-product" id="accordionExample2">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne">
                             <div class="stepNum">
-                                <span>2</span>
+                                <span>3</span>
                                 <i class="fa-regular fa-circle-exclamation"></i>
                             </div>
                             انتخاب سایز ، نوع نصب ، تعداد
                         </button>
                     </h2>
                 </div>
-                <div id="collapseOne2" class="accordion-collapse collapse show" data-bs-parent="#accordionExample2">
+                <div id="collapseOne2" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
                     <div class="accordion-body">
                         <div class="alert alert-danger tw-text-sm">
                             <i class="fa-regular fa-circle-exclamation"></i>
                             لطفا نوع نصب را انتخاب کنید
+                        </div>
+                        <div class="mb-3 tw-w-36">
+                            <label for="count" class="title form-label">
+                                تعداد
+                                <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                            </label>
+                            <input type="number" class="form-control tw-w-full" min="0" value="1" id="count" placeholder="تعداد">
                         </div>
                         <div class="box">
                             <div class="tw-flex tw-items-center tw-justify-between mb-3">
@@ -444,26 +468,37 @@
                             </div>
                         </div>
                         <div class="box">
-                            <span class="title">طول و عرض</span>
-                            <div class="row mt-2">
-                                <div class="col-2">
-                                    <div class="product-type" for="">
-                                        <img src="{{ Vite::asset('resources/images/product/Default_Width.jpg') }}" alt="">
-                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
-                                            <span>عرض(متر)</span>
-                                            <input class="form-control w-50" type="number" value="5">
-                                        </div>
-                                        <input type="radio">
-                                    </div>
+                            <div class="tw-flex tw-items-center tw-justify-between mb-3">
+                                <span class="title">
+                                    طول و عرض
+                                    <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                                </span>
+                                <div class="product-option-next-prev">
+                                    <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
+                                    <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
                                 </div>
-                                <div class="col-2">
-                                    <div class="product-type" for="">
-                                        <img src="{{ Vite::asset('resources/images/product/Default_Height.jpg') }}" alt="">
-                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1">
-                                            <span>طول(متر)</span>
-                                            <input class="form-control w-50" type="number" value="8">
+                            </div>
+                            <div class="swiper swiper-product-options">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="product-type" for="">
+                                            <img src="{{ Vite::asset('resources/images/product/Default_Width.jpg') }}" alt="">
+                                            <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                <span>عرض(متر)</span>
+                                                <input class="form-control " type="number" value="5">
+                                            </div>
+                                            <input type="radio">
                                         </div>
-                                        <input type="radio">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="product-type" for="">
+                                            <img src="{{ Vite::asset('resources/images/product/Default_Height.jpg') }}" alt="">
+                                            <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                <span>طول(متر)</span>
+                                                <input class="form-control " type="number" value="8" placeholder="عدد">
+                                            </div>
+                                            <input type="radio">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -476,36 +511,184 @@
             <div class="accordion accordion-product" id="accordionExample3">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne">
                             <div class="stepNum">
-                                <span>1</span>
+                                <span>4</span>
                                 <i class="fa-regular fa-circle-exclamation"></i>
                             </div>
                             انتخاب قابلیت
                         </button>
                     </h2>
-                    <div id="collapseOne3" class="accordion-collapse collapse show" data-bs-parent="#accordionExample3">
+                    <div id="collapseOne3" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
                         <div class="accordion-body">
                             <div class="alert alert-danger tw-text-sm">
                                 <i class="fa-regular fa-circle-exclamation"></i>
                                 لطفا نوع هد ریل را انتخاب کنید
                             </div>
                             <div class="box">
-                                <span class="title">نوع هد ریل</span>
-                                <div class="row mt-2 gx-3">
-                                    <div class="col-2">
-                                        <label class="product-type" for="">
-                                            <img src="{{ Vite::asset('resources/images/product/standard-headrail.jpg') }}" alt="">
-                                            <span>داخلی</span>
-                                            <input type="radio">
-                                        </label>
+                                <div class="tw-flex tw-items-center tw-justify-between mb-3">
+                                    <span class="title">
+                                        نوع هد ریل
+                                        <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                                    </span>
+                                    <div class="product-option-next-prev">
+                                        <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
+                                        <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
                                     </div>
-                                    <div class="col-2">
-                                        <label class="product-type" for="">
-                                            <img src="{{ Vite::asset('resources/images/product/2-on-1-headrail.jpg') }}" alt="">
-                                            <span>بیرونی</span>
-                                            <input type="radio">
-                                        </label>
+                                </div>
+                                <div class="swiper swiper-product-options">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <label class="product-type" for="">
+                                                <img src="{{ Vite::asset('resources/images/product/standard-headrail.jpg') }}" alt="">
+                                                <span>داخلی</span>
+                                                <input type="radio">
+                                            </label>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <label class="product-type" for="">
+                                                <img src="{{ Vite::asset('resources/images/product/2-on-1-headrail.jpg') }}" alt="">
+                                                <span>بیرونی</span>
+                                                <input type="radio">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: OPTION -->
+
+            <!-- START: OPTION -->
+            <div class="accordion accordion-product" id="accordionExample4">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne">
+                            <div class="stepNum">
+                                <span>5</span>
+                                <i class="fa-regular fa-circle-exclamation"></i>
+                            </div>
+                            انتخاب حالت بالابر
+                        </button>
+                    </h2>
+                    <div id="collapseOne5" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
+                        <div class="accordion-body">
+                            <div class="alert alert-danger tw-text-sm">
+                                <i class="fa-regular fa-circle-exclamation"></i>
+                                لطفا حالت بالابر را انتخاب کنید
+                            </div>
+                            <div class="box">
+                                <div class="tw-flex tw-items-center tw-justify-between mb-3">
+                                    <span class="title">
+                                        حالت بالابر
+                                        <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                                    </span>
+                                    <div class="product-option-next-prev">
+                                        <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
+                                        <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
+                                    </div>
+                                </div>
+                                <div class="swiper swiper-product-options">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide tw-h-auto">
+                                            <label class="product-type" for="qwerty">
+                                                <div class="tw-relative">
+                                                    <img src="https://placehold.co/138" alt="">
+                                                    <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
+                                                        <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                            <i class="fa-solid fa-play"></i>
+                                                        </a>
+                                                        <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <input type="radio" name="xyzabc" id="qwerty">
+                                                <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                    <div class="center-between">
+                                                        <span>زنجیر و محافظ</span>
+                                                        <a href="#"><i class="fa-solid fa-circle-info"></i></a>
+                                                    </div>
+                                                    <span class="tw-font-semibold tw-text-black tw-mt-auto">رایگان</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="swiper-slide tw-h-auto">
+                                            <label class="product-type" for="qwerty1">
+                                                <div class="tw-relative">
+                                                    <img src="https://placehold.co/138" alt="">
+                                                    <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
+                                                        <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                            <i class="fa-solid fa-play"></i>
+                                                        </a>
+                                                        <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <input type="radio" name="xyzabc" id="qwerty1">
+                                                <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                    <div class="center-between">
+                                                        <span>بی سیم</span>
+                                                        <a href="#"><i class="fa-solid fa-circle-info"></i></a>
+                                                    </div>
+                                                    <span class="tw-font-semibold tw-text-black tw-mt-auto">1,000,000
+                                                        <svg style="width: 16px; height: 16px; fill: var(--undefined);" class="tw-inline-block">
+                                                            <use xlink:href="#toman"></use>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="swiper-slide tw-h-auto">
+                                            <label class="product-type" for="qwerty1">
+                                                <div class="tw-relative">
+                                                    <img src="https://placehold.co/138" alt="">
+                                                    <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
+                                                        <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                            <i class="fa-solid fa-play"></i>
+                                                        </a>
+                                                        <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <input type="radio" name="xyzabc" id="qwerty1">
+                                                <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                    <div class="center-between">
+                                                        <span>همراه با موتور</span>
+                                                        <a href="#"><i class="fa-solid fa-circle-info"></i></a>
+                                                    </div>
+                                                    <div class="tw-w-full tw-px-2 tw-mt-2">
+                                                        <span>
+                                                            کنترل
+                                                            <i class="fa-solid fa-circle-info tw-text-xs tw-text-indigo-500"></i>
+                                                        </span>
+                                                        <select class="form-select tw-text-xs" name="" id="">
+                                                            <option value="" selected>بله</option>
+                                                            <option value="">خیر</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="tw-w-full tw-px-2 tw-mt-2">
+                                                        <span>
+                                                            اتصال با وای فای
+                                                            <i class="fa-solid fa-circle-info tw-text-xs tw-text-indigo-500"></i>
+                                                        </span>
+                                                        <select class="form-select tw-text-xs" name="" id="">
+                                                            <option value="">بله</option>
+                                                            <option value="" selected>خیر</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="tw-font-semibold tw-text-black tw-mt-auto">1,000,000
+                                                        <svg style="width: 16px; height: 16px; fill: var(--undefined);" class="tw-inline-block">
+                                                            <use xlink:href="#toman"></use>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -519,27 +702,27 @@
             <div class="accordion accordion-product" id="accordionExample4">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne">
                             <div class="stepNum">
-                                <span>4</span>
+                                <span>6</span>
                                 <i class="fa-regular fa-circle-exclamation"></i>
                             </div>
                             <span>انتخاب گارانتی</span>
-                            <a class="ms-3 tw-text-xs text-white tw-underline" href="#">راهنما</a>
                         </button>
                     </h2>
-                    <div id="collapseOne4" class="accordion-collapse collapse show" data-bs-parent="#accordionExample4">
+                    <div id="collapseOne4" class="accordion-collapse collapse" data-bs-parent="#accordionExample4">
                         <div class="accordion-body">
+                            <a class="ms-3 tw-text-xs tw-underline tw-text-left tw-w-full tw-flex tw-justify-end" href="#">راهنما</a>
                             <div class="alert alert-danger tw-text-sm">
                                 <i class="fa-regular fa-circle-exclamation"></i>
                                 لطفا مدت زمان گارانتی را انتخاب کنید
                             </div>
                             <div class="box">
                                 <div class="row mt-2">
-                                    <div class="col-2">
+                                    <div class="tw-hidden lg:tw-block col-lg-2">
                                         <img class="tw-w-[100px] tw-h-[100px]" src="{{ Vite::asset('resources/images/icon_warranty.png') }}" alt="">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-12 col-lg-10">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="warranty" id="warranty1">
                                             <div>
@@ -575,6 +758,7 @@
                 </div>
             </div>
             <!-- END: WARRANTY -->
+
             <div class="alert tw-bg-indigo-200 tw-text-indigo-700 tw-flex tw-items-center tw-justify-between tw-border-r-[3px] tw-py-2 tw-border-r-indigo-400">
                 <div class="tw-flex tw-items-center">
                     <div class="tw-rounded-full tw-flex tw-items-center tw-justify-center">
@@ -680,15 +864,15 @@
             <div class="row mt-3">
                 <div class="col-12 tw-flex tw-flex-row ">
                     <div class="row tw-w-full">
-                        <div class="col-3">
+                        <div class="col-4 col-lg-3">
                             <div class="tw-flex tw-flex-col tw-justify-start tw-w-max tw-h-auto items-ce">
                                 <span>امتیاز محصول</span>
                                 <div class="mt-4">
                                     <span class=" tw-text-slate-700 tw-text-4xl tw-font-black">4.5 / 5</span>
                                 </div>
                                 <div>
-                                    <div class="stared" data-stars="4">
-                                        <div class="star-container"></div>
+                                    <div class="stared" data-stars="4" data-no-label>
+                                        <div class="star-container tw-text-yellow-500 tw-text-sm"></div>
                                     </div>
                                 </div>
                                 <div class="">
@@ -696,38 +880,38 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-8 col-lg-4">
                             <div class="tw-w-full tw-mr-4 tw-h-full tw-flex tw-flex-col tw-justify-between tw-space-y-4">
                                 <div class="tw-flex tw-flex-row tw-items-center">
-                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] ">5 ستاره</span>
+                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] tw-text-nowrap">5 ستاره</span>
                                     <div class="progress rating tw-h-4 tw-w-full tw-mx-2" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                         <div class="progress-bar rating" style="width: 80%"></div>
                                     </div>
                                     <span class="tw-text-xs tw-text-gray-600 tw-font-semibold">80%</span>
                                 </div>
                                 <div class="tw-flex tw-flex-row tw-items-center">
-                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] ">4 ستاره</span>
+                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] tw-text-nowrap">4 ستاره</span>
                                     <div class="progress rating tw-h-4 tw-w-full tw-mx-2" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                         <div class="progress-bar rating" style="width: 60%"></div>
                                     </div>
                                     <span class="tw-text-xs tw-text-gray-600 tw-font-semibold">60%</span>
                                 </div>
                                 <div class="tw-flex tw-flex-row tw-items-center">
-                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] ">3 ستاره</span>
+                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] tw-text-nowrap">3 ستاره</span>
                                     <div class="progress rating tw-h-4 tw-w-full tw-mx-2" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                         <div class="progress-bar rating" style="width: 40%"></div>
                                     </div>
                                     <span class="tw-text-xs tw-text-gray-600 tw-font-semibold">40%</span>
                                 </div>
                                 <div class="tw-flex tw-flex-row tw-items-center">
-                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] ">2 ستاره</span>
+                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] tw-text-nowrap">2 ستاره</span>
                                     <div class="progress rating tw-h-4 tw-w-full tw-mx-2" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                         <div class="progress-bar rating" style="width: 30%"></div>
                                     </div>
                                     <span class="tw-text-xs tw-text-gray-600 tw-font-semibold">30%</span>
                                 </div>
                                 <div class="tw-flex tw-flex-row tw-items-center">
-                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] ">1 ستاره</span>
+                                    <span class="tw-text-xs tw-text-gray-500 tw-w-[53px] tw-text-nowrap"> 1 ستاره</span>
                                     <div class="progress rating tw-h-4 tw-w-full tw-mx-2" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                         <div class="progress-bar rating" style="width: 20%"></div>
                                     </div>
@@ -735,7 +919,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4 offset-1">
+                        <div class="col-12 col-lg-4 offset-lg-1 mt-4 mt-lg-0">
                             <div class="row tw-justify-end">
                                 <div class="col-6">
                                     <div class="mb-3 tw-text-sm">
@@ -758,7 +942,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <input class="form-control tw-text-sm" type="text" placeholder="جستجوی کلمات کلیدی" name="ReviewSearch">
+                                    <input class="form-control" type="text" placeholder="جستجوی کلمات کلیدی" name="ReviewSearch">
                                 </div>
                             </div>
                         </div>
@@ -799,8 +983,8 @@
                 </div>
             </div>
             <div class="product-rating-box mt-3">
-                <div class="col-2">
-                    <div class="tw-flex tw-items-start tw-flex-col tw-ml-4 tw-space-y-2">
+                <div class="col-5 col-lg-2">
+                    <div class="tw-flex tw-items-start tw-flex-col tw-ml-2 lg:tw-ml-4 tw-space-y-2">
                         <div class="rating-box">
                             <span class="rating-title">امتیاز 1</span>
                             <div class="stared" data-stars="4" data-no-label></div>
@@ -823,7 +1007,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-7 col-lg-6">
                     <span class="tw-text-base tw-text-gray-800 tw-font-semibold">فرهاد باقری</span>
                     <p class="tw-text-sm tw-leading-loose">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</p>
                 </div>
@@ -847,4 +1031,66 @@
         </div>
     </div>
 </div>
+
+<div class="tw-z-[9999]">
+    <!-- START:STICKY -->
+    <div class="sticky-bottom active">
+        <div class="container tw-px-2 lg:tw-px-40">
+            <div class="tw-w-full tw-justify-between tw-flex tw-items-center">
+                <div class="tw-flex tw-items-start tw-flex-col">
+                    <div class="tw-text-base">
+                        <span class="tw-text-gray-600">
+                            <i class="fa-solid fa-tag"></i>
+                            قیمت : </span>
+                        <span class="tw-font-semibold tw-text-gray-700">1,200,000 تومان</span>
+                    </div>
+                    <div class="tw-text-base">
+                        <span class="tw-text-gray-600">
+                            <i class="fa-solid fa-truck-clock"></i>
+                            زمان تحویل: </span>
+                        <span class="tw-font-semibold tw-text-gray-700">7 روز </span>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn custom-btn-primary tw-rounded-lg tw-py-2">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        افزودن به سبد خرید</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END:STICKY -->
+
+    <!-- START: STICKY -->
+    <div class="sticky-bottom">
+        <div class="container tw-px-2 lg:tw-px-40">
+            <div class="tw-w-full tw-justify-between tw-flex tw-items-center">
+                <div class="tw-flex tw-items-start tw-flex-col">
+                    <div class="tw-text-base">
+                        <span class="tw-text-gray-600">
+                            <i class="fa-duotone fa-screwdriver-wrench tw-ml-3"></i>
+                            آیا به خدمت نصب نیاز دارید ؟
+                        </span>
+                    </div>
+                </div>
+                <div class="installer_product">
+                    <label for="installer_yes">
+                        <span>بله</span>
+                        <input type="radio" name="installer2" id="installer_yes">
+                    </label>
+                    <label for="installer_no">
+                        <span>خیر</span>
+                        <input type="radio" name="installer2" id="installer_no">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: STICKY -->
+</div>
+
+<a href="#firstPixel" id="backtotop">
+    <i class="fa-solid fa-arrow-up"></i>
+</a>
+
 @endsection

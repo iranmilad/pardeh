@@ -11,7 +11,7 @@
         <div class="accordion menu-accordion menu_sub_category accordion-flush" id="menu_sub_category_parent">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#menu_sub_category" aria-expanded="true" aria-controls="menu_sub_category">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#menu_sub_category" aria-expanded="false" aria-controls="menu_sub_category">
                         <i class="fa-regular fa-grid-2"></i>
                         محصولات
                     </button>
@@ -44,7 +44,7 @@
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#menu_sub_category2" aria-expanded="true" aria-controls="menu_sub_category">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#menu_sub_category2" aria-expanded="false" aria-controls="menu_sub_category">
                         <i class="fa-regular fa-booth-curtain"></i>
                         پرده
                     </button>

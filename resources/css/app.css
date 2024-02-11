@@ -969,23 +969,45 @@ label.required {
 
 .product-template,
 .product-type {
-    @apply tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-white has-[:checked]:tw-border-blue-800 tw-border-2 tw-border-solid
-     tw-border-transparent tw-cursor-pointer hover:tw-border-blue-800 tw-pb-4;
+    @apply tw-flex tw-flex-col tw-items-center tw-bg-white has-[:checked]:tw-border-blue-800 tw-border-2 tw-border-solid
+     tw-border-transparent tw-cursor-pointer hover:tw-border-blue-800 tw-pb-4 tw-relative;
 }
+/* 
+.product-template{
+    @apply has-[:checked]:before:tw-visible;
+}
+
+.product-template::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg fill='%2310b981' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z'/%3E%3C/svg%3E");
+    border-radius: 0.5rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    visibility: hidden;
+} */
 
 .product-type:not(label) {
     @apply hover:tw-border-gray-400;
 }
 
 .product-type {
-    @apply tw-border-gray-400 tw-mb-4;
+    @apply tw-border-gray-400 tw-mb-4 tw-h-full;
 }
 
 .product-type .body {
-    @apply tw-px-3;
+    @apply  tw-flex tw-flex-col tw-w-full tw-flex-1;
 }
 
-:is(.product-template, .product-type) input[type="radio"] {
+.product-type .body input{
+    @apply tw-w-3/4;
+}
+
+:is(.product-template, .product-type) :is(input[type="radio"], input[type="checkbox"]) {
     appearance: none;
 }
 
@@ -995,11 +1017,14 @@ label.required {
 
 .product-type img {
     width: 100%;
-    height: 100%;
+    height: 138px;
+    object-fit: cover;
+    display: block;
+    z-index: 5;
 }
 
 :is(.product-template, .product-type) span {
-    @apply tw-text-xs tw-mt-0.5 tw-text-gray-500;
+    @apply tw-text-xs tw-mt-0.5 ;
 }
 
 #product-tabs-card {
@@ -1121,7 +1146,7 @@ label.required {
 }
 
 .accordion.accordion-product,
-.accordion.accordion-product *:not(.product-template, .product-type, input),
+.accordion.accordion-product *:not(.product-template, .product-type, input,select),
 .accordion.accordion-product
     .accordion.accordion-product
     .accordion-button:focus,
@@ -1131,7 +1156,7 @@ label.required {
 }
 
 .accordion.accordion-product .accordion-button::after {
-    display: none;
+    background-image: url("data:image/svg+xml,%3Csvg fill='white' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M239 401c9.4 9.4 24.6 9.4 33.9 0L465 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-175 175L81 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L239 401z'/%3E%3C/svg%3E");
 }
 
 .accordion.accordion-product .accordion-button {
@@ -1144,6 +1169,7 @@ label.required {
     position: relative;
     color: white;
     padding: 0;
+    padding-left: 15px;
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -1161,7 +1187,7 @@ label.required {
     border-radius: 20px;
     border: 2px solid #1b2f5b;
     position: relative;
-    z-index: 5;
+    z-index: 0;
     margin-left: 12px;
     @apply tw-center;
 }
@@ -1240,7 +1266,7 @@ label.required {
 }
 
 .product-rating-box .rating-box {
-    @apply tw-flex tw-items-center tw-text-xs;
+    @apply tw-flex tw-items-center tw-text-xs tw-justify-between tw-w-full;
 }
 
 .product-rating-box {
@@ -1404,18 +1430,6 @@ label.required {
     @apply tw-text-gray-800 !important;
 }
 
-@media screen and (max-width: 992px) {
-    .mobile-review-product {
-        @apply tw-w-48 tw-h-32 tw-rounded-lg tw-hidden tw-bg-white tw-px-2 tw-py-1 tw-shadow-md;
-    }
-    .mobile-review-product img {
-        width: 100%;
-        object-fit: cover;
-    }
-    .mobile-review-product.show {
-        @apply tw-block  tw-fixed tw-top-[120px] tw-left-0 tw-z-[99999999999999999];
-    }
-}
 
 .menu-accordion :is(.accordion-item, .accordion-button) {
     border-radius: none;
@@ -1935,4 +1949,114 @@ label.required {
 
 .product:not(.show-btn) .show{
     display: none !important;
+}
+
+.sticky-bottom{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: white;
+    height: 90px;
+    box-shadow: 0px -5px 15px 0px theme('colors.indigo.500/20%');
+    border-top: 1px solid #f1f2f4;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateY(calc(100% + 90px));
+    transition: all 0.3s;
+}
+
+.sticky-bottom.show {
+    transform: translateY(0);
+}
+
+
+@media screen and (min-width: 576px) {
+    .swiper-product-options .swiper-slide{
+        width: 154px;
+    }
+}
+
+.swiper-product-options .swiper-slide{
+    width: 142px;
+}
+
+
+.product-type input[type="number"]::placeholder{
+    font-size: 12px;
+}
+
+.product-type input[type="number"]{
+    font-size: 14px;
+    appearance: none;
+    -moz-appearance: textfield; /* Firefox */
+    @apply tw-px-2;
+}
+
+.product-type input[type="number"]::-webkit-inner-spin-button,
+.product-type input[type="number"]::-webkit-outer-spin-button {
+    display: none;
+}
+
+@media screen and (min-width: 992px){
+    #backtotop{
+        bottom: 25px !important;
+        left: 20px;
+    }
+    #backtotop.show{
+        transform: translateY(0%);
+    }
+}
+
+#backtotop{
+    position: fixed;
+    bottom: 100px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background: theme('colors.indigo.500');
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 10px 15px 0px rgba(95.99999999999994, 0, 140.00000000000003, 0.09);
+    transition: all 0.3s;
+    border: none;
+    z-index: 999999;
+    transform: translateY(calc(100% + 100px));
+    transition: all 0.3s;
+}
+
+#backtotop.show{
+    transform: translateY(0%);
+}
+
+.swiper-product-options .swiper-slide{
+    height: auto !important;
+}
+
+.product-review-images .swiper-slide{
+    width: 150px;
+    aspect-ratio: 1;
+    display: block;
+}
+
+.bigLoading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1000000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.bigLoading.show{
+    display: flex;
 }

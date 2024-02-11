@@ -38,7 +38,7 @@
         </div>
     </div>
 </div>
-<div class="tw-bg-slate-800 tw-text-gray-100 mt-3">
+<div class="tw-bg-slate-800 tw-text-gray-100 mt-3 {{ Route::currentRouteName() == 'product' ? 'tw-pb-[80px]': '' }}">
     <div class="container">
         <footer class="footer">
             <div class="container">

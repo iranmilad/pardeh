@@ -17,7 +17,15 @@ module.exports = {
                   "justify-content": "center",
                   "align-items": "center",
                 },
-            });
+            },
+            {
+                ".center-between": {
+                    "display": "flex",
+                    "justify-content": "space-between",
+                    "align-items": "center",
+                }
+            }
+            );
         }),
     ],
     prefix: "tw-",

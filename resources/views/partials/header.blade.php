@@ -1,4 +1,4 @@
-<header class="tw-py-4">
+<header class="tw-py-4" id="firstPixel">
     <div class="container">
         <div class="tw-flex tw-items-center tw-justify-between tw-h-20">
             <div class="lg:tw-hidden tw-flex tw-items-center tw-justify-center">
