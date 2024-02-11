@@ -1,10 +1,10 @@
 import $ from "jquery";
-import "./bootstrap.bundle.min.js";
+import {Modal } from 'bootstrap';
 import KTBlockUI from "./tools/blockui.js";
 import { hydrate ,createElement} from "preact";
 import {ShowDetails} from "./components.jsx"
 
-var myModal = new bootstrap.Modal(document.getElementById("priceModal"), {
+var myModal = new Modal(document.getElementById("priceModal"), {
     keyboard: false,
 });
 
