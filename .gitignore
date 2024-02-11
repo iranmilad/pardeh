@@ -27,3 +27,5 @@ yarn-error.log
 /app/Models
 /app/database
 
+package-lock.json
+composer.lock
