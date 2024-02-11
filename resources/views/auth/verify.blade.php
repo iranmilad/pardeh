@@ -8,7 +8,7 @@
     <img class="-tw-z-10 tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0" src="{{ Vite::asset('resources/images/patternpad2.svg') }}" alt="">
     <div class="action-wrapper d-flex justify-content-center align-items-center h-100">
         <div class="form p-4 border border-radius-3xl border-gray-200 tw-bg-white">
-            <a href="/"><img src="https://placehold.co/600x400" alt="" title="" class="mx-auto d-block"></a>
+        <a href="/"><img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="" title="" width="150" height="150" class="mx-auto d-block"></a>
             <a href="login.html"><i class="fa fa-arrow-right position-absolute"></i></a>
             <div class="form-info text-right my-3">
                 <h1 class="fw-bold fs-5">کد بازیابی پیامک شده را وارد کنید</h1>

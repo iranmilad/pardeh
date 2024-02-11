@@ -17,6 +17,7 @@
     animation: rotate 10000ms infinite linear;
     opacity: 5%;
     background: rgb(95, 184, 236);
+    z-index: -1;
 }
 
 .wave.-two {
@@ -25,6 +26,7 @@
     background: rgb(101, 236, 214);
     margin-right: -190px;
     margin-top: -329px;
+    z-index: -1;
 }
 
 .tw-col-span-2 {
