@@ -20,9 +20,9 @@ yarn-error.log
 /.vscode
 .zip
 
-/app/Http/Controllers
-/app/Http/Requests
-/app/Traits
-/app/Jobs
-/app/Models
-/app/database
+# /app/Http/Controllers
+# /app/Http/Requests
+# /app/Traits
+# /app/Jobs
+# /app/Models
+# /database
