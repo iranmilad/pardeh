@@ -30,7 +30,7 @@ import "./tools/alarm";
 import "./tools/sweetalert";
 import "./search";
 import "./messages-dashboard";
-// import "./cartDetail";
+import "./cartDetail";
 import { StarComponent } from "./components";
 import { hydrate,createElement } from "preact";
 import Plyr from "plyr";
