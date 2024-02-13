@@ -36,6 +36,6 @@
     </div>
 </header>
 
-<x-desktop-menu />
-
-<x-mobile-menu />
+<!-- livewire menu -->
+<x-desktop-menu :alias="'product'" />
+<x-mobile-menu :alias="'product'"/>
