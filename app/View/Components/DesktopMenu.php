@@ -2,18 +2,23 @@
 
 namespace App\View\Components;
 
+use App\Models\Menu;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class DesktopMenu extends Component
 {
+    public $menu;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($alias)
     {
-        //
+
+        $this->menu  = Menu::where(['alias'=>$alias,])
+        ->first();
     }
 
     /**
