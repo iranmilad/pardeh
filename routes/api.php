@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+// routes/web.php or routes/api.php
+use App\Http\Controllers\ApiController;
+
 
 /*
 |--------------------------------------------------------------------------

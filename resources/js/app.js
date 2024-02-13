@@ -30,6 +30,7 @@ import "./tools/alarm";
 import "./tools/sweetalert";
 import "./search";
 import "./messages-dashboard";
+import "./cartDetail";
 import { StarComponent } from "./components";
 import { hydrate,createElement } from "preact";
 import Plyr from "plyr";
@@ -609,3 +610,40 @@ $(window).on("scroll", function () {
 });
 
 toggleTapToTop();
+
+/**
+ * Increase and Decrease the number of product in product page
+ */
+$(".product-counter-inner .count-plus").on("click", (e) => {
+    e.preventDefault();
+    let input = $(e.target).parent().parent().find("input");
+    let value = parseInt(input.val()) + 1;
+    input.val(value);
+    if (value > 0) {
+      $(".product-counter-inner .count-minus").css("opacity", 1);
+    }
+  });
+  
+  $(".product-counter-inner .count-minus").on("click", (e) => {
+    e.preventDefault();
+    let input = $(e.target).parent().parent().find("input");
+    let value = parseInt(input.val()) - 1;
+    if (value >= 1) {
+      input.val(value);
+      if (value === 1) {
+        $(".product-counter-inner .count-minus").css("opacity", 0.4);
+      }
+    }
+  });
+  
+  $(".product-counter-inner input").on("change", (e) => {
+    let value = parseInt($(e.target).val());
+    if (isNaN(value) || value < 1) {
+      $(e.target).val(1);
+      $(".product-counter-inner .count-minus").css("opacity", 0.4);
+    } else if (value === 1) {
+      $(".product-counter-inner .count-minus").css("opacity", 0.4);
+    } else {
+      $(".product-counter-inner .count-minus").css("opacity", 1);
+    }
+  });

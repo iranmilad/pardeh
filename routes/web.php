@@ -9,6 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ApiController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -329,3 +331,5 @@ Livewire::setUpdateRoute(function ($handle) {
 
 
 Route::get('/counter', Counter::class);
+
+Route::get('/api/cart/{id}', [ApiController::class, 'getResource']);
