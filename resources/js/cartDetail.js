@@ -2,7 +2,7 @@ import $ from "jquery";
 import { Modal } from "bootstrap";
 import KTBlockUI from "./tools/blockui.js";
 
-const myModal = new bootstrap.Modal("#detailsModal", {
+const myModal = new Modal("#detailsModal", {
     keyboard: false,
 });
 

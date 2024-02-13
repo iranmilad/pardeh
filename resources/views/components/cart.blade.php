@@ -1,7 +1,7 @@
 <div class="product-basket tw-py-5">
         <div class="product-basket__image">
             <a href="https://www.lioncomputer.com/product/r166n/Lenovo-LOQ-Gaming-15IRH8-i7-13620H-16GB-512GB-SSD-8GB-RTX4060-FHD-IPS-WUXGA-16-inch-laptop">
-                <img class="size-[145px]" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="لپ تاپ لنوو  LOQ Gaming 15IRH8 i7-13620H/16GB/512GB SSD/8GB RTX4060/WUXGA/IPS">
+                <img class="tw-size-[145px]" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="لپ تاپ لنوو  LOQ Gaming 15IRH8 i7-13620H/16GB/512GB SSD/8GB RTX4060/WUXGA/IPS">
             </a>
         </div>
         
