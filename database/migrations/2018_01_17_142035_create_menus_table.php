@@ -19,6 +19,8 @@ class CreateMenusTable extends Migration
             $table->string('alias', 50)->unique();
             $table->boolean("show_title")->default(false);
             $table->string('icon')->nullable();
+            $table->unsignedInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('menu_items')->onDelete('cascade');
 
             $table->timestamps();
         });
