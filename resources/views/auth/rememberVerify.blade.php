@@ -13,7 +13,7 @@
     <div class="col-12 col-md-6 tw-flex  tw-justify-center">
         <div class="tw-pt-10 tw-w-full sm:tw-w-[90%] md:tw-h-3/4 lg:tw-w-2/3 2xl:tw-w-1/2 ">
             <div class="form p-4 ">
-                <a href="/"><img src="https://placehold.co/600x300" alt="" title="" class="mx-auto d-block tw-w-full"></a>
+            <a href="/"><img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="" title="" width="150" height="150" class="mx-auto d-block"></a>
 
                 <div class="form-info tw-text-center my-3">
                     <h1 class="fw-bold fs-5">کد بازیابی را وارد کنید</h1>

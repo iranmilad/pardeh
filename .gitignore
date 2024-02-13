@@ -25,5 +25,4 @@ yarn-error.log
 /app/Traits
 /app/Jobs
 /app/Models
-/app/database
-
+/database
