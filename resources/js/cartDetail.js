@@ -2,9 +2,6 @@ import $ from "jquery";
 import { Modal } from "bootstrap";
 import KTBlockUI from "./tools/blockui.js";
 
-const myModal = new Modal("#detailsModal", {
-    keyboard: false,
-});
 
 let block = new KTBlockUI(document.querySelector("#detailsModal .modal-body"), {
     overlayClass: "tw-bg-transparent",
@@ -12,6 +9,9 @@ let block = new KTBlockUI(document.querySelector("#detailsModal .modal-body"), {
 
 $(".cart-show-detail").on("click", function () {
     const productId = $(this).data("product-id");
+    let myModal = new Modal("#detailsModal", {
+        keyboard: false,
+    });
     $.ajax({
         url: `/api/cart/${productId}`,
         beforeSend: function () {
