@@ -237,8 +237,11 @@ Route::get('/contact-us', function () {
 
 Route::get('/blog', function () {
     return view('blog');
-})->name('blog');;
+})->name('blog');
 
+// when user is not logged in
+// if user is logged in, we use dashboard
+// in this page we always use cookie instead of database
 Route::get('/favorites', function () {
     return view('favorites');
 });
@@ -286,6 +289,8 @@ Route::group(['prefix' => 'dashboard'], function () {
         return view('dashboard.comments');
     })->name('dashboard.comments');
 
+    // when user is logged in
+    // in this page we always use cookie instead of database
     Route::get('/favorites', function () {
         // Your dashboard home page logic
         return view('dashboard.favorites');

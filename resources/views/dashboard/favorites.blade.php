@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+<!-- THIS PAGE IS USED WHEN USER IS LOGGED IN -->
+<!-- IF USER IS NOT LOGIN, DONT USE THIS PAGE !!! -->
+<!-- THIS PAGE ALWAYS USE COOKIE. NO DATABASE -->
+
 @section('title', 'علاقه مندی ها')
 
 @section('dashboard-content')

@@ -1,5 +1,9 @@
 @extends('layouts.primary')
 
+<!-- THIS PAGE IS USED WHEN USER IS NOT LOGGED IN -->
+<!-- IF USER LOGIN, DONT USE THIS PAGE !!! -->
+<!-- THIS PAGE ALWAYS USE COOKIE. NO DATABASE -->
+
 @section('title', config('app.name'))
 
 @section('content')
