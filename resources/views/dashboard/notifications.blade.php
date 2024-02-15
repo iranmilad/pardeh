@@ -47,6 +47,10 @@
                 </div>
             </div>
             <div class="col-12">
+                <input type="hidden" id="new-msg-file" name="file" value="">
+                <button class="btn custom-btn-dark rounded-pill tw-max-w-max px-3" id="new-message-file">
+                <i class="fa-regular fa-file-import"></i>
+                    آپلود فایل</button>
                 <button class="btn custom-btn-primary rounded-pill tw-max-w-max px-3">ثبت پیام</button>
             </div>
         </div>
@@ -154,6 +158,8 @@
             <?php endfor; ?>
         </div>
     </div>
+
+    <x-chat />
 
     <x-uploadFileModal />
 

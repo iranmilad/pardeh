@@ -861,7 +861,15 @@ label.required {
     background: white;
     z-index: 99;
     border-radius: inherit;
-    padding-bottom: 10px;
+    padding-bottom: 16px;
+    display: none;
+}
+
+@media screen and (max-width: 992px){
+    .chatbox {
+        height: 100%;
+        position: fixed;
+    }
 }
 
 .chatbox .header {
@@ -870,7 +878,37 @@ label.required {
 }
 
 .chatbox :is(.your, .its) {
-    @apply tw-bg-gray-100 tw-leading-loose tw-float-right tw-text-[13px] tw-font-semibold tw-rounded-lg tw-p-3 tw-mb-2 tw-max-w-[90%] tw-w-max tw-min-w-52 tw-h-auto;
+    @apply tw-mb-2 tw-max-w-[90%] tw-w-max tw-min-w-52 tw-h-auto
+    tw-flex tw-flex-col;
+}
+
+.chatbox :is(.your, .its) .text-chat{
+    @apply tw-bg-gray-100 tw-leading-loose tw-float-right tw-text-[13px] tw-font-semibold
+    tw-rounded-lg  tw-p-3 tw-flex tw-flex-col;
+}
+
+.chatbox .its .text-chat{
+    @apply tw-bg-white tw-border tw-border-gray-100 tw-border-solid tw-float-left;
+}
+
+.chatbox .chat-time {
+    @apply tw-text-xs tw-text-gray-500 tw-mt-1 tw-text-right;
+}
+
+.chatbox .files{
+    @apply tw-text-xs tw-text-gray-800 tw-mt-1 tw-text-right tw-flex tw-flex-row tw-items-center tw-justify-start tw-flex-wrap;
+}
+
+.chatbox .files img{
+    width: 80px;
+    height: 80px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.chatbox .files a{
+    @apply tw-mr-2 first:tw-mr-0;
 }
 
 .chatbox .main {
@@ -888,9 +926,6 @@ label.required {
     @apply tw-bg-gray-200 tw-text-gray-400 tw-text-xl tw-size-10 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-mr-2;
 }
 
-.chatbox .its {
-    @apply tw-float-left tw-bg-white tw-border-solid tw-border tw-border-gray-100;
-}
 
 .chatbox .send-box {
     @apply tw-w-full tw-h-[calc(5rem-10px)] tw-px-3
@@ -906,6 +941,10 @@ label.required {
 .send-box textarea::-webkit-scrollbar {
     display: none;
     margin-left: 100px;
+}
+
+#sendMessage{
+    display: none;
 }
 
 #sendMessage :is(i, svg) {

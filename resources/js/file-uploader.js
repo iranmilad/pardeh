@@ -6,15 +6,18 @@ import ProgressBar from "@uppy/progress-bar";
 import Dashboard from "@uppy/dashboard";
 import "@uppy/dashboard/dist/style.min.css";
 import Persian from "@uppy/locales/lib/fa_IR";
-
+import $ from "jquery";
+import { Modal } from "bootstrap";
 import "@uppy/core/dist/style.min.css";
 import "@uppy/drag-drop/dist/style.min.css";
 import "@uppy/status-bar/dist/style.min.css";
 import "@uppy/progress-bar/dist/style.min.css";
 
+let modal = new Modal(document.getElementById("upload-file-modal"));
+
 const uppy = new Uppy({
     debug: true,
-    autoProceed: true,
+    autoProceed: false,
     restrictions: {
         maxFileSize: 1000000,
         maxNumberOfFiles: 10,
@@ -45,7 +48,79 @@ uppy.use(Dashboard, {
     proudlyDisplayPoweredByUppy: false,
 });
 
+
+// Function to update the file input value
+function updateFileInputValue(inputId, fileId) {
+    let fileInput = document.getElementById(inputId);
+    let fileValue = fileInput.value;
+    let fileArray = fileValue.split(",");
+    fileArray.push(fileId);
+    fileInput.value = fileArray.join(",");
+}
+
+// Function to remove the file from the input
+function removeFileFromInput(inputId, fileId) {
+    let fileInput = document.getElementById(inputId);
+    let fileValue = fileInput.value;
+    let fileArray = fileValue.split(",");
+    let index = fileArray.indexOf(fileId);
+    fileArray.splice(index, 1);
+    fileInput.value = fileArray.join(",");
+}
+
 uppy.on("upload-success", (file, response) => {
     const fileId = response.body.id; // Adjust this based on your server response
-    document.querySelector(hiddenInputSelector).value = fileId;
+
+    if (UploadType === "new") {
+        updateFileInputValue("new-msg-file", fileId);
+    }
+
+    if (UploadType === "exist") {
+        updateFileInputValue("exist-msg-file", fileId);
+    }
 });
+
+// Set event for removing a file
+uppy.on("file-removed", (file, reason) => {
+    // Send request to server to remove the file
+    $.ajax({
+        url: "/api/file/remove",
+        method: "DELETE",
+        data: {
+            id: file.id,
+        },
+        success: function (response) {
+            if (UploadType === "new") {
+                removeFileFromInput("new-msg-file", file.id);
+            }
+
+            if (UploadType === "exist") {
+                removeFileFromInput("exist-msg-file", file.id);
+            }
+        },
+    });
+});
+
+// if uppy is empty, show a message
+uppy.on("file-removed", () => {
+    if(uppy.getFiles().length === 0){
+        $(".uppy-Dashboard-AddFiles-list").html("<p>10 فایل با حداکثر حجم 10 مگابایت</p>")
+    }
+});
+
+$(".uppy-Dashboard-AddFiles-list").html("<p>10 فایل با حداکثر حجم 10 مگابایت</p>")
+
+/**
+ * @type {enum} 
+ */
+let UploadType = "";
+
+$('#new-message-file').on('click', function () {
+    UploadType = "new";
+    modal.show();
+})
+
+$('#exist-message-file').on('click', function () {
+    UploadType = "exist";
+    modal.show();
+})
