@@ -31,6 +31,7 @@ import "./tools/sweetalert";
 import "./search";
 import "./messages-dashboard";
 import "./cartDetail";
+import "./file-uploader";
 import { StarComponent } from "./components";
 import { hydrate,createElement } from "preact";
 import Plyr from "plyr";
@@ -331,19 +332,6 @@ $(".remove-favorite-user").on("click", function (e) {
     $(this).parent().parent().parent().hide().append(div).fadeIn(100);
 });
 
-$("#sendMessageBtn").on("click", function (e) {
-    var button = $(this);
-    var defaultText = "ارسال پیام";
-    var closeText = "بستن";
-
-    if (button.text() === defaultText) {
-        button.text(closeText);
-        button.addClass("btn-danger").removeClass("custom-btn-primary");
-    } else {
-        button.text(defaultText);
-        button.removeClass("btn-danger").addClass("custom-btn-primary");
-    }
-});
 
 if ($(".price-range,.price-range1").length > 0) {
     let minPrice = $(".minPrice");

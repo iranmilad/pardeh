@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\View;
 // routes/web.php or routes/api.php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\Storage;
+use Ramsey\Uuid\Uuid;
 
 
 /*
@@ -47,4 +49,19 @@ Route::get('card/{id}', function ($id) {
 
     // Return the HTML as an API response
     return response()->json(['html' => $html]);
+});
+
+Route::post('/file/upload', function (Request $request) {
+    $uploadedFiles = [];
+
+    foreach ($request->file('files') as $file) {
+        $uuid = Uuid::uuid4()->toString();
+        $uploadedFiles[] = [
+            'uuid' => $uuid,
+            'original_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getMimeType(),
+        ];
+    }
+
+    return response()->json(['files' => $uploadedFiles], 200);
 });
