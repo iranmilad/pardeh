@@ -1,5 +1,8 @@
 @extends('layouts.primary')
 
+<!-- IMAGE DOTTER: data of this image is created in admin dashboard. -->
+<!-- if user clicks on each dot, with js we request to api /imgdot/{id} and it render blade and sends html to js.  -->
+
 @section('title', '')
 
 @section('content')
@@ -75,8 +78,8 @@
                             <div class="image_dotter">
                                 <img src="{{ Vite::asset('resources/images/auth.jpg') }}" />
                                 <span style="top: 5%;left: 5%;" data-id="1"></span>
-                                <span style="top: 20%;left: 30%;" data-id="1"></span>
-                                <span style="top: 50%;left: 50%;" data-id="1"></span>
+                                <span style="top: 20%;left: 30%;" data-id="2"></span>
+                                <span style="top: 50%;left: 50%;" data-id="3"></span>
                             </div>
                             <p class="mt-4">
                                 تقریبا برای هر مناسبتی یک فیلم انیمیشن وجود دارد؛ تعطیلات خاص، برای سنین مختلف و
@@ -186,7 +189,7 @@
                 </div>
                 <div class="modal-footer tw-justify-start tw-border-none tw-bg-gray-100">
                     <button type="button" class="btn btn-light btn-sm tw-bg-transparent tw-border-transparent hover:tw-bg-transparent hover:tw-border-transparent closeModal" data-bs-dismiss="modal">بستن</button>
-                    <button type="button" class="btn custom-btn-primary btn-sm tw-py-1.5 tw-rounded-lg">مشاهده محصول</button>
+                    <a type="button" class="btn custom-btn-primary btn-sm tw-py-1.5 tw-rounded-lg">مشاهده محصول</a>
                 </div>
             </div>
         </div>

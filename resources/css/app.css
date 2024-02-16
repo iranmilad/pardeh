@@ -899,6 +899,10 @@ label.required {
     @apply tw-text-xs tw-text-gray-800 tw-mt-1 tw-text-right tw-flex tw-flex-row tw-items-center tw-justify-start tw-flex-wrap;
 }
 
+.chatbox .its .files{
+    justify-content: end;
+}
+
 .chatbox .files img{
     width: 80px;
     height: 80px;
@@ -910,6 +914,8 @@ label.required {
 .chatbox .files a{
     @apply tw-mr-2 first:tw-mr-0;
 }
+
+
 
 .chatbox .main {
     height: calc(100% - 8.5rem);

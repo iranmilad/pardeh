@@ -1,10 +1,8 @@
 import $ from "jquery";
-import {Modal } from 'bootstrap';
+import "./bootstrap.bundle.min.js"
 import KTBlockUI from "./tools/blockui.js";
-import { hydrate ,createElement} from "preact";
-import {ShowDetails} from "./components.jsx"
 
-var myModal = new Modal(document.getElementById("priceModal"), {
+var myModal = new bootstrap.Modal(document.getElementById("priceModal"), {
     keyboard: false,
 });
 
@@ -25,27 +23,16 @@ document.querySelectorAll(".image_dotter").forEach(function (element) {
                 let thisSpan = $(e.target);
                 let id = thisSpan.data("id");
                 $.ajax({
-                    url: `https://jsonplaceholder.typicode.com/posts/${id}`,
+                    url: `/api/imgdot/${id}`,
                     beforeSend: function () {
                         $("#priceModal .product_details").html("");
                         myModal.show();
                         block.block();
                     },
                     success: function (result) {
+                        $("#priceModal .product_details").html(result.html)
+                        $("#priceModal .modal-footer a").attr("href",`/product/`)
                         block.release();
-                        let product = {
-                            name: "محصول شماره 1",
-                            img: "https://picsum.photos/200",
-                            price: "25,000,000",
-                            discount: "18,000,000",
-                        };
-                        let productDetails = document.querySelector(
-                            "#priceModal .product_details"
-                        );
-                        hydrate(
-                            createElement(ShowDetails, product),
-                            productDetails
-                        );
                     },
                 });
             });

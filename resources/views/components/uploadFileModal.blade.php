@@ -1,3 +1,5 @@
+<!-- in js/file-uploader there is a config if you want to change it -->
+
 <!-- Modal -->
 <div class="modal fade" id="upload-file-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

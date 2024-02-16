@@ -28,7 +28,11 @@
                     <i class="fa-solid fa-basket-shopping"></i>
                     <span>2</span>
                 </a>
-                <a href="{{ route('dashboard.favorites') }}" class="navbar-favorite tw-hidden lg:tw-flex">
+                @if(Auth::guest())
+                    <a href="{{ route('favorites') }}" class="navbar-favorite tw-hidden lg:tw-flex">
+                @else
+                    <a href="{{ route('dashboard.favorites') }}" class="navbar-favorite tw-hidden lg:tw-flex">
+                @endif
                     <i class="fa-regular fa-heart"></i>
                 </a>
             </div>

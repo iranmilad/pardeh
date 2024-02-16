@@ -1,10 +1,13 @@
 @extends('layouts.dashboard')
 
+<!-- in api.php line 70 we can use data to show messages between user and admin  -->
+<!--  -->
+
 @section('title', 'پیام ها')
 
 @section('dashboard-content')
 <!--                        User Panel Orders:start-->
-<div class="user-panel-orders border border-radius-xl p-3 mb-3 mt-3 mt-lg-0 tw-shadow-sm tw-h-full tw-relative">
+<div class="user-panel-orders border border-radius-xl p-3 mb-3 mt-3 mt-lg-0 tw-shadow-sm tw-h-full tw-relative" id="messages-whole-box">
     <div class="tw-flex tw-items-center tw-justify-between">
         <p class="fw-bold mb-4 d-flex tw-items-center">
             پیام ها
@@ -12,7 +15,8 @@
         <button id="sendMessageBtn" data-bs-toggle="collapse" data-bs-target="#sendBox" aria-expanded="false" aria-controls="sendBox" class="btn btn-sm custom-btn-primary rounded-pill fw-7 px-3">ارسال پیام</button>
     </div>
     <div class="collapse" id="sendBox">
-        <div class="row">
+        <form action="" method="post" class="row">
+            @csrf
             <div class="col-12 col-sm-6 col-lg-6">
                 <div class="mb-3">
                     <label for="department" class="form-label">بخش</label>
@@ -48,12 +52,12 @@
             </div>
             <div class="col-12">
                 <input type="hidden" id="new-msg-file" name="file" value="">
-                <button class="btn custom-btn-dark rounded-pill tw-max-w-max px-3" id="new-message-file">
+                <button type="button" class="btn custom-btn-dark rounded-pill tw-max-w-max px-3" id="new-message-file">
                 <i class="fa-regular fa-file-import"></i>
                     آپلود فایل</button>
-                <button class="btn custom-btn-primary rounded-pill tw-max-w-max px-3">ثبت پیام</button>
+                <button type="submit" class="btn custom-btn-primary rounded-pill tw-max-w-max px-3">ثبت پیام</button>
             </div>
-        </div>
+        </form>
     </div>
     <div class="p-4 tw-w-auto tw-mx-auto tw-text-center">
         <span>هنوز هیچ پیامی ندارید.</span>
@@ -159,8 +163,10 @@
         </div>
     </div>
 
+    <!-- CHATBOX for messages between user and admin and other people -->
     <x-chat />
 
+    <!-- a modal to upload images -->
     <x-uploadFileModal />
 
 </div>

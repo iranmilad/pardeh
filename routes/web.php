@@ -244,19 +244,19 @@ Route::get('/blog', function () {
 // in this page we always use cookie instead of database
 Route::get('/favorites', function () {
     return view('favorites');
-});
+})->name('favorites');
 
 Route::get('/category', function () {
     return view('category');
-});
+})->name('category');
 
 Route::get('/payment-return', function () {
     return view('payment-return');
-});
+})->name('payment-return');
 
 Route::get('/payment', function () {
     return view('payment');
-});
+})->name('payment');
 
 Route::get('/product', function () {
     return view('product');
