@@ -11,10 +11,10 @@
         <!-- Slider:start -->
         <div class="swiper firstSlider *:tw-select-none">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider1.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider2.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider3.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider4.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ asset('images/slider1.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ asset('images/slider2.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ asset('images/slider3.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ asset('images/slider4.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
             </div>
             <div id="firstSlider-products-next" class="swiper-button-next bg-light border-radius-circle"></div>
             <div id="firstSlider-products-prev" class="swiper-button-prev bg-light border-radius-circle"></div>
@@ -38,7 +38,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4 index-category">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/1.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/1.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">خانه و آشپرخانه</strong>
                         </a>
                     </div>
@@ -46,7 +46,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/2.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/2.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">اسباب بازی</strong>
                         </a>
                     </div>
@@ -54,7 +54,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/3.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/3.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">شخصی</strong>
                         </a>
                     </div>
@@ -62,7 +62,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>
@@ -70,7 +70,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/5.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/5.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/6.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/6.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">خانه و آشپرخانه</strong>
                         </a>
                     </div>
@@ -87,7 +87,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/7.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/7.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">اسباب بازی</strong>
                         </a>
                     </div>
@@ -95,7 +95,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/8.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/8.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">شخصی</strong>
                         </a>
                     </div>
@@ -103,7 +103,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/9.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/9.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>
@@ -111,7 +111,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ asset('images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>
@@ -127,12 +127,12 @@
         <div class="row">
             <div class="col-6">
                 <a href="" title="">
-                    <img src="{{ Vite::asset('resources/images/banner1.jpg') }}" alt="" class="img-fluid border-radius-3xl img-opacity">
+                    <img src="{{ asset('images/banner1.jpg') }}" alt="" class="img-fluid border-radius-3xl img-opacity">
                 </a>
             </div>
             <div class="col-6">
                 <a href="" title="">
-                    <img src="{{ Vite::asset('resources/images/banner2.jpg') }}" alt="" class="img-fluid border-radius-3xl img-opacity">
+                    <img src="{{ asset('images/banner2.jpg') }}" alt="" class="img-fluid border-radius-3xl img-opacity">
                 </a>
             </div>
         </div>
@@ -147,43 +147,43 @@
             <div class="row mt-3 gy-4 newest-product-grid">
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/1.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth.jpg')}}" />
+                     image="{{asset('images/single-product/1.jpg')}}"
+                     image2="{{asset('images/auth.jpg')}}" />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/2.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth2.jpg')}}"  />
+                     image="{{asset('images/single-product/2.jpg')}}"
+                     image2="{{asset('images/auth2.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/3.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth3.jpg')}}"  />
+                     image="{{asset('images/single-product/3.jpg')}}"
+                     image2="{{asset('images/auth3.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/1.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth4.jpg')}}"  />
+                     image="{{asset('images/single-product/1.jpg')}}"
+                     image2="{{asset('images/auth4.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/2.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth5.jpg')}}"  />
+                     image="{{asset('images/single-product/2.jpg')}}"
+                     image2="{{asset('images/auth5.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/3.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth.jpg')}}"  />
+                     image="{{asset('images/single-product/3.jpg')}}"
+                     image2="{{asset('images/auth.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/1.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth2.jpg')}}"  />
+                     image="{{asset('images/single-product/1.jpg')}}"
+                     image2="{{asset('images/auth2.jpg')}}"  />
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 position-relative index-product">
                     <x-product link="/product" name="پرده جدیده کتان" price="12,000,000"
-                     image="{{Vite::asset('resources/images/single-product/2.jpg')}}"
-                     image2="{{Vite::asset('resources/images/auth3.jpg')}}"  />
+                     image="{{asset('images/single-product/2.jpg')}}"
+                     image2="{{asset('images/auth3.jpg')}}"  />
                 </div>
             </div>
         </div>
@@ -209,12 +209,12 @@
         </div>
         <div class="swiper bestSuggestionsSlider tw-w-full tw-h-full tw-mt-4">
             <div class="swiper-wrapper tw-items-stretch">
-                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" link="/product" /></div>
-                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" link="/product" /></div>
-                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" link="/product" /></div>
-                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" link="/product" /></div>
-                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" link="/product" /></div>
-                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" link="/product" /></div>
+                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/2.jpg')}}" link="/product" /></div>
+                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/2.jpg')}}" link="/product" /></div>
+                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/2.jpg')}}" link="/product" /></div>
+                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/2.jpg')}}" link="/product" /></div>
+                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/2.jpg')}}" link="/product" /></div>
+                <div class="swiper-slide tw-bg-white tw-rounded-xl index-product"><x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/2.jpg')}}" link="/product" /></div>
             </div>
         </div>
 
@@ -236,31 +236,31 @@
     <div class="swiper discountedSwiper tw-mt-6">
         <div class="swiper-wrapper tw-flex tw-items-stretch">
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/1.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{asset('images/single-product/2.jpg')}}" />
             </div>
             <div class="swiper-slide index-product">
-                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" discountedPrice="10,000,000" image="{{asset('images/single-product/3.jpg')}}" />
             </div>
         </div>
     </div>
@@ -287,7 +287,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">
@@ -302,7 +302,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">
@@ -317,7 +317,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">
@@ -332,7 +332,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">
@@ -347,7 +347,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">
@@ -362,7 +362,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">
@@ -377,7 +377,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">
@@ -392,7 +392,7 @@
                         <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
-                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
+                                    <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ asset('images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
                                     <h2 class="tw-text-sm title">برای تولید محتوا چه کاری انجام دهیم</h2>
                                 </figure>
                                 <div class="tw-text-white tw-text-xs tw-flex tw-items-center tw-justify-between tw-px-4 tw-py-4">

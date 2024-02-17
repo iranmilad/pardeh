@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SlidersTableSeeder::class);
 
         $this->call(ProductMenuSeeder::class);
-//        $this->call(CommentsTableSeeder::class);
+        $this->call(CategoriesMenuSeeder::class);
 //        $this->call(ReviewsTableSeeder::class);
         // factory(Product::class, 500)->create();
         // factory(Review::class, 5000)->create();

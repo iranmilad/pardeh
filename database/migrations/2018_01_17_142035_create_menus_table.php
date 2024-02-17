@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMenusTable extends Migration
 {
@@ -15,13 +15,13 @@ class CreateMenusTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 50)->unique();
+            $table->string('title');
+            $table->string('link')->nullable();
+            $table->text('icon')->nullable();
             $table->string('alias', 50)->unique();
             $table->boolean("show_title")->default(false);
-            $table->string('icon')->nullable();
-            $table->unsignedInteger('parent_id')->nullable();
-            $table->foreign('parent_id')->references('id')->on('menu_items')->onDelete('cascade');
-
+            $table->unsignedInteger('menu_id')->nullable();
+            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->timestamps();
         });
     }

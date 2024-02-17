@@ -37,5 +37,5 @@
 </header>
 
 <!-- livewire menu -->
-<x-desktop-menu :alias="'product'" />
-<x-mobile-menu :alias="'product'"/>
+<x-desktop-menu :alias="'main_menu'" />
+<x-mobile-menu :alias="'main_menu'" />
