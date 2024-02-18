@@ -17,10 +17,10 @@
                 <div class="tw-p-2 tw-py-1 tw-text-xs tw-bg-gray-100 tw-rounded-md">4 کالا</div>
             </div>
             <div class="tw-flex tw-items-center mb-3">
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" />
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" />
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" />
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" />
             </div>
             <span class="fs-7 tw-text-gray-500">هزینه ی ارسال : </span>
             <span class="fs-7 tw-text-gray-800 tw-font-semibold">رایگان</span>
@@ -35,13 +35,13 @@
                 <div class="tw-p-2 tw-py-1 tw-text-xs tw-bg-gray-100 tw-rounded-md">4 کالا</div>
             </div>
             <div class="tw-flex tw-items-center mb-3">
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" />
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" />
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" />
-                <img class="tw-size-24 tw-rounded-lg tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" />
+                <img class="tw-size-24 tw-rounded-xl tw-mx-1.5" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" />
             </div>
             <span class="fs-7 tw-text-gray-500">انتخاب زمان تحویل : </span>
-            <div class="border px-3 py-1 pb-3 tw-rounded-lg mt-3">
+            <div class="border px-3 py-1 pb-3 tw-rounded-xl mt-3">
                 <ul class="nav nav-tabs" id="" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
@@ -125,7 +125,7 @@
                     </div>
                 </form>
             </div>
-            <div class="border p-3 mt-3 fs-7 tw-rounded-lg">
+            <div class="border p-3 mt-3 fs-7 tw-rounded-xl">
                 قبل از تحویل کالا با شما تماس گرفته میشود
             </div>
         </div>

@@ -18,22 +18,22 @@
             <div class="swiper productImage">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
+                        <img class="zoom tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" alt="">
+                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" alt="">
+                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/4.jpg') }}" alt="">
+                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/4.jpg') }}" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" alt="">
+                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/6.jpg') }}" alt="">
+                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/6.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="swiper-button-prev" id="product-preview-images-prev"></div>
@@ -43,28 +43,28 @@
                 <div thumbsSlider="" class="swiper tw-w-full productImages me-2">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
+                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" alt="">
+                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" alt="">
+                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/4.jpg') }}" alt="">
+                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/4.jpg') }}" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" alt="">
+                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" alt="">
                         </div>
                         <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover " src="{{ Vite::asset('resources/images/single-product/6.jpg') }}" alt="">
+                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/6.jpg') }}" alt="">
                         </div>
                     </div>
                     <div class="swiper-button-prev" id="product-images-prev"></div>
                     <div class="swiper-button-next" id="product-images-next"></div>
                 </div>
-                <a href="#" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center">
+                <a href="#" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-xl">
                     <i class="fa-solid fa-play"></i>
                     <span>ویدئو</span>
                 </a>
@@ -87,7 +87,7 @@
                     </p>
                 </div>
                 <div class="col-lg-5">
-                    <div class="card tw-rounded-lg border-0 tw-bg-gray-100">
+                    <div class="card tw-rounded-xl border-0 tw-bg-gray-100">
                         <div class="card-body">
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between pb-4">
                                 <span class="tw-text-gray-500">تخفیف : </span>
@@ -106,7 +106,7 @@
                                 </span>
                             </div>
                             <div class="tw-w-full tw-pt-4 border-top tw-flex tw-items-center tw-justify-center">
-                                <button class="btn custom-btn-primary tw-rounded-lg tw-text-sm tw-w-max">افزودن به سبد خرید</button>
+                                <button class="btn custom-btn-primary tw-rounded-xl tw-text-sm tw-w-max">افزودن به سبد خرید</button>
                             </div>
                         </div>
                     </div>
@@ -1052,7 +1052,7 @@
                     </div>
                 </div>
                 <div>
-                    <button class="btn custom-btn-primary tw-rounded-lg tw-py-2">
+                    <button class="btn custom-btn-primary tw-rounded-xl tw-py-2">
                         <i class="fa-solid fa-basket-shopping"></i>
                         افزودن به سبد خرید</button>
                 </div>

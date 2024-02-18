@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 :root {
-    --plyr-color-main: theme("colors.indigo.500");
+    --plyr-color-main: theme("colors.brand.500");
 }
 
 @layer components {
@@ -51,12 +51,12 @@ figure {
 
 .cs-pagination :is(a, span) {
     @apply tw-mx-1 tw-flex tw-items-center tw-justify-center tw-min-w-8 tw-min-h-8 tw-max-w-max tw-max-h-max tw-border-2
-    tw-border-solid tw-border-gray-300 tw-rounded-lg tw-text-sm tw-text-gray-500
-    hover:tw-bg-indigo-500 hover:tw-border-indigo-500 hover:tw-text-white tw-transition-all tw-font-bold;
+    tw-border-solid tw-border-gray-300 tw-rounded-xl tw-text-sm tw-text-gray-500
+    hover:tw-bg-brand-500 hover:tw-border-brand-500 hover:tw-text-white tw-transition-all tw-font-bold;
 }
 
 .cs-pagination :is(span) {
-    @apply tw-bg-indigo-500 tw-text-white tw-border-indigo-500;
+    @apply tw-bg-brand-500 tw-text-white tw-border-brand-500;
 }
 
 .cs-pagination .dots {
@@ -128,7 +128,7 @@ label.required {
 
 .favorites-remove-backdrop {
     backdrop-filter: blur(3px);
-    @apply tw-w-full tw-h-full tw-absolute tw-z-20 tw-bg-gray-900/50  tw-rounded-lg tw-flex tw-items-center tw-justify-center tw-top-0 tw-left-0;
+    @apply tw-w-full tw-h-full tw-absolute tw-z-20 tw-bg-gray-900/50  tw-rounded-xl tw-flex tw-items-center tw-justify-center tw-top-0 tw-left-0;
 }
 
 .payment-return-table tbody tr * {
@@ -157,11 +157,11 @@ label.required {
 }
 
 #tab-user-orders .nav-link.active {
-    @apply tw-text-indigo-500 tw-border-b-indigo-500;
+    @apply tw-text-brand-500 tw-border-b-brand-500;
 }
 
 #tab-user-orders .nav-link.active:hover {
-    @apply tw-border-b-indigo-500;
+    @apply tw-border-b-brand-500;
 }
 
 #tab-user-orders .nav-link:not(.active) .badge {
@@ -169,7 +169,7 @@ label.required {
 }
 
 #tab-user-orders .nav-link.active .badge {
-    @apply tw-bg-indigo-500 tw-text-white;
+    @apply tw-bg-brand-500 tw-text-white;
 }
 
 #nav-user-orders .tab-pane {
@@ -186,7 +186,7 @@ label.required {
 }
 
 .order-details-img img {
-    @apply tw-size-24 tw-rounded-lg;
+    @apply tw-size-24 tw-rounded-xl;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -535,7 +535,7 @@ label.required {
 }
 
 .category-filters .card .card-title::before {
-    @apply tw-absolute tw-top-0 tw-right-0 tw-w-1 tw-h-full tw-bg-indigo-500 tw-rounded-lg;
+    @apply tw-absolute tw-top-0 tw-right-0 tw-w-1 tw-h-full tw-bg-brand-500 tw-rounded-xl;
     content: "";
 }
 
@@ -548,7 +548,7 @@ label.required {
 }
 
 .category-filters :is(.minPrice, .maxPrice) {
-    @apply tw-border-none tw-outline-none tw-text-gray-500 tw-text-sm tw-bg-transparent tw-rounded-lg tw-py-2 tw-px-3 tw-w-1/2;
+    @apply tw-border-none tw-outline-none tw-text-gray-500 tw-text-sm tw-bg-transparent tw-rounded-xl tw-py-2 tw-px-3 tw-w-1/2;
 }
 
 .category-filters .minPrice {
@@ -566,7 +566,7 @@ label.required {
 
 .parde-color label {
     @apply tw-p-1 tw-border-[3px] tw-border-solid tw-border-slate-400 tw-rounded-full tw-w-[38px]
-    tw-h-[38px] tw-flex tw-items-center tw-justify-center has-[:checked]:tw-border-indigo-500 tw-transition-all tw-cursor-pointer;
+    tw-h-[38px] tw-flex tw-items-center tw-justify-center has-[:checked]:tw-border-brand-500 tw-transition-all tw-cursor-pointer;
 }
 
 .parde-color span {
@@ -620,7 +620,7 @@ label.required {
 }
 
 .product .thumbnail {
-    @apply tw-rounded-lg;
+    @apply tw-rounded-xl;
 }
 
 .product .show {
@@ -681,7 +681,7 @@ label.required {
 }
 
 .blogGrid .smallgrid1 {
-    @apply tw-relative tw-overflow-hidden tw-rounded-lg tw-col-span-3 tw-row-span-2;
+    @apply tw-relative tw-overflow-hidden tw-rounded-xl tw-col-span-3 tw-row-span-2;
 }
 
 .blogGrid .smallgrid {
@@ -689,7 +689,7 @@ label.required {
 }
 
 .blogGrid :is(.smallgrid2, .smallgrid3) {
-    @apply tw-relative tw-overflow-hidden tw-rounded-lg tw-h-full;
+    @apply tw-relative tw-overflow-hidden tw-rounded-xl tw-h-full;
 }
 
 .category-boxes-slider .swiper-slide {
@@ -808,7 +808,7 @@ label.required {
 
 .payment-method {
     @apply tw-border-2 tw-border-gray-200 tw-border-solid tw-rounded-xl tw-w-full tw-p-3 tw-flex tw-text-gray-700 tw-cursor-pointer
-     has-[:checked]:tw-border-indigo-500 has-[:checked]:tw-text-indigo-500 tw-mb-3;
+     has-[:checked]:tw-border-brand-500 has-[:checked]:tw-text-brand-500 tw-mb-3;
 }
 .payment-method.disabled {
     @apply tw-opacity-50 tw-cursor-not-allowed;
@@ -884,7 +884,7 @@ label.required {
 
 .chatbox :is(.your, .its) .text-chat{
     @apply tw-bg-gray-100 tw-leading-loose tw-float-right tw-text-[13px] tw-font-semibold
-    tw-rounded-lg  tw-p-3 tw-flex tw-flex-col;
+    tw-rounded-xl  tw-p-3 tw-flex tw-flex-col;
 }
 
 .chatbox .its .text-chat{
@@ -935,7 +935,7 @@ label.required {
 
 .chatbox .send-box {
     @apply tw-w-full tw-h-[calc(5rem-10px)] tw-px-3
-     tw-bg-gray-100 tw-border tw-border-solid tw-border-gray-200 tw-flex tw-items-center tw-rounded-lg;
+     tw-bg-gray-100 tw-border tw-border-solid tw-border-gray-200 tw-flex tw-items-center tw-rounded-xl;
 }
 
 .send-box textarea {
@@ -1320,7 +1320,7 @@ label.required {
 }
 
 .product-quantity {
-    @apply tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-flex tw-items-center tw-justify-between tw-w-full tw-p-2;
+    @apply tw-border tw-border-solid tw-border-gray-300 tw-rounded-xl tw-flex tw-items-center tw-justify-between tw-w-full tw-p-2;
 }
 
 .shipping-delivery-time .nav-tabs {
@@ -1339,7 +1339,7 @@ label.required {
 }
 
 .shipping-delivery-time .nav-tabs .nav-item [role="tab"].active {
-    @apply tw-text-indigo-500 tw-border-b-indigo-500;
+    @apply tw-text-brand-500 tw-border-b-brand-500;
 }
 
 .shipping-delivery-time .tab-content .form-check {
@@ -1367,7 +1367,7 @@ label.required {
 }
 
 .cs-main-menu .dropdown-item {
-    @apply tw-w-[200px] tw-flex tw-items-center tw-text-sm tw-p-1 tw-px-2 tw-font-semibold tw-text-gray-600 tw-transition-all tw-cursor-pointer tw-rounded-lg;
+    @apply tw-w-[200px] tw-flex tw-items-center tw-text-sm tw-p-1 tw-px-2 tw-font-semibold tw-text-gray-600 tw-transition-all tw-cursor-pointer tw-rounded-xl;
 }
 
 .cs-main-menu .dropdown-item span {
@@ -1408,18 +1408,18 @@ label.required {
 }
 
 .desktop-menu:hover {
-    @apply tw-text-indigo-500 !important;
+    @apply tw-text-brand-500 !important;
 }
 
 .index-product :is(.thumbnail, .thumbnail-2) {
     height: 200px !important;
     object-fit: cover !important;
-    @apply tw-transition-all tw-rounded-lg tw-aspect-square;
+    @apply tw-transition-all tw-rounded-xl tw-aspect-square;
 }
 
 .installer_product label {
     @apply tw-bg-indigo-400 tw-text-white tw-border tw-border-solid tw-border-transparent tw-cursor-pointer
-     has-[:checked]:tw-border-indigo-400 has-[:checked]:tw-bg-indigo-600 tw-px-2 tw-py-1 tw-rounded-md;
+     has-[:checked]:tw-border-indigo-400 has-[:checked]:tw-bg-indigo-500 tw-px-2 tw-py-1 tw-rounded-md;
 }
 
 .installer_product label input {
@@ -1540,7 +1540,7 @@ label.required {
 }
 
 .login-register-btn i {
-    @apply tw-text-indigo-500 tw-transition-all;
+    @apply tw-text-[#AB0000] tw-transition-all;
     font-size: 18px;
 }
 
@@ -1549,7 +1549,7 @@ label.required {
 }
 
 .navbar-cart {
-    @apply tw-size-[41px] tw-bg-indigo-500 tw-relative hover:tw-bg-emerald-500 tw-transition-all hover:tw-text-white;
+    @apply tw-size-[41px] tw-bg-[#AB0000] tw-relative hover:tw-bg-[#AB0000] tw-transition-all hover:tw-text-white;
     box-shadow: 0px 10px 15px 0px
         rgba(95.99999999999994, 0, 140.00000000000003, 0.09);
     font-size: 20px;
@@ -1578,7 +1578,7 @@ label.required {
 }
 
 .navbar-favorite {
-    @apply tw-size-[41px] tw-bg-red-400 tw-relative hover:tw-bg-red-500 tw-transition-all hover:tw-text-white;
+    @apply tw-size-[41px] tw-bg-emerald-400 tw-relative hover:tw-bg-emerald-500 tw-transition-all hover:tw-text-white;
     box-shadow: 0px 10px 15px 0px
         rgba(95.99999999999994, 0, 140.00000000000003, 0.09);
     font-size: 20px;
@@ -1624,7 +1624,7 @@ label.required {
 
 .navbar-link-menu:hover {
     color: #fff !important;
-    background-color: theme("colors.indigo.500");
+    background-color: #AB0000;
     border-radius: 10px;
 }
 
@@ -1646,7 +1646,7 @@ label.required {
 
 .main-search {
     max-width: 455px;
-    background: theme("colors.indigo.500");
+    background: #AB0000;
     width: 100%;
     padding: 1px;
     border-radius: 25px;
@@ -1693,7 +1693,7 @@ label.required {
 }
 
 .main-search button {
-    background: theme("colors.indigo.500");
+    background: #AB0000;
     width: 50px;
     height: 48px;
     font-size: 18px;
@@ -1874,11 +1874,11 @@ label.required {
 .post-box-blog {
     display: flex;
     flex-direction: column;
-    @apply tw-h-[480px] tw-pb-5 tw-px-4 tw-rounded-lg;
+    @apply tw-h-[480px] tw-pb-5 tw-px-4 tw-rounded-xl;
 }
 
 .post-box-blog .img {
-    @apply tw-w-full tw-my-3 tw-rounded-lg tw-h-60 tw-object-cover;
+    @apply tw-w-full tw-my-3 tw-rounded-xl tw-h-60 tw-object-cover;
 }
 
 .post-box-blog .body {
@@ -1933,11 +1933,11 @@ label.required {
 }
 
 .category-filters .card .card-body .link-item {
-    @apply tw-text-gray-500 tw-text-sm tw-font-semibold tw-block tw-my-1 hover:tw-text-indigo-500 first:tw-mt-0;
+    @apply tw-text-gray-500 tw-text-sm tw-font-semibold tw-block tw-my-1 hover:tw-text-brand-500 first:tw-mt-0;
 }
 
 .category-filters .card .card-body .link-item.active {
-    @apply tw-text-indigo-500;
+    @apply tw-text-brand-500;
 }
 
 .category-post .product .body {
@@ -1996,7 +1996,7 @@ label.required {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 99999;
+    z-index: 999;
     background: white;
     height: 90px;
     box-shadow: 0px -5px 15px 0px theme("colors.indigo.500/20%");
@@ -2064,7 +2064,7 @@ label.required {
         rgba(95.99999999999994, 0, 140.00000000000003, 0.09);
     transition: all 0.3s;
     border: none;
-    z-index: 999999;
+    z-index: 999;
     transform: translateY(calc(100% + 100px));
     transition: all 0.3s;
 }
@@ -2129,7 +2129,7 @@ label.required {
     height: auto;
     aspect-ratio: 1;
     display: block;
-    @apply tw-rounded-lg;
+    @apply tw-rounded-xl;
 }
 
 .product-basket__body small {
@@ -2282,4 +2282,20 @@ label.required {
     background: theme('colors.indigo.500') !important;
     color: white !important;
     transition: all 0.3s !important;
+}
+
+.usersSlider{
+    width: 100%;
+}
+
+@media screen and (min-width: 992px){
+    .usersSlider{
+        width: 80%;
+    }
+
+}
+
+.usersSlider .swiper-slide{
+    max-height: 500px;
+    @apply tw-rounded-xl tw-overflow-hidden;
 }

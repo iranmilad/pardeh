@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="tab-pane fade " id="nav-finished" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-            <a href="/dashboard/order?id=56810298" class="card card-body nav-link text-dark tw-rounded-lg tw-shadow-sm hover:tw-shadow-md tw-transition-all">
+            <a href="/dashboard/order?id=56810298" class="card card-body nav-link text-dark tw-rounded-xl tw-shadow-sm hover:tw-shadow-md tw-transition-all">
                 <div class="tw-flex tw-items-center tw-justify-between">
                     <span class=" tw-flex tw-items-center tw-text-sm fw-bold">
                         <i class="tw-text-emerald-500 fa-duotone fa-circle-check me-1"></i>

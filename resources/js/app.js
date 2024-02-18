@@ -3,7 +3,7 @@ import.meta.glob(["../images/**"]);
 import iranData from "./iran_cities_with_coordinates.json";
 
 // core version + navigation, pagination modules:
-import $, { data } from "jquery";
+import $, { data, fn } from "jquery";
 import Swiper from "swiper";
 import {
     Navigation,
@@ -36,6 +36,10 @@ import { StarComponent } from "./components";
 import { hydrate,createElement } from "preact";
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import "./tools/jquery-zoom";
+
 
 // this is my swiper .headerSlider
 
@@ -635,3 +639,64 @@ $(".product-counter-inner .count-plus").on("click", (e) => {
       $(".product-counter-inner .count-minus").css("opacity", 1);
     }
   });
+
+new Swiper(".usersSlider",{
+    modules: [Pagination,Autoplay],
+    slidesPerView: 1,
+    spaceBetween: 10,
+    loop:  true,
+    pagination:{
+        el: ".usersSlider .swiper-pagination",
+        clickable: true,
+    },
+    autoplay:{
+        delay: 3000,
+        pauseOnMouseEnter: true,
+        disableOnInteraction: false,
+    }
+})
+
+/**
+ * Gallery for product page
+ */
+let galleries = document.querySelectorAll('img[data-fancybox="gallery"]');
+let newGallery = [];
+galleries.forEach((gallery) => {
+    newGallery.push({
+        src: gallery.src,
+        thumb: gallery.src,
+    });
+});
+// fancybox.close();
+$(document).ready(function(){
+
+    
+      zoomElm(productImage.slides[productImage.activeIndex].querySelector('img.zoom'));
+      productImage.on("slideChange", function (e) {
+        // remove zoom from previous .swiper-slide img.zoom
+        // $('.productImage .swiper-slide img.zoom').trigger('zoom.destroy');
+        // add zoom to current .swiper-slide img.zoom
+        $(productImage.slides[productImage.activeIndex]).find('img').addClass('zoom');
+        zoomElm(productImage.slides[productImage.activeIndex].querySelector('img.zoom'));
+      });
+  });
+
+function zoomElm(el){
+    $(el).wrap('<span style="display:inline-block;"></span>')
+    .css({
+      'display': 'block',
+      'border-radius': '16px',
+    })
+    .parent()
+    .zoom({
+      url: $(el).attr('data-zoom'),
+      magnify: 1.2,
+      callback: function(){
+        $(this).on("click", function(elm){
+            Fancybox.show(newGallery,{
+                startIndex: productImage.activeIndex,
+            })
+        })
+      },
+    });
+}

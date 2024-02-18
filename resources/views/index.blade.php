@@ -6,15 +6,31 @@
 @section('content')
 <!-- Your home page content here -->
 <!--Header::start-->
+<div class="container tw-mb-14">
+    <div class="swiper usersSlider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img class="tw-relative tw-block tw-object-contain tw-rounded-xl tw-h-full tw-w-full" src="https://placehold.co/1200x400.svg" />
+            </div>
+            <div class="swiper-slide">
+                <img class="tw-relative tw-block tw-object-contain tw-rounded-xl tw-h-full tw-w-full" src="https://placehold.co/1200x400.svg" />
+            </div>
+            <div class="swiper-slide">
+                <img class="tw-relative tw-block tw-object-contain tw-rounded-xl tw-h-full tw-w-full" src="https://placehold.co/1200x400.svg" />
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
 <header class="header">
     <div class="container">
         <!-- Slider:start -->
         <div class="swiper firstSlider *:tw-select-none">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider1.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider2.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider3.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
-                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider4.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-lg" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider1.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-xl" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider2.jpg') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-xl" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider3.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-xl" alt=""></a></div>
+                <div class="swiper-slide"><a class="tw-max-w-max tw-mx-auto tw-relative tw-block" href="" title=""><img src="{{ Vite::asset('resources/images/slider4.webp') }}" class="img-fluid tw-block tw-relative lg:tw-rounded-xl" alt=""></a></div>
             </div>
             <div id="firstSlider-products-next" class="swiper-button-next bg-light border-radius-circle"></div>
             <div id="firstSlider-products-prev" class="swiper-button-prev bg-light border-radius-circle"></div>
@@ -38,7 +54,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4 index-category">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/1.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/1.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">خانه و آشپرخانه</strong>
                         </a>
                     </div>
@@ -46,7 +62,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/2.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/2.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">اسباب بازی</strong>
                         </a>
                     </div>
@@ -54,7 +70,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/3.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/3.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">شخصی</strong>
                         </a>
                     </div>
@@ -62,7 +78,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>
@@ -70,7 +86,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/5.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/5.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>
@@ -79,7 +95,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/6.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/6.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">خانه و آشپرخانه</strong>
                         </a>
                     </div>
@@ -87,7 +103,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/7.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/7.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">اسباب بازی</strong>
                         </a>
                     </div>
@@ -95,7 +111,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/8.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/8.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">شخصی</strong>
                         </a>
                     </div>
@@ -103,7 +119,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/9.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/9.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>
@@ -111,7 +127,7 @@
                     <!--                Category Item:start-->
                     <div class="col-4 col-lg-2 col-xl-2 mb-4">
                         <a href="" title="">
-                            <img src="{{ Vite::asset('resources/images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                            <img src="{{ Vite::asset('resources/images/categories/4.jpg') }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
                             <strong class="text-center d-block fs-7">ورزش</strong>
                         </a>
                     </div>

@@ -367,7 +367,7 @@
                 </div>
             </div>
             <div class="lg:tw-hidden mb-4 tw-flex tw-justify-between">
-                <button class="btn custom-btn-primary tw-rounded-lg" data-bs-toggle="offcanvas" data-bs-target="#mobileFilter">
+                <button class="btn custom-btn-primary tw-rounded-xl" data-bs-toggle="offcanvas" data-bs-target="#mobileFilter">
                     <i class="fa-duotone fa-filter-list"></i>
                     <span>فیلتر</span>
                 </button>

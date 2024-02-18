@@ -49,7 +49,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-7 col-xl-8 mb-3">
             <!--                        My Wallet:start-->
-            <div class="user-panel-wallet p-4 tw-rounded-lg tw-shadow-sm tw-h-full d-flex tw-flex-col tw-items-start tw-justify-center">
+            <div class="user-panel-wallet p-4 tw-rounded-xl tw-shadow-sm tw-h-full d-flex tw-flex-col tw-items-start tw-justify-center">
                 <p class="gray-600 mb-2">اعتبار شما</p>
                 <h4 class="text-white fs-2">24,000,000 تومان</h4>
                 <p class="gray-600 mb-1">آخرین شارژ حساب در: 1402/3/21</p>
@@ -62,7 +62,7 @@
             <div class="user-panel-current-status h-100">
                 <div class="d-flex flex-column justify-content-between h-100">
                     <!--                                           User All Buy:start-->
-                    <div class="user-all-buys p-3 mb-3 tw-rounded-lg tw-shadow-sm">
+                    <div class="user-all-buys p-3 mb-3 tw-rounded-xl tw-shadow-sm">
                         <div class="d-flex justify-content-start align-items-center">
                             <span class="border-radius-circle d-flex justify-content-center align-items-center tw-bg-white/35 tw-size-12">
                                 <i class="fa-duotone fa-dollar-sign"></i>
@@ -80,7 +80,7 @@
                     <!--                                           User All Buy:end-->
 
                     <!--                                           User All Club Points:start-->
-                    <div class="user-all-club-points p-3 mb-3 tw-rounded-lg tw-shadow-sm">
+                    <div class="user-all-club-points p-3 mb-3 tw-rounded-xl tw-shadow-sm">
                         <div class=" d-flex justify-content-start align-items-center">
                             <span class="border-radius-circle d-flex justify-content-center align-items-center tw-bg-white/35 tw-size-12">
                                 <i class="fa-duotone fa-comments"></i>
@@ -117,19 +117,19 @@
         @if($favorites && count($favorites) > 0)
         @foreach($favorites as $favorite)
         <div class="col-md-4">
-            <div class="product-item-s2 p-3 position-relative tw-rounded-lg tw-shadow-sm hover:tw-shadow-md">
+            <div class="product-item-s2 p-3 position-relative tw-rounded-xl tw-shadow-sm hover:tw-shadow-md">
                 <!-- Product Item Image:start-->
                 <div class="product-item-s2-img text-center mb-3 position-relative">
                     <img src="{{ Vite::asset('resources/images/posts/1.jpg') }}" alt="" class="object-contain">
                     <!-- Delete Product From Wish List:start-->
                     <div class="product-item-s2-delete position-absolute !tw-opacity-100 !tw-visible">
-                        <a data-id="{{ $favorite }}" class="tw-cursor-pointer remove-favorite-user d-flex text-danger tw-rounded-lg justify-content-center align-items-center" title="حذف از لیست علاقه مندی"><i class="fa fa-trash-alt"></i></a>
+                        <a data-id="{{ $favorite }}" class="tw-cursor-pointer remove-favorite-user d-flex text-danger tw-rounded-xl justify-content-center align-items-center" title="حذف از لیست علاقه مندی"><i class="fa fa-trash-alt"></i></a>
                     </div>
                     <!-- Delete Product From Wish List:end-->
 
                     <!-- Add Product To Shopping Cart:start-->
                     <div class="product-item-s2-add-to-cart !tw-opacity-100 !tw-visible">
-                        <a href="" class="btn btn-sm w-100 tw-rounded-lg">افزودن به سبد خرید</a>
+                        <a href="" class="btn btn-sm w-100 tw-rounded-xl">افزودن به سبد خرید</a>
                     </div>
                     <!-- Add Product To Shopping Cart:end-->
                 </div>

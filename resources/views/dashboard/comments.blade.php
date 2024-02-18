@@ -13,10 +13,10 @@
     </div>
     <?php for ($i = 0; $i < 2; $i++) : ?>
         <?php $id = uniqid('') ?>
-        <div class="card p-3 tw-mt-3 first:tw-mt-0 tw-rounded-lg">
+        <div class="card p-3 tw-mt-3 first:tw-mt-0 tw-rounded-xl">
             <div class="p-0 tw-bg-transparent tw-border-none d-flex align-items-start justify-content-between">
                 <div class="tw-flex tw-items-start tw-w-full">
-                    <img class="tw-size-16 tw-rounded-lg tw-ml-3" src="{{ Vite::asset('resources/images/posts/1.jpg') }}" />
+                    <img class="tw-size-16 tw-rounded-xl tw-ml-3" src="{{ Vite::asset('resources/images/posts/1.jpg') }}" />
                     <div class="tw-w-full">
                         <p class="fw-bold">کالای تست</p>
                         <div class="tw-block">

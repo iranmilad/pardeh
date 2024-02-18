@@ -107,7 +107,7 @@
             <div class="col-12 mt-4 border-bottom pb-3 text-dark">
                 <a href="#" class="d-flex tw-max-w-max text-dark">
                     <div class="tw-relative tw-w-max">
-                        <img class="tw-size-28 tw-rounded-lg" src="{{ Vite::asset('resources/images/posts/4.jpg') }}" alt="">
+                        <img class="tw-size-28 tw-rounded-xl" src="{{ Vite::asset('resources/images/posts/4.jpg') }}" alt="">
                         <div class="tw-bg-slate-800 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-text-white tw-text-xs tw-min-w-5 tw-h-5 tw-absolute -tw-top-2 -tw-left-2 tw-mx-auto tw-max-w-max tw-shadow-md">2</div>
                     </div>
                     <div class="tw-flex tw-flex-col tw-mr-3 lg:tw-mr-7 mt-lg-0">
@@ -120,7 +120,7 @@
                     </div>
                 </a>
                 <div class="collapse mt-2" id="id_<?= $id; ?>">
-                    <div class="card card-body tw-rounded-lg tw-shadow-sm">
+                    <div class="card card-body tw-rounded-xl tw-shadow-sm">
                         <div class="row">
                             <div class="col-6 col-md-4 col-lg-3 labely">
                                 <span>تعداد: </span>

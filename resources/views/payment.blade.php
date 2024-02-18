@@ -38,7 +38,7 @@
             </label>
             <div class="payment-accordion-body tw-hidden">
                 <!-- START:EACH PRODUCT -->
-                <div class="tw-bg-gray-50 p-2 tw-rounded-lg tw-border tw-border-solid tw-border-gray-200 mb-3">
+                <div class="tw-bg-gray-50 p-2 tw-rounded-xl tw-border tw-border-solid tw-border-gray-200 mb-3">
                     <span>محصول شماره 1</span>
                     <div class="table-responsive">
                         <table class="table">
@@ -86,7 +86,7 @@
             </label>
             <div class="payment-accordion-body tw-hidden">
                 <!-- START:EACH PRODUCT -->
-                <div class="tw-bg-gray-50 p-2 tw-rounded-lg tw-border tw-border-solid tw-border-gray-200 mb-3">
+                <div class="tw-bg-gray-50 p-2 tw-rounded-xl tw-border tw-border-solid tw-border-gray-200 mb-3">
                     <span>محصول شماره 1</span>
                     <div class="table-responsive">
                         <table class="table">

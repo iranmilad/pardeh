@@ -1,6 +1,6 @@
 <div>
     <div class="tw-flex tw-items-start">
-        <img class="tw-w-32 tw-h-32 tw-rounded-lg tw-block" src="{{ Vite::asset($img) }}" alt="">
+        <img class="tw-w-32 tw-h-32 tw-rounded-xl tw-block" src="{{ Vite::asset($img) }}" alt="">
         <div class="tw-mr-3">
             <h6 class="tw-text-gray-600 tw-font-semibold">{{ $title }}</h6>
             <div class="row tw-mt-6">

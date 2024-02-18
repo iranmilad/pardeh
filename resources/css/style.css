@@ -549,11 +549,11 @@ p {
 }
 
 .custom-btn-primary {
-  background-color: #6366f1;
+  background-color: #AB0000;
   color: #fff;
 }
 .custom-btn-primary:hover {
-  background-color: #4f46e5;
+  background-color: #8A0000;
   color: #fff;
 }
 
@@ -735,7 +735,7 @@ p {
   top: 19px;
   right: -1px;
   padding: 2px 5px;
-  background-color: #6366f1;
+  background-color: #AB0000;
 }
 .custom-navbar .top-navbar .top-nav-left .shopping-cart-wrapper:hover .shopping-cart-btn {
   background-color: rgba(99, 101, 241, 0.155);
@@ -2365,10 +2365,10 @@ p {
   border-bottom: 0;
 }
 .user-panel-wrapper .user-panel-aside .user-panel-aside-menu ul li.active {
-  background: #6366f1;
+  background: #AB0000;
 }
 .user-panel-wrapper .user-panel-aside .user-panel-aside-menu ul li.active:hover{
-  background: #4f46e5;
+  background: #8A0000;
 }
 .user-panel-wrapper .user-panel-aside .user-panel-aside-menu ul li.active:hover a{
   color: #fff;

@@ -9,7 +9,7 @@
         <p class="fw-bold">
             سبد خرید شما
         </p>
-        <button class="btn custom-btn-danger btn-sm tw-px-4 tw-rounded-lg">حذف همه</button>
+        <button class="btn custom-btn-danger btn-sm tw-px-4 tw-rounded-xl">حذف همه</button>
     </div>
     <!--                        Cart Header:end-->
 
@@ -26,7 +26,7 @@
                     
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-secondary tw-px-3 btn-sm tw-rounded-lg" data-bs-dismiss="modal">بستن</button>
+                    <button type="button" class="btn btn-secondary tw-px-3 btn-sm tw-rounded-xl" data-bs-dismiss="modal">بستن</button>
                 </div>
             </div>
         </div>

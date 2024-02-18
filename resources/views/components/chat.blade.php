@@ -8,7 +8,7 @@
     <div class="header">
         <!-- TITLE OF MESSAGE -->
         <span></span>
-        <button class="btn custom-btn-primary btn-sm  tw-rounded-lg" id="chatbox-back">بازگشت</button>
+        <button class="btn custom-btn-primary btn-sm  tw-rounded-xl" id="chatbox-back">بازگشت</button>
     </div>
     <div class="main">
         <!-- MESSAGES -->

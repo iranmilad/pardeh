@@ -85,7 +85,7 @@
                 </label>
             </div>
         </div>
-        <div class="row collapse tw-rounded-lg mb-3 tw-mx-auto tw-bg-gray-50 tw-border tw-border-solid tw-border-gray-100" id="anotherAddress">
+        <div class="row collapse tw-rounded-xl mb-3 tw-mx-auto tw-bg-gray-50 tw-border tw-border-solid tw-border-gray-100" id="anotherAddress">
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="shipping_name" class="form-label fs-7">نام</label>
