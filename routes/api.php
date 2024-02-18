@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\View;
 // routes/web.php or routes/api.php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\Storage;
+use Ramsey\Uuid\Uuid;
 
 
 /*
@@ -50,3 +52,61 @@ Route::get('/cart/{id}', function () {
     return response()->json(['html' => $html]);
 });
 
+
+Route::post('/file/upload', function (Request $request) {
+    $uploadedFiles = [];
+
+    foreach ($request->file('files') as $file) {
+        $uuid = Uuid::uuid4()->toString();
+        $uploadedFiles[] = [
+            'uuid' => $uuid,
+            'original_name' => $file->getClientOriginalName(),
+            'mime_type' => $file->getMimeType(),
+        ];
+    }
+
+    return response()->json(['files' => $uploadedFiles], 200);
+});
+
+// FOR MESSAGE IN DASHBOARD
+Route::get('/messages/{id}', function ($id) {
+    $message = [
+        'id' => $id,
+        'sender' => 'مدیریت',
+        'priority' => 'زیاد',
+        'title' => 'پیام اول',
+        'messages' => [
+            [
+                'id' => 1,
+                'message' => 'پیام اول',
+                'created_at' => '1400/01/01 12:00:00',
+                'files' => ['https://placehold.co/600x400','https://placehold.co/600x400'],
+                'you' => true
+            ],
+            [
+                'id' => 2,
+                'message' => 'پیام دوم',
+                'created_at' => '1400/01/01 12:00:00',
+                'files' => ['https://placehold.co/600x400','https://placehold.co/600x400'],
+                'you' => false
+            ],
+        ],
+    ];
+
+    return response()->json(['message' => $message]);
+});
+
+// FOR IMAGE DOT. IT GETS DATA OF PRODUCT {ID} AND FILTER
+Route::get("/imgdot/{id}",function($id){
+    $product = [
+        "name" => "محصول",
+        "img" => "https://picsum.photos/200",
+        "price" => "25,000,000",
+        "discounted_price" => "18,000,000",
+        "discount" => "20%"
+    ];
+
+    $html = View::make("components/imgdot",$product)->render();
+
+    return response()->json(['html' => $html]);
+});

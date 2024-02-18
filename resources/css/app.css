@@ -861,7 +861,15 @@ label.required {
     background: white;
     z-index: 99;
     border-radius: inherit;
-    padding-bottom: 10px;
+    padding-bottom: 16px;
+    display: none;
+}
+
+@media screen and (max-width: 992px){
+    .chatbox {
+        height: 100%;
+        position: fixed;
+    }
 }
 
 .chatbox .header {
@@ -870,8 +878,44 @@ label.required {
 }
 
 .chatbox :is(.your, .its) {
-    @apply tw-bg-gray-100 tw-leading-loose tw-float-right tw-text-[13px] tw-font-semibold tw-rounded-lg tw-p-3 tw-mb-2 tw-max-w-[90%] tw-w-max tw-min-w-52 tw-h-auto;
+    @apply tw-mb-2 tw-max-w-[90%] tw-w-max tw-min-w-52 tw-h-auto
+    tw-flex tw-flex-col;
 }
+
+.chatbox :is(.your, .its) .text-chat{
+    @apply tw-bg-gray-100 tw-leading-loose tw-float-right tw-text-[13px] tw-font-semibold
+    tw-rounded-lg  tw-p-3 tw-flex tw-flex-col;
+}
+
+.chatbox .its .text-chat{
+    @apply tw-bg-white tw-border tw-border-gray-100 tw-border-solid tw-float-left;
+}
+
+.chatbox .chat-time {
+    @apply tw-text-xs tw-text-gray-500 tw-mt-1 tw-text-right;
+}
+
+.chatbox .files{
+    @apply tw-text-xs tw-text-gray-800 tw-mt-1 tw-text-right tw-flex tw-flex-row tw-items-center tw-justify-start tw-flex-wrap;
+}
+
+.chatbox .its .files{
+    justify-content: end;
+}
+
+.chatbox .files img{
+    width: 80px;
+    height: 80px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.chatbox .files a{
+    @apply tw-mr-2 first:tw-mr-0;
+}
+
+
 
 .chatbox .main {
     height: calc(100% - 8.5rem);
@@ -888,9 +932,6 @@ label.required {
     @apply tw-bg-gray-200 tw-text-gray-400 tw-text-xl tw-size-10 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-mr-2;
 }
 
-.chatbox .its {
-    @apply tw-float-left tw-bg-white tw-border-solid tw-border tw-border-gray-100;
-}
 
 .chatbox .send-box {
     @apply tw-w-full tw-h-[calc(5rem-10px)] tw-px-3
@@ -906,6 +947,10 @@ label.required {
 .send-box textarea::-webkit-scrollbar {
     display: none;
     margin-left: 100px;
+}
+
+#sendMessage{
+    display: none;
 }
 
 #sendMessage :is(i, svg) {
@@ -2190,30 +2235,51 @@ label.required {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: theme('colors.emerald.100');
+    background: theme("colors.emerald.100");
     border-radius: 50%;
 }
 
 .product-counter-inner .count-plus i {
-    color: theme('colors.emerald.500');
+    color: theme("colors.emerald.500");
     text-shadow: none;
 }
 
 .product-counter-inner .count-minus i {
-    color: theme('colors.red.500');
+    color: theme("colors.red.500");
     text-shadow: none;
 }
 
 @media screen and (max-width: 1024px) {
-    .payment-timeline a::before{
+    .payment-timeline a::before {
         display: none !important;
     }
 }
 
-@media screen and (max-width: 1024px){
-    .product-basket__body .remove-item{
-      position: absolute !important;
-      right: 25px !important;
-      bottom: 25px !important;
-    }  
-  }
+@media screen and (max-width: 1024px) {
+    .product-basket__body .remove-item {
+        position: absolute !important;
+        right: 25px !important;
+        bottom: 25px !important;
+    }
+}
+
+
+@media screen and (max-width: 992px){
+    .user-panel-orders{
+        position: unset;
+    }
+}
+
+.uppy-StatusBar-actionBtn--retry{
+    padding-right: 20px !important;
+}
+
+.uppy-u-reset.uppy-c-btn.uppy-Dashboard-browse{
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    background: theme('colors.indigo.500') !important;
+    color: white !important;
+    transition: all 0.3s !important;
+}

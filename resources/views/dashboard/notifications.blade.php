@@ -1,18 +1,22 @@
 @extends('layouts.dashboard')
 
+<!-- in api.php line 70 we can use data to show messages between user and admin  -->
+<!--  -->
+
 @section('title', 'پیام ها')
 
 @section('dashboard-content')
 <!--                        User Panel Orders:start-->
-<div class="user-panel-orders border border-radius-xl p-3 mb-3 mt-3 mt-lg-0 tw-shadow-sm tw-h-full tw-relative">
+<div class="user-panel-orders border border-radius-xl p-3 mb-3 mt-3 mt-lg-0 tw-shadow-sm tw-h-full tw-relative" id="messages-whole-box">
     <div class="tw-flex tw-items-center tw-justify-between">
         <p class="fw-bold mb-4 d-flex tw-items-center">
             پیام ها
         </p>
-        <button id="sendMessageBtn" data-bs-toggle="collapse" data-bs-target="#sendBox" class="btn btn-sm custom-btn-primary rounded-pill fw-7 px-3">ارسال پیام</button>
+        <button id="sendMessageBtn" data-bs-toggle="collapse" data-bs-target="#sendBox" aria-expanded="false" aria-controls="sendBox" class="btn btn-sm custom-btn-primary rounded-pill fw-7 px-3">ارسال پیام</button>
     </div>
     <div class="collapse" id="sendBox">
-        <div class="row">
+        <form action="" method="post" class="row">
+            @csrf
             <div class="col-12 col-sm-6 col-lg-6">
                 <div class="mb-3">
                     <label for="department" class="form-label">بخش</label>
@@ -47,9 +51,13 @@
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn custom-btn-primary rounded-pill tw-max-w-max px-3">ثبت پیام</button>
+                <input type="hidden" id="new-msg-file" name="file" value="">
+                <button type="button" class="btn custom-btn-dark rounded-pill tw-max-w-max px-3" id="new-message-file">
+                <i class="fa-regular fa-file-import"></i>
+                    آپلود فایل</button>
+                <button type="submit" class="btn custom-btn-primary rounded-pill tw-max-w-max px-3">ثبت پیام</button>
             </div>
-        </div>
+        </form>
     </div>
     <div class="p-4 tw-w-auto tw-mx-auto tw-text-center">
         <span>هنوز هیچ پیامی ندارید.</span>
@@ -67,7 +75,40 @@
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane active" id="all" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
+        <div class="tab-pane active" id="all" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="card border-bottom messages-private-box" data-id="1">
+                <div class="tw-flex tw-items-center tw-justify-between">
+                    <div class="tw-flex">
+                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
+                            <i class="fa-light fa-user"></i>
+                        </div>
+                        <div class="tw-flex tw-flex-col tw-mr-4">
+                            <span class="tw-text-base">موضوع خیاطی و پارچه</span>
+                            <span class="tw-text-gray-400 tw-text-sm">بخش: <span class="tw-text-gray-500 fw-bold">خیاط</span></span>
+                        </div>
+                    </div>
+                    <div class="tw-flex tw-flex-col tw-justify-start">
+                        <span class="tw-text-xs">شنبه</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-bottom messages-private-box" data-id="2">
+                <div class="tw-flex tw-items-center tw-justify-between">
+                    <div class="tw-flex">
+                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
+                            <i class="fa-light fa-user"></i>
+                        </div>
+                        <div class="tw-flex tw-flex-col tw-mr-4">
+                            <span class="tw-text-base">موضوع خیاطی و پارچه</span>
+                            <span class="tw-text-gray-400 tw-text-sm">بخش: <span class="tw-text-gray-500 fw-bold">خیاط</span></span>
+                        </div>
+                    </div>
+                    <div class="tw-flex tw-flex-col tw-justify-start">
+                        <span class="tw-text-xs">شنبه</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="tab-pane tw-space-y-0" id="sent" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div class="card border-bottom messages-private-box" data-id="1">
                 <div class="tw-flex tw-items-center tw-justify-between">
@@ -122,115 +163,12 @@
         </div>
     </div>
 
-    <div class="chatbox">
-        <div class="header">
-            <span>
-                نحوه ی انتخاب بهترین پرده برای کتابفروشی
-            </span>
-            <button class="btn custom-btn-primary btn-sm  tw-rounded-lg">بازگشت</button>
-        </div>
-        <div class="main">
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-            <div class="your">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </div>
-            <div class="its-box">
-                <div class="profile">
-                    <i class="fa-light fa-user"></i>
-                </div>
-                <div class="its">
-                    سلام هیچ خبر خاصی نیست ، تو چخبر
-                </div>
-            </div>
-        </div>
-        <div class="tw-px-5">
-            <div class="send-box">
-                <button class="btn tw-text-gray-400">
-                    <i class="fa-regular fa-paperclip "></i>
-                </button>
-                <textarea name="" id="" placeholder="متن خود را بنویسید"></textarea>
-                <button class="btn custom-btn-primary" id="sendMessage">
-                    <i class="fa-solid fa-paper-plane-top"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+    <!-- CHATBOX for messages between user and admin and other people -->
+    <x-chat />
+
+    <!-- a modal to upload images -->
+    <x-uploadFileModal />
+
 </div>
 <!--                        User Panel Orders:end-->
 @endsection

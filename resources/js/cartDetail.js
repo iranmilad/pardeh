@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { Modal } from "bootstrap";
+import "./bootstrap.bundle.min.js";
 import KTBlockUI from "./tools/blockui.js";
 
 
@@ -9,7 +9,7 @@ let block = new KTBlockUI(document.querySelector("#detailsModal .modal-body"), {
 
 $(".cart-show-detail").on("click", function () {
     const productId = $(this).data("product-id");
-    let myModal = new Modal("#detailsModal", {
+    let myModal = new bootstrap.Modal("#detailsModal", {
         keyboard: false,
     });
     $.ajax({

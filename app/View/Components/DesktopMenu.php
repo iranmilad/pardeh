@@ -16,9 +16,7 @@ class DesktopMenu extends Component
      */
     public function __construct($alias)
     {
-
-        $this->menu  = Menu::where(['alias'=>$alias,])
-        ->first();
+        //
     }
 
     /**

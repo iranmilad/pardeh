@@ -238,23 +238,26 @@ Route::get('/contact-us', function () {
 
 Route::get('/blog', function () {
     return view('blog');
-})->name('blog');;
+})->name('blog');
 
+// when user is not logged in
+// if user is logged in, we use dashboard
+// in this page we always use cookie instead of database
 Route::get('/favorites', function () {
     return view('favorites');
-});
+})->name('favorites');
 
 Route::get('/category', function () {
     return view('category');
-});
+})->name('category');
 
 Route::get('/payment-return', function () {
     return view('payment-return');
-});
+})->name('payment-return');
 
 Route::get('/payment', function () {
     return view('payment');
-});
+})->name('payment');
 
 Route::get('/product', function () {
     return view('product');
@@ -287,6 +290,8 @@ Route::group(['prefix' => 'dashboard'], function () {
         return view('dashboard.comments');
     })->name('dashboard.comments');
 
+    // when user is logged in
+    // in this page we always use cookie instead of database
     Route::get('/favorites', function () {
         // Your dashboard home page logic
         return view('dashboard.favorites');
