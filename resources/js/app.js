@@ -39,6 +39,8 @@ import "plyr/dist/plyr.css";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import "./tools/jquery-zoom";
+import "./product.js";
+import "./tour.js";
 
 
 // this is my swiper .headerSlider
@@ -161,7 +163,6 @@ new Swiper(".indexblogswiper", {
         disableOnInteraction: false,
     },
     keyboard: true,
-    autoplay: true,
 });
 
 new Swiper(".discountedSwiper", {
@@ -546,7 +547,7 @@ $(".swiper-product-options").each(function () {
     // swiper.navigation.nextEl.addEventListener("click", function () {
     //     swiper.slideNext();
     // });
-    
+
     // swiper.navigation.prevEl.addEventListener("click", function () {
     //     swiper.slidePrev();
     // });
@@ -615,7 +616,7 @@ $(".product-counter-inner .count-plus").on("click", (e) => {
       $(".product-counter-inner .count-minus").css("opacity", 1);
     }
   });
-  
+
   $(".product-counter-inner .count-minus").on("click", (e) => {
     e.preventDefault();
     let input = $(e.target).parent().parent().find("input");
@@ -627,7 +628,7 @@ $(".product-counter-inner .count-plus").on("click", (e) => {
       }
     }
   });
-  
+
   $(".product-counter-inner input").on("change", (e) => {
     let value = parseInt($(e.target).val());
     if (isNaN(value) || value < 1) {
@@ -670,15 +671,16 @@ galleries.forEach((gallery) => {
 // fancybox.close();
 $(document).ready(function(){
 
-    
-      zoomElm(productImage.slides[productImage.activeIndex].querySelector('img.zoom'));
-      productImage.on("slideChange", function (e) {
-        // remove zoom from previous .swiper-slide img.zoom
-        // $('.productImage .swiper-slide img.zoom').trigger('zoom.destroy');
-        // add zoom to current .swiper-slide img.zoom
-        $(productImage.slides[productImage.activeIndex]).find('img').addClass('zoom');
+    if($(".zoom").length > 0){
         zoomElm(productImage.slides[productImage.activeIndex].querySelector('img.zoom'));
-      });
+        productImage.on("slideChange", function (e) {
+          // remove zoom from previous .swiper-slide img.zoom
+          // $('.productImage .swiper-slide img.zoom').trigger('zoom.destroy');
+          // add zoom to current .swiper-slide img.zoom
+          $(productImage.slides[productImage.activeIndex]).find('img').addClass('zoom');
+          zoomElm(productImage.slides[productImage.activeIndex].querySelector('img.zoom'));
+        });
+    }
   });
 
 function zoomElm(el){
@@ -700,3 +702,4 @@ function zoomElm(el){
       },
     });
 }
+

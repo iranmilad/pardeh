@@ -108,3 +108,41 @@ Route::get("/imgdot/{id}",function($id){
 
     return response()->json(['html' => $html]);
 });
+
+
+/**
+ * this route returns the product details and update price and time and discount and also the images of product.
+ * 
+ */
+Route::post("/product",function(Request $request){
+
+    /**
+     * 
+     *
+     * @param string $request->name The name of the product.
+     * @return array The response array containing product details.
+     */
+    $response = [
+        "name" => $request->name,
+        "images" => [
+            "https://picsum.photos/200",
+        ],
+        "price" => "25,000,000",
+        "discounted_price" => "18,000,000",
+        "discount" => "20%",
+    ];
+
+    return response()->json(['html' => $response]);
+});
+
+Route::post("/add-to-cart",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
+        "cart" => [
+            "count" => 5,
+        ],
+    ];
+
+    return response()->json(['html' => $response]);
+});

@@ -5,11 +5,12 @@ use App\Livewire\Counter;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
+use App\Http\Livewire\ProductComponent;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -257,6 +258,7 @@ Route::get('/payment-return', function () {
 Route::get('/payment', function () {
     return view('payment');
 })->name('payment');
+
 
 Route::get('/product', function () {
     return view('product');

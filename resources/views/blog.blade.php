@@ -10,7 +10,7 @@
     </div>
     <div class="blogGrid">
         <a href="#" class="biggrid">
-            <div class="blogbiggrid tw-cursor-pointer tw-rounded-xl tw-overflow-hidden tw-relative tw-h-full">
+            <div class="blogbiggrid tw-cursor-pointer tw-rounded-2xl tw-overflow-hidden tw-relative tw-h-full">
                 <img class="tw-z-10 tw-relative tw-block tw-object-cover tw-h-full tw-w-full" src="{{Vite::asset('resources/images/auth.jpg')}}" />
                 <div class="tw-flex tw-flex-col tw-items-end tw-pt-3 tw-absolute tw-bottom-0 tw-left-0 tw-z-20 tw-w-full tw-h-full tw-px-7 index-blog-swiper-bg">
                     <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">آموزش</div>
@@ -24,7 +24,7 @@
             <div class="tw-flex tw-flex-col tw-items-end tw-pt-3 tw-absolute tw-bottom-0 tw-left-0 tw-z-20 tw-w-full tw-h-full tw-px-7 index-blog-swiper-bg">
                 <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">آموزش</div>
             </div>
-            <img class="z- tw-rounded-xl tw-block tw-relative tw-w-full tw-h-full tw-object-cover" src="{{Vite::asset('resources/images/auth2.jpg')}}" alt="">
+            <img class="z- tw-rounded-2xl tw-block tw-relative tw-w-full tw-h-full tw-object-cover" src="{{Vite::asset('resources/images/auth2.jpg')}}" alt="">
             <div class="tw-absolute tw-bottom-0 tw-z-30 tw-right-0 tw-px-5 tw-pb-3 tw-text-white index-blog-swiper-bg">
                 <h6 class="tw-leading-relaxed">آیا پرده متناسب با رنگ دیوار باید انتخاب شود ؟</h6>
             </div>
@@ -36,7 +36,7 @@
                         <div class="tw-flex tw-flex-col tw-items-end tw-pt-3 tw-absolute tw-bottom-0 tw-left-0 tw-z-20 tw-w-full tw-h-full tw-px-7 index-blog-swiper-bg">
                             <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">آموزش</div>
                         </div>
-                        <img class="z- tw-rounded-xl tw-block tw-relative tw-w-full tw-h-full tw-object-cover" src="{{Vite::asset('resources/images/auth3.jpg')}}" alt="">
+                        <img class="z- tw-rounded-2xl tw-block tw-relative tw-w-full tw-h-full tw-object-cover" src="{{Vite::asset('resources/images/auth3.jpg')}}" alt="">
                         <div class="tw-absolute tw-bottom-0 tw-z-30 tw-right-0 tw-px-5 tw-pb-3 tw-text-white index-blog-swiper-bg">
                             <h6 class="tw-leading-relaxed">چرا پرده تیره طرفدار بیشتری برای دکوراسیون مدرن دارد!؟</h6>
                         </div>
@@ -47,7 +47,7 @@
                         <div class="tw-flex tw-flex-col tw-items-end tw-pt-3 tw-absolute tw-bottom-0 tw-left-0 tw-z-20 tw-w-full tw-h-full tw-px-7 index-blog-swiper-bg">
                             <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">آموزش</div>
                         </div>
-                        <img class="z- tw-rounded-xl tw-block tw-relative tw-w-full tw-h-full tw-object-cover" src="{{Vite::asset('resources/images/auth3.jpg')}}" alt="">
+                        <img class="z- tw-rounded-2xl tw-block tw-relative tw-w-full tw-h-full tw-object-cover" src="{{Vite::asset('resources/images/auth3.jpg')}}" alt="">
                         <div class="tw-absolute tw-bottom-0 tw-z-30 tw-right-0 tw-px-5 tw-pb-3 tw-text-white index-blog-swiper-bg">
                             <h6 class="tw-leading-relaxed">چرا پرده تیره طرفدار بیشتری برای دکوراسیون مدرن دارد!؟</h6>
                         </div>
@@ -83,7 +83,7 @@
                                         <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">خبر</div>
                                     </div>
                                 </div>
-                                <button class="mt-4 tw-rounded-xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
+                                <button class="mt-4 tw-rounded-2xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
                                     ادامه مطلب
                                 </button>
                             </div>
@@ -108,7 +108,7 @@
                                         <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">خبر</div>
                                     </div>
                                 </div>
-                                <button class="mt-4 tw-rounded-xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
+                                <button class="mt-4 tw-rounded-2xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
                                     ادامه مطلب
                                 </button>
                             </div>
@@ -133,7 +133,7 @@
                                         <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">خبر</div>
                                     </div>
                                 </div>
-                                <button class="mt-4 tw-rounded-xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
+                                <button class="mt-4 tw-rounded-2xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
                                     ادامه مطلب
                                 </button>
                             </div>
@@ -158,7 +158,7 @@
                                         <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">خبر</div>
                                     </div>
                                 </div>
-                                <button class="mt-4 tw-rounded-xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
+                                <button class="mt-4 tw-rounded-2xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
                                     ادامه مطلب
                                 </button>
                             </div>
@@ -183,7 +183,7 @@
                                         <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">خبر</div>
                                     </div>
                                 </div>
-                                <button class="mt-4 tw-rounded-xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
+                                <button class="mt-4 tw-rounded-2xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
                                     ادامه مطلب
                                 </button>
                             </div>
@@ -208,7 +208,7 @@
                                         <div class="tw-w-max badge badge-primary custom-btn-primary rounded-pill">خبر</div>
                                     </div>
                                 </div>
-                                <button class="mt-4 tw-rounded-xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
+                                <button class="mt-4 tw-rounded-2xl tw-w-full btn btn-sm custom-btn-primary" href="/post">
                                     ادامه مطلب
                                 </button>
                             </div>
@@ -254,61 +254,61 @@
                     </p>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/3.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/3.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">خرید پرده آماده یا خرید پرده زبرا؟</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/1.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/1.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">چه پرده ای مناسب حفظ حریم خصوصی می باشد؟</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/2.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/2.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">پرده کتابخانه یا اتاق مطالعه را چطور انتخاب کنیم؟</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/6.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/6.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">پرفروش ترین پرده بازار کدام است؟ راهنما خرید پرده آماده</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/5.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/5.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">چه پرده هایی مناسب برای دیوار به رنگ آبی روشن می باشد</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/3.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/3.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">خرید پرده آماده یا خرید پرده زبرا؟</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/1.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/1.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">چه پرده ای مناسب حفظ حریم خصوصی می باشد؟</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/2.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/2.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">پرده کتابخانه یا اتاق مطالعه را چطور انتخاب کنیم؟</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/6.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/6.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">پرفروش ترین پرده بازار کدام است؟ راهنما خرید پرده آماده</p>
                     </div>
                 </div>
                 <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
-                    <img class="tw-block tw-relative tw-rounded-xl tw-size-16" src="{{Vite::asset('resources/images/single-product/5.jpg')}}" alt="">
+                    <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{Vite::asset('resources/images/single-product/5.jpg')}}" alt="">
                     <div class="tw-pr-3">
                         <p class="tw-text-sm">چه پرده هایی مناسب برای دیوار به رنگ آبی روشن می باشد</p>
                     </div>

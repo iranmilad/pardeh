@@ -16,6 +16,7 @@
     "dependencies": {
         "@fancyapps/ui": "^5.0.33",
         "@preact/preset-vite": "^2.8.1",
+        "@sjmc11/tourguidejs": "^0.0.12",
         "@uppy/core": "^3.8.0",
         "@uppy/dashboard": "^3.7.1",
         "@uppy/drag-drop": "^3.0.3",

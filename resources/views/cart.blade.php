@@ -8,12 +8,16 @@
     <div class="cart-header d-flex justify-content-between align-items-center my-4">
         <p class="fw-bold">
             سبد خرید شما
+            <button class="btn" id="show-tour-guide">
+                <i class="fa-solid fa-circle-question"></i>
+            </button>
         </p>
         <button class="btn custom-btn-danger btn-sm tw-px-4 tw-rounded-xl">حذف همه</button>
     </div>
     <!--                        Cart Header:end-->
 
     <x-cart />
+    <!-- <x-cart /> -->
 
     <div class="modal fade" tabindex="-1" id="detailsModal">
         <div class="modal-dialog">
@@ -23,7 +27,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
+
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-secondary tw-px-3 btn-sm tw-rounded-xl" data-bs-dismiss="modal">بستن</button>

@@ -3,7 +3,7 @@
 @section('title', "اطلاعات مشتری")
 
 @section('shipping-content')
-<div class="border border-radius-xl tw-px-5">
+<div class="border tw-rounded-2xl tw-px-5">
     <!--                        Cart Header:start-->
     <div class="cart-header d-flex justify-content-between align-items-center my-4">
         <p class="fw-bold">

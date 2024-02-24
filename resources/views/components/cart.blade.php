@@ -1,10 +1,11 @@
 <div class="product-basket tw-py-5">
+    <div class="tw-flex tw-flex-col lg:tw-flex-row tw-w-full">
         <div class="product-basket__image">
             <a href="https://www.lioncomputer.com/product/r166n/Lenovo-LOQ-Gaming-15IRH8-i7-13620H-16GB-512GB-SSD-8GB-RTX4060-FHD-IPS-WUXGA-16-inch-laptop">
                 <img class="tw-size-[145px]" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="لپ تاپ لنوو  LOQ Gaming 15IRH8 i7-13620H/16GB/512GB SSD/8GB RTX4060/WUXGA/IPS">
             </a>
         </div>
-        
+
         <div class="product-basket__body">
             <div class="tw-flex tw-items-center tw-justify-between">
                 <div class="tw-flex items-start tw-justify-center tw-flex-col">
@@ -46,3 +47,57 @@
             </div>
         </div>
     </div>
+    <div class="tw-w-full border-top tw-pt-3 tw-mt-4 tour-guide">
+        <span class="tw-font-semibold tw-text-gray-700">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            خدمات</span>
+        <div class="tw-w-full tw-overflow-x-auto tw-mt-4 tw-pb-6 tw-flex tw-items-center">
+            <div class="suggest-box active">
+                <div class="tw-flex tw-flex-col tw-h-full">
+                    <p class="tw-text-sm">
+                        <span>
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            آیا به خدمت دوخت برای پرده نیاز دارید ؟</span>
+                    </p>
+                    <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                        <button class="suggest-add-btn">
+                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                            <span class="added">افزوده شده</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="suggest-box">
+                <div class="tw-flex tw-flex-col tw-h-full">
+                    <p class="tw-text-sm">
+                        <span>
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            آیا به نصاب نیاز دارید ؟</span>
+                    </p>
+                    <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                        <button class="suggest-add-btn">
+                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="suggest-box">
+                <div class="tw-flex tw-flex-col tw-h-full">
+                    <p class="tw-text-sm">
+                        <span>
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            آیا به خدمت دوخت برای پرده نیاز دارید ؟</span>
+                    </p>
+                    <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                        <button class="suggest-add-btn">
+                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

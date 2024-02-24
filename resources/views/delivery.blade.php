@@ -5,7 +5,7 @@
 @section('shipping-content')
 
 
-<div class="border border-radius-xl tw-px-5 pb-4 pt-3 shipping-delivery-time">
+<div class="border tw-rounded-2xl tw-px-5 pb-4 pt-3 shipping-delivery-time">
     <p class="fw-bold mb-3">
         زمان تحویل
     </p>
