@@ -16,7 +16,7 @@ const tg = new TourGuideClient({
     showStepProgress: false,
     steps: [
         {
-            content: "برای مشاهده اطلاعات کامل خدمت، روی علامت + در کنار آن در بخش پیشنهادات کلیک کنید",
+            content: "برای مشاهده اطلاعات کامل خدمت، روی علامت + در کنار آن در بخش خدمات کلیک کنید",
             target: ".tour-guide"
         }
     ],
@@ -27,8 +27,10 @@ $("#show-tour-guide").on("click" , function(){
     tg.start();
 })
 
-if(!document.cookie.includes('tour=false')) {
-    tg.start()
+if($("#show-tour-guide").length > 0){
+    if(!document.cookie.includes('tour=false')) {
+        tg.start()
+    }
 }
 
 tg.onFinish(() => {

@@ -2358,7 +2358,8 @@ label.required {
 
 .suggest-box{
     @apply tw-min-w-[200px] tw-w-max tw-max-w-[200px] tw-h-[120px] tw-max-h-[200px] 
-    tw-rounded-xl tw-bg-gray-100 tw-p-3 tw-text-gray-700 tw-border tw-border-solid tw-border-gray-300 tw-shadow tw-mr-3 first:tw-mr-0;
+    tw-rounded-xl tw-bg-gray-100 tw-p-3 tw-text-gray-700 tw-border tw-border-solid
+    tw-border-gray-300 tw-shadow tw-mr-3 first:tw-mr-0 tw-snap-center tw-snap-always;
 }
 
 .suggest-add-btn{
@@ -2394,4 +2395,8 @@ label.required {
 
 .suggest-box.active .suggest-add-btn i{
     display: none;   
+}
+
+.tg-arrow{
+    display: none !important;
 }

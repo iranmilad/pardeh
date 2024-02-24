@@ -17,7 +17,8 @@
     <!--                        Cart Header:end-->
 
     <x-cart />
-    <!-- <x-cart /> -->
+    <x-cart />
+    
 
     <div class="modal fade" tabindex="-1" id="detailsModal">
         <div class="modal-dialog">
@@ -35,6 +36,15 @@
             </div>
         </div>
     </div>
+
+    <!-- START: Header -->
+    <div class="cart-header d-flex justify-content-between align-items-center my-4">
+        <p class="fw-bold">
+            خدمات
+        </p>
+    </div>
+    <!-- END: Header -->
+    <x-cart-service />
 
 </div>
 @endsection
