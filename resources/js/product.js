@@ -5,7 +5,9 @@ let inputs = $("#product-options input:not([name='_token'])");
 
 // filter inputs based on data-real
 
-let block = new KTBlockUI(document.body);
+let block = new KTBlockUI(document.body,{
+    overlayClass: "bigLoading blockui",
+})
 
 inputs.filter(function() {
     return $(this).data("real") === true;

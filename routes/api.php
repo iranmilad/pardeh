@@ -146,3 +146,27 @@ Route::post("/add-to-cart",function(Request $request){
 
     return response()->json(['html' => $response]);
 });
+
+Route::post("/remove-cart",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+    ];
+
+    // error response
+    // $response = [
+    //     "status" => "error",
+    //     "message" => "محصول در سبد خرید یافت نشد.",
+    // ];
+
+    return response()->json(['html' => $response]);
+});
+
+Route::post("/api/remove-all-cart",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "همه محصولات با موفقیت از سبد خرید حذف شد.",
+    ];
+
+    return response()->json(['html' => $response]);
+});

@@ -323,6 +323,11 @@ Route::group(['prefix' => 'dashboard'], function () {
         return view('dashboard.order');
     })->name('dashboard.order');
 
+    Route::get('/invoice', function () {
+        // Your dashboard home page logic
+        return view('dashboard.invoice');
+    })->name('dashboard.invoice');
+
     // Add more routes as needed
 });
 

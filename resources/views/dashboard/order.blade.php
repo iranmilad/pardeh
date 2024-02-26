@@ -104,19 +104,21 @@
         <?php
         for ($i = 0; $i < 2; $i++) : ?>
             <?php $id = uniqid(); ?>
-            <div class="col-12 mt-4 border-bottom pb-3 text-dark">
-                <a href="#" class="d-flex tw-max-w-max text-dark">
+            <div class="col-12 mt-4 pb-3 text-dark">
+                <a href="#" class="d-flex tw-w-full text-dark">
                     <div class="tw-relative tw-w-max">
                         <img class="tw-size-28 tw-rounded-xl" src="{{ Vite::asset('resources/images/posts/4.jpg') }}" alt="">
                         <div class="tw-bg-slate-800 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-text-white tw-text-xs tw-min-w-5 tw-h-5 tw-absolute -tw-top-2 -tw-left-2 tw-mx-auto tw-max-w-max tw-shadow-md">2</div>
                     </div>
-                    <div class="tw-flex tw-flex-col tw-mr-3 lg:tw-mr-7 mt-lg-0">
+                    <div class="tw-flex tw-flex-col tw-w-full tw-mr-3 lg:tw-mr-7 mt-lg-0">
                         <h6 class="fw-bold">محصول نمونه</h6>
                         <span class="fw-bold tw-text-lg mt-2">6,290,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);">
                                 <use xlink:href="#toman"></use>
                             </svg></span>
-                        <button class="btn fs-7 px-0  tw-max-w-max text-primary mt-2" data-bs-toggle="collapse" data-bs-target="#id_<?= $id; ?>">مشاهده جزئیات</button>
-
+                        <div class="tw-flex tw-flex-row tw-w-full lg:tw-w-max tw-justify-between lg:tw-justify-start">
+                            <button type="button" class="btn fs-7 px-0  tw-max-w-max text-primary mt-2" data-bs-toggle="collapse" data-bs-target="#id_<?= $id; ?>">مشاهده جزئیات</button>
+                            <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6" data-bs-toggle="modal" data-bs-target="#commentModal">ارسال نظر</button>
+                        </div>
                     </div>
                 </a>
                 <div class="collapse mt-2" id="id_<?= $id; ?>">
@@ -141,9 +143,11 @@
                         </div>
                     </div>
                 </div>
-            </ش>
-        <?php endfor; ?>
+                </ش>
+            <?php endfor; ?>
+            </div>
     </div>
-</div>
-<!--                        User Panel Orders:end-->
-@endsection
+    <!--                        User Panel Orders:end-->
+    @endsection
+
+    <x-product-comment-modal />

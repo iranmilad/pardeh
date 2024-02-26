@@ -17,7 +17,8 @@
                     </div>
                     <button class="btn custom-btn-primary tw-w-max tw-text-xs tw-mt-2 cart-show-detail" data-product-id="1">مشاهده جزئیات</button>
                 </div>
-                <button class="btn remove-item" ><i class="fal fa-trash"></i></button>
+                <!-- data-id IS PRODUCT ID. it works with js in app.js line:706 -->
+                <button class="btn remove-item" data-id="123"><i class="fal fa-trash"></i></button>
             </div>
 
             <div class="tw-flex tw-flex-col lg:tw-flex-row lg:tw-items-center tw-justify-between tw-mt-4">

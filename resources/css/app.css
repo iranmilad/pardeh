@@ -1822,42 +1822,29 @@ label.required {
 }
 
 .icon-footer-box {
-    list-style: none;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    @apply tw-p-3 tw-py-5 tw-bg-white tw-rounded-xl tw-transition-all  hover:tw-shadow-lg;
 }
 
 .icon-footer-box span {
-    color: #2d365d;
+    color: #555555;
     font-weight: 900;
-    margin-top: 8px;
+    font-size: 14px;
+}
+
+.icon-footer-box label{
+    font-size: 12px;
+    color: #555555;
 }
 
 .icon-footer-box i {
     position: relative;
-    font-size: 50px;
-    color: #2d365d;
+    font-size: 30px;
+    margin-left: 10px;
 }
 
-.icon-footer-box i::after {
-    position: absolute;
-    content: "";
-    top: 12px;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-    background-color: rgba(45, 54, 93, 0.1);
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    z-index: -1;
-}
 
 .social-list li {
     margin-left: 25px;
@@ -2098,6 +2085,11 @@ label.required {
 
 .bigLoading.show {
     display: flex;
+}
+
+.bigLoading.blockui{
+    display: flex;
+    @apply tw-bg-white tw-bg-opacity-50;
 }
 
 .product-basket {

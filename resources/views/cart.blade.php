@@ -12,11 +12,10 @@
                 <i class="fa-solid fa-circle-question"></i>
             </button>
         </p>
-        <button class="btn custom-btn-danger btn-sm tw-px-4 tw-rounded-xl">حذف همه</button>
+        <button class="btn custom-btn-danger btn-sm tw-px-4 tw-rounded-xl" id="remove-all-carts">حذف همه</button>
     </div>
     <!--                        Cart Header:end-->
 
-    <x-cart />
     <x-cart />
     
 

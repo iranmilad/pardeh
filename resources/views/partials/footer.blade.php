@@ -6,34 +6,49 @@
     <div class="container">
         <div class="row tw-justify-center gy-4">
             <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-box"></i>
-                    <span>تحویل سریع</span>
-                </li>
+                <div class="icon-footer-box">
+                    <i class="fa-regular fa-box tw-text-amber-500"></i>
+                    <div class="tw-flex tw-flex-col">
+                        <span>تحویل اکسپرس</span>
+                        <label for="">ارسال سریع به سراسر کشور</label>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-credit-card"></i>
-                    <span>پرداخت آنلاین</span>
-                </li>
+                <div class="icon-footer-box">
+                    <i class="fa-regular fa-credit-card tw-text-emerald-500"></i>
+                    <div class="tw-flex tw-flex-col">
+                        <span>خرید آنلاین مطمئن</span>
+                        <label for="">نماد اعتماد الکترونیکی</label>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-badge-check"></i>
-                    <span>ضمانت کالا</span>
-                </li>
+                <div class="icon-footer-box">
+                    <i class="fa-regular fa-badge-check tw-text-purple-500"></i>
+                    <div class="tw-flex tw-flex-col">
+                        <span>تضمین اصالت کالا</span>
+                        <label for="">فاکتور رسمی نمایندگی سامسونگ</label>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-person-dolly-empty"></i>
-                    <span>نصب در محل</span>
-                </li>
+                <div class="icon-footer-box">
+                    <i class="fa-regular fa-person-dolly-empty tw-text-sky-500"></i>
+                    <div class="tw-flex tw-flex-col">
+                        <span>مشاور رایگان خرید</span>
+                        <label for="">توسط کارشناسان فروش بوم سام</label>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-headphones-simple"></i>
-                    <span>پشتیبانی آنلاین</span>
-                </li>
+                <div class="icon-footer-box">
+                    <i class="fa-regular fa-headphones-simple tw-text-rose-500"></i>
+                    <div class="tw-flex tw-flex-col">
+                        <span>ضمانت بازگشت</span>
+                        <label for="">7 روز ضمانت بازگشت کالا</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -50,7 +65,7 @@
                                 <li class="my-3"><a class="" href="/">صفحه ی خانه</a></li>
                                 <li class="my-3"><a href="/">ورود/ثبت نام</a></li>
                                 <li class="my-3"><a href="/">راهنمای اندازه گیزی</a></li>
-                                <li class="my-3"><a href="/">علاقه مندی ها</a></li>
+                                <li class="my-3"><a href="{{ Auth::guest() ? '/favorites' : '/dashboard/favorites' }}">علاقه مندی ها</a></li>
                                 <li class="my-3"><a href="/about-us">درباره ما</a></li>
                                 <li class="my-3"><a href="/contact-us">تماس باما</a></li>
                                 <li class="my-3"><a href="/blog">وبلاگ</a></li>

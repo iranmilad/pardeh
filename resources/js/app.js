@@ -657,6 +657,10 @@ new Swiper(".usersSlider",{
     }
 })
 
+Fancybox.bind('[data-fancybox="comments"]', {
+    // Your custom options for a specific gallery
+  });
+
 /**
  * Gallery for product page
  */
@@ -703,3 +707,48 @@ function zoomElm(el){
     });
 }
 
+/**
+ * Remove item from cart
+ */
+$(".product-basket .remove-item").on("click" , function(e){
+    // remove its parent .product-basket
+    e.preventDefault();
+    $.ajax("/api/remove-cart",{
+        method: "POST",
+        data: {
+            id: $(this).data("id")
+        },
+        success: function(response){
+            window.location.reload();
+        },
+        error: function(){
+            toastr.error("خطایی رخ داده است. مجددا تلاش کنید")
+        }
+    })
+})
+
+/**
+ * Remove all items from cart
+ */
+let removeAllCartsBlock = new KTBlockUI(document.getElementById("remove-all-carts"),{
+    overlayClass: "",
+    // overlayClass white and blue 
+    overlayClass: "tw-bg-white tw-bg-opacity-75",
+});
+$("#remove-all-carts").on("click" , function(e){
+    e.preventDefault();
+    $.ajax("/api/remove-all-cart",{
+        method: "POST",
+        beforeSend: function(){
+            removeAllCartsBlock.block();
+        },
+        success: function(response){
+            removeAllCartsBlock.release();
+            window.location.reload();
+        },
+        error: function(err){
+            removeAllCartsBlock.release();
+            toastr.error("خطایی رخ داده است. مجددا تلاش کنید")
+        }
+    })
+})

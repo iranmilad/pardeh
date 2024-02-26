@@ -177,16 +177,16 @@ button.toastr-close-button {
     background-color: #030303;
 }
 .toastr-success {
-    background-color: #51a351;
+    background-color: theme('colors.emerald.500') !important;
 }
 .toastr-error {
-    background-color: #bd362f;
+    background-color: theme('colors.red.500') !important;
 }
 .toastr-info {
-    background-color: #2f96b4;
+    background-color: theme('colors.sky.500') !important;
 }
 .toastr-warning {
-    background-color: #f89406;
+    background-color: theme('colors.amber.500') !important;
 }
 .toastr-progress {
     position: absolute;

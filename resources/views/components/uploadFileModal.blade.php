@@ -13,7 +13,7 @@
                 <div id="progress-bar"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-secondary btn-sm tw-rounded-lg" data-bs-dismiss="modal">بستن</button>
             </div>
         </div>
     </div>
