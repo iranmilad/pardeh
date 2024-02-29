@@ -5,7 +5,7 @@
 <div class="tw-py-5 mt-5 tw-mb-5">
     <div class="container">
         <div class="row tw-justify-center gy-4">
-            <div class="col-lg-2 col-4">
+            <div class="col-lg-2 col-12 col-md-4">
                 <div class="icon-footer-box">
                     <i class="fa-regular fa-box tw-text-amber-500"></i>
                     <div class="tw-flex tw-flex-col">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-4">
+            <div class="col-lg-2 col-12 col-md-4">
                 <div class="icon-footer-box">
                     <i class="fa-regular fa-credit-card tw-text-emerald-500"></i>
                     <div class="tw-flex tw-flex-col">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-4">
+            <div class="col-lg-2 col-12 col-md-4">
                 <div class="icon-footer-box">
                     <i class="fa-regular fa-badge-check tw-text-purple-500"></i>
                     <div class="tw-flex tw-flex-col">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-4">
+            <div class="col-lg-2 col-12 col-md-4">
                 <div class="icon-footer-box">
                     <i class="fa-regular fa-person-dolly-empty tw-text-sky-500"></i>
                     <div class="tw-flex tw-flex-col">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-4">
+            <div class="col-lg-2 col-12 col-md-4">
                 <div class="icon-footer-box">
                     <i class="fa-regular fa-headphones-simple tw-text-rose-500"></i>
                     <div class="tw-flex tw-flex-col">

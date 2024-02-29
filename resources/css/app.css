@@ -2138,14 +2138,14 @@ label.required {
     justify-content: flex-start;
 }
 
-.product-basket__body .remove-item {
+.remove-item {
     background-color: #fceded !important;
     font-weight: 600;
     color: theme("colors.red.500");
     @apply tw-rounded-full tw-size-[35px] tw-flex tw-items-center tw-justify-center hover:tw-text-white;
 }
 
-.product-basket__body .remove-item:hover {
+.remove-item:hover {
     background: theme("colors.red.500") !important;
 }
 
@@ -2197,10 +2197,10 @@ label.required {
     background: 0 0;
     appearance: none;
     -webkit-appearance: none;
-    width: 60px !important;
-    text-align: center !important;
+    width: 60px;
+    text-align: center;
     min-width: 60px;
-    font-size: 18px !important;
+    font-size: 18px;
     @apply focus:tw-outline-none;
 }
 
@@ -2391,4 +2391,8 @@ label.required {
 
 .tg-arrow{
     display: none !important;
+}
+
+.mini-cart-box{
+    @apply tw-flex tw-items-center tw-h-[90px] tw-mt-10 first:tw-mt-0 !important;
 }

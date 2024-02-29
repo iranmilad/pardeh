@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 // routes/web.php or routes/api.php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
@@ -122,17 +123,25 @@ Route::post("/product",function(Request $request){
      * @param string $request->name The name of the product.
      * @return array The response array containing product details.
      */
+    // $response = [
+    //     "name" => $request->name,
+    //     "images" => [
+    //         "https://picsum.photos/200",
+    //     ],
+    //     "price" => "25,000,000",
+    //     "discounted_price" => "18,000,000",
+    //     "discount" => "20%",
+    // ];
+
+    // unavailable product
     $response = [
         "name" => $request->name,
         "images" => [
             "https://picsum.photos/200",
         ],
-        "price" => "25,000,000",
-        "discounted_price" => "18,000,000",
-        "discount" => "20%",
     ];
 
-    return response()->json(['html' => $response]);
+    return response()->json($response);
 });
 
 Route::post("/add-to-cart",function(Request $request){
@@ -144,14 +153,27 @@ Route::post("/add-to-cart",function(Request $request){
         ],
     ];
 
-    return response()->json(['html' => $response]);
+    return response()->json($response);
 });
 
 Route::post("/remove-cart",function(Request $request){
     $response = [
         "status" => "success",
         "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+        "cart" => [
+            "count" => 2,
+            "total" => "15,000,000",
+            "profit" => "5,000,000",
+            "discounts" => "20%"
+        ],
     ];
+
+    // empty cart after removing the last item
+    // $response = [
+    //     "status" => "success",
+    //     "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+    //     "cart" => array(),
+    // ];
 
     // error response
     // $response = [
@@ -159,7 +181,7 @@ Route::post("/remove-cart",function(Request $request){
     //     "message" => "محصول در سبد خرید یافت نشد.",
     // ];
 
-    return response()->json(['html' => $response]);
+    return response()->json($response);
 });
 
 Route::post("/api/remove-all-cart",function(Request $request){
@@ -168,5 +190,5 @@ Route::post("/api/remove-all-cart",function(Request $request){
         "message" => "همه محصولات با موفقیت از سبد خرید حذف شد.",
     ];
 
-    return response()->json(['html' => $response]);
+    return response()->json($response);
 });

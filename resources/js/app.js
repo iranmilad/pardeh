@@ -24,6 +24,7 @@ import "./validations";
 import KTBlockUI from "./tools/blockui";
 import toastr from "toastr";
 import "toastr/build/toastr.css";
+import "../css/vendors/toaster/toastr.css";
 import noUi from "nouislider";
 import "../css/vendors/nouislider/nouislider.css";
 import "./tools/alarm";
@@ -36,14 +37,28 @@ import { StarComponent } from "./components";
 import { hydrate,createElement } from "preact";
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
-import { Fancybox } from "@fancyapps/ui";
-import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import "./tools/jquery-zoom";
 import "./product.js";
 import "./tour.js";
+import "./mini-cart.js"
 
 
 // this is my swiper .headerSlider
+
+new Swiper(".usersSlider",{
+    modules: [Pagination,Autoplay],
+    slidesPerView: 1,
+    spaceBetween: 10,
+    loop:  true,
+    pagination:{
+        el: ".usersSlider .swiper-pagination",
+        clickable: true,
+    },
+    autoplay:{
+        delay: 3000,
+        pauseOnMouseEnter: true,
+        disableOnInteraction: false,
+    }
+})
 
 document.addEventListener("DOMContentLoaded", function () {
     // Create a map centered at a specific location
@@ -459,31 +474,7 @@ $("#last-shipping-pay")
         }
     });
 
-let productImages = new Swiper(".productImages", {
-    modules: [Navigation, Thumbs, FreeMode],
-    slidesPerView: 5,
-    spaceBetween: 10,
-    freeMode: true,
-    watchSlidesProgress: true,
-    watchSlidesVisibility: true,
-    navigation: {
-        nextEl: "#product-images-next",
-        prevEl: "#product-images-prev",
-    },
-});
 
-var productImage = new Swiper(".productImage", {
-    modules: [Navigation, Thumbs],
-    spaceBetween: 10,
-    slidesPerView: 1,
-    thumbs: {
-        swiper: productImages,
-    },
-    navigation: {
-        nextEl: "#product-preview-images-next",
-        prevEl: "#product-preview-images-prev",
-    },
-});
 
 /**
  * CREATE STAR RATING AS DEFAULT. NOT HOVER THEM TO SHOW RATING
@@ -641,71 +632,7 @@ $(".product-counter-inner .count-plus").on("click", (e) => {
     }
   });
 
-new Swiper(".usersSlider",{
-    modules: [Pagination,Autoplay],
-    slidesPerView: 1,
-    spaceBetween: 10,
-    loop:  true,
-    pagination:{
-        el: ".usersSlider .swiper-pagination",
-        clickable: true,
-    },
-    autoplay:{
-        delay: 3000,
-        pauseOnMouseEnter: true,
-        disableOnInteraction: false,
-    }
-})
 
-Fancybox.bind('[data-fancybox="comments"]', {
-    // Your custom options for a specific gallery
-  });
-
-/**
- * Gallery for product page
- */
-let galleries = document.querySelectorAll('img[data-fancybox="gallery"]');
-let newGallery = [];
-galleries.forEach((gallery) => {
-    newGallery.push({
-        src: gallery.src,
-        thumb: gallery.src,
-    });
-});
-// fancybox.close();
-$(document).ready(function(){
-
-    if($(".zoom").length > 0){
-        zoomElm(productImage.slides[productImage.activeIndex].querySelector('img.zoom'));
-        productImage.on("slideChange", function (e) {
-          // remove zoom from previous .swiper-slide img.zoom
-          // $('.productImage .swiper-slide img.zoom').trigger('zoom.destroy');
-          // add zoom to current .swiper-slide img.zoom
-          $(productImage.slides[productImage.activeIndex]).find('img').addClass('zoom');
-          zoomElm(productImage.slides[productImage.activeIndex].querySelector('img.zoom'));
-        });
-    }
-  });
-
-function zoomElm(el){
-    $(el).wrap('<span style="display:inline-block;"></span>')
-    .css({
-      'display': 'block',
-      'border-radius': '16px',
-    })
-    .parent()
-    .zoom({
-      url: $(el).attr('data-zoom'),
-      magnify: 1.2,
-      callback: function(){
-        $(this).on("click", function(elm){
-            Fancybox.show(newGallery,{
-                startIndex: productImage.activeIndex,
-            })
-        })
-      },
-    });
-}
 
 /**
  * Remove item from cart

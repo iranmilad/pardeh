@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="card tw-rounded-xl border-0 tw-bg-gray-100">
-                        <div class="card-body">
+                        <div class="card-body" id="main-cart-price-details">
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between pb-4">
                                 <span class="tw-text-gray-500">تخفیف : </span>
                                 <span class="badge tw-bg-red-500 tw-rounded-full">50%</span>
@@ -105,8 +105,16 @@
                                     </svg>
                                 </span>
                             </div>
-                            <div class="tw-w-full tw-pt-4 border-top tw-flex tw-items-center tw-justify-center">
-                                <button class="btn custom-btn-primary tw-rounded-xl tw-text-sm tw-w-max">افزودن به سبد خرید</button>
+                            <div class="tw-w-full tw-pt-4 border-top tw-flex-col lg:tw-flex-row tw-flex tw-items-center tw-justify-between">
+                                <!-- ADD TO FAVORITE BUTTON -->
+                                <button class="btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="This top tooltip is themed via CSS variables."
+                                >
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <!-- ADD TO CART BUTTON -->
+                                <x-add-to-cart />
                             </div>
                         </div>
                     </div>
@@ -182,41 +190,13 @@
                     </div>
                 </div>
                 <div>
-                    <button class="btn custom-btn-primary tw-rounded-xl tw-py-2 btn-sm">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                        افزودن به سبد خرید</button>
+                    <x-add-to-cart />
                 </div>
             </div>
         </div>
     </div>
     <!-- END:STICKY -->
 
-    <!-- START: STICKY -->
-    <div class="sticky-bottom">
-        <div class="container tw-px-2 lg:tw-px-40">
-            <div class="tw-w-full tw-justify-between tw-flex tw-items-center">
-                <div class="tw-flex tw-items-start tw-flex-col">
-                    <div class="tw-text-base">
-                        <span class="tw-text-gray-600">
-                            <i class="fa-duotone fa-screwdriver-wrench tw-ml-3"></i>
-                            آیا به خدمت نصب نیاز دارید ؟
-                        </span>
-                    </div>
-                </div>
-                <div class="installer_product">
-                    <label for="installer_yes">
-                        <span>بله</span>
-                        <input type="radio" name="installer2" id="installer_yes">
-                    </label>
-                    <label for="installer_no">
-                        <span>خیر</span>
-                        <input type="radio" name="installer2" id="installer_no">
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END: STICKY -->
 </div>
 
 <a href="#firstPixel" id="backtotop">
