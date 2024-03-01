@@ -118,28 +118,29 @@ Route::get("/imgdot/{id}",function($id){
 Route::post("/product",function(Request $request){
 
     /**
-     * 
-     *
-     * @param string $request->name The name of the product.
-     * @return array The response array containing product details.
+     * regular_price & sale_price & discount & time_delivery are optional.
+     */
+    $response = [
+        "name" => $request->name,
+        "images" => [
+            "https://placehold.co/900?text=1",
+            "https://placehold.co/900?text=2",
+        ],
+        "regular_price" => "25,000,000",
+        "sale_price" => "18,000,000",
+        "discount" => "20%",
+        "time_delivery" => 2
+    ];
+
+    /**
+     * [ Unavailable product ]
      */
     // $response = [
     //     "name" => $request->name,
     //     "images" => [
-    //         "https://picsum.photos/200",
+    //         "https://placehold.co/900?text=2",
     //     ],
-    //     "price" => "25,000,000",
-    //     "discounted_price" => "18,000,000",
-    //     "discount" => "20%",
     // ];
-
-    // unavailable product
-    $response = [
-        "name" => $request->name,
-        "images" => [
-            "https://picsum.photos/200",
-        ],
-    ];
 
     return response()->json($response);
 });
@@ -184,10 +185,46 @@ Route::post("/remove-cart",function(Request $request){
     return response()->json($response);
 });
 
-Route::post("/api/remove-all-cart",function(Request $request){
+Route::post("/remove-all-cart",function(Request $request){
     $response = [
         "status" => "success",
         "message" => "همه محصولات با موفقیت از سبد خرید حذف شد.",
+    ];
+
+    return response()->json($response);
+});
+
+/**
+ * من را خبر کن
+ */
+Route::post("/letmeknow",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "اطلاعات با موفقیت ارسال شد. پس از موجود شدن به شما اطلاع داده خواهد شد.",
+    ];
+
+    return response()->json($response);
+});
+
+/**
+ * add to wishlist
+ */
+Route::post('/wishlist',function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت به لیست علاقه مندی ها اضافه شد.",
+    ];
+
+    return response()->json($response);
+});
+
+/**
+ * remove from wishlist
+ */
+Route::delete("/wishlist",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت از لیست علاقه مندی ها حذف شد.",
     ];
 
     return response()->json($response);

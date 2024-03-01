@@ -1,5 +1,10 @@
 @extends('layouts.primary')
 
+<!-- when you load a product if it unavialable, use let-me-know box & let-me-know-sticky -->
+<!-- PLEASE CHECK product.js line:237 -->
+<!-- PLEASE CHECK product.js line:237 -->
+<!-- PLEASE CHECK product.js line:237 -->
+
 @section('title', 'محصول')
 
 @section('content')
@@ -14,7 +19,7 @@
         <!-- <div class="mobile-review-product">
             <img src="https://placehold.co/600x400" alt="">
         </div> -->
-        <div class="col-lg-5 tw-h-full lg:tw-sticky lg:tw-top-[5px] image-reviews">
+        <div class="col-lg-4 col-xl-5 tw-h-full lg:tw-sticky lg:tw-top-[5px] image-reviews">
             <div class="swiper productImage">
                 <div class="swiper-wrapper tw-max-h-[700px]">
                     <div class="swiper-slide">
@@ -70,7 +75,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-7 px-4 product-options mt-4 mt-lg-0">
+        <div class="col-lg-8 col-xl-7 px-4 product-options mt-4 mt-lg-0">
             <h3 class="fw-bold">پرده ی جدید طرح کتان</h3>
             <div class="row">
                 <div class="col-lg-7">
@@ -99,23 +104,43 @@
                             </div>
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
                                 <span class="tw-text-gray-500">قیمت : </span>
-                                <span>12,000,000
-                                    <svg style="width: 16px; height: 16px; fill: var(--undefined);">
-                                        <use xlink:href="#toman"></use>
-                                    </svg>
-                                </span>
+                                <div class="tw-flex tw-flex-col tw-items-end">
+                                    <span>10,000,000
+                                        <svg style="width: 16px; height: 16px; fill: var(--undefined);">
+                                            <use xlink:href="#toman"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="tw-text-xs tw-text-gray-400">12,000,000
+                                        <svg class="tw-fill-gray-400" style="width: 16px; height: 16px;">
+                                            <use xlink:href="#toman"></use>
+                                        </svg>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="tw-w-full tw-pt-4 border-top tw-flex-col lg:tw-flex-row tw-flex tw-items-center tw-justify-between">
+                            <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
                                 <!-- ADD TO FAVORITE BUTTON -->
-                                <button class="btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max"
-                                data-bs-toggle="tooltip"
-                                data-bs-title="This top tooltip is themed via CSS variables."
-                                >
+                                <button class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
                                     <i class="fa-regular fa-heart"></i>
                                 </button>
                                 <!-- ADD TO CART BUTTON -->
                                 <x-add-to-cart />
                             </div>
+
+                            <!-- LET ME KNOW -->
+                            <!-- <div>
+                                <h4 class="text-center tw-text-brand-500">ناموجود</h4>
+                                <div class="text-center tw-text-sm">
+                                    این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
+                                    موجود شدن، به شما خبر دهیم.
+                                </div>
+                                <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
+                                    <button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
+                                        <i class="fa-solid fa-bell tw-ml-2"></i>
+                                        خبرم کن
+                                    </button>
+                                </div>
+                            </div> -->
+                            <!-- LET ME KNOW -->
                         </div>
                     </div>
                 </div>
@@ -173,24 +198,31 @@
         <div class="container tw-px-2 lg:tw-px-40">
             <div class="tw-w-full tw-justify-between tw-flex tw-items-center">
                 <div class="tw-flex tw-items-center">
-                    <img class="tw-hidden lg:tw-block tw-relative tw-w-[60px] tw-object-cover tw-rounded-xl tw-ml-5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
-                    <div class="tw-flex tw-items-start tw-flex-col">
+                    <img id="product-sticky-thumbnail" class="tw-hidden lg:tw-block tw-relative tw-w-[60px] tw-object-cover tw-rounded-xl tw-ml-5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
+                    <div class="tw-flex tw-items-start tw-flex-col sticky-price-time">
+                        <!-- UNAVAILABLE TEXT -->
+                            <!-- <span class='tw-text-sm tw-text-brand-500'>ناموجود</span> -->
+                        <!-- UNAVAILABLE TEXT -->
                         <div class="tw-text-sm md:tw-text-base">
                             <span class="tw-text-gray-600 tw-font-semibold">
                                 <i class="fa-solid fa-tag"></i>
                                 قیمت : </span>
-                            <span class="tw-font-semibold tw-text-gray-700">1,200,000 تومان</span>
+                            <span class="tw-font-semibold tw-text-gray-700 price-sticky-tag">1,200,000 تومان</span>
                         </div>
                         <div class="tw-text-sm md:tw-text-base">
                             <span class="tw-text-gray-600 tw-font-semibold">
                                 <i class="fa-solid fa-truck-clock"></i>
                                 زمان تحویل: </span>
-                            <span class="tw-font-semibold tw-text-gray-700">7 روز </span>
+                            <span class="tw-font-semibold tw-text-gray-700 time_delivery_sticky_tag">7 روز </span>
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="sticky-add-to-cart-btn">
                     <x-add-to-cart />
+
+                    <!-- UNAVAILABLE BUTTON -->
+                    <button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 tw-px-3 let-me-know"> <i class="fa-solid fa-bell tw-ml-2"></i> خبرم کن </button>
+                    <!-- UNAVAILABLE BUTTON -->
                 </div>
             </div>
         </div>

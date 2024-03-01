@@ -327,8 +327,8 @@ $(".remove-favorite-user").on("click", function (e) {
         text: "حذف",
         click: function () {
             $.ajax({
-                url: "https://jsonplaceholder.typicode.com/posts",
-                method: "POST",
+                url: "/api/wishlist",
+                method: "DELETE",
                 data: {
                     id,
                 },
