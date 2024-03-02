@@ -40,6 +40,8 @@ import "plyr/dist/plyr.css";
 import "./product.js";
 import "./tour.js";
 import "./mini-cart.js"
+import "./category.js";
+import { handleChangeFilter } from "./category.js";
 
 
 // this is my swiper .headerSlider
@@ -423,6 +425,9 @@ if ($(".price-range,.price-range1").length > 0) {
             }
         }
     });
+    priceSlider1.on("change", function (values, handle) {
+        setTimeout(() => handleChangeFilter(),500);
+    })
 }
 
 $(".payment-accordion:not(.disabled) input[type=checkbox]").on(

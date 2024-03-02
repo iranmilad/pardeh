@@ -1,4 +1,6 @@
-import { useState } from "preact/hooks";
+import { useState, useMemo } from "preact/hooks";
+import { usePagination } from "@mantine/hooks";
+import toastr from "toastr";
 
 export const StarComponent = ({ dataStars, no_label, rateable }) => {
     const [hoveredStars, setHoveredStars] = useState(0);
@@ -118,6 +120,102 @@ export const PriceProduct = (props) => {
                     </>
                 )}
             </div>
+        </>
+    );
+};
+
+export const CategoryPagination = ({ total, value, onChange }) => {
+    let [page, setPage] = useState(value);
+    const pagination = usePagination({ total, page, onChange: setPage });
+    async function change(page) {
+        try {
+            await onChange(page);
+            await pagination.setPage(page);
+        } catch (error) {
+            toastr.error("خطا در ارتباط با سرور");
+        }
+    }
+
+    async function next() {
+        try {
+            await onChange(
+                pagination.active < pagination.pages
+                    ? pagination.active + 1
+                    : total
+            );
+            await pagination.next();
+        } catch (error) {
+            toastr.error("خطا در ارتباط با سرور");
+        }
+    }
+
+    async function previous() {
+        try {
+            await onChange(pagination.active > 1 ? pagination.active - 1 : 1);
+            await pagination.previous();
+        } catch (error) {
+            toastr.error("خطا در ارتباط با سرور");
+        }
+    }
+
+    return (
+        <nav className="cs-pagination mt-5 tw-w-max tw-mx-auto">
+            <button
+                disabled={pagination.active === 1}
+                onClick={() => previous()}
+            >
+                <i className="fa-solid fa-chevron-right"></i>
+            </button>
+            {pagination.range.map((page) => (
+                <>
+                    {page === pagination.active ? (
+                        <span>{page}</span>
+                    ) : (
+                        <>
+                            {page === "dots" ? (
+                                <span className="dots">...</span>
+                            ) : (
+                                <a onClick={() => change(page)}>{page}</a>
+                            )}
+                        </>
+                    )}
+                </>
+            ))}
+            <button
+                disabled={pagination.active === total}
+                onClick={() => next()}
+            >
+                <i className="fa-solid fa-chevron-left"></i>
+            </button>
+        </nav>
+    );
+};
+
+export const RemoveOptionCategory = ({ options,onChange }) => {
+    async function removeOption(url) {
+        // Remove the option
+        try{
+            await onChange(url);
+        }
+        catch (error) {
+        }
+    }
+    return (
+        <>
+            {options.map((item) => (
+                <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
+                    <span class="tw-text-sm tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer">
+                        {item.title}
+                    </span>
+                    <button
+                        type="button"
+                        className="btn tw-p-0"
+                        onClick={() => removeOption(item.url)}
+                    >
+                        <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer"></i>
+                    </button>
+                </div>
+            ))}
         </>
     );
 };
