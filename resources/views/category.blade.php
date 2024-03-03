@@ -4,6 +4,8 @@
 <!-- please fill filters basis on what you want. i just used sample of all types of fields -->
 <!-- please fill filters basis on what you want. i just used sample of all types of fields -->
 
+<!-- JS FILE: category.js -->
+
 @section('title', config('app.name'))
 
 @section('content')
@@ -114,7 +116,7 @@
         </div>
     </div>
     <div class="row">
-        <form class="d-none d-lg-block col-12 col-lg-3 category-filters">
+        <form class="d-none d-lg-block col-12 col-lg-3 category-filters category-filters-desktop">
             <!-- REMOVE FILTERS -->
             <div class="card removeItemsBox d-none">
                 <div class="card-header">
@@ -142,7 +144,7 @@
                 </div>
                 <div class="card-body collapse" id="collapsePriceRange">
                     <!-- START:PRICE INPUT -->
-                    <div class="tw-mb-3 tw-ml-2 price-range1" data-min="0" data-max="100" data-defaultmin="20" data-defaultmax="80"></div>
+                    <div class="tw-mb-3 tw-ml-2 price-range" data-min="0" data-max="100" data-defaultmin="20" data-defaultmax="80"></div>
                     <!-- END:PRICE INPUT -->
                     <div class="tw-flex tw-items-center tw-justify-between">
                         <input class="maxPrice" type="text" name="maxprice" />
@@ -190,22 +192,37 @@
                         </button>
                     </div>
                 </div>
-                <div class="card-body collapse" id="collapseWidthExample">
-                    <a class="link-item active" href="#">
-                        پرده زبرا و شید
-                    </a>
-                    <a class="link-item" href="#">
-                        پرده چین دار
-                    </a>
-                    <a class="link-item" href="#">
-                        پرده پانچی
-                    </a>
-                    <a class="link-item" href="#">
-                        پرده چاپی
-                    </a>
-                    <a class="link-item" href="#">
-                        پرده هازان
-                    </a>
+                <div class="card-body collapse tw-flex tw-justify-start tw-flex-col" id="collapseWidthExample">
+                    <label class="category-label-checkbox" for="material1">
+                        <span class="tw-text-xs">
+                            پرده زبرا و شید
+                        </span>
+                        <input type="radio" name="material" id="material1" value="material1">
+                    </label>
+                    <label class="category-label-checkbox" for="material2">
+                        <span class="tw-text-xs">
+                            پرده چین دار
+                        </span>
+                        <input type="radio" name="material" id="material2" value="material2">
+                    </label>
+                    <label class="category-label-checkbox" for="material3">
+                        <span class="tw-text-xs">
+                            پرده پانچی
+                        </span>
+                        <input type="radio" name="material" id="material3" value="material3">
+                    </label>
+                    <label class="category-label-checkbox" for="material4">
+                        <span class="tw-text-xs">
+                            پرده چاپی
+                        </span>
+                        <input type="radio" name="material" id="material4" value="material4">
+                    </label>
+                    <label class="category-label-checkbox" for="material5">
+                        <span class="tw-text-xs">
+                            پرده هازان
+                        </span>
+                        <input type="radio" name="material" id="material5" value="material5">
+                    </label>
                 </div>
             </div>
             <!-- END:CHECKBOX -->
@@ -225,13 +242,13 @@
                         <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             ارسال از فردا
                         </label>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                        <input class="form-check-input" type="checkbox" value="0" name="switchbox" id="flexCheckDefault1">
                     </div>
                     <div class="form-check form-switch">
                         <label class="form-check-label tw-text-sm" for="defaultx1">
                             ارسال فروشنده
                         </label>
-                        <input class="form-check-input" type="checkbox" value="" id="defaultx1">
+                        <input class="form-check-input" type="checkbox" value="1" name="switchbox" id="defaultx1">
                     </div>
                 </div>
             </div>
@@ -250,13 +267,13 @@
                 </div>
                 <div class="card-body collapse" id="collapseRadioBox">
                     <div class="form-check">
-                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault1">
+                        <input class="form-check-input" type="radio" value="0" name="radiobox" id="flexCheckDefault1">
                         <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                             موجود
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault2">
+                        <input class="form-check-input" type="radio" value="1" name="radiobox" id="flexCheckDefault2">
                         <label class="form-check-label tw-text-sm" for="flexCheckDefault2">
                             همه
                         </label>
@@ -284,7 +301,7 @@
                                     <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="50" cy="50" r="50" fill="#000" />
                                     </svg>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="colorBox" value="black">
                                 </label>
                                 <span>سیاه</span>
                             </div>
@@ -293,7 +310,7 @@
                                     <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="50" cy="50" r="50" fill="#475569" />
                                     </svg>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="colorBox" value="gray">
                                 </label>
                                 <span>خاکستری</span>
                             </div>
@@ -302,7 +319,7 @@
                                     <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="50" cy="50" r="50" fill="#f97316" />
                                     </svg>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="colorBox" value="orange">
                                 </label>
                                 <span>نارنجی</span>
                             </div>
@@ -311,7 +328,7 @@
                                     <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="50" cy="50" r="50" fill="#eab308" />
                                     </svg>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="colorBox" valu="yellow">
                                 </label>
                                 <span>زرد</span>
                             </div>
@@ -320,7 +337,7 @@
                                     <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="50" cy="50" r="50" fill="#0ea5e9" />
                                     </svg>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="colorBox" value="blue">
                                 </label>
                                 <span>آبی</span>
                             </div>
@@ -329,7 +346,7 @@
                                     <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
                                     </svg>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="colorBox" value="purple">
                                 </label>
                                 <span>بنفش</span>
                             </div>
@@ -338,7 +355,7 @@
                                     <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="50" cy="50" r="50" fill="#f43f5e" />
                                     </svg>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="colorBox" value="pink">
                                 </label>
                                 <span>صورتی</span>
                             </div>
@@ -379,7 +396,7 @@
                     <i class="fa-duotone fa-filter-list"></i>
                     <span>فیلتر</span>
                 </button>
-                <select class="form-select tw-w-max" name="" id="">
+                <select class="form-select tw-w-max" name="" id="category-sort-mobile">
                     <option default selected disabled value="">مرتب سازی</option>
                     <option value="">پرفروش ترین</option>
                     <option value="">جدیدترین ترین</option>
@@ -418,26 +435,18 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body tw-overflow-y-auto">
-            <div class="category-filters">
+            <form class="category-filters category-filters-mobile">
                 <!-- REMOVE FILTERS -->
-                <div class="card">
+                <div class="card removeItemsBox d-none">
                     <div class="card-header">
                         <div class="">
-                            <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRemoveFilters2" aria-expanded="true">
+                            <button type="button" class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRemoveFilters" aria-expanded="true">
                                 <span>حذف فیلتر ها</span>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body collapse show" id="collapseRemoveFilters2">
-                        <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
-                            <a href="#" class="tw-text-sm tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer">حذف همه فیلتر ها</a>
-                            <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer"></i>
-                        </div>
-                        <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
-                            <a href="#" class="tw-text-sm tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer">رنگ آبی</a>
-                            <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer"></i>
-                        </div>
+                    <div class="card-body collapse show" id="collapseRemoveFilters">
                     </div>
                 </div>
                 <!-- REMOVE FILTERS -->
@@ -446,19 +455,19 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="">
-                            <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapsePriceRange2" aria-expanded="false">
+                            <button type="button" class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapsePriceRange" aria-expanded="false">
                                 <span>بازه قیمت</span>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body collapse" id="collapsePriceRange2">
+                    <div class="card-body collapse" id="collapsePriceRange">
                         <!-- START:PRICE INPUT -->
                         <div class="tw-mb-3 tw-ml-2 price-range" data-min="0" data-max="100" data-defaultmin="20" data-defaultmax="80"></div>
                         <!-- END:PRICE INPUT -->
                         <div class="tw-flex tw-items-center tw-justify-between">
-                            <input class="maxPrice" type="text" />
-                            <input class="minPrice" type="text" />
+                            <input class="maxPrice" type="text" name="maxprice" />
+                            <input class="minPrice" type="text" name="minprice" />
                         </div>
                     </div>
                 </div>
@@ -468,21 +477,21 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="">
-                            <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseCheckbox2" aria-expanded="false">
+                            <button type="button" class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseCheckbox" aria-expanded="false">
                                 <span>ویژگی چک باکس</span>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body collapse" id="collapseCheckbox2">
+                    <div class="card-body collapse" id="collapseCheckbox">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                            <input class="form-check-input" type="checkbox" name="checkbox" value="0" id="flexCheckDefault1" title="موجود" data-parent="چک باکس">
                             <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                                 موجود
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                            <input class="form-check-input" type="checkbox" name="checkbox" value="1" id="flexCheckDefault2" title="همه" data-parent="چک باکس">
                             <label class="form-check-label tw-text-sm" for="flexCheckDefault2">
                                 همه
                             </label>
@@ -496,28 +505,43 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="">
-                            <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false">
+                            <button type="button" class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false">
                                 <span>دیزاین استایل</span>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body collapse" id="collapseWidthExample2">
-                        <a class="link-item active" href="#">
-                            پرده زبرا و شید
-                        </a>
-                        <a class="link-item" href="#">
-                            پرده چین دار
-                        </a>
-                        <a class="link-item" href="#">
-                            پرده پانچی
-                        </a>
-                        <a class="link-item" href="#">
-                            پرده چاپی
-                        </a>
-                        <a class="link-item" href="#">
-                            پرده هازان
-                        </a>
+                    <div class="card-body collapse tw-flex tw-justify-start tw-flex-col" id="collapseWidthExample">
+                        <label class="category-label-checkbox" for="material1">
+                            <span class="tw-text-xs">
+                                پرده زبرا و شید
+                            </span>
+                            <input type="radio" name="material" id="material1" value="material1">
+                        </label>
+                        <label class="category-label-checkbox" for="material2">
+                            <span class="tw-text-xs">
+                                پرده چین دار
+                            </span>
+                            <input type="radio" name="material" id="material2" value="material2">
+                        </label>
+                        <label class="category-label-checkbox" for="material3">
+                            <span class="tw-text-xs">
+                                پرده پانچی
+                            </span>
+                            <input type="radio" name="material" id="material3" value="material3">
+                        </label>
+                        <label class="category-label-checkbox" for="material4">
+                            <span class="tw-text-xs">
+                                پرده چاپی
+                            </span>
+                            <input type="radio" name="material" id="material4" value="material4">
+                        </label>
+                        <label class="category-label-checkbox" for="material5">
+                            <span class="tw-text-xs">
+                                پرده هازان
+                            </span>
+                            <input type="radio" name="material" id="material5" value="material5">
+                        </label>
                     </div>
                 </div>
                 <!-- END:CHECKBOX -->
@@ -526,24 +550,24 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="">
-                            <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseSwitchBox2" aria-expanded="false">
+                            <button type="button" class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseSwitchBox" aria-expanded="false">
                                 <span>ویژگی سوییچ باکس</span>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body collapse" id="collapseSwitchBox2">
+                    <div class="card-body collapse" id="collapseSwitchBox">
                         <div class="form-check form-switch">
                             <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                                 ارسال از فردا
                             </label>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                            <input class="form-check-input" type="checkbox" value="0" name="switchbox" id="flexCheckDefault1">
                         </div>
                         <div class="form-check form-switch">
                             <label class="form-check-label tw-text-sm" for="defaultx1">
                                 ارسال فروشنده
                             </label>
-                            <input class="form-check-input" type="checkbox" value="" id="defaultx1">
+                            <input class="form-check-input" type="checkbox" value="1" name="switchbox" id="defaultx1">
                         </div>
                     </div>
                 </div>
@@ -554,21 +578,21 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="">
-                            <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRadioBox2" aria-expanded="false">
+                            <button type="button" class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseRadioBox" aria-expanded="false">
                                 <span>ویژگی رادیو باکس</span>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body collapse" id="collapseRadioBox2">
+                    <div class="card-body collapse" id="collapseRadioBox">
                         <div class="form-check">
-                            <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault1">
+                            <input class="form-check-input" type="radio" value="0" name="radiobox" id="flexCheckDefault1">
                             <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
                                 موجود
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" name="x" type="radio" value="" id="flexCheckDefault2">
+                            <input class="form-check-input" type="radio" value="1" name="radiobox" id="flexCheckDefault2">
                             <label class="form-check-label tw-text-sm" for="flexCheckDefault2">
                                 همه
                             </label>
@@ -582,13 +606,13 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="">
-                            <button class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseColorOptions2" aria-expanded="false">
+                            <button type="button" class="btn card-title tw-py-0.5 tw-flex tw-items-center tw-justify-between tw-w-full" data-bs-toggle="collapse" data-bs-target="#collapseColorOptions" aria-expanded="false">
                                 <span>ویژگی رنگ</span>
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="card-body collapse" id="collapseColorOptions2">
+                    <div class="card-body collapse" id="collapseColorOptions">
                         <div class="tw-pr-0">
                             <div class="flex tw-flex-col tw-justify-start tw-space-y-2">
                                 <div class="parde-color parde-color-row">
@@ -596,7 +620,7 @@
                                         <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="50" cy="50" r="50" fill="#000" />
                                         </svg>
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="colorBox" value="black">
                                     </label>
                                     <span>سیاه</span>
                                 </div>
@@ -605,7 +629,7 @@
                                         <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="50" cy="50" r="50" fill="#475569" />
                                         </svg>
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="colorBox" value="gray">
                                     </label>
                                     <span>خاکستری</span>
                                 </div>
@@ -614,7 +638,7 @@
                                         <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="50" cy="50" r="50" fill="#f97316" />
                                         </svg>
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="colorBox" value="orange">
                                     </label>
                                     <span>نارنجی</span>
                                 </div>
@@ -623,7 +647,7 @@
                                         <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="50" cy="50" r="50" fill="#eab308" />
                                         </svg>
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="colorBox" valu="yellow">
                                     </label>
                                     <span>زرد</span>
                                 </div>
@@ -632,7 +656,7 @@
                                         <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="50" cy="50" r="50" fill="#0ea5e9" />
                                         </svg>
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="colorBox" value="blue">
                                     </label>
                                     <span>آبی</span>
                                 </div>
@@ -641,7 +665,7 @@
                                         <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="50" cy="50" r="50" fill="#8b5cf6" />
                                         </svg>
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="colorBox" value="purple">
                                     </label>
                                     <span>بنفش</span>
                                 </div>
@@ -650,7 +674,7 @@
                                         <svg width="35" height="35" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="50" cy="50" r="50" fill="#f43f5e" />
                                         </svg>
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="colorBox" value="pink">
                                     </label>
                                     <span>صورتی</span>
                                 </div>
@@ -659,7 +683,8 @@
                     </div>
                 </div>
                 <!-- COLOR OPTIONS -->
-            </div>
+
+            </form>
         </div>
     </div>
     <!-- MOBILE FILTER -->

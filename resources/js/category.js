@@ -5,6 +5,12 @@ import KTBlockUI from "./tools/blockui";
 import queryString from "query-string";
 import { RemoveOptionCategory } from "./components";
 
+
+/**
+ * there is priceSlider & priceSlider1 in APP.JS which are used for the price range filter
+ * if priceSlider & priceSlider1 changes handleChangeFilter is called to update the products
+ */
+
 const block = new KTBlockUI(document.getElementById("products_boxes"));
 
 function onChange(page) {
@@ -55,7 +61,13 @@ if ($(".first-pagination").length > 0) {
 $(".category-filters input").on("change", handleChangeFilter);
 
 export function handleChangeFilter(e) {
-    let filters = $(".category-filters").serializeArray();
+    let filters = {};
+    // if windows size is less than 768px
+    if (window.innerWidth < 768) {
+        filters = $(".category-filters.category-filters-mobile").serializeArray();
+    } else {
+        filters = $(".category-filters.category-filters-desktop").serializeArray();
+    }
 
     let groupedFilters = filters.reduce((result, filter) => {
         if (!result[filter.name]) {
@@ -101,8 +113,8 @@ export function handleChangeFilter(e) {
  * add sort to the query in url
  */
 $(document).ready(function () {
-    $("#category-sort input").on("change", function () {
-        let sort = $("#category-sort").serializeArray();
+    $("#category-sort input,#category-sort-mobile").on("change", function (e) {
+        let sort = $(e.target).serializeArray();
         sort = sort.reduce((result, filter) => {
             result[filter.name] = filter.value;
             return result;

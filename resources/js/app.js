@@ -34,33 +34,32 @@ import "./messages-dashboard";
 import "./cartDetail";
 import "./file-uploader";
 import { StarComponent } from "./components";
-import { hydrate,createElement } from "preact";
+import { hydrate, createElement } from "preact";
 import Plyr from "plyr";
 import "plyr/dist/plyr.css";
 import "./product.js";
 import "./tour.js";
-import "./mini-cart.js"
+import "./mini-cart.js";
 import "./category.js";
 import { handleChangeFilter } from "./category.js";
 
-
 // this is my swiper .headerSlider
 
-new Swiper(".usersSlider",{
-    modules: [Pagination,Autoplay],
+new Swiper(".usersSlider", {
+    modules: [Pagination, Autoplay],
     slidesPerView: 1,
     spaceBetween: 10,
-    loop:  true,
-    pagination:{
+    loop: true,
+    pagination: {
         el: ".usersSlider .swiper-pagination",
         clickable: true,
     },
-    autoplay:{
+    autoplay: {
         delay: 3000,
         pauseOnMouseEnter: true,
         disableOnInteraction: false,
-    }
-})
+    },
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     // Create a map centered at a specific location
@@ -354,8 +353,7 @@ $(".remove-favorite-user").on("click", function (e) {
     $(this).parent().parent().parent().hide().append(div).fadeIn(100);
 });
 
-
-if ($(".price-range,.price-range1").length > 0) {
+if ($(".price-range").length > 0) {
     let minPrice = $(".minPrice");
     let maxPrice = $(".maxPrice");
 
@@ -364,70 +362,41 @@ if ($(".price-range,.price-range1").length > 0) {
     minPrice.val($(".price-range").data("min"));
 
     let slider = $(".price-range");
-    let slider1 = $(".price-range1");
-    let priceSlider = noUi.create(slider[0], {
-        start: [
-            +$(".price-range").data("defaultmin"),
-            +$(".price-range").data("defaultmax"),
-        ],
-        connect: true,
-        // show max and min values static under slider
-        format: {
-            to: function (value) {
-                return parseInt(value);
+    slider.each(function (index, element) {
+        let priceSlider = noUi.create(element, {
+            start: [
+                +$(".price-range").data("defaultmin"),
+                +$(".price-range").data("defaultmax"),
+            ],
+            connect: true,
+            // show max and min values static under slider
+            format: {
+                to: function (value) {
+                    return parseInt(value);
+                },
+                from: function (value) {
+                    return parseInt(value);
+                },
             },
-            from: function (value) {
-                return parseInt(value);
+            range: {
+                min: $(".price-range").data("min"),
+                max: $(".price-range").data("max"),
             },
-        },
-        range: {
-            min: $(".price-range").data("min"),
-            max: $(".price-range").data("max"),
-        },
-    });
-    priceSlider.on("update", function (values, handle) {
-        if (values) {
-            // Update the corresponding input field based on the active handle
-            if (handle === 0) {
-                minPrice.val(`${values[0]}`);
-            } else {
-                maxPrice.val(`${values[1]}`);
+        });
+        priceSlider.on("update", function (values, handle) {
+            if (values) {
+                // Update the corresponding input field based on the active handle
+                if (handle === 0) {
+                    minPrice.val(`${values[0]}`);
+                } else {
+                    maxPrice.val(`${values[1]}`);
+                }
             }
-        }
+        });
+        priceSlider.on("change", function (values, handle) {
+            setTimeout(() => handleChangeFilter(), 500);
+        });
     });
-    let priceSlider1 = noUi.create(slider1[0], {
-        start: [
-            +$(".price-range").data("defaultmin"),
-            +$(".price-range").data("defaultmax"),
-        ],
-        connect: true,
-        // show max and min values static under slider
-        format: {
-            to: function (value) {
-                return parseInt(value);
-            },
-            from: function (value) {
-                return parseInt(value);
-            },
-        },
-        range: {
-            min: $(".price-range").data("min"),
-            max: $(".price-range").data("max"),
-        },
-    });
-    priceSlider1.on("update", function (values, handle) {
-        if (values) {
-            // Update the corresponding input field based on the active handle
-            if (handle === 0) {
-                minPrice.val(`${values[0]}`);
-            } else {
-                maxPrice.val(`${values[1]}`);
-            }
-        }
-    });
-    priceSlider1.on("change", function (values, handle) {
-        setTimeout(() => handleChangeFilter(),500);
-    })
 }
 
 $(".payment-accordion:not(.disabled) input[type=checkbox]").on(
@@ -478,8 +447,6 @@ $("#last-shipping-pay")
             toastr.error("لطفا نحوه پرداخت را انتخاب کنید");
         }
     });
-
-
 
 /**
  * CREATE STAR RATING AS DEFAULT. NOT HOVER THEM TO SHOW RATING
@@ -590,7 +557,7 @@ function toggleTapToTop() {
     if (scrollPosition > triggerPosition && isTaptoTop) {
         $("#backtotop").addClass("show");
     } else {
-        $("#backtotop").removeClass("show")
+        $("#backtotop").removeClass("show");
     }
 }
 
@@ -609,78 +576,79 @@ $(".product-counter-inner .count-plus").on("click", (e) => {
     let value = parseInt(input.val()) + 1;
     input.val(value);
     if (value > 0) {
-      $(".product-counter-inner .count-minus").css("opacity", 1);
+        $(".product-counter-inner .count-minus").css("opacity", 1);
     }
-  });
+});
 
-  $(".product-counter-inner .count-minus").on("click", (e) => {
+$(".product-counter-inner .count-minus").on("click", (e) => {
     e.preventDefault();
     let input = $(e.target).parent().parent().find("input");
     let value = parseInt(input.val()) - 1;
     if (value >= 1) {
-      input.val(value);
-      if (value === 1) {
-        $(".product-counter-inner .count-minus").css("opacity", 0.4);
-      }
+        input.val(value);
+        if (value === 1) {
+            $(".product-counter-inner .count-minus").css("opacity", 0.4);
+        }
     }
-  });
+});
 
-  $(".product-counter-inner input").on("change", (e) => {
+$(".product-counter-inner input").on("change", (e) => {
     let value = parseInt($(e.target).val());
     if (isNaN(value) || value < 1) {
-      $(e.target).val(1);
-      $(".product-counter-inner .count-minus").css("opacity", 0.4);
+        $(e.target).val(1);
+        $(".product-counter-inner .count-minus").css("opacity", 0.4);
     } else if (value === 1) {
-      $(".product-counter-inner .count-minus").css("opacity", 0.4);
+        $(".product-counter-inner .count-minus").css("opacity", 0.4);
     } else {
-      $(".product-counter-inner .count-minus").css("opacity", 1);
+        $(".product-counter-inner .count-minus").css("opacity", 1);
     }
-  });
-
-
+});
 
 /**
  * Remove item from cart
  */
-$(".product-basket .remove-item").on("click" , function(e){
+$(".product-basket .remove-item").on("click", function (e) {
     // remove its parent .product-basket
     e.preventDefault();
-    $.ajax("/api/remove-cart",{
+    $.ajax("/api/remove-cart", {
         method: "POST",
         data: {
-            id: $(this).data("id")
+            id: $(this).data("id"),
         },
-        success: function(response){
+        success: function (response) {
             window.location.reload();
         },
-        error: function(){
-            toastr.error("خطایی رخ داده است. مجددا تلاش کنید")
-        }
-    })
-})
+        error: function () {
+            toastr.error("خطایی رخ داده است. مجددا تلاش کنید");
+        },
+    });
+});
 
 /**
  * Remove all items from cart
  */
-let removeAllCartsBlock = new KTBlockUI(document.getElementById("remove-all-carts"),{
-    overlayClass: "",
-    // overlayClass white and blue 
-    overlayClass: "tw-bg-white tw-bg-opacity-75",
-});
-$("#remove-all-carts").on("click" , function(e){
+let removeAllCartsBlock = new KTBlockUI(
+    document.getElementById("remove-all-carts"),
+    {
+        overlayClass: "",
+        // overlayClass white and blue
+        overlayClass: "tw-bg-white tw-bg-opacity-75",
+    }
+);
+$("#remove-all-carts").on("click", function (e) {
     e.preventDefault();
-    $.ajax("/api/remove-all-cart",{
+    $.ajax("/api/remove-all-cart", {
         method: "POST",
-        beforeSend: function(){
+        beforeSend: function () {
             removeAllCartsBlock.block();
         },
-        success: function(response){
+        success: function (response) {
             removeAllCartsBlock.release();
             window.location.reload();
         },
-        error: function(err){
+        error: function (err) {
             removeAllCartsBlock.release();
-            toastr.error("خطایی رخ داده است. مجددا تلاش کنید")
-        }
-    })
-})
+            toastr.error("خطایی رخ داده است. مجددا تلاش کنید");
+        },
+    });
+});
