@@ -291,13 +291,13 @@ Route::get("/category",function(Request $request){
         ],
         // color
         [
-            "title" => "رنگ:آبی",
-            "url" => "https://localhost:8000/category?material=1", // new url after remove this option
+            "title" => "ویژگی چک باکس : موجود",
+            "url" => "https://localhost:8000/category?colorBox=black", // new url after remove this option
         ],
         // material
         [
-            "title" => "جنس:مخمل",
-            "url" => "https://localhost:8000/category?color=blue", // new url after remove this option
+            "title" => "ویژگی چک باکس : همه",
+            "url" => "https://localhost:8000/category?colorBox=red", // new url after remove this option
         ],
     ];
 

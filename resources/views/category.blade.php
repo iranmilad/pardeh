@@ -4,6 +4,19 @@
 <!-- please fill filters basis on what you want. i just used sample of all types of fields -->
 <!-- please fill filters basis on what you want. i just used sample of all types of fields -->
 
+<!-- please use uuid for inputs and labels like => id_knjlkj32 -->
+<!-- please use uuid for inputs and labels like => id_knjlkj32 -->
+<!-- please use uuid for inputs and labels like => id_knjlkj32 -->
+<!-- please use uuid for inputs and labels like => id_knjlkj32 -->
+<!-- Example -->
+<!-- <label class="category-label-checkbox" for="id_knjlkj32">
+    <span class="tw-text-xs">
+        پرده زبرا و شید
+    </span>
+    <input type="radio" name="material" id="id_knjlkj32" value="material1">
+</label> -->
+<!-- Example -->
+
 <!-- JS FILE: category.js -->
 
 @section('title', config('app.name'))
@@ -396,12 +409,12 @@
                     <i class="fa-duotone fa-filter-list"></i>
                     <span>فیلتر</span>
                 </button>
-                <select class="form-select tw-w-max" name="" id="category-sort-mobile">
+                <select class="form-select tw-w-max" name="sort" id="category-sort-mobile">
                     <option default selected disabled value="">مرتب سازی</option>
-                    <option value="">پرفروش ترین</option>
-                    <option value="">جدیدترین ترین</option>
-                    <option value="">ارزان ترین</option>
-                    <option value="">گرانترین ترین</option>
+                    <option value="newest">پرفروش ترین</option>
+                    <option value="bestselling">جدیدترین ترین</option>
+                    <option value="cheapest">ارزان ترین</option>
+                    <option value="expensive">گرانترین ترین</option>
                 </select>
             </div>
             <div class="row gy-2 gx-3 category-post">
@@ -427,6 +440,7 @@
             <!-- PAGINATION -->
         </div>
     </div>
+</div>
 
     <!-- MOBILE FILTER -->
     <div class="offcanvas offcanvas-start" data-bs-scroll="false" data-bs-backdrop="true" tabindex="-1" id="mobileFilter" aria-labelledby="offcanvasBottomLabel">
@@ -512,37 +526,37 @@
                         </div>
                     </div>
                     <div class="card-body collapse tw-flex tw-justify-start tw-flex-col" id="collapseWidthExample">
-                        <label class="category-label-checkbox" for="material1">
-                            <span class="tw-text-xs">
-                                پرده زبرا و شید
-                            </span>
-                            <input type="radio" name="material" id="material1" value="material1">
-                        </label>
-                        <label class="category-label-checkbox" for="material2">
-                            <span class="tw-text-xs">
-                                پرده چین دار
-                            </span>
-                            <input type="radio" name="material" id="material2" value="material2">
-                        </label>
-                        <label class="category-label-checkbox" for="material3">
-                            <span class="tw-text-xs">
-                                پرده پانچی
-                            </span>
-                            <input type="radio" name="material" id="material3" value="material3">
-                        </label>
-                        <label class="category-label-checkbox" for="material4">
-                            <span class="tw-text-xs">
-                                پرده چاپی
-                            </span>
-                            <input type="radio" name="material" id="material4" value="material4">
-                        </label>
-                        <label class="category-label-checkbox" for="material5">
-                            <span class="tw-text-xs">
-                                پرده هازان
-                            </span>
-                            <input type="radio" name="material" id="material5" value="material5">
-                        </label>
-                    </div>
+                    <label class="category-label-checkbox" for="material1_1">
+                        <span class="tw-text-xs">
+                            پرده زبرا و شید
+                        </span>
+                        <input type="radio" name="material" id="material1_1" value="material1">
+                    </label>
+                    <label class="category-label-checkbox" for="material2_2">
+                        <span class="tw-text-xs">
+                            پرده چین دار
+                        </span>
+                        <input type="radio" name="material" id="material2_2" value="material2">
+                    </label>
+                    <label class="category-label-checkbox" for="material3_3">
+                        <span class="tw-text-xs">
+                            پرده پانچی
+                        </span>
+                        <input type="radio" name="material" id="material3_3" value="material3">
+                    </label>
+                    <label class="category-label-checkbox" for="material4_4">
+                        <span class="tw-text-xs">
+                            پرده چاپی
+                        </span>
+                        <input type="radio" name="material" id="material4_4" value="material4">
+                    </label>
+                    <label class="category-label-checkbox" for="material5_5">
+                        <span class="tw-text-xs">
+                            پرده هازان
+                        </span>
+                        <input type="radio" name="material" id="material5_5" value="material5">
+                    </label>
+                </div>
                 </div>
                 <!-- END:CHECKBOX -->
 
@@ -586,8 +600,8 @@
                     </div>
                     <div class="card-body collapse" id="collapseRadioBox">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="0" name="radiobox" id="flexCheckDefault1">
-                            <label class="form-check-label tw-text-sm" for="flexCheckDefault1">
+                            <input class="form-check-input" type="radio" value="0" name="radiobox" id="flexCheckDefaultasas1">
+                            <label class="form-check-label tw-text-sm" for="flexCheckDefaultasas1">
                                 موجود
                             </label>
                         </div>
@@ -688,5 +702,4 @@
         </div>
     </div>
     <!-- MOBILE FILTER -->
-</div>
 @endsection

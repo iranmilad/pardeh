@@ -5,7 +5,6 @@ import KTBlockUI from "./tools/blockui";
 import queryString from "query-string";
 import { RemoveOptionCategory } from "./components";
 
-
 /**
  * there is priceSlider & priceSlider1 in APP.JS which are used for the price range filter
  * if priceSlider & priceSlider1 changes handleChangeFilter is called to update the products
@@ -64,9 +63,13 @@ export function handleChangeFilter(e) {
     let filters = {};
     // if windows size is less than 768px
     if (window.innerWidth < 768) {
-        filters = $(".category-filters.category-filters-mobile").serializeArray();
+        filters = $(
+            ".category-filters.category-filters-mobile"
+        ).serializeArray();
     } else {
-        filters = $(".category-filters.category-filters-desktop").serializeArray();
+        filters = $(
+            ".category-filters.category-filters-desktop"
+        ).serializeArray();
     }
 
     let groupedFilters = filters.reduce((result, filter) => {
@@ -164,9 +167,53 @@ function removeOptionsOnChange(url) {
                 block.release();
                 resolve(response);
                 $(".category-post").html(response.html);
-                // set whole window url to url
-                // window.history.pushState({}, "", url);
+                // Parse the URL to get its query parameters
                 let new_url = queryString.parseUrl(url);
+
+                // Parse the current URL to get its query parameters
+                let currentQuery = queryString.parseUrl(window.location.href).query;
+
+                // Parse the new URL to get its query parameters
+                let newQuery = queryString.parseUrl(url).query;
+
+                // Function to find the queries that have been removed in the new URL
+                function findRemovedQueries(currentQuery, newQuery) {
+                    return Object.keys(currentQuery).reduce((result, key) => {
+                        // If the key is not 'page', 'sort', 'minprice', 'maxprice' and it does not exist in the new query,
+                        // then it has been removed
+                        if (
+                            key !== "page" &&
+                            key !== "sort" &&
+                            key !== 'minprice' &&
+                            key !== 'maxprice' &&
+                            !(key in newQuery)
+                        ) {
+                            // Add the removed query to the result
+                            result[key] = currentQuery[key];
+                        }
+                        return result;
+                    }, {});
+                }
+
+                // Get the queries that have been removed in the new URL
+                let removedQueries = findRemovedQueries(currentQuery, newQuery);
+
+                // For each removed query
+                for (let [key, value] of Object.entries(removedQueries)) {
+                    // Split the value by comma to get an array of values
+                    let newVal = value.split(",");
+
+                    // For each input element with the name of the removed query
+                    $("input[name=" + key + "]").each(function () {
+                        // If the value of the input element is in the array of removed values
+                        if (newVal.includes($(this).val())) {
+                            // Uncheck the input element
+                            $(this).prop("checked", false);
+                        }
+                    });
+                }
+
+
                 if (Object.keys(new_url.query).length > 0) {
                     let newQuery = queryString.stringify(new_url.query, {
                         arrayFormat: "comma",
@@ -182,6 +229,7 @@ function removeOptionsOnChange(url) {
                     // Use history.pushState to change the URL without refreshing
                     history.pushState(null, null, newURL);
                 }
+                // compare the url with the current url and find the difference basis on name and value and save them in variable
             },
             error: (err) => {
                 block.release();
@@ -197,18 +245,17 @@ function setRemoveOptions(options) {
             .removeClass("d-none")
             .children(".card-body")
             .html("");
-        let elm = document.createElement("div");
-        $(".removeItemsBox")
-            .removeClass("d-none")
-            .children(".card-body")
-            .append(elm);
-        hydrate(
-            createElement(RemoveOptionCategory, {
-                options,
-                onChange: removeOptionsOnChange,
-            }),
-            elm
-        );
+        $(".removeItemsBox").each(function () {
+            let elm = document.createElement("div");
+            $(this).children(".card-body").html("").append(elm);
+            hydrate(
+                createElement(RemoveOptionCategory, {
+                    options,
+                    onChange: removeOptionsOnChange,
+                }),
+                elm
+            );
+        });
     } else {
         $(".removeItemsBox").addClass("d-none").children(".card-body").html("");
     }

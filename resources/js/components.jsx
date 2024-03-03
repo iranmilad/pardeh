@@ -204,7 +204,7 @@ export const RemoveOptionCategory = ({ options,onChange }) => {
         <>
             {options.map((item) => (
                 <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
-                    <span class="tw-text-sm tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer">
+                    <span class="tw-text-sm tw-text-gray-600 hover:tw-text-brand-500 tw-cursor-pointer" onClick={() => removeOption(item.url)}>
                         {item.title}
                     </span>
                     <button
@@ -212,7 +212,7 @@ export const RemoveOptionCategory = ({ options,onChange }) => {
                         className="btn tw-p-0"
                         onClick={() => removeOption(item.url)}
                     >
-                        <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-indigo-500 tw-cursor-pointer"></i>
+                        <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-brand-500 tw-cursor-pointer"></i>
                     </button>
                 </div>
             ))}
