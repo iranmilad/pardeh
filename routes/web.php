@@ -237,7 +237,11 @@ Route::get('/contact-us', function () {
 
 
 Route::get('/blog', function () {
-    return view('blog');
+    if (request()->has('s')) {
+        return view('search-blog');
+    } else {
+        return view('blog');
+    }
 })->name('blog');
 
 // when user is not logged in

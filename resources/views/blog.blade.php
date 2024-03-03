@@ -241,10 +241,12 @@
                         جستجو
                     </p>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control fs-8" placeholder="عنوان خود را وارد کنید">
-                    <button class="btn custom-btn-primary" type="button" id="button-addon2"><i class="fab fa-sistrix fw-md text-white"></i></button>
-                </div>
+                <form action="" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" name="s" class="form-control fs-8" placeholder="عنوان خود را وارد کنید">
+                        <button class="btn custom-btn-primary tw-rounded-tl-lg tw-rounded-bl-lg" type="submit" id="button-addon2"><i class="fab fa-sistrix fw-md text-white"></i></button>
+                    </div>
+                </form>
             </div>
             <div class="cart-cal  overflow-hidden">
                 <!--                            All Prices:start-->
