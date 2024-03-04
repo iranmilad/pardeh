@@ -93,4 +93,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 	public function getFullNameAttribute(){
 		return $this->first_name . ' '. $this->last_name;
 	}
+
+    // مدل User رابطه‌ی posts را اضافه کنید
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
 }

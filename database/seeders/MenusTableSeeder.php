@@ -13,29 +13,29 @@ class MenusTableSeeder extends Seeder
      */
     public function run()
     {
-        Menu::create([
-            'title' => 'Интерьер',
-            'alias' => 'interior'
-        ]);
-        Menu::create([
-            'title' => 'Экстерьер',
-            'alias' => 'exterior'
-        ]);
-        Menu::create([
-            'title' => 'Оптика',
-            'alias' => 'lighting'
-        ]);
-        Menu::create([
-            'title' => 'Запчасти',
-            'alias' => 'repair-parts'
-        ]);
-        Menu::create([
-            'title' => 'Кузов',
-            'alias' => 'body-parts'
-        ]);
-        Menu::create([
-            'title' => 'Блог',
-            'alias' => 'blog'
-        ]);
+        // Menu::create([
+        //     'title' => 'Интерьер',
+        //     'alias' => 'interior'
+        // ]);
+        // Menu::create([
+        //     'title' => 'Экстерьер',
+        //     'alias' => 'exterior'
+        // ]);
+        // Menu::create([
+        //     'title' => 'Оптика',
+        //     'alias' => 'lighting'
+        // ]);
+        // Menu::create([
+        //     'title' => 'Запчасти',
+        //     'alias' => 'repair-parts'
+        // ]);
+        // Menu::create([
+        //     'title' => 'Кузов',
+        //     'alias' => 'body-parts'
+        // ]);
+        // Menu::create([
+        //     'title' => 'Блог',
+        //     'alias' => 'blog'
+        // ]);
     }
 }

@@ -49,7 +49,7 @@ figure {
     @apply tw-flex tw-items-center tw-overflow-auto;
 }
 
-.cs-pagination :is(a, span) {
+.cs-pagination :is(a, span,button) {
     @apply tw-mx-1 tw-flex tw-items-center tw-justify-center tw-min-w-8 tw-min-h-8 tw-max-w-max tw-max-h-max tw-border-2
     tw-border-solid tw-border-gray-300 tw-rounded-lg tw-text-sm tw-text-gray-500
     hover:tw-bg-indigo-500 hover:tw-border-indigo-500 hover:tw-text-white tw-transition-all tw-font-bold;
@@ -1016,7 +1016,7 @@ label.required {
     @apply tw-flex tw-flex-col tw-items-center tw-bg-white has-[:checked]:tw-border-blue-800 tw-border-2 tw-border-solid
      tw-border-transparent tw-cursor-pointer hover:tw-border-blue-800 tw-pb-4 tw-relative;
 }
-/* 
+/*
 .product-template{
     @apply has-[:checked]:before:tw-visible;
 }

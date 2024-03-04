@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('title', 50)->unique();
             $table->string('description', 500)->nullable();
             $table->string('alias', 50)->unique();
-            $table->integer('menu_id')->unsigned();
+            $table->integer('menu_id')->unsigned()->nullable();
             $table->foreign('menu_id')->references('id')->on('menus');
             $table->string('img')->nullable();
             $table->timestamps();

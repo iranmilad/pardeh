@@ -2,10 +2,11 @@
     <!-- The whole future lies in uncertainty: live immediately. - Seneca -->
     <img class="thumbnail" src="{{ $image ?: Vite::asset('resources/images/image-broken.png') }}" alt="{{ isset($name) ?? '' }}">
     <img class="thumbnail-2" src="{{ $image2 ?? '' }}" alt="{{ $name ?? ''}}">
+
     <div class="body">
         <span class="title tw-text-right tw-w-full tw-font-semibold">{{$name ?? ''}}</span>
         @if(!isset($available))
-            @if(isset($discountedPrice))
+            @if(isset($discountedPrice) && $discountedPrice!=null)
                 <div class="tw-w-full  tw-center tw-justify-between">
                     <span class="badge tw-bg-red-500 rounded-pill">{{ $discount ?? ''}}</span>
                     <span class="tw-text-sm">{{$price ?? ''}}

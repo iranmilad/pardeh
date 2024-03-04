@@ -26,12 +26,13 @@ class CreateProductsTable extends Migration
             $table->bigInteger('fewtak')->nullable();
             $table->string('holo_code')->nullable();
 
-            $table->enum('type', ['simple', 'variation']);
+            $table->enum('type', ['simple', 'variation'])->defalut('simple');
 
-            $table->boolean('is_top');
-            $table->boolean('is_new');
-            $table->string('img');
-            $table->text('description');
+            $table->boolean('is_top')->defalut(false);
+            $table->boolean('is_new')->defalut(false);
+            $table->string('img')->default("/images/defaultProduct.png");
+            $table->string('hover_img')->nullable();;
+            $table->text('description')->nullable();;
 
             $table->timestamps();
         });

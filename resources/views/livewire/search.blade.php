@@ -41,10 +41,20 @@
             @foreach($results->products as $product)
             <!-- Search Item:start-->
             <a href="#" class="search-result-item position-relative border-bottom p-3 text-dark ">
-                <img src="{{ Vite::asset($product->thumbnail) }}" class="tw-w-16 tw-h-16 fw-md fs-5 gray-500 tw-block tw-relative tw-rounded-md" alt="{{ $product->name }}">
+                <img src="{{ asset($product->thumbnail) }}" class="tw-w-16 tw-h-16 fw-md fs-5 gray-500 tw-block tw-relative tw-rounded-md" alt="{{ $product->name }}">
                 <div class="d-inline-block ms-2">
                     <span class="d-inline-block fw-bold ms-1">{{ $product->name }}</span>
-                    <span class="d-block tw-text-gray-500 fs-7">در دسته <strong>پرده</strong></span>
+
+                    <span class="d-block tw-text-gray-500 fs-7">
+                    @if (property_exists($product,"categories") && $product->categories->isNotEmpty())
+                        در دسته
+                        @foreach ($product->categories as $category)
+                            <strong>{{ $category->title }}</strong>
+                        @endforeach
+                    @else
+                        بدون دسته بندی
+                    @endif
+                    </span>
                 </div>
             </a>
             <!-- Search Item:end-->

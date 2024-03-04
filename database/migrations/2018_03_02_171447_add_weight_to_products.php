@@ -14,10 +14,10 @@ class AddWeightToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->decimal('weight', 8, 3);
-            $table->decimal('width');
-            $table->decimal('height');
-            $table->decimal('length');
+            $table->decimal('weight', 8, 3)->nullable();
+            $table->decimal('width')->nullable();
+            $table->decimal('height')->nullable();
+            $table->decimal('length')->nullable();
         });
     }
 

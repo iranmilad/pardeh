@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
@@ -171,9 +172,7 @@ use App\Http\Controllers\Auth\LoginController;
 //         ->name('home.orders');
 // });
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/check_verify',[VerifyController::class, 'index'])->name('check_verify');
 
 Route::get('login', [LoginController::class,'index'])->name('login');
@@ -206,16 +205,14 @@ Route::post('/remember', [AuthController::class, 'rememberCodeValidate'])->name(
 // // Route to resend verification code
 // Route::post('/resend-verification-code', [RegisterController::class, 'resendVerificationCode'])->name('resend.verification.code');
 
-
+Route::get('/blog/{slag}', [PostController::class, 'index'])->name('post');
 
 Route::get('/terms', function () {
     return view('terms');
 });
 
 
-Route::get('/post', function () {
-    return view('single-blog');
-});
+
 
 Route::get('/cart', function () {
     $uuid = Str::uuid();

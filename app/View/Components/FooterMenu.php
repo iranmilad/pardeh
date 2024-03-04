@@ -2,15 +2,14 @@
 
 namespace App\View\Components;
 
-use App\Models\Menu;
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Menu;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
-class DesktopMenu extends Component
+class FooterMenu extends Component
 {
     public $menus;
-
     /**
      * Create a new component instance.
      */
@@ -25,6 +24,6 @@ class DesktopMenu extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.desktop-menu');
+        return view('components.footer-menu', ['menus' => $this->menus]);
     }
 }

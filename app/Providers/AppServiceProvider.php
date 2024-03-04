@@ -13,7 +13,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
+        View::composer('partials.footer', function ($view) {
+            // گرفتن همه‌ی منوها
+
+            // laravel model get menu_id is null
+            $menus = Menu::whereNull('menu_id')->get()->keyBy('alias');
+
+            $view->with('menus', $menus);
+
+        });
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use App\Models\Order;
 use Events\UserEditInfo;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
         return view('index');
     }
 

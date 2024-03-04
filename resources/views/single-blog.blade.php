@@ -28,67 +28,18 @@
                     <article class="mt-4">
                         <!--                        Blog Post Header:start-->
                         <div class="blog-post-header">
+                            <livewire:LoadWidget blockId="block_18" :slug="$post->slug"/>
 
-                            <!--                            Blog Post Header Title:start-->
-                            <div class="blog-post-header-title d-flex justify-content-between align-items-baseline">
-                                <h1 class="fs-5 fw-bold">۱۵ انیمیشن جذاب و دیدنی که حسابی سرحالتان می‌آورند</h1>
-                            </div>
-                            <!--                            Blog Post Header Title:end-->
-
-                            <!--                            Blog Post Header Detail:start-->
-                            <div class="blog-post-header-detail mt-4 d-flex justify-content-between align-items-center">
-                                <!--                                Blog Post Header Detail Right:start-->
-                                <div class="blog-post-header-detail-right">
-                                    <!--                                    Blog Post Author:start-->
-                                    <div class="blog-post-author">
-                                        <img src="https://placehold.co/35x35" alt="" class="border-radius-circle">
-                                        <span class="ps-1 fs-7 gray-600">فرهاد باقری</span>
-                                        <span class="fs-7 ps-4 gray-500">
-                                            <i class="fa fa-clock"></i>
-                                            4 فروردین 1401
-                                        </span>
-                                    </div>
-                                    <!--                                    Blog Post Author:end-->
-                                </div>
-                                <!--                                Blog Post Header Detail Right:end-->
-                            </div>
-                            <!--                            Blog Post Header Detail:end-->
+                            <livewire:LoadWidget blockId="block_19" :slug="$post->slug"/>
                         </div>
                         <!--                        Blog Post Header:end-->
 
                         <!--                        Blog Post Content:start-->
                         <div class="blog-post-content mt-4">
                             <!--                            Blog Post Image:start-->
-                            <figure>
-                                <img src="{{ Vite::asset('resources/images/auth3.jpg') }}" alt="">
-                                <figcaption>
-                                    عکس اتاق خواب
-                                </figcaption>
-                            </figure>
+                            <livewire:LoadWidget blockId="block_20" :slug="$post->slug"/>
                             <!--                            Blog Post Image:end-->
-                            <p class="mt-3">
-                                برای همه‌ی ما در زندگی پیش می‌آید که روزهای بد و استرس‌زا را تجربه ‌کنیم، و تنها دلمان
-                                بخواهد در رخت‌‌خوابمان غلت بزنیم و یک فیلم خوب تماشا کنیم، تا در خود غرقمان کند و تمام
-                                رخوت و سختی آن روز بد را با خود ببرد. خوشبختانه، همیشه برای دور کردن افکار بد و حال خراب
-                                فیلم‌هایی وجود دارند که این احساس گرم و ساعاتی سرگرم‌کننده را فراهم کنند. فراتر از هر
-                                اثر سینمایی، از استاپ‌موشن‌های کمپانی آردمن گرفته تا کاتالوگ گسترده‌ی انیمیشن‌های کلاسیک
-                                پیکسار، چیزی در مورد فیلم‌های انیمیشن وجود دارد که برای این هدف عالی است. در این مطلب ۱۰
-                                انیمیشن جذاب و تماشایی را نام بردیم که حسابی سرحالتان می‌آورند.
-                            </p>
-                            <div class="image_dotter">
-                                <img src="{{ Vite::asset('resources/images/auth.jpg') }}" />
-                                <span style="top: 5%;left: 5%;" data-id="1"></span>
-                                <span style="top: 20%;left: 30%;" data-id="2"></span>
-                                <span style="top: 50%;left: 50%;" data-id="3"></span>
-                            </div>
-                            <p class="mt-4">
-                                تقریبا برای هر مناسبتی یک فیلم انیمیشن وجود دارد؛ تعطیلات خاص، برای سنین مختلف و
-                                ماجراهای متنوعی که هر روز در دنیا اتفاق می‌افتد تنها نوک کوه یخی است که از داستان‌های
-                                جذاب انیمیشنی می‌توانیم انتظار داشته باشیم. برخی از انیمیشن‌ها موضوعات صادقانه و دلپذیری
-                                را در مورد دنیای واقعی ارائه می‌دهند، در حالی که برخی دیگر به اندازه‌ی کافی همه‌جانبه
-                                هستند تا شما را به سمت خود جلب کنند و از مشکلاتتان رها کنند. اگر در حال جستجوی چیزی
-                                هستید تا روز بدتان را در یک چشم به هم زدن در خود حل کند، ادامه‌ی مطلب را از دست ندهید.
-                            </p>
+                            <livewire:LoadWidget blockId="block_21" :slug="$post->slug"/>
                         </div>
                         <!--                        Blog Post Content:end-->
 
@@ -96,20 +47,10 @@
                         <!--                        Blog Post Footer:end-->
 
                         <!--                        Blog Keywords:start-->
-                        <div class="blog-keywords mt-4 pb-4 border-bottom-gray-300">
-                            <span>برچسب ها :</span>
-                            <a href="">
-                                <span class="badge bg-secondary">تکنولوژی</span>
-                            </a>
-                            <a href="">
-                                <span class="badge bg-secondary">موبایل</span>
-                            </a>
-                            <a href="">
-                                <span class="badge bg-secondary">لپ تاپ</span>
-                            </a>
-                        </div>
+                        <livewire:LoadWidget blockId="block_22" :slug="$post->slug"/>
                         <!--                        Blog Keywords:end-->
 
+                        <livewire:LoadWidget blockId="block_23" :slug="$post->slug"/>
                         <!--                        Blog Comments:start-->
                         <div class="blog-comments mt-4 form">
                             <strong class="fs-5">دیدگاه شما</strong>

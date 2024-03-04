@@ -5,36 +5,14 @@
 <div class="tw-py-5 mt-5 tw-mb-5">
     <div class="container">
         <div class="row tw-justify-center gy-4">
+            @foreach ($menus['features_menu']->childMenus  as $menu)
             <div class="col-lg-2 col-4">
                 <li class="icon-footer-box">
-                    <i class="fa-regular fa-box"></i>
-                    <span>تحویل سریع</span>
+                    <i class="{{  $menu->icon  }}"></i>
+                    <span>{{ $menu->title }}</span>
                 </li>
             </div>
-            <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-credit-card"></i>
-                    <span>پرداخت آنلاین</span>
-                </li>
-            </div>
-            <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-badge-check"></i>
-                    <span>ضمانت کالا</span>
-                </li>
-            </div>
-            <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-person-dolly-empty"></i>
-                    <span>نصب در محل</span>
-                </li>
-            </div>
-            <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
-                    <i class="fa-regular fa-headphones-simple"></i>
-                    <span>پشتیبانی آنلاین</span>
-                </li>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -45,80 +23,37 @@
                 <div class="footer-main my-5">
                     <div class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-5">
                         <div class="tw-col-span-1">
-                            <h3 class="fw-bold fs-6 title-dot text-white">دسترسی سریع</h3>
-                            <ul class="tw-pr-5 tw-text-xs">
-                                <li class="my-3"><a class="" href="/">صفحه ی خانه</a></li>
-                                <li class="my-3"><a href="/">ورود/ثبت نام</a></li>
-                                <li class="my-3"><a href="/">راهنمای اندازه گیزی</a></li>
-                                <li class="my-3"><a href="/">علاقه مندی ها</a></li>
-                                <li class="my-3"><a href="/about-us">درباره ما</a></li>
-                                <li class="my-3"><a href="/contact-us">تماس باما</a></li>
-                                <li class="my-3"><a href="/blog">وبلاگ</a></li>
-                            </ul>
+                            <x-footer-menu :alias="'quick_access'"/>
                         </div>
                         <div class="tw-col-span-1">
-                            <h3 class="fw-bold fs-6 title-dot text-white">دسته بندی ها</h3>
-                            <ul class="tw-pr-5 tw-text-xs">
-                                <li class="my-3"><a href="#">پرده</a></li>
-                                <li class="my-3"><a href="#">رو تختی</a></li>
-                                <li class="my-3"><a href="#">کاغذ دیواری</a></li>
-                                <li class="my-3"><a href="#">موکت</a></li>
-                                <li class="my-3"><a href="#">فرش</a></li>
-                                <li class="my-3"><a href="#">کوسن و روبالشی</a></li>
-                                <li class="my-3"><a href="#">لوستر و آباژور</a></li>
-                                <li class="my-3"><a href="#">قالیچه و پادری</a></li>
-                                <li class="my-3"><a href="#">مبلمان</a></li>
-                                <li class="my-3"><a href="#">آینه</a></li>
-                            </ul>
+                            <x-footer-menu :alias="'categories_footer'"/>
                         </div>
 
                         <div class="tw-col-span-2">
-                            <p class="fw-bold fs-6 title-dot text-white">تماس باما</p>
-                            <div class="tw-flex tw-text-sm tw-items-start lg:tw-items-center mt-2">
-                                <span class="tw-ml-1 tw-font-bold">آدرس: </span>
-                                <p>فارس - شیراز - خیابان ارم - کوچه 8</p>
-                            </div>
-                            <div class="tw-flex tw-text-sm tw-items-center mt-2">
-                                <span class="tw-ml-1 tw-font-bold">دفتر شیراز: </span>
-                                <p>071236234</p>
-                            </div>
-                            <div class="tw-flex tw-text-sm tw-items-center mt-2">
-                                <span class="tw-ml-1 tw-font-bold">پشتیبانی 1: </span>
-                                <p>02134623</p>
-                            </div>
+                            <x-footer-menu :alias="'footer_contact_us'"/>
+
                             <ul class="social-list d-flex tw-justify-start mt-2 align-items-center tw-flex-wrap tw-w-full">
-                                <li class="my-2 instagram">
-                                    <a class="social-media-icon" href="#">
-                                        <img src="{{ Vite::asset('resources/images/instagram.png') }}" alt="">
+                                @foreach ($menus['social_media_menu']->childMenus  as $menu)
+                                <li class="my-2">
+                                    <a class="social-media-icon" href="{{ $menu->link }}">
+                                        <img src="{{  $menu->icon }}" alt="">
                                     </a>
                                 </li>
-                                <li class="my-2 twitter">
-                                    <a class="social-media-icon" href="#">
-                                        <img src="{{ Vite::asset('resources/images/twitter.png') }}" alt="">
-                                    </a>
-                                </li>
-                                <li class="my-2 linkedin">
-                                    <a class="social-media-icon" href="#">
-                                        <img src="{{ Vite::asset('resources/images/linkedin.png') }}" alt="">
-                                    </a>
-                                </li>
-                                <li class="my-2 telegram">
-                                    <a class="social-media-icon" href="#">
-                                        <img src="{{ Vite::asset('resources/images/whatsapp.png') }}" alt="">
-                                    </a>
-                                </li>
-                                <li class="my-2 telegram">
-                                    <a class="social-media-icon" href="#">
-                                        <img src="{{ Vite::asset('resources/images/telegram.png') }}" alt="">
-                                    </a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="tw-col-span-1">
-                            <p class="fw-bold fs-6 title-dot text-white">نماد ها</p>
+                            <p class="fw-bold fs-6 title-dot text-white">{{ $menus['namad_menu']->title}}</p>
                             <div class="row mt-3 tw-justify-center">
-                                <img class="tw-w-28" src="{{ Vite::asset('resources/images/enamad.png') }}" alt="">
-                                <img class="tw-w-28" src="{{ Vite::asset('resources/images/rezi.webp') }}" alt="">
+                                <ul class="social-list d-flex tw-justify-start mt-2 align-items-center tw-flex-wrap tw-w-full">
+                                    @foreach ($menus['namad_menu']->childMenus  as $menu)
+                                    <li class="my-2">
+                                        <a  href="{{ $menu->link }}">
+                                        <img class="tw-w-16" src="{{  $menu->icon }}" alt="">
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>

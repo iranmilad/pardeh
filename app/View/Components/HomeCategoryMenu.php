@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class DesktopMenu extends Component
+class HomeCategoryMenu extends Component
 {
     public $menus;
 
@@ -19,12 +19,11 @@ class DesktopMenu extends Component
         $this->menus  = Menu::where(['alias'=>$alias,])
         ->first();
     }
-
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        return view('components.desktop-menu');
+        return view('components.home-category-menu', ['menus' => $this->menus]);
     }
 }

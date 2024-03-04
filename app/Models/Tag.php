@@ -21,4 +21,13 @@ class Tag extends Model
         return $this->hasMany(Filter::class);
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
+
+    public function getLinkAttribute()
+    {
+        return "/search/tag/".$this->name;
+    }
 }
