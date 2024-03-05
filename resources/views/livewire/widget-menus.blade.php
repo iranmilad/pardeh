@@ -9,9 +9,11 @@
                 <div class="row">
                     @foreach ($menus->childMenus as $menu)
                         <!--                Category Item:start-->
-                        <div class="col-4 col-lg-2 col-xl-2 mb-4">
-                            <a href="{{ $menu->link  }}" title="">
-                                <img src="{{ $menu->icon }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-lg img-fluid img-opacity">
+                        <div class="col-4 col-lg-2 col-xl-2 mb-4 index-category">
+                            <a class="index-category" href="{{ $menu->link  }}" title="">
+                                <div>
+                                    <img src="{{ $menu->icon }}" alt="" class="tw-w-full tw-block tw-relative tw-rounded-xl img-fluid img-opacity">
+                                </div>
                                 <strong class="text-center d-block fs-7">{{ $menu->title  }}</strong>
                             </a>
                         </div>

@@ -16,7 +16,7 @@
 
                             </span>
                         </div>
-                        <button class="mt-4 tw-rounded-lg tw-w-full btn btn-sm custom-btn-primary" href="/post/{{ $post->id }}">
+                        <button class="mt-4 tw-rounded-2xl tw-w-full btn btn-sm custom-btn-primary" href="/post/{{ $post->id }}">
                             ادامه مطلب
                         </button>
                     </div>
