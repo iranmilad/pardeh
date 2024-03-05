@@ -142,4 +142,17 @@ class Product extends Model
         return $this->belongsToMany(Attribute::class, 'attribute_product', 'product_id', 'attribute_id');
     }
 
+    // Define a method to retrieve the first category of the product
+    public function firstCategory()
+    {
+        return $this->categories()->first();
+    }
+
+    // Define a static method to retrieve the first category of a product
+    public static function getFirstCategory($productId)
+    {
+        return static::findOrFail($productId)->firstCategory();
+    }
+
+
 }

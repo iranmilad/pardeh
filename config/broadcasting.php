@@ -16,7 +16,7 @@ return [
     */
 
     'default' => env('BROADCAST_DRIVER', 'null'),
-
+    'view' => 'partials.breadcrumbs', // --> resources/views/partials/breadcrumbs.blade.php
     /*
     |--------------------------------------------------------------------------
     | Broadcast Connections

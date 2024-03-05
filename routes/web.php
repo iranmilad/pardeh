@@ -205,7 +205,7 @@ Route::post('/remember', [AuthController::class, 'rememberCodeValidate'])->name(
 // // Route to resend verification code
 // Route::post('/resend-verification-code', [RegisterController::class, 'resendVerificationCode'])->name('resend.verification.code');
 
-Route::get('/blog/{slag}', [PostController::class, 'index'])->name('post');
+Route::get('/blog/{slag}', [PostController::class, 'index'])->name('single.post');
 
 Route::get('/terms', function () {
     return view('terms');

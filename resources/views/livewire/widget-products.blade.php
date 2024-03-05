@@ -35,9 +35,9 @@
             <h2 class="text-right fw-bold fs-6">{{ $options['title'] }}</h2>
             <div class="tw-w-full tw-h-1 tw-bg-gray-300 tw-space-x-0 tw-mx-14 tw-hidden "></div>
             <div class="tw-flex tw-flex-row-reverse tw-items-center">
-                <button
+                <a href="{{ $options['link'] }}"
                     class="tw-text-sm tw-px-5 tw-py-[10px] tw-bg-white text-[#2d365d] tw-border-2 tw-border-solid border-dark tw-rounded-xl tw-w-max hover:tw-bg-black hover:tw-text-white ">مشاهده
-                    همه</button>
+                    همه</a>
                 <button class="" id="discounted-products-next"><i class="fa fa-chevron-left"></i></button>
                 <button class="" id="discounted-products-prev"><i class="fa fa-chevron-right"></i></button>
             </div>
@@ -81,7 +81,7 @@
                         <button class="" id="suggestions-products-prev"><i class="fa fa-chevron-right"></i></button>
                         <button class="" id="suggestions-products-next"><i class="fa fa-chevron-left"></i></button>
                     </div>
-                    <button class="tw-text-sm tw-px-3 tw-py-2 tw-bg-transparent tw-text-white text-[#2d365d] tw-border-2 tw-border-solid border-white tw-rounded-xl tw-w-max hover:tw-bg-white hover:tw-text-[#ff3a4e]">View All</button>
+                    <a href="{{ $options['link'] }}" class="tw-text-sm tw-px-3 tw-py-2 tw-bg-transparent tw-text-white text-[#2d365d] tw-border-2 tw-border-solid border-white tw-rounded-xl tw-w-max hover:tw-bg-white hover:tw-text-[#ff3a4e]">مشاهده همه</a>
                 </div>
             </div>
             <div class="swiper bestSuggestionsSlider tw-w-full tw-h-full tw-mt-4">

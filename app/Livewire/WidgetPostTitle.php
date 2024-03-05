@@ -8,7 +8,7 @@ use Livewire\Component;
 class WidgetPostTitle extends Component
 {
     public $type;
-    public $title;
+    public $post;
     public $slug;
     public $options;
 
@@ -21,13 +21,13 @@ class WidgetPostTitle extends Component
         $count = $this->options['count'] ?? 4;
 
         if ($this->type == "single post") {
-            $this->title = Post::where(['slug'=>$slug])->pluck('title')->first();
+            $this->post = Post::where(['slug'=>$slug])->first();
         }
     }
 
     public function render()
     {
-        $title= $this->title;
-        return view('livewire.widget-post-title',compact('title'));
+        $post= $this->post;
+        return view('livewire.widget-post-title',compact('post'));
     }
 }
