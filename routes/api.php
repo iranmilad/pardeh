@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 // routes/web.php or routes/api.php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
@@ -109,4 +110,199 @@ Route::get("/imgdot/{id}",function($id){
     $html = View::make("components/imgdot",$product)->render();
 
     return response()->json(['html' => $html]);
+});
+
+
+/**
+ * this route returns the product details and update price and time and discount and also the images of product.
+ *
+ */
+Route::post("/product",function(Request $request){
+
+    /**
+     * regular_price & sale_price & discount & time_delivery are optional.
+     */
+    $response = [
+        "name" => $request->name,
+        "images" => [
+            "https://placehold.co/900?text=1",
+            "https://placehold.co/900?text=2",
+        ],
+        "regular_price" => "25,000,000",
+        "sale_price" => "18,000,000",
+        "discount" => "20%",
+        "time_delivery" => 2
+    ];
+
+    /**
+     * [ Unavailable product ]
+     */
+    // $response = [
+    //     "name" => $request->name,
+    //     "images" => [
+    //         "https://placehold.co/900?text=2",
+    //     ],
+    // ];
+
+    return response()->json($response);
+});
+
+Route::post("/add-to-cart",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
+        "cart" => [
+            "count" => 5,
+        ],
+    ];
+
+    return response()->json($response);
+});
+
+Route::post("/remove-cart",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+        "cart" => [
+            "count" => 2,
+            "total" => "15,000,000",
+            "profit" => "5,000,000",
+            "discounts" => "20%"
+        ],
+    ];
+
+    // empty cart after removing the last item
+    // $response = [
+    //     "status" => "success",
+    //     "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+    //     "cart" => array(),
+    // ];
+
+    // error response
+    // $response = [
+    //     "status" => "error",
+    //     "message" => "محصول در سبد خرید یافت نشد.",
+    // ];
+
+    return response()->json($response);
+});
+
+Route::post("/remove-all-cart",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "همه محصولات با موفقیت از سبد خرید حذف شد.",
+    ];
+
+    return response()->json($response);
+});
+
+/**
+ * من را خبر کن
+ */
+Route::post("/letmeknow",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "اطلاعات با موفقیت ارسال شد. پس از موجود شدن به شما اطلاع داده خواهد شد.",
+    ];
+
+    return response()->json($response);
+});
+
+/**
+ * add to wishlist
+ */
+Route::post('/wishlist',function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت به لیست علاقه مندی ها اضافه شد.",
+    ];
+
+    return response()->json($response);
+});
+
+/**
+ * remove from wishlist
+ */
+Route::delete("/wishlist",function(Request $request){
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت از لیست علاقه مندی ها حذف شد.",
+    ];
+
+    return response()->json($response);
+});
+
+/**
+ * Category Ajax
+ */
+Route::get("/category",function(Request $request){
+
+    /**
+     * Request
+     */
+    // $req = [
+    //     "url" => "https://localhost:8000/category?category=1?page=1",
+    // ]
+
+    /**
+     * Response
+     */
+    $products = [
+        [
+            "id" => 1,
+            "name" => "محصول 1",
+            "img" => "https://placehold.co/900?text=1",
+            "regular_price" => "25,000,000",
+        ],
+        [
+            "id" => 2,
+            "name" => "محصول 2",
+            "img" => "https://placehold.co/900?text=2",
+            "regular_price" => "25,000,000",
+        ],
+        [
+            "id" => 3,
+            "name" => "محصول 3",
+            "img" => "https://placehold.co/900?text=3",
+            "regular_price" => "25,000,000",
+            "sale_price" => "18,000,000",
+            "discount" => "20%"
+        ],
+        [
+            "id" => 4,
+            "name" => "محصول 4",
+            "img" => "https://placehold.co/900?text=4",
+            "regular_price" => "25,000,000",
+            "stock" => "5"
+        ],
+        [
+            "id" => 5,
+            "name" => "محصول 5",
+            "img" => "https://placehold.co/900?text=5",
+        ],
+    ];
+
+    $html = View::make("components/category-products",compact('products'))->render();
+
+    // remove options items
+    // for example this is url: https://localhost:8000/category?material=1&color=blue&page=1
+    $removeOptions = [
+        [
+            "title" => "حذف همه",
+            "url" => "https://localhost:8000/category", // new url after remove all options
+        ],
+        // color
+        [
+            "title" => "ویژگی چک باکس : موجود",
+            "url" => "https://localhost:8000/category?colorBox=black", // new url after remove this option
+        ],
+        // material
+        [
+            "title" => "ویژگی چک باکس : همه",
+            "url" => "https://localhost:8000/category?colorBox=red", // new url after remove this option
+        ],
+    ];
+
+    // total is the total number of pages
+    return response()->json(['html' => $html,'total' => 10,'removeOptions' => $removeOptions]);
 });

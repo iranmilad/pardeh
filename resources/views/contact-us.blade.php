@@ -1,19 +1,30 @@
 @extends('layouts.primary')
 
+<!-- in article we should put contents like blog with editor from admin dashboard -->
+
 @section('title', 'تماس با ما')
 
 @section('content')
 <div class="container">
+    <h1 class="fw-bold tw-text-center">تماس با <span class="tw-text-brand-500">{{config('app.name')}}</span></h1>
+    <!-- ARTICLE LIKE BLOG -->
+    <div >
+        <p class="tw-text-center tw-mb-5">در صورت داشتن هرگونه سوال، انتقاد یا پیشنهادی میتوانید از طریق فرم زیر با ما در ارتباط باشید.</p>
+    </div>
+    <!-- ARTICLE LIKE BLOG -->
     <div class="tw-mb-5" id="map"></div>
     <!--    Contact Us:start-->
-    <section class="contact-us border-radius-2xl">
+    <section class="contact-us tw-rounded-2xl">
         <div class="row">
             <div class="col-12 col-lg-8">
                 <!--        Contact Us Form:start-->
-                <div class="contact-us-wrapper mb-3">
+                <div class="contact-us-wrapper mb-3 tw-rounded-2xl">
                     <div class="contact-us-header border-bottom-gray-150 pb-2">
-                        <h2 class="fs-5 fw-bold">تماس با {{config('app.name')}}</h2>
+                        فرم تماس باما
                         <div class="vertical-line"></div>
+                        <div class="tw-my-3">
+                        <span class="tw-text-sm">لطفاً برای برقراری ارتباط با ما، فرم زیر را پر کنید.</span>
+                        </div>
                     </div>
                     <div class="contact-us-content">
                         <form method="post" action="" id="contactForm">
@@ -49,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn custom-btn-primary">ثبت و ارسال</button>
+                                <button type="submit" class="btn custom-btn-primary tw-rounded-xl">ثبت و ارسال</button>
                             </div>
                         </form>
                     </div>
@@ -58,7 +69,7 @@
             </div>
             <div class="col-12 col-lg-4">
                 <!--        Contact Us Information:start-->
-                <div class="contact-us-wrapper mb-3">
+                <div class="contact-us-wrapper mb-3 tw-rounded-2xl">
                     <div class="contact-us-header pb-2">
                         <h2 class="fs-5 fw-bold">اطلاعات {{config('app.name')}}</h2>
                         <div class="vertical-line"></div>

@@ -79,7 +79,7 @@
             <div class="card border-bottom messages-private-box" data-id="1">
                 <div class="tw-flex tw-items-center tw-justify-between">
                     <div class="tw-flex">
-                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
+                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-xl tw-flex tw-items-center tw-justify-center">
                             <i class="fa-light fa-user"></i>
                         </div>
                         <div class="tw-flex tw-flex-col tw-mr-4">
@@ -95,7 +95,7 @@
             <div class="card border-bottom messages-private-box" data-id="2">
                 <div class="tw-flex tw-items-center tw-justify-between">
                     <div class="tw-flex">
-                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
+                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-xl tw-flex tw-items-center tw-justify-center">
                             <i class="fa-light fa-user"></i>
                         </div>
                         <div class="tw-flex tw-flex-col tw-mr-4">
@@ -113,7 +113,7 @@
             <div class="card border-bottom messages-private-box" data-id="1">
                 <div class="tw-flex tw-items-center tw-justify-between">
                     <div class="tw-flex">
-                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
+                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-xl tw-flex tw-items-center tw-justify-center">
                             <i class="fa-light fa-user"></i>
                         </div>
                         <div class="tw-flex tw-flex-col tw-mr-4">
@@ -129,7 +129,7 @@
             <div class="card border-bottom messages-private-box" data-id="2">
                 <div class="tw-flex tw-items-center tw-justify-between">
                     <div class="tw-flex">
-                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-lg tw-flex tw-items-center tw-justify-center">
+                        <div class="tw-w-14 tw-h-14 tw-text-gray-400 fs-2 tw-bg-gray-200 tw-rounded-xl tw-flex tw-items-center tw-justify-center">
                             <i class="fa-light fa-user"></i>
                         </div>
                         <div class="tw-flex tw-flex-col tw-mr-4">
@@ -154,7 +154,7 @@
                         </button>
                     </div>
                     <div class="collapse " id="id_<?= $id ?>">
-                        <div class="tw-p-3 tw-bg-gray-50 tw-rounded-lg mt-3">
+                        <div class="tw-p-3 tw-bg-gray-50 tw-rounded-xl mt-3">
                             <p>لورم ایپسوم</p>
                         </div>
                     </div>

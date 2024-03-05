@@ -18,7 +18,7 @@ if(document.getElementById("upload-file-modal")){
         autoProceed: false,
         // file types and size
         restrictions: {
-            maxFileSize: 1000000,
+            maxFileSize: 10000000,
             maxNumberOfFiles: 10,
             minNumberOfFiles: 1,
             allowedFileTypes: ["image/*"],
@@ -126,4 +126,11 @@ if(document.getElementById("upload-file-modal")){
         let modal = new bootstrap.Modal(document.getElementById("upload-file-modal"));
         modal.show();
     })
+
+    $("#commentsFileUpload").on("click",function(){
+        UploadType = "new";
+        let modal = new bootstrap.Modal(document.getElementById("upload-file-modal"));
+        modal.show();
+    })
 }
+

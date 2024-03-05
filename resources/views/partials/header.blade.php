@@ -24,10 +24,17 @@
                     <i class="fa-solid fa-user-large"></i>
                 </a>
                 @endif
-                <a href="{{ route('cart') }}" class="navbar-cart tw-ml-3 lg:tw-mx-4">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <span>2</span>
-                </a>
+                @if (Route::current()->uri() == 'cart')
+                    <button aria-controls="miniCart" class="btn navbar-cart tw-ml-3 lg:tw-mx-4">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span>2</span>
+                    </button>
+                @else
+                    <button data-bs-toggle="offcanvas" data-bs-target="#miniCart" aria-controls="miniCart" class="btn navbar-cart tw-ml-3 lg:tw-mx-4">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span>2</span>
+                    </button>
+                @endif
                 @if(Auth::guest())
                     <a href="{{ route('favorites') }}" class="navbar-favorite tw-hidden lg:tw-flex">
                 @else

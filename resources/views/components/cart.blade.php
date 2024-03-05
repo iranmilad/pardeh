@@ -1,10 +1,11 @@
 <div class="product-basket tw-py-5">
+    <div class="tw-flex tw-flex-col lg:tw-flex-row tw-w-full">
         <div class="product-basket__image">
-            <a href="https://www.lioncomputer.com/product/r166n/Lenovo-LOQ-Gaming-15IRH8-i7-13620H-16GB-512GB-SSD-8GB-RTX4060-FHD-IPS-WUXGA-16-inch-laptop">
-                <img class="tw-size-[145px]" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="لپ تاپ لنوو  LOQ Gaming 15IRH8 i7-13620H/16GB/512GB SSD/8GB RTX4060/WUXGA/IPS">
+            <a href="/product">
+                <img class="tw-size-[145px]" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
             </a>
         </div>
-        
+
         <div class="product-basket__body">
             <div class="tw-flex tw-items-center tw-justify-between">
                 <div class="tw-flex items-start tw-justify-center tw-flex-col">
@@ -16,7 +17,8 @@
                     </div>
                     <button class="btn custom-btn-primary tw-w-max tw-text-xs tw-mt-2 cart-show-detail" data-product-id="1">مشاهده جزئیات</button>
                 </div>
-                <a class="remove-item" data-gtm-product="{&quot;item_id&quot;:&quot;r166n&quot;,&quot;item_name&quot;:&quot;لپ تاپ لنوو  LOQ Gaming 15IRH8 i7-13620H\/16GB\/512GB SSD\/8GB RTX4060\/WUXGA\/IPS&quot;,&quot;currency&quot;:&quot;IRR&quot;,&quot;discount&quot;:585990000,&quot;price&quot;:589990000,&quot;quantity&quot;:1,&quot;item_category&quot;:&quot;لپ تاپ&quot;,&quot;item_category2&quot;:&quot;لپ تاپ، کامپیوتر بدون کیس و تبلت&quot;}" data-toggle="modal" data-target="#basket-delete" data-id="r166n" data-variant-id="81261" href="#" title="" target="_self"><i class="fal fa-trash"></i></a>
+                <!-- data-id IS PRODUCT ID. it works with js in app.js line:706 -->
+                <button class="btn remove-item" data-id="123"><i class="fal fa-trash"></i></button>
             </div>
 
             <div class="tw-flex tw-flex-col lg:tw-flex-row lg:tw-items-center tw-justify-between tw-mt-4">
@@ -46,3 +48,60 @@
             </div>
         </div>
     </div>
+    <div class="tw-w-full border-top tw-pt-3 tw-mt-4 tour-guide">
+        <span class="tw-font-semibold tw-text-gray-700">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            خدمات</span>
+        <div class="tw-w-full tw-overflow-x-auto tw-mt-4 tw-pb-6 tw-flex tw-items-center tw-snap-x tw-snap-mandatory">
+            <!-- START: Suggest box  ACTIVE -->
+            <!-- href is linked to cart-service.blade.php div -->
+            <a href="#service_1" class="suggest-box active">
+                <div class="tw-flex tw-flex-col tw-h-full">
+                    <p class="tw-text-sm">
+                        <span>
+                            <i class="fa-solid fa-reel"></i>
+                            آیا به خدمت دوخت برای پرده نیاز دارید ؟</span>
+                    </p>
+                    <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                        <button class="suggest-add-btn">
+                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                            <span class="added">افزوده شده</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </a>
+            <!-- END: Suggest box ACTIVE -->
+            <div class="suggest-box">
+                <div class="tw-flex tw-flex-col tw-h-full">
+                    <p class="tw-text-sm">
+                        <span>
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            آیا به نصاب نیاز دارید ؟</span>
+                    </p>
+                    <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                        <button class="suggest-add-btn">
+                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="suggest-box">
+                <div class="tw-flex tw-flex-col tw-h-full">
+                    <p class="tw-text-sm">
+                        <span>
+                            <i class="fa-solid fa-pen-ruler"></i>
+                            آیا به خدمت  طراحی نیاز دارید ؟</span>
+                    </p>
+                    <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                        <button class="suggest-add-btn">
+                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

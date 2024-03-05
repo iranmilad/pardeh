@@ -3,7 +3,7 @@
 @section('title', "روش پرداخت")
 
 @section('shipping-content')
-<div class="border border-radius-xl tw-px-4">
+<div class="border tw-rounded-2xl tw-px-4">
     <!--                        Cart Header:start-->
     <div class="cart-header d-flex justify-content-between align-items-center my-4">
         <p class="fw-bold">
@@ -38,7 +38,7 @@
             </label>
             <div class="payment-accordion-body tw-hidden">
                 <!-- START:EACH PRODUCT -->
-                <div class="tw-bg-gray-50 p-2 tw-rounded-lg tw-border tw-border-solid tw-border-gray-200 mb-3">
+                <div class="tw-bg-gray-50 p-2 tw-rounded-xl tw-border tw-border-solid tw-border-gray-200 mb-3">
                     <span>محصول شماره 1</span>
                     <div class="table-responsive">
                         <table class="table">
@@ -86,7 +86,7 @@
             </label>
             <div class="payment-accordion-body tw-hidden">
                 <!-- START:EACH PRODUCT -->
-                <div class="tw-bg-gray-50 p-2 tw-rounded-lg tw-border tw-border-solid tw-border-gray-200 mb-3">
+                <div class="tw-bg-gray-50 p-2 tw-rounded-xl tw-border tw-border-solid tw-border-gray-200 mb-3">
                     <span>محصول شماره 1</span>
                     <div class="table-responsive">
                         <table class="table">

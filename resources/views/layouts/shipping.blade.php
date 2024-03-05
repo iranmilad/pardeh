@@ -48,7 +48,7 @@ $notActive = "gray-700 pay basket";
         <!--                    Products Prices:start-->
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 tw-mt-3 lg:tw-mt-0">
             @if(Route::current()->uri() == 'cart')
-            <div class="cart-cal border border-radius-xl overflow-hidden">
+            <div class="cart-cal border tw-rounded-2xl overflow-hidden">
                 <form class="tw-flex tw-items-center tw-justify-between px-3 pt-3 mb-3">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="کد تخفیف">
@@ -58,7 +58,7 @@ $notActive = "gray-700 pay basket";
                 </form>
             </div>
             @endif
-            <div class="cart-cal border border-radius-xl overflow-hidden mt-3">
+            <div class="cart-cal border tw-rounded-2xl overflow-hidden mt-3">
                 <!--                            All Prices:start-->
                 <div class="all-price d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
                     <p class="fs-7 fw-bold">

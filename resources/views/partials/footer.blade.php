@@ -6,13 +6,17 @@
     <div class="container">
         <div class="row tw-justify-center gy-4">
             @foreach ($menus['features_menu']->childMenus  as $menu)
-            <div class="col-lg-2 col-4">
-                <li class="icon-footer-box">
+            <div class="col-lg-2 col-12 col-md-4">
+                <div class="icon-footer-box">
                     <i class="{{  $menu->icon  }}"></i>
-                    <span>{{ $menu->title }}</span>
-                </li>
+                    <div class="tw-flex tw-flex-col">
+                        <span>{{ $menu->title }}</span>
+                        <label for="">ارسال سریع به سراسر کشور</label>
+                    </div>
+                </div>
             </div>
             @endforeach
+
         </div>
     </div>
 </div>

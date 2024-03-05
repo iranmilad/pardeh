@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-12">
                 <!--               Blog Post Wrapper:start-->
-                <div class="blog-post-wrapper tw-rounded-lg tw-py-1 tw-px-8">
+                <div class="blog-post-wrapper tw-rounded-xl tw-py-1 tw-px-8">
 
                     <!--                    Article:start-->
                     <article class="mt-4">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="modal-footer tw-justify-start tw-border-none tw-bg-gray-100">
                     <button type="button" class="btn btn-light btn-sm tw-bg-transparent tw-border-transparent hover:tw-bg-transparent hover:tw-border-transparent closeModal" data-bs-dismiss="modal">بستن</button>
-                    <a type="button" class="btn custom-btn-primary btn-sm tw-py-1.5 tw-rounded-lg">مشاهده محصول</a>
+                    <a type="button" class="btn custom-btn-primary btn-sm tw-py-1.5 tw-rounded-xl">مشاهده محصول</a>
                 </div>
             </div>
         </div>

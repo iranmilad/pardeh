@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Livewire\ProductComponent;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VerifyController;
@@ -234,7 +235,11 @@ Route::get('/contact-us', function () {
 
 
 Route::get('/blog', function () {
-    return view('blog');
+    if (request()->has('s')) {
+        return view('search-blog');
+    } else {
+        return view('blog');
+    }
 })->name('blog');
 
 // when user is not logged in
@@ -255,6 +260,7 @@ Route::get('/payment-return', function () {
 Route::get('/payment', function () {
     return view('payment');
 })->name('payment');
+
 
 Route::get('/product', function () {
     return view('product');
@@ -318,6 +324,11 @@ Route::group(['prefix' => 'dashboard'], function () {
         // Your dashboard home page logic
         return view('dashboard.order');
     })->name('dashboard.order');
+
+    Route::get('/invoice', function () {
+        // Your dashboard home page logic
+        return view('dashboard.invoice');
+    })->name('dashboard.invoice');
 
     // Add more routes as needed
 });

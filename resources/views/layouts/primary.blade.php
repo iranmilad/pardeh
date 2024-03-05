@@ -29,6 +29,7 @@
       </symbol>
     </svg>
   </main>
+  <x-mini-cart />
   @include('partials.footer')
 
   @livewireScripts
