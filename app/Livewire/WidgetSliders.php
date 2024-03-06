@@ -17,14 +17,13 @@ class WidgetSliders extends Component
         $this->type = $type;
         $this->options = json_decode($options, true);
 
+        $sliderName = $this->options['name'] ?? null;
         if ($this->type == "selection") {
-            $sliderName = $this->options['name'] ?? null;
             $imageIds = $this->options['images'] ?? [];
-
-            $this->sliders = Slider::where('name', $sliderName)
-                ->whereHas('images', function ($query) use ($imageIds) {
-                    $query->whereIn('id', $imageIds);
-                })->get();
+            $this->sliders = Slider::where('name', $sliderName)->get();
+        }
+        else{
+            $this->sliders = Slider::where('name', $sliderName)->get();
         }
 
 

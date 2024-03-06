@@ -2,24 +2,7 @@
 <div class="container tw-mt-10">
     <img class="tw-w-full tw-h-full" src="{{ Vite::asset('resources/images/footer-light.png') }}" alt="">
 </div>
-<div class="tw-py-5 mt-5 tw-mb-5">
-    <div class="container">
-        <div class="row tw-justify-center gy-4">
-            @foreach ($menus['features_menu']->childMenus  as $menu)
-            <div class="col-lg-2 col-12 col-md-4">
-                <div class="icon-footer-box">
-                    <i class="{{  $menu->icon  }}"></i>
-                    <div class="tw-flex tw-flex-col">
-                        <span>{{ $menu->title }}</span>
-                        <label for="">ارسال سریع به سراسر کشور</label>
-                    </div>
-                </div>
-            </div>
-            @endforeach
 
-        </div>
-    </div>
-</div>
 <div class="tw-bg-slate-800 tw-text-gray-100 mt-3 {{ Route::currentRouteName() == 'product' ? 'tw-pb-[80px]': '' }}">
     <div class="container">
         <footer class="footer">

@@ -681,7 +681,7 @@ label.required {
 }
 
 .blogGrid {
-    @apply tw-grid tw-grid-cols-1 md:tw-grid-cols-6 tw-grid-rows-4 md:tw-h-96 lg:tw-h-[620px] tw-gap-4;
+    @apply tw-grid tw-grid-cols-1 md:tw-grid-cols-6 tw-grid-rows-4 md:tw-h-96 lg:tw-h-[320px] tw-gap-4;
 }
 
 .biggrid {

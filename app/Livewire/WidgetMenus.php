@@ -24,6 +24,13 @@ class WidgetMenus extends Component
             $this->menus = Menu::where(['alias'=>$alias,])
             ->first();
         }
+        else {
+
+            $alias = $this->options['alias'] ?? [];
+
+            $this->menus = Menu::where(['alias'=>$alias,])
+            ->first();
+        }
 
 
     }

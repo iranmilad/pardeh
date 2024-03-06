@@ -30,6 +30,25 @@
         </div>
 
     </section>
+    @elseif (isset($options['type']) && $options['type'] === 'features_menu')
+    <div class="container">
+        <div class="row tw-justify-center gy-4">
+            @foreach ($menus->childMenus  as $menu)
+            <div class="col-lg-2 col-12 col-md-4">
+                <div class="icon-footer-box">
+                    <i class="{{  $menu->icon  }}"></i>
+                    <div class="tw-flex tw-flex-col">
+                        <span>{{ $menu->title }}</span>
+                        <label for=""></label>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+
     @endif
     <!--    Categories:end-->
+
 </div>

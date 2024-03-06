@@ -112,7 +112,7 @@
         <div class="tw-flex tw-items-start mt-3 tw-border-0 tw-border-b tw-border-gray-200 tw-pb-4 tw-border-solid">
             <img class="tw-block tw-relative tw-rounded-2xl tw-size-16" src="{{ asset($post->image) }}" alt="">
             <div class="tw-pr-3">
-                    <a href="{{ $post->slug }}">
+                    <a href="{{ $post->link }}">
                     <p class="tw-text-sm">{{ $post->title }}</p>
                     </a>
                 </div>
