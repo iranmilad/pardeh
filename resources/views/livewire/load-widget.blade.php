@@ -40,5 +40,9 @@
         <livewire:WidgetPostTags :slug="$slug" :type="$block->type" :options="$block->settings" />
     @elseif ($component=='WidgetPostComments')
         <livewire:WidgetPostComments :slug="$slug" :type="$block->type" :options="$block->settings" />
+    @elseif ($component=='WidgetPostCategory')
+        <livewire:WidgetPostCategory :slug="$slug" :type="$block->type" :options="$block->settings" />
+
+
     @endif
 </div>

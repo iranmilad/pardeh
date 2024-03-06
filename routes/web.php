@@ -234,14 +234,23 @@ Route::get('/contact-us', function () {
 });
 
 
-Route::get('/blog', function () {
-    if (request()->has('s')) {
-        return view('search-blog');
-    } else {
-        return view('blog');
-    }
-})->name('blog');
+Route::get('/search/category/{query}', function () {
+    return view('search-blog');
+})->name('category.search');
 
+Route::get('/search/tag/{query}', function () {
+    return view('search-blog');
+})->name('tag.search');
+
+Route::get('/search/{query}', function () {
+    return view('search-blog');
+})->name('search');
+
+
+Route::get('/blog', function () {
+    return view('blog');
+})->name('blog');
+// Route::group(['middleware'=> ['
 // when user is not logged in
 // if user is logged in, we use dashboard
 // in this page we always use cookie instead of database

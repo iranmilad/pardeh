@@ -1,5 +1,5 @@
 <div>
-    <h5>جدیدترین مطالب</h5>
+    <h5>{{ $options['title'] }}</h5>
     <div class="row gx-4 gy-4 mt-1 tw-items-stretch">
         @foreach($posts as $post)
         <a href="{{ $post->link }}" class="col-12 col-lg-6">

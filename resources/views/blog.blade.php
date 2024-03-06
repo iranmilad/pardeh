@@ -23,33 +23,7 @@
                 <livewire:LoadWidget blockId="block_17" />
             </div>
             <div class="cart-cal tw-overflow-hidden">
-                <div class="all-price d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
-                    <p class="fs-7 fw-bold">
-                        دسته بندی ها
-                    </p>
-                </div>
-                <ul class="tw-list-none">
-                    <li class="blog-category-box">
-                        <span class="title-dot">راهنمای خرید</span>
-                        <div class="badge tw-bg-brand-500 rounded-pill">99</div>
-                    </li>
-                    <li class="blog-category-box">
-                        <span class="title-dot">دکوراسیون داخلی</span>
-                        <div class="badge tw-bg-brand-500 rounded-pill">99</div>
-                    </li>
-                    <li class="blog-category-box">
-                        <span class="title-dot">تازه های صنعت پرده</span>
-                        <div class="badge tw-bg-brand-500 rounded-pill">99</div>
-                    </li>
-                    <li class="blog-category-box">
-                        <span class="title-dot">ترفند ها</span>
-                        <div class="badge tw-bg-brand-500 rounded-pill">99</div>
-                    </li>
-                    <li class="blog-category-box">
-                        <span class="title-dot">ترند های روز</span>
-                        <div class="badge tw-bg-brand-500 rounded-pill">99</div>
-                    </li>
-                </ul>
+                <livewire:LoadWidget blockId="block_24" />
             </div>
             <div class="cart-cal  overflow-hidden tw-mt-4">
                 <livewire:LoadWidget blockId="block_16" />
