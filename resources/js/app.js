@@ -4,6 +4,12 @@ import iranData from "./iran_cities_with_coordinates.json";
 
 // core version + navigation, pagination modules:
 import $, { data, fn } from "jquery";
+// اضافه کردن token CSRF به هدر درخواست
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 import Swiper from "swiper";
 import {
     Navigation,
@@ -42,6 +48,9 @@ import "./tour.js";
 import "./mini-cart.js";
 import "./category.js";
 import { handleChangeFilter } from "./category.js";
+
+
+
 
 // this is my swiper .headerSlider
 

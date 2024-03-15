@@ -4,42 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * AutoKit\Category
- *
- * @property int $id
- * @property string $title
- * @property string $alias
- * @property int $menu_id
- * @property string|null $img
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-read \AutoKit\Menu $menu
- * @property-read \Illuminate\Database\Eloquent\Collection|\AutoKit\Product[] $products
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Category whereAlias($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Category whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Category whereImg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Category whereMenuId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Category whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Category whereUpdatedAt($value)
- * @mixin \Eloquent
- */
 class Category extends Model
 {
-    protected $fillable = [
-        'title', 'alias', 'menu_id'
-    ];
+    protected $fillable = ['title', 'description', 'alias', 'menu_id', 'img'];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function getProductsByCategoryId($categoryId)
+    {
+        return $this->findOrFail($categoryId)->products;
+    }
 
     public function menu()
     {
         return $this->belongsTo(Menu::class);
     }
 
-    public function products()
-    {
-        return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id');
-    }
+
 
     public function subcategories()
     {
@@ -77,5 +61,17 @@ class Category extends Model
     public function filters()
     {
         return $this->belongsToMany(Filter::class);
+    }
+
+    public function countProducts()
+    {
+        return $this->products()->count();
+    }
+
+
+    public function calculatePageCount($perPage)
+    {
+        $totalCount = $this->countProducts();
+        return ceil($totalCount / $perPage);
     }
 }

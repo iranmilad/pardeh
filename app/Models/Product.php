@@ -154,5 +154,15 @@ class Product extends Model
         return static::findOrFail($productId)->firstCategory();
     }
 
+    public function countProducts()
+    {
+        return $this->count();
+    }
 
+
+    public function calculatePageCount($perPage)
+    {
+        $totalCount = $this->countProducts();
+        return ceil($totalCount / $perPage);
+    }
 }

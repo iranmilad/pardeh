@@ -13,6 +13,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -206,7 +207,8 @@ Route::post('/remember', [AuthController::class, 'rememberCodeValidate'])->name(
 // // Route to resend verification code
 // Route::post('/resend-verification-code', [RegisterController::class, 'resendVerificationCode'])->name('resend.verification.code');
 
-Route::get('/blog/{slag}', [PostController::class, 'index'])->name('single.post');
+Route::get('/blog/{slug}', [PostController::class, 'index'])->name('single.post');
+Route::get('/category',[CategoryController::class,'index'])->name('category');
 
 Route::get('/terms', function () {
     return view('terms');
@@ -258,9 +260,7 @@ Route::get('/favorites', function () {
     return view('favorites');
 })->name('favorites');
 
-Route::get('/category', function () {
-    return view('category');
-})->name('category');
+
 
 Route::get('/payment-return', function () {
     return view('payment-return');

@@ -12,6 +12,7 @@ import { RemoveOptionCategory } from "./components";
 
 const block = new KTBlockUI(document.getElementById("products_boxes"));
 
+
 function onChange(page) {
     return new Promise((resolve, reject) => {
         $.ajax({

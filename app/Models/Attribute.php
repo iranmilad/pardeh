@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use AttributeItem;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
 
+    protected $fillable = [
+        'name', 'countable', 'unit', 'display_type', 'guide_link',
+    ];
 
-    public function attributeItems()
+    public function items()
     {
         return $this->hasMany(AttributeItem::class);
     }

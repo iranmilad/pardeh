@@ -10,12 +10,14 @@ class WidgetMenus extends Component
 {
     public $type;
     public $menus;
+    private $slug;
     public $options;
 
-    public function mount($type,$options)
+    public function mount($slug=null, $type, $options)
     {
         $this->type = $type;
         $this->options = json_decode($options, true);
+        $this->slug = $slug;
 
         if ($this->type == "category") {
 
@@ -23,6 +25,17 @@ class WidgetMenus extends Component
 
             $this->menus = Menu::where(['alias'=>$alias,])
             ->first();
+        }
+        elseif ($this->type == "menu_category") {
+
+            $alias = $slug ?? null;
+            if ($alias) {
+                $this->menus = Menu::where(['alias'=>$alias,])
+                ->first();
+            }
+            else{
+                $this->menus =null;
+            }
         }
         else {
 

@@ -18,7 +18,7 @@
         </div>
     @elseif ($component=='WidgetMenus')
         <div class="container">
-            <livewire:WidgetMenus :type="$block->type" :options="$block->settings" />
+            <livewire:WidgetMenus :slug="$slug" :type="$block->type" :options="$block->settings" />
         </div>
     @elseif ($component=='WidgetPostsList')
         <livewire:WidgetPostsList :type="$block->type" :options="$block->settings" />
@@ -43,6 +43,8 @@
     @elseif ($component=='WidgetPostCategory')
         <livewire:WidgetPostCategory :slug="$slug" :type="$block->type" :options="$block->settings" />
 
+    @elseif ($component=='WidgetProductsList')
+        <livewire:WidgetProductsList :slug="$slug" :type="$block->type" :options="$block->settings" />
 
     @endif
 </div>
