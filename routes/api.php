@@ -1,14 +1,13 @@
 <?php
 
-use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Arr;
-// routes/web.php or routes/api.php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+// routes/web.php or routes/api.php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\CategoryController;
+use Ramsey\Uuid\Uuid;
 
 
 /*
@@ -27,9 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/cart/{id}', function () {
+Route::get('card/{id}', function ($id) {
     $data = [
-        'id' => 2,
         'img' => "resources/images/single-product/6.jpg",
         'title' => 'پرده پانچی آماده هازان (کتان) رنگ خردلی',
         'price' => '12,800,000',
@@ -53,7 +51,6 @@ Route::get('/cart/{id}', function () {
     // Return the HTML as an API response
     return response()->json(['html' => $html]);
 });
-
 
 Route::post('/file/upload', function (Request $request) {
     $uploadedFiles = [];
@@ -239,73 +236,72 @@ Route::delete("/wishlist",function(Request $request){
  */
 Route::post("/category",function(Request $request){
 
-//     /**
-//      * Request
-//      */
-//     // $req = [
-//     //     "url" => "https://localhost:8000/category?category=1?page=1",
-//     // ]
+    /**
+     * Request
+     */
+    // $req = [
+    //     "url" => "https://localhost:8000/category?category=1?page=1",
+    // ]
 
-//     /**
-//      * Response
-//      */
-//     $products = [
-//         [
-//             "id" => 1,
-//             "name" => "محصول 1",
-//             "img" => "https://placehold.co/900?text=1",
-//             "regular_price" => "25,000,000",
-//         ],
-//         [
-//             "id" => 2,
-//             "name" => "محصول 2",
-//             "img" => "https://placehold.co/900?text=2",
-//             "regular_price" => "25,000,000",
-//         ],
-//         [
-//             "id" => 3,
-//             "name" => "محصول 3",
-//             "img" => "https://placehold.co/900?text=3",
-//             "regular_price" => "25,000,000",
-//             "sale_price" => "18,000,000",
-//             "discount" => "20%"
-//         ],
-//         [
-//             "id" => 4,
-//             "name" => "محصول 4",
-//             "img" => "https://placehold.co/900?text=4",
-//             "regular_price" => "25,000,000",
-//             "stock" => "5"
-//         ],
-//         [
-//             "id" => 5,
-//             "name" => "محصول 5",
-//             "img" => "https://placehold.co/900?text=5",
-//         ],
-//     ];
+    /**
+     * Response
+     */
+    $products = [
+        [
+            "id" => 1,
+            "name" => "محصول 1",
+            "img" => "https://placehold.co/900?text=1",
+            "regular_price" => "25,000,000",
+        ],
+        [
+            "id" => 2,
+            "name" => "محصول 2",
+            "img" => "https://placehold.co/900?text=2",
+            "regular_price" => "25,000,000",
+        ],
+        [
+            "id" => 3,
+            "name" => "محصول 3",
+            "img" => "https://placehold.co/900?text=3",
+            "regular_price" => "25,000,000",
+            "sale_price" => "18,000,000",
+            "discount" => "20%"
+        ],
+        [
+            "id" => 4,
+            "name" => "محصول 4",
+            "img" => "https://placehold.co/900?text=4",
+            "regular_price" => "25,000,000",
+            "stock" => "5"
+        ],
+        [
+            "id" => 5,
+            "name" => "محصول 5",
+            "img" => "https://placehold.co/900?text=5",
+        ],
+    ];
 
-//     $html = View::make("components/category-products",compact('products'))->render();
+    $html = View::make("components/category-products",compact('products'))->render();
 
-//     // remove options items
-//     // for example this is url: https://localhost:8000/category?material=1&color=blue&page=1
-//     $removeOptions = [
-//         [
-//             "title" => "حذف همه",
-//             "url" => "https://localhost:8000/category", // new url after remove all options
-//         ],
-//         // color
-//         [
-//             "title" => "ویژگی چک باکس : موجود",
-//             "url" => "https://localhost:8000/category?colorBox=black", // new url after remove this option
-//         ],
-//         // material
-//         [
-//             "title" => "ویژگی چک باکس : همه",
-//             "url" => "https://localhost:8000/category?colorBox=red", // new url after remove this option
-//         ],
-//     ];
+    // remove options items
+    // for example this is url: https://localhost:8000/category?material=1&color=blue&page=1
+    $removeOptions = [
+        [
+            "title" => "حذف همه",
+            "url" => "https://localhost:8000/category", // new url after remove all options
+        ],
+        // color
+        [
+            "title" => "ویژگی چک باکس : موجود",
+            "url" => "https://localhost:8000/category?colorBox=black", // new url after remove this option
+        ],
+        // material
+        [
+            "title" => "ویژگی چک باکس : همه",
+            "url" => "https://localhost:8000/category?colorBox=red", // new url after remove this option
+        ],
+    ];
 
-//     // total is the total number of pages
-//     return response()->json(['html' => $html,'total' => 10,'removeOptions' => $removeOptions]);
-// });
-Route::get('/category', [CategoryController::class, 'list']);
+    // total is the total number of pages
+    return response()->json(['html' => $html,'total' => 10,'removeOptions' => $removeOptions]);
+});
