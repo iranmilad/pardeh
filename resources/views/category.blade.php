@@ -98,7 +98,7 @@
                     ['label' => 'ارسال فروشنده', 'value' => '1','id'=>'supplySend'],
             ]" /> -->
 
-            <livewire:radio-box title="وضعیت انبار" name="inventor" :options='[
+            <livewire:radio-box title="وضعیت انبار" name="inventory" :options='[
                 ["id" => "inventory", "value" => "1", "label" => "موجود"],
                 ["id" => "inventory", "value" => "0", "label" => "همه"]
             ]' />
