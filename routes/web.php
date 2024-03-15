@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Livewire;
+use App\Models\Product;
 use App\Livewire\Counter;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +12,10 @@ use App\Http\Livewire\ProductComponent;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VerifyController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -209,6 +211,9 @@ Route::post('/remember', [AuthController::class, 'rememberCodeValidate'])->name(
 
 Route::get('/blog/{slug}', [PostController::class, 'index'])->name('single.post');
 Route::get('/category',[CategoryController::class,'index'])->name('category');
+Route::get('/product/{id}',[ProductController::class,'index'])->name('product');
+
+
 
 Route::get('/terms', function () {
     return view('terms');
@@ -271,9 +276,7 @@ Route::get('/payment', function () {
 })->name('payment');
 
 
-Route::get('/product', function () {
-    return view('product');
-})->name('product');
+
 
 Route::get('/delivery', function () {
     return view('delivery');

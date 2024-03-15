@@ -43,6 +43,15 @@
             </div>
             <!-- REMOVE FILTERS -->
 
+            <livewire:color-options title="رنگ" name="colorBox" :options='[
+                ["value" => "black", "label" => "سیاه", "color" => "#000"],
+                ["value" => "gray", "label" => "خاکستری", "color" => "#475569"],
+                ["value" => "orange", "label" => "نارنجی", "color" => "#f97316"],
+                ["value" => "yellow", "label" => "زرد", "color" => "#eab308"],
+                ["value" => "blue", "label" => "آبی", "color" => "#0ea5e9"],
+                ["value" => "purple", "label" => "بنفش", "color" => "#8b5cf6"],
+                ["value" => "pink", "label" => "صورتی", "color" => "#f43f5e"],
+            ]' />
             <!-- PRICE RANGE -->
             <div class="card">
                 <div class="card-header">
@@ -96,15 +105,6 @@
 
 
 
-            <livewire:color-options title="ویژگی رنگ" name="colorBox" :options='[
-                ["value" => "black", "label" => "سیاه", "color" => "#000"],
-                ["value" => "gray", "label" => "خاکستری", "color" => "#475569"],
-                ["value" => "orange", "label" => "نارنجی", "color" => "#f97316"],
-                ["value" => "yellow", "label" => "زرد", "color" => "#eab308"],
-                ["value" => "blue", "label" => "آبی", "color" => "#0ea5e9"],
-                ["value" => "purple", "label" => "بنفش", "color" => "#8b5cf6"],
-                ["value" => "pink", "label" => "صورتی", "color" => "#f43f5e"],
-            ]' />
 
 
         </form>
@@ -150,7 +150,7 @@
 
             @foreach ($products as $product)
                 <div class="col-sm-12 col-md-6 col-lg-4 position-relative tw-h-auto">
-                    <x-product mobile name="{{ $product->title }}"  nobtn available="true" stock="{{ $product->quantity }}" discountedPrice="{{ $product->sale_price }}" discount="{{  $product->discountPercentage  }}" price="{{ $product->price }}" image="{{ $product->img }}" />
+                    <x-product mobile name="{{ $product->title }}"  nobtn available="true" stock="{{ $product->quantity }}" discountedPrice="{{ $product->sale_price }}" discount="{{  $product->discountPercentage  }}" price="{{ $product->price }}" image="{{ $product->img }}" link="{{ $product->link }}" />
                 </div>
             @endforeach
             </div>

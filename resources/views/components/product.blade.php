@@ -5,7 +5,7 @@
 
     <div class="body">
         <span class="title tw-text-right tw-w-full tw-font-semibold">{{$name ?? ''}}</span>
-        @if(!isset($available))
+        @if(isset($available) && $available == true)
             <div class="tw-w-full tw-center {{($discountedPrice && $discountedPrice != null) ? 'tw-justify-between' : 'tw-justify-end'}}">
                 @if(($discountedPrice && $discountedPrice != null))
                 <span class="badge tw-bg-red-500 rounded-pill">{{ $discount ?? ''}}</span>

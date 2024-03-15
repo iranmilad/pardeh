@@ -89,6 +89,11 @@ class Product extends Model
         }
     }
 
+    public function getLinkAttribute()
+    {
+        return ("/product/".$this->id);
+
+    }
     public function hasMinimumQuantity(): bool
     {
         // Check if the product has a minimum quantity requirement
