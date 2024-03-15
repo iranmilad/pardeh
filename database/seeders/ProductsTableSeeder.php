@@ -21,7 +21,7 @@ class ProductsTableSeeder extends Seeder
         $category = Category::create([
             'title' => 'محصولات اختصاصی کوروش',
             'description' => 'محصولات اختصاصی کوروش کمپانی',
-            'alias' => 'kourosh',
+            'alias' => 'برند-کوروش',
             // Add other necessary fields
         ]);
 
