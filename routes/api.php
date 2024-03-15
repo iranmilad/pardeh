@@ -122,12 +122,13 @@ Route::post("/product",function(Request $request){
 
     /**
      * regular_price & sale_price & discount & time_delivery are optional.
+     * images are required. if they are not exist, use a default image.
      */
     $response = [
         "name" => $request->name,
         "images" => [
-            "https://placehold.co/900?text=1",
-            "https://placehold.co/900?text=2",
+            "/images/5.jpg",
+            "/images/6.jpg",
         ],
         "regular_price" => "25,000,000",
         "sale_price" => "18,000,000",
@@ -236,7 +237,7 @@ Route::delete("/wishlist",function(Request $request){
 /**
  * Category Ajax
  */
-// Route::get("/category",function(Request $request){
+Route::post("/category",function(Request $request){
 
 //     /**
 //      * Request

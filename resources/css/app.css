@@ -1202,6 +1202,10 @@ label.required {
     @apply tw-my-3;
 }
 
+.accordion.accordion-product .accordion-item{
+    @apply tw-mt-3;
+}
+
 .accordion.accordion-product,
 .accordion.accordion-product
     *:not(.product-template, .product-type, input, select),
@@ -1278,6 +1282,7 @@ label.required {
 .accordion.accordion-product .box {
     border-bottom: 1px solid #dee2e6;
     margin-bottom: 10px;
+    @apply tw-pb-[10px] last:tw-pb-0 last:tw-border-none;
 }
 
 .accordion.accordion-product .box .title {

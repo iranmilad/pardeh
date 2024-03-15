@@ -1,6 +1,7 @@
 import { useState, useMemo } from "preact/hooks";
 import { usePagination } from "@mantine/hooks";
 import toastr from "toastr";
+import queryString from "query-string";
 
 export const StarComponent = ({ dataStars, no_label, rateable }) => {
     const [hoveredStars, setHoveredStars] = useState(0);
@@ -194,8 +195,9 @@ export const CategoryPagination = ({ total, value, onChange }) => {
 export const RemoveOptionCategory = ({ options,onChange }) => {
     async function removeOption(url) {
         // Remove the option
+        let newUrl = new URL(url);
         try{
-            await onChange(url);
+            await onChange(queryString.parse(newUrl.search));
         }
         catch (error) {
         }

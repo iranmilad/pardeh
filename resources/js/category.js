@@ -12,15 +12,26 @@ import { RemoveOptionCategory } from "./components";
 
 const block = new KTBlockUI(document.getElementById("products_boxes"));
 
+function createOptions(url){
+    let params = {};
+    if(url){
+        queryString.parse(url)
+    }
+    else if(url === ""){
+        params = {}
+    }
+    else{
+        params = queryString.parse(window.location.search);
+    }
+    return params;
+}
 
 function onChange(page) {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: "/api/category",
-            type: "GET",
-            data: {
-                url: window.location.pathname,
-            },
+            type: "POST",
+            data: createOptions(),
             beforeSend: () => {
                 // Code before sending the request
                 block.block();
@@ -157,25 +168,23 @@ function removeOptionsOnChange(url) {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: "/api/category",
-            type: "GET",
+            type: "POST",
             beforeSend: () => {
                 block.block();
             },
-            data: {
-                url,
-            },
+            data: url,
             success: (response) => {
                 block.release();
                 resolve(response);
                 $(".category-post").html(response.html);
                 // Parse the URL to get its query parameters
-                let new_url = queryString.parseUrl(url);
+                let new_url = url;
 
                 // Parse the current URL to get its query parameters
                 let currentQuery = queryString.parseUrl(window.location.href).query;
 
                 // Parse the new URL to get its query parameters
-                let newQuery = queryString.parseUrl(url).query;
+                let newQuery = url;
 
                 // Function to find the queries that have been removed in the new URL
                 function findRemovedQueries(currentQuery, newQuery) {
@@ -215,8 +224,8 @@ function removeOptionsOnChange(url) {
                 }
 
 
-                if (Object.keys(new_url.query).length > 0) {
-                    let newQuery = queryString.stringify(new_url.query, {
+                if (Object.keys(new_url).length > 0) {
+                    let newQuery = queryString.stringify(new_url, {
                         arrayFormat: "comma",
                     });
                     window.history.pushState({}, "", `?${newQuery}`);

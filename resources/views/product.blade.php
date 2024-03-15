@@ -174,10 +174,10 @@
 
 <div class="container">
     <div class="tab-content mt-3" id="product-tab">
-        <div class="tab-pane fade show active " id="specifications" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+        <div class="tab-pane fade show active tw-bg-gray-100 tw-rounded-xl tw-p-5" id="specifications" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
             <x-product.specification />
         </div>
-        <div class="tab-pane fade tw-bg-gray-50 tw-rounded-xl tw-p-5" id="description" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <div class="tab-pane fade tw-bg-gray-100 tw-rounded-xl tw-p-5" id="description" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <x-product.description />
         </div>
         <div class="tab-pane fade lg:tw-px-20" id="comments" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
@@ -221,7 +221,10 @@
                     <x-add-to-cart />
 
                     <!-- UNAVAILABLE BUTTON -->
-                    <button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 tw-px-3 let-me-know"> <i class="fa-solid fa-bell tw-ml-2"></i> خبرم کن </button>
+                    <!-- BY DEFAULT ITS NONE -->
+                    <!-- BY DEFAULT ITS NONE -->
+                    <!-- BY DEFAULT ITS NONE -->
+                    <button class="tw-hidden btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 tw-px-3 let-me-know"> <i class="fa-solid fa-bell tw-ml-2"></i> خبرم کن </button>
                     <!-- UNAVAILABLE BUTTON -->
                 </div>
             </div>
