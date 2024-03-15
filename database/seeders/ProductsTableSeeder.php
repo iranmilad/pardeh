@@ -30,6 +30,7 @@ class ProductsTableSeeder extends Seeder
         $products = [
             [
                 'title' => 'پرده جدید 1',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'sale_price' => '10000000',
                 'img' => '/images/auth3.jpg',
@@ -38,6 +39,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدید 2',
+                'few' => rand(0,11),
                 'price' => '11000000',
                 'sale_price' => '9000000',
                 'img' => '/images/auth2.jpg',
@@ -46,6 +48,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدید 3',
+                'few' => rand(0,11),
                 'price' => '10000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth.jpg',
@@ -53,6 +56,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدید 4',
+                'few' => rand(0,11),
                 'price' => '9500000',
                 'sale_price' => '8000000',
                 'img' => '/images/auth4.jpg',
@@ -61,6 +65,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدید 5',
+                'few' => rand(0,11),
                 'price' => '8500000',
                 'img' => '/images/auth3.jpg',
                 'hover_img' => '/images/auth.jpg',
@@ -68,6 +73,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
@@ -75,6 +81,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'sale_price' => '9000000',
                 'img' => '/images/single-product/2.jpg',
@@ -83,6 +90,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
@@ -90,6 +98,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
@@ -97,6 +106,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'sale_price' => '9000000',
                 'img' => '/images/single-product/2.jpg',
@@ -105,6 +115,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
@@ -113,6 +124,7 @@ class ProductsTableSeeder extends Seeder
 
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
@@ -120,6 +132,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'sale_price' => '8500000',
                 'img' => '/images/single-product/2.jpg',
@@ -128,6 +141,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
@@ -135,6 +149,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
@@ -142,6 +157,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'sale_price' => '8000000',
                 'img' => '/images/single-product/2.jpg',
@@ -150,6 +166,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
@@ -157,6 +174,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '11000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
@@ -164,6 +182,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'sale_price' => '9000000',
                 'img' => '/images/single-product/2.jpg',
@@ -172,6 +191,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'title' => 'پرده جدیده کتان',
+                'few' => rand(0,11),
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
