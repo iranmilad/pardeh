@@ -233,7 +233,7 @@ Route::delete("/wishlist",function(Request $request){
 /**
  * Category Ajax
  */
-Route::get("/category",function(Request $request){
+Route::post("/category",function(Request $request){
 
     /**
      * Request
