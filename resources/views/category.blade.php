@@ -93,10 +93,10 @@
 
 
 
-            <livewire:switch-box title="ویژگی سوییچ باکس" name="switchbox" :options="[
+            <!-- <tlivewire:switch-box title="ویژگی سوییچ باکس" name="switchbox" :options="[
                     ['label' => 'ارسال از فردا', 'value' => '1','id'=>'futureSend'],
                     ['label' => 'ارسال فروشنده', 'value' => '1','id'=>'supplySend'],
-            ]" />
+            ]" /> -->
 
             <livewire:radio-box title="وضعیت انبار" name="inventor" :options='[
                 ["id" => "inventory", "value" => "1", "label" => "موجود"],
@@ -158,7 +158,7 @@
             <!-- PAGINATION -->
             <div id="category-pagination">
                 <!-- for first load just do it -->
-                <div class="first-pagination" data-total="{{ $category->calculatePageCount(12) }}" data-value="{{ $page }}"></div>
+                <div class="first-pagination" data-total="{{ $category->calculatePageCount(12) }}" data-value="{{ $page ?? 1 }}"></div>
             </div>
             <!-- PAGINATION -->
         </div>
