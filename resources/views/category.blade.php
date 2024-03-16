@@ -158,7 +158,7 @@
             <!-- PAGINATION -->
             <div id="category-pagination">
                 <!-- for first load just do it -->
-                <div class="first-pagination" data-total="{{ $category->calculatePageCount(12) }}" data-value="{{ $page ?? 1 }}"></div>
+                <div class="first-pagination" data-total="{{ $total }}" data-value="{{ $page ?? 1 }}"></div>
             </div>
             <!-- PAGINATION -->
         </div>

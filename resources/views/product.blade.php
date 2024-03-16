@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="col-lg-8 col-xl-7 px-4 product-options mt-4 mt-lg-0">
-            <h3 class="fw-bold">پرده ی جدید طرح کتان</h3>
+            <h3 class="fw-bold">{{ $product->title }}</h3>
             <div class="row">
                 <div class="col-lg-7">
                     <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center">
