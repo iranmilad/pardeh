@@ -20,7 +20,7 @@
                 @endif
             </div>
                 <span class="tw-line-through tw-text-gray-400 tw-text-xs tw-pl-[22px] tw-text-left tw-w-full">{{$discountedPrice ?? ''}}</span>
-                @if($stock and $stock<3 and $stock>0)
+                @if(isset($stock) and $stock<3 and $stock>0)
                     <span class="stock-span">
                         <i class="fa-duotone fa-store"></i>
                         {{$stock}} عدد در انبار
