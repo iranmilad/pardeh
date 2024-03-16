@@ -83,13 +83,6 @@
 
 
 
-            <livewire:checkbox title=" کاربری" name="function" :options="[
-                ['id' => 'آشپزخانه', 'name' => 'function', 'label' => 'اشپزخانه', 'value' => 'آشپزخانه'],
-                ['id' => 'پذیرایی', 'name' => 'function', 'label' => 'پذیرایی', 'value' => 'پذیرایی'],
-                ['id' => 'اتاق خواب', 'name' => 'function', 'label' => ' اتاق خواب', 'value' => 'اتاق خواب'],
-                ['id' => 'اتاق کودک', 'name' => 'function', 'label' => 'اتاق کودک', 'value' => 'اتاق کودک'],
-                ['id' => 'دفتر کار', 'name' => 'function', 'label' => ' دفتر کار', 'value' => 'دفتر کار'],
-            ]" />
 
 
 
