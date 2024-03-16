@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedInteger('attribute_item_id');
+            $table->integer('attribute_item_id')->unsigned();
             $table->foreign('attribute_item_id')->references('id')->on('attributes_item')->onDelete('cascade');
 
             // ویژگی‌های مختلف
