@@ -10,20 +10,19 @@ import { RemoveOptionCategory } from "./components";
  * if priceSlider & priceSlider1 changes handleChangeFilter is called to update the products
  */
 
-const block = new KTBlockUI(document.getElementById("products_boxes"));
+const block = new KTBlockUI(document.getElementById("catergory_page"));
 
-function createOptions(url){
+function createOptions(page){
     let params = {};
-    if(url){
-        queryString.parse(url)
-    }
-    else if(url === ""){
-        params = {}
-    }
-    else{
-        params = queryString.parse(window.location.search);
-    }
-    return params;
+    block.block();
+    let currentURL = window.location.href;
+    let newURL = currentURL.split("?")[0];
+    let query = queryString.stringify(
+        { ...queryString.parse(currentURL.split("?")[1]), page },
+        { arrayFormat: "comma" }
+    );
+    window.history.pushState(null, null, `${newURL}?${query}`);
+    return queryString.parse(query);
 }
 
 function onChange(page) {
@@ -31,18 +30,7 @@ function onChange(page) {
         $.ajax({
             url: "/api/category",
             type: "POST",
-            data: createOptions(),
-            beforeSend: () => {
-                // Code before sending the request
-                block.block();
-                let currentURL = window.location.href;
-                let newURL = currentURL.split("?")[0];
-                let query = queryString.stringify(
-                    { ...queryString.parse(currentURL.split("?")[1]), page },
-                    { arrayFormat: "comma" }
-                );
-                window.history.pushState(null, null, `${newURL}?${query}`);
-            },
+            data: createOptions(page),
             success: (response) => {
                 // Code on successful response
                 block.release();
@@ -164,7 +152,7 @@ $(document).ready(function () {
     });
 });
 
-function removeOptionsOnChange(url) {
+function removeOptionsOnChange(url,item) {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: "/api/category",
@@ -181,46 +169,25 @@ function removeOptionsOnChange(url) {
                 let new_url = url;
 
                 // Parse the current URL to get its query parameters
-                let currentQuery = queryString.parseUrl(window.location.href).query;
+                let currentQuery = queryString.parseUrl(window.location.href,{arrayFormat:"comma"}).query;
 
                 // Parse the new URL to get its query parameters
                 let newQuery = url;
 
                 // Function to find the queries that have been removed in the new URL
-                function findRemovedQueries(currentQuery, newQuery) {
-                    return Object.keys(currentQuery).reduce((result, key) => {
-                        // If the key is not 'page', 'sort', 'minprice', 'maxprice' and it does not exist in the new query,
-                        // then it has been removed
-                        if (
-                            key !== "page" &&
-                            key !== "sort" &&
-                            key !== 'minprice' &&
-                            key !== 'maxprice' &&
-                            !(key in newQuery)
-                        ) {
-                            // Add the removed query to the result
-                            result[key] = currentQuery[key];
-                        }
-                        return result;
-                    }, {});
-                }
-
-                // Get the queries that have been removed in the new URL
-                let removedQueries = findRemovedQueries(currentQuery, newQuery);
 
                 // For each removed query
-                for (let [key, value] of Object.entries(removedQueries)) {
-                    // Split the value by comma to get an array of values
-                    let newVal = value.split(",");
-
-                    // For each input element with the name of the removed query
-                    $("input[name=" + key + "]").each(function () {
+                if(item){
+                    $("input[name=" + item.name + "]").each(function () {
                         // If the value of the input element is in the array of removed values
-                        if (newVal.includes($(this).val())) {
+                        if (item.value.includes($(this).val())) {
                             // Uncheck the input element
                             $(this).prop("checked", false);
                         }
                     });
+                }
+                else{
+                    $(".category-filters input:is([type=checkbox],[type=radio])").prop("checked", false);
                 }
 
 

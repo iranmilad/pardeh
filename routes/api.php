@@ -287,26 +287,32 @@ Route::post("/category",[CategoryController::class,'list'])->name('api.category'
 
 //     $html = View::make("components/category-products",compact('products'))->render();
 
-//     // remove options items
-//     // for example this is url: https://localhost:8000/category?material=1&color=blue&page=1
-//     $removeOptions = [
-//         [
-//             "title" => "حذف همه",
-//             "url" => "https://localhost:8000/category", // new url after remove all options
-//         ],
-//         // color
-//         [
-//             "title" => "ویژگی چک باکس : موجود",
-//             "url" => "https://localhost:8000/category?colorBox=black", // new url after remove this option
-//         ],
-//         // material
-//         [
-//             "title" => "ویژگی چک باکس : همه",
-//             "url" => "https://localhost:8000/category?colorBox=red", // new url after remove this option
-//         ],
-//     ];
-
-//     // total is the total number of pages
-//     return response()->json(['html' => $html,'total' => 10,'removeOptions' => $removeOptions]);
-// });
+    // remove options items
+    // for example this is url: https://localhost:8000/category?material=1&color=blue&page=1
+    // $removeOptions = [
+    //     [
+    //         "title" => "حذف همه",
+    //         "url" => "https://localhost:8000/category", // new url after remove all options
+    //     ],
+    //     // color
+    //     [
+    //         "title" => "ویژگی چک باکس : موجود",
+    //         "url" => "https://localhost:8000/category?checkbox=1", // new url after remove this option,
+    //         // on clicked item
+    //         "item" => [
+    //             "name" => "checkbox",
+    //             "value" => "0"
+    //         ]
+    //     ],
+    //     // material
+    //     [
+    //         "title" => "ویژگی چک باکس : همه",
+    //         "url" => "https://localhost:8000/category?checkbox=0", // new url after remove this option
+    //         // on clicked item
+    //         "item" => [
+    //             "name" => "checkbox",
+    //             "value" => "1"
+    //         ]
+    //     ],
+    // ];
 

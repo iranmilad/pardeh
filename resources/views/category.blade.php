@@ -22,7 +22,7 @@
 @section('title', config('app.name'))
 
 @section('content')
-<div class="container" id="catergory_page">
+<div class="container tw-rounded-xl" id="catergory_page">
 
     <livewire:LoadWidget blockId="block_49" :slug="$category->alias ?? ''" />
 
