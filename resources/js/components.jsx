@@ -140,7 +140,7 @@ export const CategoryPagination = ({ total, value, onChange }) => {
     async function next() {
         try {
             await onChange(
-                pagination.active < pagination.pages
+                pagination.active < total
                     ? pagination.active + 1
                     : total
             );
