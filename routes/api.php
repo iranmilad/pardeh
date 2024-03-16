@@ -293,12 +293,22 @@ Route::post("/category",function(Request $request){
         // color
         [
             "title" => "ویژگی چک باکس : موجود",
-            "url" => "https://localhost:8000/category?colorBox=black", // new url after remove this option
+            "url" => "https://localhost:8000/category?checkbox=1", // new url after remove this option,
+            // on clicked item
+            "item" => [
+                "name" => "checkbox",
+                "value" => "0"
+            ]
         ],
         // material
         [
             "title" => "ویژگی چک باکس : همه",
-            "url" => "https://localhost:8000/category?colorBox=red", // new url after remove this option
+            "url" => "https://localhost:8000/category?checkbox=0", // new url after remove this option
+            // on clicked item
+            "item" => [
+                "name" => "checkbox",
+                "value" => "1"
+            ]
         ],
     ];
 

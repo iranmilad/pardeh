@@ -193,11 +193,11 @@ export const CategoryPagination = ({ total, value, onChange }) => {
 };
 
 export const RemoveOptionCategory = ({ options,onChange }) => {
-    async function removeOption(url) {
+    async function removeOption(item) {
         // Remove the option
-        let newUrl = new URL(url);
+        let newUrl = new URL(item.url);
         try{
-            await onChange(queryString.parse(newUrl.search));
+            await onChange(queryString.parse(newUrl.search),item?.item);
         }
         catch (error) {
         }
@@ -206,13 +206,13 @@ export const RemoveOptionCategory = ({ options,onChange }) => {
         <>
             {options.map((item) => (
                 <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
-                    <span class="tw-text-sm tw-text-gray-600 hover:tw-text-brand-500 tw-cursor-pointer" onClick={() => removeOption(item.url)}>
+                    <span class="tw-text-sm tw-text-gray-600 hover:tw-text-brand-500 tw-cursor-pointer" onClick={() => removeOption(item)}>
                         {item.title}
                     </span>
                     <button
                         type="button"
                         className="btn tw-p-0"
-                        onClick={() => removeOption(item.url)}
+                        onClick={() => removeOption(item)}
                     >
                         <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-brand-500 tw-cursor-pointer"></i>
                     </button>

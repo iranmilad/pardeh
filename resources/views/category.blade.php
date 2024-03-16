@@ -22,7 +22,7 @@
 @section('title', config('app.name'))
 
 @section('content')
-<div class="container" id="catergory_page">
+<div class="container tw-rounded-xl" id="catergory_page">
     <div class="tw-flex tw-items-center tw-justify-between">
         <span class="tw-font-bold">دسته بندی های دیگر</span>
         <div>
