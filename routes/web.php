@@ -210,8 +210,8 @@ Route::post('/remember', [AuthController::class, 'rememberCodeValidate'])->name(
 // Route::post('/resend-verification-code', [RegisterController::class, 'resendVerificationCode'])->name('resend.verification.code');
 
 Route::get('/blog/{slug}', [PostController::class, 'index'])->name('single.post');
-Route::get('/category',[CategoryController::class,'index'])->name('category');
-Route::get('/product/{id}',[ProductController::class,'index'])->name('product');
+Route::get('/category/{slug?}',[CategoryController::class,'index'])->name('category');
+Route::get('/product/{id}',[ProductController::class,'index'])->name('single.product');
 
 
 

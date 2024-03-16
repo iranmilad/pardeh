@@ -35,7 +35,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '10000000',
                 'img' => '/images/auth3.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 1',
+                'description' => 'توضیحات نمونه برای محصول 1',
             ],
             [
                 'title' => 'پرده جدید 2',
@@ -44,7 +44,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '9000000',
                 'img' => '/images/auth2.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 2',
+                'description' => 'توضیحات نمونه برای محصول 2',
             ],
             [
                 'title' => 'پرده جدید 3',
@@ -52,7 +52,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '10000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 3',
+                'description' => 'توضیحات نمونه برای محصول 3',
             ],
             [
                 'title' => 'پرده جدید 4',
@@ -61,7 +61,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '8000000',
                 'img' => '/images/auth4.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 4',
+                'description' => 'توضیحات نمونه برای محصول 4',
             ],
             [
                 'title' => 'پرده جدید 5',
@@ -69,7 +69,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '8500000',
                 'img' => '/images/auth3.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 5',
+                'description' => 'توضیحات نمونه برای محصول 5',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -77,7 +77,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 1',
+                'description' => 'توضیحات نمونه برای محصول 1',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -86,7 +86,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '9000000',
                 'img' => '/images/single-product/2.jpg',
                 'hover_img' => '/images/auth2.jpg',
-                'description' => 'Description of product 2',
+                'description' => 'توضیحات نمونه برای محصول 2',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -94,7 +94,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
-                'description' => 'Description of product 3',
+                'description' => 'توضیحات نمونه برای محصول 3',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -102,7 +102,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 1',
+                'description' => 'توضیحات نمونه برای محصول 1',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -111,7 +111,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '9000000',
                 'img' => '/images/single-product/2.jpg',
                 'hover_img' => '/images/auth2.jpg',
-                'description' => 'Description of product 2',
+                'description' => 'توضیحات نمونه برای محصول 2',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -119,7 +119,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
-                'description' => 'Description of product 3',
+                'description' => 'توضیحات نمونه برای محصول 3',
             ],
 
             [
@@ -128,7 +128,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 1',
+                'description' => 'توضیحات نمونه برای محصول 1',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -137,7 +137,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '8500000',
                 'img' => '/images/single-product/2.jpg',
                 'hover_img' => '/images/auth2.jpg',
-                'description' => 'Description of product 2',
+                'description' => 'توضیحات نمونه برای محصول 2',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -145,7 +145,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
-                'description' => 'Description of product 3',
+                'description' => 'توضیحات نمونه برای محصول 3',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -153,7 +153,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 1',
+                'description' => 'توضیحات نمونه برای محصول 1',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -162,7 +162,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '8000000',
                 'img' => '/images/single-product/2.jpg',
                 'hover_img' => '/images/auth2.jpg',
-                'description' => 'Description of product 2',
+                'description' => 'توضیحات نمونه برای محصول 2',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -170,7 +170,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
-                'description' => 'Description of product 3',
+                'description' => 'توضیحات نمونه برای محصول 3',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -178,7 +178,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '11000000',
                 'img' => '/images/single-product/1.jpg',
                 'hover_img' => '/images/auth.jpg',
-                'description' => 'Description of product 1',
+                'description' => 'توضیحات نمونه برای محصول 1',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -187,7 +187,7 @@ class ProductsTableSeeder extends Seeder
                 'sale_price' => '9000000',
                 'img' => '/images/single-product/2.jpg',
                 'hover_img' => '/images/auth2.jpg',
-                'description' => 'Description of product 2',
+                'description' => 'توضیحات نمونه برای محصول 2',
             ],
             [
                 'title' => 'پرده جدیده کتان',
@@ -195,7 +195,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => '12000000',
                 'img' => '/images/single-product/3.jpg',
                 'hover_img' => '/images/auth3.jpg',
-                'description' => 'Description of product 3',
+                'description' => 'توضیحات نمونه برای محصول 3',
             ],
             // Add more products as needed
         ];

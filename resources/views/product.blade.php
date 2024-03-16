@@ -14,7 +14,8 @@
     </div>
 </div>
 <div class="container" id="main-product">
-    <x-breadcrumb />
+    {{ Breadcrumbs::render('single.product',$product) }}
+
     <div class="row" id="product-preview">
         <!-- <div class="mobile-review-product">
             <img src="https://placehold.co/600x400" alt="">
@@ -81,14 +82,15 @@
                 <div class="col-lg-7">
                     <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center">
                         <i class="fa-regular fa-circle-check tw-ml-2 tw-text-base"></i>
-                        <span>موجود در انبار</span>
+                        <span>{{ $product->inventoryMessage() }}</span>
                     </div>
                     <div class="tw-flex tw-items-center">
                         <x-rating readOnly rate="4" />
-                        <a class="tw-text-indigo-500 tw-mr-3">دیدگاه (500)</a>
+                        <a class="tw-text-indigo-500 tw-mr-3">دیدگاه ({{ $product->reviews()->count() }})</a>
                     </div>
                     <p class="tw-text-sm tw-leading-loose">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته <a href="#product-tabs-card" class="tw-text-indigo-500">بیشتر ...</a>
+                        {{ $product->description }}
+                        <!-- به دلخواه می‌توانید توضیحات محصول را در اینجا قرار دهید -->
                     </p>
                 </div>
                 <div class="col-lg-5">
@@ -96,7 +98,7 @@
                         <div class="card-body" id="main-cart-price-details">
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between pb-4">
                                 <span class="tw-text-gray-500">تخفیف : </span>
-                                <span class="badge tw-bg-red-500 tw-rounded-full">50%</span>
+                                <span class="badge tw-bg-red-500 tw-rounded-full">{{ $product->discountPercentage }}</span>
                             </div>
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
                                 <span class="tw-text-gray-500">زمان تحویل : </span>
@@ -105,16 +107,18 @@
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
                                 <span class="tw-text-gray-500">قیمت : </span>
                                 <div class="tw-flex tw-flex-col tw-items-end">
-                                    <span>10,000,000
+                                    <span>{{ $product->price }}
                                         <svg style="width: 16px; height: 16px; fill: var(--undefined);">
                                             <use xlink:href="#toman"></use>
                                         </svg>
                                     </span>
-                                    <span class="tw-text-xs tw-text-gray-400">12,000,000
-                                        <svg class="tw-fill-gray-400" style="width: 16px; height: 16px;">
-                                            <use xlink:href="#toman"></use>
-                                        </svg>
-                                    </span>
+                                    @if ($product->sale_price)
+                                        <span class="tw-text-xs tw-text-gray-400">{{ $product->sale_price }}
+                                            <svg class="tw-fill-gray-400" style="width: 16px; height: 16px;">
+                                                <use xlink:href="#toman"></use>
+                                            </svg>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
@@ -125,8 +129,8 @@
                                 <!-- ADD TO CART BUTTON -->
                                 <x-add-to-cart />
                             </div>
-
                             <!-- LET ME KNOW -->
+                            <!-- این بخش برای نمایش هنگامی که محصول موجود نیست -->
                             <!-- <div>
                                 <h4 class="text-center tw-text-brand-500">ناموجود</h4>
                                 <div class="text-center tw-text-sm">
@@ -145,9 +149,10 @@
                     </div>
                 </div>
             </div>
-
+            <!-- افزودن سایر گزینه‌ها و امکانات -->
             <x-product-options />
         </div>
+
     </div>
 </div>
 <div class="mt-5" id="product-tabs-card">

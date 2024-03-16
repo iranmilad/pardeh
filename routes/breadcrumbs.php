@@ -19,8 +19,31 @@ Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
     $trail->push('بلاگ', route('blog'));
 });
 
+// Home > Category
+Breadcrumbs::for('category', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('محصولات', route('category'));
+});
+
 // Home > Blog > [Category]
 Breadcrumbs::for('single.post', function (BreadcrumbTrail $trail, $post) {
     $trail->parent('blog');
     $trail->push($post->category->name ?? 'بدون دسته بندی', route('single.post', $post->slug));
+});
+
+// Home >  [Category] > [Product]
+Breadcrumbs::for('single.product', function (BreadcrumbTrail $trail, $product) {
+    // اولین گروه بندی محصول را بدست آورید
+    $firstCategory = $product->categories->first();
+
+    // اگر محصول به گروه بندی‌هایی تعلق دارد
+    if ($firstCategory) {
+        $trail->parent('category');
+        $trail->push($firstCategory->title, route('category', $firstCategory->alias));
+        // نام اولین گروه بندی را به برنامه‌های توالی اضافه کنید
+        $trail->push($product->title, route('single.product', $product->id));
+    } else {
+        // در غیر این صورت فقط محصولات را نمایش دهید
+        $trail->push('محصولات', route('single.product', $product->title));
+    }
 });
