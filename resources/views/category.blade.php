@@ -83,7 +83,7 @@
 
 
 
-            <livewire:checkbox title="کاربری" name="function" :options='[
+            <livewire:check-box title="کاربری" name="function" :options='[
                 ["id" => "آشپزخانه", "name" => "function", "label" => "اشپزخانه", "value" => "آشپزخانه"],
                 ["id" => "پذیرایی", "name" => "function", "label" => "پذیرایی", "value" => "پذیرایی"],
                 ["id" => "اتاق خواب", "name" => "function", "label" => " اتاق خواب", "value" => "اتاق خواب"],
