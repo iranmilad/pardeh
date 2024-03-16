@@ -24,7 +24,7 @@ class Post extends Model
 
     public function getLinkAttribute()
     {
-        return "blog/".$this->slug;
+        return "/blog/".$this->slug;
     }
 
     public function category()
