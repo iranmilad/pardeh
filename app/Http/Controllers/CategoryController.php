@@ -34,7 +34,7 @@ class CategoryController extends Controller{
         // اعمال فیلتر بر اساس colorBox اگر مقدار آن معتبر باشد
         if ($colorBox) {
             $query->whereHas('attributes', function ($query) use ($colorBox) {
-                $query->whereHas('items', function ($itemQuery) use ($colorBox) {
+                $query->where('name', 'color')->whereHas('items', function ($itemQuery) use ($colorBox) {
                     $itemQuery->where('name', $colorBox);
                 });
             });
@@ -48,6 +48,10 @@ class CategoryController extends Controller{
         // اعمال فیلتر بر اساس قیمت اگر maxprice و minprice ارسال شده باشند
         if ($maxPrice !== null && $minPrice !== null) {
             $query->whereBetween('price', [$minPrice, $maxPrice]);
+        } elseif ($minPrice !== null) {
+            $query->where('price', '>=', $minPrice);
+        } elseif ($maxPrice !== null) {
+            $query->where('price', '<=', $maxPrice);
         }
 
         // اعمال فیلتر بر اساس استایل اگر مقدار آن معتبر باشد
@@ -194,6 +198,10 @@ class CategoryController extends Controller{
         // اعمال فیلتر بر اساس قیمت اگر maxprice و minprice ارسال شده باشند
         if ($maxPrice !== null && $minPrice !== null) {
             $query->whereBetween('price', [$minPrice, $maxPrice]);
+        } elseif ($minPrice !== null) {
+            $query->where('price', '>=', $minPrice);
+        } elseif ($maxPrice !== null) {
+            $query->where('price', '<=', $maxPrice);
         }
 
         // اعمال فیلتر بر اساس استایل اگر مقدار آن معتبر باشد
