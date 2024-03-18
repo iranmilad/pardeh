@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('unit_description')->nullable();
             $table->decimal('conversion_factor', 8, 2)->nullable();
             $table->string('base_unit')->nullable();
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }

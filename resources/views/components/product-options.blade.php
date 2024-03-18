@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                         </div>
-                        END: COLOR 
+                        END: COLOR
 
                         START: MATERIAL
                         <div class="accordion-item">
@@ -221,109 +221,67 @@
     </div> -->
     <!-- END: ACCORDION WITH SUB OPTION -->
 
+
+
     <!-- START: OPTION -->
     <div class="accordion accordion-product" id="accordionExample">
-        <!-- START: COLOR -->
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne123" aria-expanded="true" aria-controls="collapseOne123">
-                    <div class="stepNum">
-                        <span>1</span>
-                        <i class="fa-regular fa-circle-exclamation"></i>
-                    </div>
-                    انتخاب رنگ
-                </button>
-            </h2>
-            <div id="collapseOne123" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="alert alert-danger tw-text-sm">
-                        <i class="fa-regular fa-circle-exclamation"></i>
-                        لطفا یک رنگ را انتخاب کنید
-                    </div>
-                    <div class="box">
-                        <div class="tw-flex tw-items-center tw-justify-between mb-3">
-                            <span class="title">
-                                رنگ کلاسیک
-                                <a href="#"><i class="fa-regular fa-circle-question"></i></a>
-                            </span>
-                            <div class="product-option-next-prev">
-                                <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
-                                <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
-                            </div>
+        @if($product->attributes()->where('name', 'color')->exists())
+            <!-- START: COLOR -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne123" aria-expanded="true" aria-controls="collapseOne123">
+                        <div class="stepNum">
+                            <span>1</span>
+                            <i class="fa-regular fa-circle-exclamation"></i>
                         </div>
-                        <div class="swiper swiper-product-options">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <label class="product-template" for="m1">
-                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#334155" />
-                                        </svg>
-                                        <span>خاکستری</span>
-                                        <input type="radio" checked data-real="true" name="color[item]" value="#334155" id="m1">
-                                    </label>
+                        انتخاب رنگ
+                    </button>
+                </h2>
+                <div id="collapseOne123" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                            <div class="alert alert-danger tw-text-sm">
+                                <i class="fa-regular fa-circle-exclamation"></i>
+                                لطفا یک رنگ را انتخاب کنید
+                            </div>
+                            <div class="box">
+                                <div class="tw-flex tw-items-center tw-justify-between mb-3">
+                                    <span class="title">
+                                        رنگ کلاسیک
+                                        <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                                    </span>
+                                    <div class="product-option-next-prev">
+                                        <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
+                                        <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
+                                    </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <label class="product-template" for="m2">
-                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#ef4444" />
-                                        </svg>
-                                        <span>قرمز</span>
-                                        <input type="radio" data-real="true" name="color[item]" value="#ef4444" id="m2">
-                                    </label>
-                                </div>
-                                <div class="swiper-slide">
-                                    <label class="product-template" for="m3">
-                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#f97316" />
-                                        </svg>
-                                        <span>نارنجی</span>
-                                        <input type="radio" data-real="true" name="color[item]" value="#f97316" id="m3">
-                                    </label>
-                                </div>
-                                <div class="swiper-slide">
-                                    <label class="product-template" for="m4">
-                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#eab308" />
-                                        </svg>
-                                        <span>زرد</span>
-                                        <input type="radio" data-real="true" name="color[item]" value="#eab308" id="m4">
-                                    </label>
-                                </div>
-                                <div class="swiper-slide">
-                                    <label class="product-template" for="m5">
-                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#84cc16" />
-                                        </svg>
-                                        <span>سبز لیمویی</span>
-                                        <input type="radio" data-real="true" name="color[item]" value="#84cc16" id="m5">
-                                    </label>
-                                </div>
-                                <div class="swiper-slide">
-                                    <label class="product-template" for="m6">
-                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#22c55e" />
-                                        </svg>
-                                        <span>سبز</span>
-                                        <input type="radio" data-real="true" name="color[item]" value="#22c55e" id="m6">
-                                    </label>
-                                </div>
-                                <div class="swiper-slide">
-                                    <label class="product-template" for="m7">
-                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#06b6d4" />
-                                        </svg>
-                                        <span>آبی آسمانی</span>
-                                        <input type="radio" data-real="true" name="color[item]" value="#06b6d4" id="m7">
-                                    </label>
+                                <div class="swiper swiper-product-options">
+                                    <div class="swiper-wrapper">
+                                        <!-- Loop through attribute items and generate HTML for each color option -->
+                                        @foreach($product->attributes()->where('name', 'color')->first()->items()->get() as $item)
+                                        <div class="swiper-slide">
+                                            <label class="product-template" for="{{ $item->id }}">
+                                                @if ($item->img)
+                                                    <img width="100%" height="135" src="{{$item->img}}" alt="{{ $item->name }}" srcset="">
+                                                @else
+                                                    <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect width="100%" height="100%" fill="{{ $item->name }}" />
+                                                    </svg>
+                                                @endif
+                                                <span>{{ $item->name }}</span>
+                                                <input type="radio" data-real="true" name="color[item]" value="{{ $item->name }}" id="{{ $item->id }}">
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- END: COLOR -->
+            <!-- END: COLOR -->
 
+        @endif
         <!-- START: MATERIAL -->
         <div class="accordion-item">
             <h2 class="accordion-header">
@@ -739,7 +697,7 @@
             </div>
         </div>
         <!-- END: OTHER OPTIONS -->
-        
+
         <!-- START: WARRANTY -->
         <div class="accordion-item">
             <h2 class="accordion-header">

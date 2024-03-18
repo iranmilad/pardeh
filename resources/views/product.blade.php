@@ -121,36 +121,40 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
-                                <!-- ADD TO FAVORITE BUTTON -->
-                                <button class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                                <!-- ADD TO CART BUTTON -->
-                                <x-add-to-cart />
-                            </div>
-                            <!-- LET ME KNOW -->
-                            <!-- این بخش برای نمایش هنگامی که محصول موجود نیست -->
-                            <!-- <div>
-                                <h4 class="text-center tw-text-brand-500">ناموجود</h4>
-                                <div class="text-center tw-text-sm">
-                                    این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
-                                    موجود شدن، به شما خبر دهیم.
-                                </div>
-                                <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
-                                    <button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
-                                        <i class="fa-solid fa-bell tw-ml-2"></i>
-                                        خبرم کن
+                            @if ($product)
+                                <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
+                                    <!-- ADD TO FAVORITE BUTTON -->
+                                    <button class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
+                                    <!-- ADD TO CART BUTTON -->
+                                    <x-add-to-cart />
                                 </div>
-                            </div> -->
-                            <!-- LET ME KNOW -->
+                            @elseif ($product)
+                                <!-- LET ME KNOW -->
+                                <!-- این بخش برای نمایش هنگامی که محصول موجود نیست -->
+                                <div>
+                                    <h4 class="text-center tw-text-brand-500">ناموجود</h4>
+                                    <div class="text-center tw-text-sm">
+                                        این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
+                                        موجود شدن، به شما خبر دهیم.
+                                    </div>
+                                    <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
+                                        <button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
+                                            <i class="fa-solid fa-bell tw-ml-2"></i>
+                                            خبرم کن
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- LET ME KNOW -->
+                            @endif
+
                         </div>
                     </div>
                 </div>
             </div>
             <!-- افزودن سایر گزینه‌ها و امکانات -->
-            <x-product-options />
+            <x-product-options :product="$product"/>
         </div>
 
     </div>
@@ -177,6 +181,7 @@
     </div>
 </div>
 
+<!-- description -->
 <div class="container">
     <div class="tab-content mt-3" id="product-tab">
         <div class="tab-pane fade show active tw-bg-gray-100 tw-rounded-xl tw-p-5" id="specifications" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
