@@ -25,8 +25,6 @@ import KTBlockUI from "./tools/blockui";
 import toastr from "toastr";
 import "toastr/build/toastr.css";
 import "../css/vendors/toaster/toastr.css";
-import noUi from "nouislider";
-import "../css/vendors/nouislider/nouislider.css";
 import "./tools/alarm";
 import "./tools/sweetalert";
 import "./search";
@@ -353,51 +351,7 @@ $(".remove-favorite-user").on("click", function (e) {
     $(this).parent().parent().parent().hide().append(div).fadeIn(100);
 });
 
-if ($(".price-range").length > 0) {
-    let minPrice = $(".minPrice");
-    let maxPrice = $(".maxPrice");
 
-    // set max and min values of slider
-    maxPrice.val($(".price-range").data("max"));
-    minPrice.val($(".price-range").data("min"));
-
-    let slider = $(".price-range");
-    slider.each(function (index, element) {
-        let priceSlider = noUi.create(element, {
-            start: [
-                +$(".price-range").data("defaultmin"),
-                +$(".price-range").data("defaultmax"),
-            ],
-            connect: true,
-            // show max and min values static under slider
-            format: {
-                to: function (value) {
-                    return parseInt(value);
-                },
-                from: function (value) {
-                    return parseInt(value);
-                },
-            },
-            range: {
-                min: $(".price-range").data("min"),
-                max: $(".price-range").data("max"),
-            },
-        });
-        priceSlider.on("update", function (values, handle) {
-            if (values) {
-                // Update the corresponding input field based on the active handle
-                if (handle === 0) {
-                    minPrice.val(`${values[0]}`);
-                } else {
-                    maxPrice.val(`${values[1]}`);
-                }
-            }
-        });
-        priceSlider.on("change", function (values, handle) {
-            setTimeout(() => handleChangeFilter(), 500);
-        });
-    });
-}
 
 $(".payment-accordion:not(.disabled) input[type=checkbox]").on(
     "change",
