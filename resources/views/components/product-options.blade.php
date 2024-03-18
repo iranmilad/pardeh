@@ -268,7 +268,7 @@
                                                         <rect width="100%" height="100%" fill="{{ $item->name }}" />
                                                     </svg>
                                                 @endif
-                                                <span>{{ $item->name }}</span>
+                                                <span>{{ $item->details }}</span>
                                                 <input type="radio" data-real="true" name="color[item]" value="{{ $item->name }}" id="{{ $item->id }}">
                                             </label>
                                         </div>

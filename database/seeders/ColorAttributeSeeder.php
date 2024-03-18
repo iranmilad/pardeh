@@ -14,13 +14,13 @@ class ColorAttributeSeeder extends Seeder
         Attribute::query()->delete();
         // ایجاد رنگ‌های مختلف برای ویژگی color
         $colors = [
-            ['name' => 'black', 'img' => '/products/1123/color/black.jpg'],
-            ['name' => 'gray', 'img' => '/products/1123/color/gray.jpg'],
-            ['name' => 'orange', 'img' => '/products/1123/color/orange.jpg'],
-            ['name' => 'yellow', 'img' => '/products/1123/color/yellow.jpg'],
-            ['name' => 'blue', 'img' => '/products/1123/color/blue.jpg'],
-            ['name' => 'purple', 'img' => '/products/1123/color/purple.jpg'],
-            ['name' => 'pink', 'img' => '/products/1123/color/pink.jpg'],
+            ['name' => 'black','details' => 'سیاه', 'img' => ''],
+            ['name' => 'gray','details' => 'خاکستری', 'img' => ''],
+            ['name' => 'orange','details' => 'نارنجی', 'img' => ''],
+            ['name' => 'yellow','details' => 'زرد', 'img' => ''],
+            ['name' => 'blue','details' => 'آبی', 'img' => ''],
+            ['name' => 'purple','details' => 'بنفش', 'img' => ''],
+            ['name' => 'pink','details' => 'صورتی', 'img' => ''],
         ];
 
         $products = Product::all();
@@ -47,6 +47,7 @@ class ColorAttributeSeeder extends Seeder
             foreach ($randomColors as $color) {
                 AttributeItem::create([
                     'name' => $color['name'],
+                    'details' => $color['details'],
                     'attribute_id' => $colorAttribute->id,
                     'img' => $color['img']
                 ]);
