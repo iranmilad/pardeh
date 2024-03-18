@@ -64,7 +64,7 @@
                 </div>
                 <div class="card-body collapse" id="collapsePriceRange">
                     <!-- START:PRICE INPUT -->
-                    <div class="tw-mb-3 tw-ml-2 price-range" data-min="0" data-max="1000000000" data-defaultmin="0" data-defaultmax="1000000000"></div>
+                    <div class="tw-mb-3 tw-ml-2 price-range" data-step="10" data-min="0" data-max="1000000000" data-defaultmin="0" data-defaultmax="1000000000"></div>
                     <!-- END:PRICE INPUT -->
                     <div class="tw-flex tw-items-center tw-justify-between">
                         <input class="maxPrice" type="text" name="maxprice" />
