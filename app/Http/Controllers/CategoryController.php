@@ -166,7 +166,12 @@ class CategoryController extends Controller{
 
             $removeOptions[]=[
                 "title" => "رنگ",
-                "url" => str_replace("colorBox=$colorBox","",$url)
+                "url" => str_replace("colorBox=$colorBox","",$url),
+                // on clicked item
+                "item" => [
+                    "name" => "colorBox",
+                    "value" => "$colorBox"
+                ]
             ];
 
         }
@@ -174,6 +179,16 @@ class CategoryController extends Controller{
         // اعمال فیلتر بر اساس موجودی اگر مقدار آن معتبر باشد
         if ($inventory != null and $inventory == true) {
             $query->where('few', '>', 0);
+
+            $removeOptions[]=[
+                "title" => "موجودی",
+                "url" => str_replace("inventory=$inventory","",$url),
+                // on clicked item
+                "item" => [
+                    "name" => "inventory",
+                    "value" => "1"
+                ]
+            ];
         }
 
         // اعمال فیلتر بر اساس قیمت اگر maxprice و minprice ارسال شده باشند
@@ -186,6 +201,17 @@ class CategoryController extends Controller{
             $query->whereHas('tags', function ($tagQuery) use ($function) {
                 $tagQuery->where('name', $function)->where('type', 'function');
             });
+
+            $removeOptions[]=[
+                "title" => "$function",
+                "url" => str_replace("function=$function","",$url),
+                // on clicked item
+                "item" => [
+                    "name" => "function",
+                    "value" => "$function"
+                ]
+            ];
+
         }
 
         // اعمال فیلتر بر اساس قابلیت اگر مقدار آن معتبر باشد
@@ -196,6 +222,18 @@ class CategoryController extends Controller{
             $query->whereHas('tags', function ($tagQuery) use ($abilityValues) {
                 $tagQuery->where('type', 'ability')->whereIn('name', $abilityValues);
             });
+
+
+            $removeOptions[]=[
+                "title" => "$ability",
+                "url" => str_replace("ability=$ability","",$url),
+                // on clicked item
+                "item" => [
+                    "name" => "ability",
+                    "value" => "$ability"
+                ]
+            ];
+
         }
 
         // اعمال مرتب‌سازی بر اساس پارامتر sort اگر مقدار آن معتبر باشد
