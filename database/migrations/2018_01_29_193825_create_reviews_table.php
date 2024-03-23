@@ -19,6 +19,12 @@ class CreateReviewsTable extends Migration
             $table->text('text');
             $table->integer('rating');
             $table->string('name');
+            $table->integer('quality')->nullable();
+            $table->integer('performance')->nullable();
+            $table->integer('design')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('ease_of_use')->nullable();
+            $table->json('images')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('product_id')->unsigned();

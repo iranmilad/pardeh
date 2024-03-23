@@ -23,6 +23,18 @@ return new class extends Migration
             $table->string('unit_description')->nullable();
             $table->decimal('conversion_factor', 8, 2)->nullable();
             $table->string('base_unit')->nullable();
+
+
+            $table->bigInteger('price',0)->nullable();
+            $table->bigInteger('sale_price',0)->nullable();
+            $table->bigInteger('wholesale_price',0)->nullable();
+
+            $table->bigInteger('few',0)->nullable();
+            $table->bigInteger('fewspd',0)->nullable();
+            $table->bigInteger('fewtak',0)->nullable();
+            $table->string('holo_code')->nullable();
+            $table->text('description')->nullable();
+
             $table->string('img')->nullable();
             $table->timestamps();
         });

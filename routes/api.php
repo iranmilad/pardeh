@@ -1,15 +1,16 @@
 <?php
 
+
 use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Arr;
 // routes/web.php or routes/api.php
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,17 +148,6 @@ Route::post("/product",function(Request $request){
     return response()->json($response);
 });
 
-Route::post("/add-to-cart",function(Request $request){
-    $response = [
-        "status" => "success",
-        "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
-        "cart" => [
-            "count" => 5,
-        ],
-    ];
-
-    return response()->json($response);
-});
 
 Route::post("/remove-cart",function(Request $request){
     $response = [
@@ -231,91 +221,6 @@ Route::delete("/wishlist",function(Request $request){
 
     return response()->json($response);
 });
-
-/**
- * Category Ajax
- */
-// Route::post("/category",function(Request $request){
-
-//     /**
-//      * Request
-//      */
-//     // $req = [
-//     //     "url" => "https://localhost:8000/category?category=1?page=1",
-//     // ]
-
-//     /**
-//      * Response
-//      */
-//     $products = [
-//         [
-//             "id" => 1,
-//             "name" => "محصول 1",
-//             "img" => "https://placehold.co/900?text=1",
-//             "regular_price" => "25,000,000",
-//         ],
-//         [
-//             "id" => 2,
-//             "name" => "محصول 2",
-//             "img" => "https://placehold.co/900?text=2",
-//             "regular_price" => "25,000,000",
-//         ],
-//         [
-//             "id" => 3,
-//             "name" => "محصول 3",
-//             "img" => "https://placehold.co/900?text=3",
-//             "regular_price" => "25,000,000",
-//             "sale_price" => "18,000,000",
-//             "discount" => "20%"
-//         ],
-//         [
-//             "id" => 4,
-//             "name" => "محصول 4",
-//             "img" => "https://placehold.co/900?text=4",
-//             "regular_price" => "25,000,000",
-//             "stock" => "5"
-//         ],
-//         [
-//             "id" => 5,
-//             "name" => "محصول 5",
-//             "img" => "https://placehold.co/900?text=5",
-//         ],
-//     ];
-
-//     $html = View::make("components/category-products",compact('products'))->render();
-
-//     // remove options items
-//     // for example this is url: https://localhost:8000/category?material=1&color=blue&page=1
-//     $removeOptions = [
-//         [
-//             "title" => "حذف همه",
-//             "url" => "https://localhost:8000/category", // new url after remove all options
-//         ],
-//         // color
-//         [
-//             "title" => "ویژگی چک باکس : موجود",
-//             "url" => "https://localhost:8000/category?checkbox=1", // new url after remove this option,
-//             // on clicked item
-//             "item" => [
-//                 "name" => "checkbox",
-//                 "value" => "0"
-//             ]
-//         ],
-//         // material
-//         [
-//             "title" => "ویژگی چک باکس : همه",
-//             "url" => "https://localhost:8000/category?checkbox=0", // new url after remove this option
-//             // on clicked item
-//             "item" => [
-//                 "name" => "checkbox",
-//                 "value" => "1"
-//             ]
-//         ],
-//     ];
-
-//     // total is the total number of pages
-//     return response()->json(['html' => $html,'total' => 10,'removeOptions' => $removeOptions]);
-// });
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -443,17 +348,7 @@ Route::post("/product",function(Request $request){
     return response()->json($response);
 });
 
-Route::post("/add-to-cart",function(Request $request){
-    $response = [
-        "status" => "success",
-        "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
-        "cart" => [
-            "count" => 5,
-        ],
-    ];
 
-    return response()->json($response);
-});
 
 Route::post("/remove-cart",function(Request $request){
     $response = [
@@ -530,78 +425,4 @@ Route::delete("/wishlist",function(Request $request){
 
 Route::post("/category",[CategoryController::class,'list'])->name('api.category');
 
-/**
- * Category Ajax
- */
-// Route::post("/category",function(Request $request){
-
-//     /**
-//      * Request
-//      */
-//     // $req = [
-//     //     "url" => "https://localhost:8000/category?category=1?page=1",
-//     // ]
-
-//     /**
-//      * Response
-//      */
-//     $products = [
-//         [
-//             "id" => 1,
-//             "name" => "محصول 1",
-//             "img" => "https://placehold.co/900?text=1",
-//             "regular_price" => "25,000,000",
-//         ],
-//         [
-//             "id" => 2,
-//             "name" => "محصول 2",
-//             "img" => "https://placehold.co/900?text=2",
-//             "regular_price" => "25,000,000",
-//         ],
-//         [
-//             "id" => 3,
-//             "name" => "محصول 3",
-//             "img" => "https://placehold.co/900?text=3",
-//             "regular_price" => "25,000,000",
-//             "sale_price" => "18,000,000",
-//             "discount" => "20%"
-//         ],
-//         [
-//             "id" => 4,
-//             "name" => "محصول 4",
-//             "img" => "https://placehold.co/900?text=4",
-//             "regular_price" => "25,000,000",
-//             "stock" => "5"
-//         ],
-//         [
-//             "id" => 5,
-//             "name" => "محصول 5",
-//             "img" => "https://placehold.co/900?text=5",
-//         ],
-//     ];
-
-//     $html = View::make("components/category-products",compact('products'))->render();
-
-//     // remove options items
-//     // for example this is url: https://localhost:8000/category?material=1&color=blue&page=1
-//     $removeOptions = [
-//         [
-//             "title" => "حذف همه",
-//             "url" => "https://localhost:8000/category", // new url after remove all options
-//         ],
-//         // color
-//         [
-//             "title" => "ویژگی چک باکس : موجود",
-//             "url" => "https://localhost:8000/category?colorBox=black", // new url after remove this option
-//         ],
-//         // material
-//         [
-//             "title" => "ویژگی چک باکس : همه",
-//             "url" => "https://localhost:8000/category?colorBox=red", // new url after remove this option
-//         ],
-//     ];
-
-//     // total is the total number of pages
-//     return response()->json(['html' => $html,'total' => 10,'removeOptions' => $removeOptions]);
-// });
-
+Route::post("/add-to-cart",[OrderController::class,'addToCart'])->name('api.addToCart');

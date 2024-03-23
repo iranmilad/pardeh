@@ -17,81 +17,58 @@ use App\Exceptions\QuantityOverstated;
 
 class OrderController extends Controller
 {
-    /**
-     * @var Address
-     */
-    protected $deliveryAddress;
 
-    /**
-     * @var Cart
-     */
-    protected $cart;
-
-    /**
-     * @var Currency
-     */
-    protected $currency;
-
-    /**
-     * @var Charge
-     */
-    protected $stripe;
-
-    public function __construct(Address $address, Cart $cart, Currency $currency, Charge $charge)
-    {
-        $this->deliveryAddress = $address;
-        $this->cart = $cart;
-        $this->currency = $currency;
-        $this->stripe = $charge;
-    }
 
     public function index()
     {
         return view('order');
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Throwable
-     */
-    public function selfDelivery()
-    {
-        $this->cart->setShipping(null);
-        try {
-            $selfDelivery = $this->deliveryAddress->getWarehousesInfo(config('delivery.warehouse_send_id'));
-        } catch (DeliveryApi $e) {
-            return response()->json(['message' => $e->getMessage()], 501);
+
+    public function addToCart(Request $request){
+
+        //$request is form parameter example data
+        //param[466][طول]: 0
+        // param[546]: سه ساله
+        // param[586]: بیرونی
+        // param[626]: داخلی
+        // param[666]: کتان مخمل
+        // param[706][تعداد]: 1
+        // param[746]: pink
+
+        if (!Auth::check()) {
+
+            $param = $request->input('param');
+            $cartCount = 0; // Initialize cart count
+
+            // Check if the cart cookie exists
+            if ($request->cookie('cart')) {
+                // Get the current cart items from the cookie
+                $cartItems = json_decode($request->cookie('cart'), true);
+
+                // Append the new item to the cart
+                $cartItems[] = $param;
+
+                // Update the cart count
+                $cartCount = count($cartItems);
+            } else {
+                // If the cart cookie doesn't exist, create a new array with the new item
+                $cartItems = [$param];
+                $cartCount = 1; // Update the cart count
+            }
+
+            // Store the updated cart items in the cookie
+            return response()->json([
+                "status" => "success",
+                "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
+                "cart" => [
+                    "count" => $cartCount,
+                ],
+            ])->cookie('cart', json_encode($cartItems));
         }
-        return response()->json([
-            'content' => view('partials.order.form.self_delivery')
-                ->with('warehouse', $selfDelivery)
-                ->render(),
-            'totalPrice' => $this->cart->totalPrice()->format()
-        ]);
+        else{
+            // Handle authenticated user
+        }
     }
 
-    /**
-     * @param OrderRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Exceptions\DifferentCurrencies
-     */
-    public function store(OrderRequest $request)
-    {
-        try {
-            $this->cart->purchaseProducts();
-        } catch (QuantityOverstated $e) {
-            $product = Product::find($e->getMessage());
-            session()->flash('message', Lang::get('flash.quantity_overstated', ['name' => $product->title, 'qty' => $product->quantity]));
-            return redirect()->route('cart');
-        }
-        $order = Auth::check()
-            ? $request->user()->orders()->create($request->all())
-            : Order::create($request->all());
-        $charge = $this->stripe->charge($order, $request->stripeToken);
-        $order->confirmPayment($charge);
-        $this->cart->clear();
-        return Auth::check()
-            ? redirect()->route('home.orders')
-            : redirect()->route('main');
-    }
 }

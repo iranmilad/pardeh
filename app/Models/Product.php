@@ -170,4 +170,40 @@ class Product extends Model
         $totalCount = $this->countProducts();
         return ceil($totalCount / $perPage);
     }
+
+    public function article()
+    {
+        return $this->hasOne(Article::class);
+    }
+
+    public function overallRatingAverage()
+    {
+        return round($this->reviews()->avg('rating'),2);
+    }
+
+    public function qualityRatingAverage()
+    {
+        return round($this->reviews()->avg('quality'),2);
+    }
+
+    public function performanceRatingAverage()
+    {
+        return round($this->reviews()->avg('performance'),2);
+    }
+
+    public function designRatingAverage()
+    {
+        return round($this->reviews()->avg('design'),2);
+    }
+
+    public function priceRatingAverage()
+    {
+        return round($this->reviews()->avg('price'),2);
+    }
+
+    public function easeOfUseRatingAverage()
+    {
+        return round($this->reviews()->avg('ease_of_use'),2);
+    }
+
 }

@@ -16,10 +16,12 @@ class CreateAttributesTable extends Migration
         Schema::create('attributes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('description')->nullable();
             $table->boolean('countable');
 
             $table->string('unit');
             $table->string('display_type');
+            $table->string('img')->nullable();
             $table->string('guide_link');
 
 

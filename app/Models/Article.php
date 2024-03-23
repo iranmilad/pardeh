@@ -10,7 +10,7 @@ class Article extends Model
     protected $perPage = 3;
 
     protected $fillable = [
-        'title', 'alias', 'text', 'user_id', 'img'
+        'specification', 'guide', 'video', 'product_id', 'description'
     ];
 
     public function getImgAttribute(string $value): string
@@ -18,10 +18,6 @@ class Article extends Model
         return '/images/posts/' . $value;
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function comments()
     {
@@ -46,4 +42,14 @@ class Article extends Model
             ->orderByDesc('id')
             ->paginate();
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+
+
+
+
 }

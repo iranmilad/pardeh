@@ -15,12 +15,15 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->unique();
-            $table->string('alias')->unique();
-            $table->text('text');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('img');
+            $table->longText('specification')->nullable();
+            $table->longText('description')->nullable();
+
+            $table->longText('guide')->nullable();
+            $table->text('video')->nullable();
+
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

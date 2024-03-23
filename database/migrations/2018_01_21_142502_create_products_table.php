@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('fewspd')->nullable();
             $table->bigInteger('fewtak')->nullable();
             $table->string('holo_code')->nullable();
+            $table->text('description')->nullable();;
 
             $table->enum('type', ['simple', 'variation'])->defalut('simple');
 
@@ -32,7 +33,6 @@ class CreateProductsTable extends Migration
             $table->boolean('is_new')->defalut(false);
             $table->string('img')->default("/images/defaultProduct.png");
             $table->string('hover_img')->nullable();;
-            $table->text('description')->nullable();;
 
             $table->timestamps();
         });

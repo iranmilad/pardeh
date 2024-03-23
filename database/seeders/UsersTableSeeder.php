@@ -4,6 +4,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,11 +15,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        User::query()->delete();
         User::create([
-            'first_name' => 'KOKOC',
-            'last_name' => 'sdsd',
-            'email' => 'kokoc@gmail.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
+            'first_name' => 'میلاد',
+            'last_name' => 'کاظمی',
+            'email' => 'kazemi.milad@gmail.com',
+            'password' => Hash::make("11111111"),
             'remember_token' => Str::random(10),
             'role_id' => 2
         ]);

@@ -23,24 +23,11 @@
         <div class="col-lg-4 col-xl-5 tw-h-full lg:tw-sticky lg:tw-top-[5px] image-reviews">
             <div class="swiper productImage">
                 <div class="swiper-wrapper tw-max-h-[700px]">
+                    @foreach($product->images as $image)
                     <div class="swiper-slide">
-                        <img class="zoom tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
+                        <img class="zoom tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ $image->url }}" alt="">
                     </div>
-                    <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/4.jpg') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-2xl" data-fancybox="gallery" src="{{ Vite::asset('resources/images/single-product/6.jpg') }}" alt="">
-                    </div>
+                    @endforeach
                 </div>
                 <div class="swiper-button-prev" id="product-preview-images-prev"></div>
                 <div class="swiper-button-next" id="product-preview-images-next"></div>
@@ -48,44 +35,39 @@
             <div class="tw-flex mt-3">
                 <div thumbsSlider="" class="swiper tw-w-full productImages me-2">
                     <div class="swiper-wrapper">
+                        @foreach($product->images as $image)
                         <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
+                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ $image->url }}" alt="">
                         </div>
-                        <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/2.jpg') }}" alt="">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/3.jpg') }}" alt="">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/4.jpg') }}" alt="">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/5.jpg') }}" alt="">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ Vite::asset('resources/images/single-product/6.jpg') }}" alt="">
-                        </div>
+                        @endforeach
                     </div>
                     <div class="swiper-button-prev" id="product-images-prev"></div>
                     <div class="swiper-button-next" id="product-images-next"></div>
                 </div>
-                <a href="#" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-xl">
+                <a href="#video" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-xl">
                     <i class="fa-solid fa-play"></i>
                     <span>ویدئو</span>
                 </a>
             </div>
+
         </div>
         <div class="col-lg-8 col-xl-7 px-4 product-options mt-4 mt-lg-0">
             <h3 class="fw-bold">{{ $product->title }}</h3>
             <div class="row">
                 <div class="col-lg-7">
-                    <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center">
-                        <i class="fa-regular fa-circle-check tw-ml-2 tw-text-base"></i>
-                        <span>{{ $product->inventoryMessage() }}</span>
-                    </div>
+                    @if ($product->isAvailable())
+                        <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center">
+                            <i class="fa-regular fa-circle-check tw-ml-2 tw-text-base"></i>
+                            <span>{{ $product->inventoryMessage() }}</span>
+                        </div>
+                    @else
+                        <div class="tw-text-emerald-500 tw-text-sm tw-flex tw-items-center" style="color: #ab0000;">
+                            <i class="fa-solid fa-circle-xmark tw-ml-2 tw-text-base"></i>
+                            <span>{{ $product->inventoryMessage() }}</span>
+                        </div>
+                    @endif
                     <div class="tw-flex tw-items-center">
-                        <x-rating readOnly rate="4" />
+                        <x-rating readOnly rate="{{ $product->overallRatingAverage() }}" />
                         <a class="tw-text-indigo-500 tw-mr-3">دیدگاه ({{ $product->reviews()->count() }})</a>
                     </div>
                     <p class="tw-text-sm tw-leading-loose">
@@ -96,24 +78,27 @@
                 <div class="col-lg-5">
                     <div class="card tw-rounded-xl border-0 tw-bg-gray-100">
                         <div class="card-body" id="main-cart-price-details">
-                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between pb-4">
-                                <span class="tw-text-gray-500">تخفیف : </span>
-                                <span class="badge tw-bg-red-500 tw-rounded-full">{{ $product->discountPercentage }}</span>
-                            </div>
-                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
+                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4">
                                 <span class="tw-text-gray-500">زمان تحویل : </span>
                                 <span>7 روز</span>
                             </div>
+                            @if ($product->discountPercentage!=0)
+                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
+                                <span class="tw-text-gray-500">تخفیف : </span>
+                                <span class="badge tw-bg-red-500 tw-rounded-full">{{ $product->discountPercentage  }}</span>
+                            </div>
+
+                            @endif
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
                                 <span class="tw-text-gray-500">قیمت : </span>
                                 <div class="tw-flex tw-flex-col tw-items-end">
-                                    <span>{{ $product->price }}
+                                    <span>{{ $product->sale_price ?? $product->price }}
                                         <svg style="width: 16px; height: 16px; fill: var(--undefined);">
                                             <use xlink:href="#toman"></use>
                                         </svg>
                                     </span>
                                     @if ($product->sale_price)
-                                        <span class="tw-text-xs tw-text-gray-400">{{ $product->sale_price }}
+                                        <span class="tw-text-xs tw-text-gray-400">{{ $product->price }}
                                             <svg class="tw-fill-gray-400" style="width: 16px; height: 16px;">
                                                 <use xlink:href="#toman"></use>
                                             </svg>
@@ -121,7 +106,7 @@
                                     @endif
                                 </div>
                             </div>
-                            @if ($product)
+                            @if ($product->isAvailable())
                                 <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
                                     <!-- ADD TO FAVORITE BUTTON -->
                                     <button class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
@@ -130,7 +115,7 @@
                                     <!-- ADD TO CART BUTTON -->
                                     <x-add-to-cart />
                                 </div>
-                            @elseif ($product)
+                            @else
                                 <!-- LET ME KNOW -->
                                 <!-- این بخش برای نمایش هنگامی که محصول موجود نیست -->
                                 <div>
@@ -169,7 +154,7 @@
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false">توضیحات</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">دیدگاه ها (2)</button>
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab" aria-controls="comments" aria-selected="false">دیدگاه ها ({{$product->reviews()->count()}})</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#measureguide" type="button" role="tab" aria-controls="comments" aria-selected="false">راهنمای اندازه گیری و نصب</button>
@@ -185,19 +170,22 @@
 <div class="container">
     <div class="tab-content mt-3" id="product-tab">
         <div class="tab-pane fade show active tw-bg-gray-100 tw-rounded-xl tw-p-5" id="specifications" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-            <x-product.specification />
+            <x-product.specification :product='$product'/>
         </div>
         <div class="tab-pane fade tw-bg-gray-100 tw-rounded-xl tw-p-5" id="description" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-            <x-product.description />
+            <x-product.description :product="$product" />
         </div>
         <div class="tab-pane fade lg:tw-px-20" id="comments" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-            <x-product.comments />
+            <x-product.comments :product="$product" />
+            <livewire:WidgetReviewsList :slug="$product->id" type="new review" options="" />
+            <x-product-comment-modal />
+            <x-uploadFileModal />
         </div>
         <div class="tab-pane" id="measureguide" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-            <x-product.measure />
+            <x-product.measure :product="$product" />
         </div>
         <div class="tab-pane" id="video" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-            <x-product.video />
+            <x-product.video :product="$product" />
         </div>
     </div>
 </div>
@@ -217,7 +205,7 @@
                             <span class="tw-text-gray-600 tw-font-semibold">
                                 <i class="fa-solid fa-tag"></i>
                                 قیمت : </span>
-                            <span class="tw-font-semibold tw-text-gray-700 price-sticky-tag">1,200,000 تومان</span>
+                            <span class="tw-font-semibold tw-text-gray-700 price-sticky-tag">{{ $product->sale_price ?? $product->price }}</span>
                         </div>
                         <div class="tw-text-sm md:tw-text-base">
                             <span class="tw-text-gray-600 tw-font-semibold">

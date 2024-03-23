@@ -11,7 +11,7 @@ class ColorAttributeSeeder extends Seeder
 {
     public function run()
     {
-        Attribute::query()->delete();
+        Attribute::where('display_type', 'color')->delete();
         // ایجاد رنگ‌های مختلف برای ویژگی color
         $colors = [
             ['name' => 'black','details' => 'سیاه', 'img' => ''],
@@ -27,7 +27,7 @@ class ColorAttributeSeeder extends Seeder
         foreach ($products as $product) {
             // ایجاد یک ویژگی color جدید برای هر محصول
             $colorAttribute = Attribute::create([
-                'name' => 'color',
+                'name' => 'رنگ',
                 'countable' => false,
                 'unit' => '',
                 'display_type' => 'color',
