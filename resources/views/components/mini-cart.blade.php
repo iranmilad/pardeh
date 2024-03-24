@@ -5,21 +5,19 @@
     </div>
     <div class="offcanvas-body">
         <!-- empty  -->
-        <div id="mini-cart-empty" class="tw-text-center tw-hidden">
+        <div id="mini-cart-empty" class="tw-text-center " style="display: none;">
             سبد خرید خالی است
         </div>
         <!-- empty -->
 
         <div class="tw-h-[calc(105%-70px)] tw-pb-[70px] tw-relative">
-            <div class="tw-h-full" id="mini-cart-items">
+            <div class="tw-h-full" id="mini-cart-items"></div>
 
-            </div>
-
-            <div class="tw-hidden tw-w-full tw-h-[70px] tw-absolute tw-left-0 tw-bottom-0 tw-rounded-xl tw-bg-gray-100 tw-px-3">
+            <div id="mini-cart-calculated" style="display: none;" class="tw-w-full tw-h-[70px] tw-absolute tw-left-0 tw-bottom-0 tw-rounded-xl tw-bg-gray-100 tw-px-3">
                 <div class="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-between">
                     <div class="tw-flex tw-items-center tw-justify-center tw-ml-3">
                         <span class="tw-text-gray-800 tw-text-sm">مبلغ کل:</span>
-                        <span class="tw-text-gray-800 tw-text-sm" id="mini-cart-price">3,200,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);">
+                        <span class="tw-text-gray-800 tw-text-sm" id="mini-cart-price"><svg style="width: 16px; height: 16px; fill: var(--undefined);">
                                 <use xlink:href="#toman"></use>
                             </svg></span>
                     </div>

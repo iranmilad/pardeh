@@ -1,5 +1,5 @@
 import { useState, useMemo } from "preact/hooks";
-import { usePagination } from "@mantine/hooks";
+import { usePagination, useSetState } from "@mantine/hooks";
 import toastr from "toastr";
 import queryString from "query-string";
 
@@ -221,3 +221,42 @@ export const RemoveOptionCategory = ({ options,onChange }) => {
         </>
     );
 };
+
+export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
+    function update(e,id,quantity){
+        setTimeout(() => updateFunc(id,e.target.value,() => {
+            e.target.value = item.quantity
+         }),500)
+    }
+    return (
+        <>
+            {items.map(item => (
+                    <div className="mini-cart-box">
+                    <div className="tw-flex tw-items-center tw-justify-center tw-w-20 tw-h-20 tw-bg-gray-100 tw-rounded-xl tw-mr-3">
+                        <img className="tw-w-full tw-h-full tw-block tw-rounded-xl" src={item.img} alt="" />
+                    </div>
+                    <div className="tw-flex-1 tw-mr-2 tw-h-full">
+                        <div className="tw-flex tw-items-start tw-flex-row tw-justify-between tw-h-full">
+                            <div className="tw-h-full tw-flex tw-flex-col tw-items-start tw-flex-grow">
+                                <h3 className="tw-text-sm tw-font-medium tw-mb-1">{item.name}</h3>
+                                <div className="tw-flex tw-items-center">
+                                    <span className="tw-text-gray-500 tw-text-sm">قیمت:</span>
+                                    <span className="tw-text-gray-800 tw-text-sm">{item.total} <svg style="width: 16px; height: 16px; fill: var(--undefined);">
+                                            <use xlinkHref="#toman"></use>
+                                        </svg></span>
+                                </div>
+                            </div>
+                            <div className="tw-flex tw-flex-col tw-items-end tw-justify-between tw-h-full">
+                                <button className="btn remove-item" onClick={(e) => removeFunc(item.id,e.target)}><i className="fal fa-trash"></i></button>
+                                <div className="product-counter-inner has-toast" data-max="2" data-min="1">
+                                    <input value={item.quantity} className="item-counter basket-items border tw-text-left tw-rounded-md tw-text-gray-600" style="margin-left: 0;font-size: 1rem;"
+                                     type="number" onChange={(e) => update(e,item.id,item.quantity)} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}        
+        </>
+    )
+}
