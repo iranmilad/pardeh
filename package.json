@@ -4,9 +4,9 @@
     "scripts": {
         "dev": "vite",
         "production": "vite build",
-        "theme": "npx sass --no-source-map ./resources/sass/bootstrap.scss ./resources/css/vendors/bootstrap/bootstrap.rtl.css",
-        "rtl": "npx rtlcss ./resources/css/vendors/bootstrap/bootstrap.rtl.css ./resources/css/vendors/bootstrap/bootstrap.rtl.css",
-        "build": "npx npm-run-all -s theme rtl production"
+        "theme": "sass --no-source-map ./resources/sass/bootstrap.scss ./resources/css/vendors/bootstrap/bootstrap.rtl.css",
+        "rtl": "rtlcss ./resources/css/vendors/bootstrap/bootstrap.rtl.css ./resources/css/vendors/bootstrap/bootstrap.rtl.css",
+        "build": "npm-run-all -s theme rtl production"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.19",
@@ -36,12 +36,13 @@
         "jquery-zoom": "^1.7.21",
         "leaflet": "^1.9.4",
         "nouislider": "^15.7.1",
-        "sass": "^1.72.0",
         "npm-run-all": "^4.1.5",
         "plyr": "^3.7.8",
         "postcss-nesting": "^12.1.0",
         "preact": "^10.19.3",
         "query-string": "^9.0.0",
+        "rtlcss": "^4.1.1",
+        "sass": "^1.72.0",
         "sweetalert2": "^11.6.13",
         "swiper": "^11.0.5",
         "toastr": "^2.1.4"
