@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\View;
 
 class CategoryController extends Controller{
 
-    public function index()
-    {
+    public function index(){
         // دریافت تمامی پارامترها از پرس و جوی URL
         $options = request()->all();
         $maxPrice = request()->input('maxprice');
@@ -97,8 +96,6 @@ class CategoryController extends Controller{
 
         return view('category', compact('category', 'products', 'page', 'options','total'));
     }
-
-
 
     public function list(Request $request){
         // دریافت تمامی پارامترها از پرس‌وجوی URL

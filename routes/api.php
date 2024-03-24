@@ -148,47 +148,47 @@ Route::post("/product", function (Request $request) {
     return response()->json($response);
 });
 
-Route::post("/add-to-cart", function (Request $request) {
-    $response = [
-        "status" => "success",
-        "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
-        "cart" => [
-            "count" => 5,
-        ],
-    ];
+// Route::post("/add-to-cart", function (Request $request) {
+//     $response = [
+//         "status" => "success",
+//         "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
+//         "cart" => [
+//             "count" => 5,
+//         ],
+//     ];
 
-    return response()->json($response);
-});
+//     return response()->json($response);
+// });
 
-Route::get("/mini-cart", function (Request $request) {
-    $response = [
-        "cart" => [
-            "count" => 5,
-            "total" => "43,000,000",
-        ]
-    ];
+// Route::get("/mini-cart", function (Request $request) {
+//     $response = [
+//         "cart" => [
+//             "count" => 5,
+//             "total" => "43,000,000",
+//         ]
+//     ];
 
-    $items = [
-        [
-            "id" => 1,
-            "name" => "محصول 1",
-            "img" => "https://placehold.co/900?text=1",
-            "quantity" => 1,
-            "total" => "18,000,000",
-        ],
-        [
-            "id" => 2,
-            "name" => "محصول 2",
-            "img" => "https://placehold.co/900?text=2",
-            "quantity" => 1,
-            "total" => "25,000,000",
-        ],
-    ];
+//     $items = [
+//         [
+//             "id" => 1,
+//             "name" => "محصول 1",
+//             "img" => "https://placehold.co/900?text=1",
+//             "quantity" => 1,
+//             "total" => "18,000,000",
+//         ],
+//         [
+//             "id" => 2,
+//             "name" => "محصول 2",
+//             "img" => "https://placehold.co/900?text=2",
+//             "quantity" => 1,
+//             "total" => "25,000,000",
+//         ],
+//     ];
 
-    $response['items'] = $items;
+//     $response['items'] = $items;
 
-    return response()->json($response);
-});
+//     return response()->json($response);
+// });
 
 Route::post("/update-cart", function (Request $request) {
     // $request params
@@ -226,45 +226,45 @@ Route::post("/update-cart", function (Request $request) {
     return response()->json($response);
 });
 
-Route::post("/remove-cart", function (Request $request) {
-    $response = [
-        "status" => "success",
-        "message" => "محصول با موفقیت از سبد خرید حذف شد.",
-        "cart" => [
-            "count" => 2,
-            "total" => "15,000,000",
-            "profit" => "5,000,000",
-            "discounts" => "20%"
-        ],
-    ];
+// Route::post("/remove-cart", function (Request $request) {
+//     $response = [
+//         "status" => "success",
+//         "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+//         "cart" => [
+//             "count" => 2,
+//             "total" => "15,000,000",
+//             "profit" => "5,000,000",
+//             "discounts" => "20%"
+//         ],
+//     ];
 
-    $items = [
-        [
-            "id" => 1,
-            "name" => "محصول 1",
-            "img" => "https://placehold.co/900?text=1",
-            "quantity" => 1,
-            "total" => "28,000,000",
-        ],
-    ];
+//     $items = [
+//         [
+//             "id" => 1,
+//             "name" => "محصول 1",
+//             "img" => "https://placehold.co/900?text=1",
+//             "quantity" => 1,
+//             "total" => "28,000,000",
+//         ],
+//     ];
 
-    $response['items'] = $items;
+//     $response['items'] = $items;
 
-    // empty cart after removing the last item
-    // $response = [
-    //     "status" => "success",
-    //     "message" => "محصول با موفقیت از سبد خرید حذف شد.",
-    //     "cart" => array(),
-    // ];
+//     // empty cart after removing the last item
+//     // $response = [
+//     //     "status" => "success",
+//     //     "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+//     //     "cart" => array(),
+//     // ];
 
-    // error response
-    // $response = [
-    //     "status" => "error",
-    //     "message" => "محصول در سبد خرید یافت نشد.",
-    // ];
+//     // error response
+//     // $response = [
+//     //     "status" => "error",
+//     //     "message" => "محصول در سبد خرید یافت نشد.",
+//     // ];
 
-    return response()->json($response);
-});
+//     return response()->json($response);
+// });
 
 Route::post("/remove-all-cart", function (Request $request) {
     $response = [
@@ -515,3 +515,8 @@ Route::delete("/wishlist",function(Request $request){
 Route::post("/category",[CategoryController::class,'list'])->name('api.category');
 
 Route::post("/add-to-cart",[OrderController::class,'addToCart'])->name('api.addToCart');
+
+Route::get("/mini-cart", [OrderController::class,'showMiniCart'])->name('api.showMiniCart');
+
+
+Route::post("/remove-cart", [OrderController::class,'removeItemCart'])->name('api.removeItemCart');
