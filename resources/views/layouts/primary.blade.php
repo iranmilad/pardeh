@@ -15,7 +15,7 @@
   @vite('resources/css/vendors/bootstrap/bootstrap.rtl.css')
   @vite('resources/css/vendors/fontawesome/fontawesome.css')
   @vite('resources/css/style.css')
-  @vite('resources/css/app.css')
+  @vite('resources/css/app.scss')
   @yield('css')
 </head>
 
@@ -33,7 +33,7 @@
   @include('partials.footer')
 
   @livewireScripts
-  @vite('resources/js/bootstrap.bundle.min.js')
+  @vite('resources/js/bootstrap.js')
   @vite('resources/js/app.js')
   @yield('js')
 </body>

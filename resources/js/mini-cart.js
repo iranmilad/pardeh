@@ -1,11 +1,14 @@
 import $ from "jquery";
 import KTBlockUI from "./tools/blockui";
 import toastr from "toastr";
+import * as Bootstrap from "bootstrap";
 /**
  * This file is for mini-cart blade component
  */
 
 let block = new KTBlockUI(document.querySelector("#miniCart .offcanvas-body"));
+
+
 
 $("#miniCart .remove-item").on("click", function () {
     let item = $(this).closest(".mini-cart-box");
@@ -24,8 +27,7 @@ $("#miniCart .remove-item").on("click", function () {
                 if (response.cart && response.cart.count > 0) {
                     $(".navbar-cart span").text(response.cart.count);
                     $("#mini-cart-price").text(response.cart.total);
-                }
-                else{
+                } else {
                     $("#miniCart .offcanvas-body").html(
                         "<p class='text-center'>سبد خرید خالی است</p>"
                     );

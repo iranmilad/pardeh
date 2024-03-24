@@ -5,7 +5,7 @@ import KTBlockUI from "./tools/blockui";
 import queryString from "query-string";
 import { RemoveOptionCategory } from "./components";
 import noUi from "nouislider";
-import "../css/vendors/nouislider/nouislider.css";
+import "../css/vendors/nouislider/nouislider.scss";
 
 /**
  * there is priceSlider & priceSlider1 in APP.JS which are used for the price range filter

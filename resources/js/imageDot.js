@@ -1,5 +1,5 @@
 import $ from "jquery";
-import "./bootstrap.bundle.min.js"
+import * as bootstrap from "bootstrap";
 import KTBlockUI from "./tools/blockui.js";
 
 var myModal = new bootstrap.Modal(document.getElementById("priceModal"), {

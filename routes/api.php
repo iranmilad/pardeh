@@ -158,6 +158,34 @@ Route::post("/add-to-cart",function(Request $request){
     return response()->json($response);
 });
 
+Route::post("/mini-cart",function(Request $request){
+    $response = [
+        "count" => 5,
+        "total" => "43,000,000",
+    ];
+
+    $items = [
+        [
+            "id" => 1,
+            "name" => "محصول 1",
+            "img" => "https://placehold.co/900?text=1",
+            "quantity" => 1,
+            "total" => "18,000,000",
+        ],
+        [
+            "id" => 2,
+            "name" => "محصول 2",
+            "img" => "https://placehold.co/900?text=2",
+            "quantity" => 1,
+            "total" => "25,000,000",
+        ],
+    ];
+
+    $response['items'] = $items;
+
+    return response()->json($response);
+});
+
 Route::post("/remove-cart",function(Request $request){
     $response = [
         "status" => "success",
