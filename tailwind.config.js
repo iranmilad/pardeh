@@ -7,17 +7,17 @@ module.exports = {
             colors: {
                 dark: "#212341",
                 "brand": {
-                    50: "#FFDBDB",
-                    100: "#FFBDBD",
-                    200: "#FF7575",
-                    300: "#FF3333",
-                    400: "#F00000",
-                    500: "#AB0000",
-                    600: "#8A0000",
-                    700: "#660000",
-                    800: "#420000",
-                    900: "#240000",
-                    950: "#0F0000"
+                    50:"var(--bs-brand_50)",
+                    100:"var(--bs-brand_100)",
+                    200:"var(--bs-brand_200)",
+                    300:"var(--bs-brand_300)",
+                    400:"var(--bs-brand_400)",
+                    500:"var(--bs-brand_500)",
+                    600:"var(--bs-brand_600)",
+                    700:"var(--bs-brand_700)",
+                    800:"var(--bs-brand_800)",
+                    900:"var(--bs-brand_900)",
+                    950:"var(--bs-brand_950)",
                   }
             },
         },

@@ -81,14 +81,14 @@ Route::get('/messages/{id}', function ($id) {
                 'id' => 1,
                 'message' => 'پیام اول',
                 'created_at' => '1400/01/01 12:00:00',
-                'files' => ['https://placehold.co/600x400','https://placehold.co/600x400'],
+                'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
                 'you' => true
             ],
             [
                 'id' => 2,
                 'message' => 'پیام دوم',
                 'created_at' => '1400/01/01 12:00:00',
-                'files' => ['https://placehold.co/600x400','https://placehold.co/600x400'],
+                'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
                 'you' => false
             ],
         ],
@@ -98,7 +98,7 @@ Route::get('/messages/{id}', function ($id) {
 });
 
 // FOR IMAGE DOT. IT GETS DATA OF PRODUCT {ID} AND FILTER
-Route::get("/imgdot/{id}",function($id){
+Route::get("/imgdot/{id}", function ($id) {
     $product = [
         "name" => "محصول",
         "img" => "https://picsum.photos/200",
@@ -107,7 +107,7 @@ Route::get("/imgdot/{id}",function($id){
         "discount" => "20%"
     ];
 
-    $html = View::make("components/imgdot",$product)->render();
+    $html = View::make("components/imgdot", $product)->render();
 
     return response()->json(['html' => $html]);
 });
@@ -117,7 +117,7 @@ Route::get("/imgdot/{id}",function($id){
  * this route returns the product details and update price and time and discount and also the images of product.
  *
  */
-Route::post("/product",function(Request $request){
+Route::post("/product", function (Request $request) {
 
     /**
      * regular_price & sale_price & discount & time_delivery are optional.
@@ -148,8 +148,85 @@ Route::post("/product",function(Request $request){
     return response()->json($response);
 });
 
+Route::post("/add-to-cart", function (Request $request) {
+    $response = [
+        "status" => "success",
+        "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
+        "cart" => [
+            "count" => 5,
+        ],
+    ];
 
-Route::post("/remove-cart",function(Request $request){
+    return response()->json($response);
+});
+
+Route::get("/mini-cart", function (Request $request) {
+    $response = [
+        "cart" => [
+            "count" => 5,
+            "total" => "43,000,000",
+        ]
+    ];
+
+    $items = [
+        [
+            "id" => 1,
+            "name" => "محصول 1",
+            "img" => "https://placehold.co/900?text=1",
+            "quantity" => 1,
+            "total" => "18,000,000",
+        ],
+        [
+            "id" => 2,
+            "name" => "محصول 2",
+            "img" => "https://placehold.co/900?text=2",
+            "quantity" => 1,
+            "total" => "25,000,000",
+        ],
+    ];
+
+    $response['items'] = $items;
+
+    return response()->json($response);
+});
+
+Route::post("/update-cart", function (Request $request) {
+    // $request params
+    // $request = [
+    //     "id" => 1,
+    //     "count" => 20
+    // ];
+
+    $response = [
+        "cart" => [
+            "count" => 5,
+            "total" => "80,000,000",
+        ]
+    ];
+
+    $items = [
+        [
+            "id" => 1,
+            "name" => "محصول 1",
+            "img" => "https://placehold.co/900?text=1",
+            "quantity" => 1,
+            "total" => "28,000,000",
+        ],
+        [
+            "id" => 2,
+            "name" => "محصول 2",
+            "img" => "https://placehold.co/900?text=2",
+            "quantity" => 1,
+            "total" => "35,000,000",
+        ],
+    ];
+
+    $response['items'] = $items;
+
+    return response()->json($response);
+});
+
+Route::post("/remove-cart", function (Request $request) {
     $response = [
         "status" => "success",
         "message" => "محصول با موفقیت از سبد خرید حذف شد.",
@@ -160,6 +237,18 @@ Route::post("/remove-cart",function(Request $request){
             "discounts" => "20%"
         ],
     ];
+
+    $items = [
+        [
+            "id" => 1,
+            "name" => "محصول 1",
+            "img" => "https://placehold.co/900?text=1",
+            "quantity" => 1,
+            "total" => "28,000,000",
+        ],
+    ];
+
+    $response['items'] = $items;
 
     // empty cart after removing the last item
     // $response = [
@@ -177,7 +266,7 @@ Route::post("/remove-cart",function(Request $request){
     return response()->json($response);
 });
 
-Route::post("/remove-all-cart",function(Request $request){
+Route::post("/remove-all-cart", function (Request $request) {
     $response = [
         "status" => "success",
         "message" => "همه محصولات با موفقیت از سبد خرید حذف شد.",
@@ -189,7 +278,7 @@ Route::post("/remove-all-cart",function(Request $request){
 /**
  * من را خبر کن
  */
-Route::post("/letmeknow",function(Request $request){
+Route::post("/letmeknow", function (Request $request) {
     $response = [
         "status" => "success",
         "message" => "اطلاعات با موفقیت ارسال شد. پس از موجود شدن به شما اطلاع داده خواهد شد.",
@@ -201,7 +290,7 @@ Route::post("/letmeknow",function(Request $request){
 /**
  * add to wishlist
  */
-Route::post('/wishlist',function(Request $request){
+Route::post('/wishlist', function (Request $request) {
     $response = [
         "status" => "success",
         "message" => "محصول با موفقیت به لیست علاقه مندی ها اضافه شد.",
@@ -213,7 +302,7 @@ Route::post('/wishlist',function(Request $request){
 /**
  * remove from wishlist
  */
-Route::delete("/wishlist",function(Request $request){
+Route::delete("/wishlist", function (Request $request) {
     $response = [
         "status" => "success",
         "message" => "محصول با موفقیت از لیست علاقه مندی ها حذف شد.",

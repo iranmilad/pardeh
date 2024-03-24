@@ -24,10 +24,9 @@
             <div class="tw-flex tw-flex-col lg:tw-flex-row lg:tw-items-center tw-justify-between tw-mt-4">
                 <div class="product-counter"><small class="tw-ml-3 tw-text-sm">تعداد:</small>
                     <div class="product-counter-inner has-toast" data-max="2" data-min="1">
-
-                        <a class="count-minus" href="/shop/basket/r166n/update?count=0&amp;sku_id=81261" title="" target="_self" style="opacity: 0.3;"><i class="fal fa-minus font-semibold"></i></a>
+                        <button class="count-minus"  title="" target="_self" style="opacity: 0.3;"><i class="fal fa-minus font-semibold"></i></button>
                         <input class="item-counter basket-items" type="number" id="ProductCount" min="1" value="1" name="count">
-                        <a class="count-plus" href="/shop/basket/r166n/update?count=2&amp;sku_id=81261" title="" target="_self"><i class="fal fa-plus font-semibold"></i></a>
+                        <button class="count-plus"  title="" target="_self"><i class="fal fa-plus font-semibold"></i></button>
                     </div>
                 </div>
                 <div>

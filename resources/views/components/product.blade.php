@@ -1,4 +1,4 @@
-<a class="product {{ isset($mobile) ? 'product-mobile' : ''}} {{ isset($image2) ? 'product-two-image' : ''}} {{!isset($nobtn) ? 'show-btn' : ''}}" href="{{  $link ?? '' }}">
+<a class="product {{ isset($mobile) && $mobile === true ? 'product-mobile' : ''}} {{ isset($image2) ? 'product-two-image' : ''}} {{!isset($nobtn) ? 'show-btn' : ''}}" href="{{  $link ?? '' }}">
     <!-- The whole future lies in uncertainty: live immediately. - Seneca -->
     <img class="thumbnail" src="{{ $image ?: Vite::asset('resources/images/image-broken.png') }}" alt="{{ isset($name) ?? '' }}">
     <img class="thumbnail-2" src="{{ $image2 ?? '' }}" alt="{{ $name ?? ''}}">

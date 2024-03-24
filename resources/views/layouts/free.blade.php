@@ -9,9 +9,9 @@
     <meta name="keywords" content="">
     <title>@yield('title')</title>
 
-    @vite('resources/css/vendors/bootstrap/bootstrap.rtl.css')
+    @vite('resources/css/vendors/bootstrap/bootstrap.css')
     @vite('resources/css/style.css')
-    @vite('resources/css/app.css')
+    @vite('resources/css/app.scss')
 </head>
 <!--Head::end-->
 
