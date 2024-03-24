@@ -36,12 +36,12 @@
         "jquery-zoom": "^1.7.21",
         "leaflet": "^1.9.4",
         "nouislider": "^15.7.1",
-        "sass": "^1.72.0",
         "npm-run-all": "^4.1.5",
         "plyr": "^3.7.8",
         "postcss-nesting": "^12.1.0",
         "preact": "^10.19.3",
         "query-string": "^9.0.0",
+        "sass": "^1.72.0",
         "sweetalert2": "^11.6.13",
         "swiper": "^11.0.5",
         "toastr": "^2.1.4"
