@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'میلاد',
             'last_name' => 'کاظمی',
             'email' => 'kazemi.milad@gmail.com',
+            'mobile' => '09193753006',
             'password' => Hash::make("11111111"),
             'remember_token' => Str::random(10),
             'role_id' => 2

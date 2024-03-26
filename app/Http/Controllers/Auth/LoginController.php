@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
 
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function __construct()
     {

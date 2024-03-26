@@ -190,41 +190,41 @@ Route::post("/product", function (Request $request) {
 //     return response()->json($response);
 // });
 
-Route::post("/update-cart", function (Request $request) {
-    // $request params
-    // $request = [
-    //     "id" => 1,
-    //     "count" => 20
-    // ];
+// Route::post("/update-cart", function (Request $request) {
+//     // $request params
+//     // $request = [
+//     //     "id" => 1,
+//     //     "count" => 20
+//     // ];
 
-    $response = [
-        "cart" => [
-            "count" => 5,
-            "total" => "80,000,000",
-        ]
-    ];
+//     $response = [
+//         "cart" => [
+//             "count" => 5,
+//             "total" => "80,000,000",
+//         ]
+//     ];
 
-    $items = [
-        [
-            "id" => 1,
-            "name" => "محصول 1",
-            "img" => "https://placehold.co/900?text=1",
-            "quantity" => 1,
-            "total" => "28,000,000",
-        ],
-        [
-            "id" => 2,
-            "name" => "محصول 2",
-            "img" => "https://placehold.co/900?text=2",
-            "quantity" => 1,
-            "total" => "35,000,000",
-        ],
-    ];
+//     $items = [
+//         [
+//             "id" => 1,
+//             "name" => "محصول 1",
+//             "img" => "https://placehold.co/900?text=1",
+//             "quantity" => 1,
+//             "total" => "28,000,000",
+//         ],
+//         [
+//             "id" => 2,
+//             "name" => "محصول 2",
+//             "img" => "https://placehold.co/900?text=2",
+//             "quantity" => 1,
+//             "total" => "35,000,000",
+//         ],
+//     ];
 
-    $response['items'] = $items;
+//     $response['items'] = $items;
 
-    return response()->json($response);
-});
+//     return response()->json($response);
+// });
 
 // Route::post("/remove-cart", function (Request $request) {
 //     $response = [
@@ -520,3 +520,7 @@ Route::get("/mini-cart", [OrderController::class,'showMiniCart'])->name('api.sho
 
 
 Route::post("/remove-cart", [OrderController::class,'removeItemCart'])->name('api.removeItemCart');
+
+Route::post("/update-cart", [OrderController::class,'updateCart'])->name('api.updateCart');
+
+

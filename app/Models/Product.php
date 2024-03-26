@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\AttributeItem;
 use AutoKit\Components\Cart\Cart;
 use AutoKit\Components\Money\Money;
 use AutoKit\Components\Money\Currency;
@@ -206,4 +207,11 @@ class Product extends Model
         return round($this->reviews()->avg('ease_of_use'),2);
     }
 
+
+    public function findAttributeItem($attributeId, $attributeName)
+    {
+        return AttributeItem::where('attribute_id', $attributeId)
+                            ->where('name', $attributeName)
+                            ->first();
+    }
 }

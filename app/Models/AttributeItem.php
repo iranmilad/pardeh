@@ -14,4 +14,7 @@ class AttributeItem extends Model
     {
         return $this->belongsTo(Attribute::class);
     }
+
+
+
 }

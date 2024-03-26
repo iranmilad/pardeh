@@ -21,4 +21,10 @@ class Attribute extends Model
     {
         return $this->belongsToMany(Product::class, 'attribute_product', 'attribute_id', 'product_id');
     }
+
+    public function findItemByName($itemName)
+    {
+        return $this->items()->where('name', $itemName)->first();
+    }
+
 }
