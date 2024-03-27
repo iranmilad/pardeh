@@ -161,7 +161,7 @@ Route::post("/add-to-cart", function (Request $request) {
 Route::get("/mini-cart", function (Request $request) {
     $response = [
         "cart" => [
-            "count" => 5,
+            "count" => 2,
             "total" => "43,000,000",
         ]
     ];
@@ -197,7 +197,7 @@ Route::post("/update-cart", function (Request $request) {
 
     $response = [
         "cart" => [
-            "count" => 5,
+            "count" => 2,
             "total" => "80,000,000",
         ]
     ];
@@ -229,7 +229,7 @@ Route::post("/remove-cart", function (Request $request) {
         "status" => "success",
         "message" => "محصول با موفقیت از سبد خرید حذف شد.",
         "cart" => [
-            "count" => 2,
+            "count" => 0,
             "total" => "15,000,000",
             "profit" => "5,000,000",
             "discounts" => "20%"
@@ -237,13 +237,7 @@ Route::post("/remove-cart", function (Request $request) {
     ];
 
     $items = [
-        [
-            "id" => 1,
-            "name" => "محصول 1",
-            "img" => "https://placehold.co/900?text=1",
-            "quantity" => 1,
-            "total" => "28,000,000",
-        ],
+
     ];
 
     $response['items'] = $items;
