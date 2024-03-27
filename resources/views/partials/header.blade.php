@@ -27,12 +27,12 @@
                 @if (Route::current()->uri() == 'cart')
                     <button aria-controls="miniCart" class="btn navbar-cart tw-ml-3 lg:tw-mx-4">
                         <i class="fa-solid fa-basket-shopping"></i>
-                        <span>2</span>
+                        <span>{{ $cartCount }}</span>
                     </button>
                 @else
                     <button data-bs-toggle="offcanvas" data-bs-target="#miniCart" aria-controls="miniCart" class="btn navbar-cart tw-ml-3 lg:tw-mx-4">
                         <i class="fa-solid fa-basket-shopping"></i>
-                        <span>2</span>
+                        <span>{{ $cartCount }}</span>
                     </button>
                 @endif
                 @if(Auth::guest())

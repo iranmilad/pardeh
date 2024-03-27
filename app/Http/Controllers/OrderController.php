@@ -384,6 +384,17 @@ class OrderController extends Controller
 
     }
 
+    public function getCartItemCount(Request $request)
+    {
+        $cartCount = 0;
 
+        if ($request->cookie('cart')) {
+            $cartItems = json_decode($request->cookie('cart'), true);
+            $cartCount = count($cartItems);
+
+        }
+
+        return $cartCount;
+    }
 
 }

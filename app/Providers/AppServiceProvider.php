@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Menu;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Controllers\OrderController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,16 +15,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-
-        View::composer('partials.footer', function ($view) {
-            // گرفتن همه‌ی منوها
-
-            // laravel model get menu_id is null
-            $menus = Menu::whereNull('menu_id')->get()->keyBy('alias');
-
-            $view->with('menus', $menus);
-
-        });
 
     }
 
