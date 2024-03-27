@@ -394,7 +394,14 @@ class OrderController extends Controller
 
         }
 
-        return $cartCount;
+        $response = [
+            "cart" => [
+                "count" => $cartCount,
+            ] 
+        ];
+
+        return response()->json($response);
+
     }
 
 }

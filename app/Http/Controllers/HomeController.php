@@ -7,6 +7,7 @@ use App\Models\Order;
 use Events\UserEditInfo;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Controllers\OrderController;
 
 class HomeController extends Controller
 {
@@ -34,9 +35,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $orderController = new OrderController();
+        $cartCount = $orderController->getCartItemCount(request());
 
-
-        return view('index');
+        return view('index',compact('cartCount'));
     }
 
     public function orders()

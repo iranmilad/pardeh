@@ -358,3 +358,7 @@ Livewire::setUpdateRoute(function ($handle) {
 
 Route::get('/counter', Counter::class);
 
+Route::get('/get-cookie', function () {
+    $cart = session('cart');
+    return "cart: $cart";
+});

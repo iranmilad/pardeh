@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Controllers\OrderController;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -32,24 +33,14 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         });
 
-        View::composer('partials.header', function ($view) {
-            $cartCount = 0;
+        // View::composer('partials.header', function ($view) {
+        //     $cartCount = 0;
 
-            $menus = Menu::whereNull('menu_id')->get()->keyBy('alias');
+        //     $orderController = new OrderController();
+        //     $cartCount = $orderController->getCartItemCount(request());
 
-            $view->with('menus', $menus);
-
-            if (session()->has('cart')){
-
-                if (request()->cookie('cart')) {
-                    $cartItems = json_decode(request()->cookie('cart'), true);
-                    $cartCount = count($cartItems);
-                }
-
-            }
-
-            $view->with('cartCount', $cartCount);
-        });
+        //     $view->with('cartCount', $cartCount);
+        // });
 
 
     }

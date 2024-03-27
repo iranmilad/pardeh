@@ -137,3 +137,25 @@ function removeFunc(id,target) {
         },
     });
 }
+
+// get number of cart item
+document.addEventListener("DOMContentLoaded", function () {
+    $.ajax({
+        method: "GET",
+        url: "/api/cart-item-count",
+        success: (response) => {
+            
+            if (response.cart.count > 0) {
+
+                $(".navbar-cart span").text(response.cart.count); // تنظیم مقدار تعداد آیتم‌ها در نوار کارت
+
+            } else {
+
+                $(".navbar-cart span").text("0"); // در صورت عدم وجود آیتم، مقدار صفر نمایش داده شود
+            }
+        },
+        error: (err) => {
+            toastr.error("مشکلی پیش آمده. مجدد امتحان کنید");
+        },
+    });
+});

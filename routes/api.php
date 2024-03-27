@@ -517,6 +517,7 @@ Route::post("/category",[CategoryController::class,'list'])->name('api.category'
 Route::post("/add-to-cart",[OrderController::class,'addToCart'])->name('api.addToCart');
 
 Route::get("/mini-cart", [OrderController::class,'showMiniCart'])->name('api.showMiniCart');
+Route::get("/cart-item-count", [OrderController::class,'getCartItemCount'])->name('api.getCartItemCount');
 
 
 Route::post("/remove-cart", [OrderController::class,'removeItemCart'])->name('api.removeItemCart');
@@ -524,3 +525,8 @@ Route::post("/remove-cart", [OrderController::class,'removeItemCart'])->name('ap
 Route::post("/update-cart", [OrderController::class,'updateCart'])->name('api.updateCart');
 
 
+
+Route::get('/set-cookie', function () {
+    $cart = session()->put('cart', "dsdd");
+    return "cart: $cart";
+});
