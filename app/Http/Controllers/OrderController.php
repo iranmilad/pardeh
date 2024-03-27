@@ -39,10 +39,10 @@ class OrderController extends Controller
             $param = $request->input('param');
             $cartCount = 0; // Initialize cart count
 
-            // Check if the cart cookie exists
-            if ($request->cookie('cart')) {
-                // Get the current cart items from the cookie
-                $cartItems = json_decode($request->cookie('cart'), true);
+            // Check if the cart session exists
+            if ($request->session()->has('cart')) {
+                // Get the current cart items from the session
+                $cartItems = $request->session()->get('cart');
 
                 // Append the new item to the cart
                 $cartItems[] = $param;
@@ -50,24 +50,27 @@ class OrderController extends Controller
                 // Update the cart count
                 $cartCount = count($cartItems);
             } else {
-                // If the cart cookie doesn't exist, create a new array with the new item
+                // If the cart session doesn't exist, create a new array with the new item
                 $cartItems = [$param];
                 $cartCount = 1; // Update the cart count
             }
 
-            // Store the updated cart items in the cookie
+            // Store the updated cart items in the session
+            $request->session()->put('cart', $cartItems);
+
             return response()->json([
                 "status" => "success",
                 "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
                 "cart" => [
                     "count" => $cartCount,
                 ],
-            ])->cookie('cart', json_encode($cartItems));
+            ]);
         }
         else{
             // Handle authenticated user
         }
     }
+
 
     public function showMiniCart(Request $request){
         $cartCount = 0; // Initialize cart count
@@ -75,15 +78,15 @@ class OrderController extends Controller
         $items = []; // Initialize cart items array
         $attributeNames = [];
 
-        // Check if the cart cookie exists
-        if ($request->cookie('cart')) {
-            // Get the current cart items from the cookie
-            $cartItems = json_decode($request->cookie('cart'), true);
+        // Check if the cart session exists
+        if ($request->session()->has('cart')) {
+            // Get the current cart items from the session
+            $cartItems = $request->session()->get('cart');
 
             // Iterate through each cart item to calculate the total price
             foreach ($cartItems as $key => $cartItem) {
                 if(!isset($cartItem['product']))
-                continue;
+                    continue;
                 $totalAttributePrice = 0;
                 // Assuming the product ID is provided as 'product'
                 $productId = $cartItem['product'];
@@ -156,6 +159,7 @@ class OrderController extends Controller
         return response()->json($response);
     }
 
+
     public function removeItemCart(Request $request) {
         $id = $request->input('id');
         $cartCount = 0; // Initialize cart count
@@ -163,10 +167,10 @@ class OrderController extends Controller
 
         $items = []; // Initialize cart items array
 
-        // Check if the cart cookie exists
-        if ($request->cookie('cart')) {
-            // Get the current cart items from the cookie
-            $cartItems = json_decode($request->cookie('cart'), true);
+        // Check if the cart session exists
+        if ($request->session()->has('cart')) {
+            // Get the current cart items from the session
+            $cartItems = $request->session()->get('cart');
 
             // Check if the item with the specified ID exists in the cart
             if (isset($cartItems[$id])) {
@@ -186,8 +190,6 @@ class OrderController extends Controller
                     $totalAttributePrice = 0;
 
                     if ($product) {
-
-
                         $all_attribute = $product->attributes;
                         // Extract quantity from the item using regular expressions
                         $attribute = $all_attribute->where('name', 'تعداد')->first();
@@ -200,24 +202,17 @@ class OrderController extends Controller
                         foreach($cartItem as $keyItem=>$vItem){
                             if (!is_array($vItem) && is_numeric($keyItem)) {
                                 if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
-                                    //log::info(collect($productAttributeItems[$keyItem])->where('name', $vItem)->first());
                                     $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
-                                    // $total_items=$all_attribute->where('id',$keyItem)->first();
-                                    // $attr = $total_items->findItemByName($vItem);
 
                                     if($attr){
                                         $priceAttr = $attr->sale_price ?? $attr->price ;
                                         if (!is_null($priceAttr)){
-                                            $attributeNames[] = $attr->name;
                                             $totalAttributePrice += $priceAttr * $quantity;
-                                            //log::info($attr->name);
                                         }
                                     }
 
                                 }
-
                             }
-
                         }
 
                         // Check if the product has a sale price
@@ -233,9 +228,12 @@ class OrderController extends Controller
                             "total" => number_format( ($product->sale_price ?? $product->price ) * $quantity + $totalAttributePrice), // Calculate total price for each item
                         ];
                     }
-
                 }
-                if($cartCount>0)
+
+                // Update the session with the modified cart items
+                $request->session()->put('cart', $cartItems);
+
+                if($cartCount > 0) {
                     $response = [
                         "status" => "success",
                         "message" => "محصول با موفقیت از سبد خرید حذف شد.",
@@ -247,17 +245,17 @@ class OrderController extends Controller
                         ],
                         "items" => $items, // Add items to the response
                     ];
-                else{
+                } else {
                     $response = [
                         "status" => "success",
                         "message" => "محصول با موفقیت از سبد خرید حذف شد.",
-                        "cart" => array(),
+                        "cart" => [],
                     ];
                 }
 
-                return response()->json($response)->cookie('cart', json_encode($cartItems));
-            }
-            else {
+                // Return the success response along with the updated cart items
+                return response()->json($response);
+            } else {
                 // If the item with the specified ID does not exist in the cart
                 $response = [
                     "status" => "error",
@@ -271,8 +269,8 @@ class OrderController extends Controller
     }
 
 
-    public function updateCart(Request  $request){
-        // استخراج اطلاعات محصول از درخواست
+    public function updateCart(Request $request){
+        // Extract product information from the request
         $id = $request->input('id');
         $count = $request->input('count');
 
@@ -281,43 +279,34 @@ class OrderController extends Controller
         $items = []; // Initialize cart items array
         $attributeNames = [];
 
-        // استخراج اطلاعات کوکی سبد خرید از درخواست
-        $cookieData = json_decode($request->cookie('cart'), true);
+        // Extract cart data from the session
+        $sessionData = $request->session()->get('cart');
 
-        // بررسی و به‌روزرسانی تعداد محصول در سبد خرید
-        if (isset($cookieData[$id])) {
-            $cartItem = $cookieData[$id];
+        // Check if the product exists in the cart
+        if (isset($sessionData[$id])) {
+            $cartItem = $sessionData[$id];
             // Assuming the product ID is provided as 'product'
             $productId = $cartItem['product'];
             // Retrieve the product from the database
             $product = Product::find($productId);
 
             if ($product) {
-
-
                 $all_attribute = $product->attributes;
                 // Extract quantity from the item using regular expressions
                 $attribute = $all_attribute->where('name', 'تعداد')->first();
                 $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
 
-                $cookieData[$id][$attribute->id]['تعداد'] = $count;
-
+                // Update the quantity of the product in the cart
+                $sessionData[$id][$attribute->id]['تعداد'] = $count;
             }
 
-            $cartItems = $cookieData;
-
             // Iterate through each cart item to calculate the total price
-            foreach ($cartItems as $key => $cartItem) {
-                if(!isset($cartItem['product']))
-                continue;
-                $totalAttributePrice = 0;
+            foreach ($sessionData as $key => $cartItem) {
                 // Assuming the product ID is provided as 'product'
                 $productId = $cartItem['product'];
                 // Retrieve the product from the database
                 $product = Product::find($productId);
                 if ($product) {
-
-
                     $all_attribute = $product->attributes;
                     // Extract quantity from the item using regular expressions
                     $attribute = $all_attribute->where('name', 'تعداد')->first();
@@ -326,28 +315,23 @@ class OrderController extends Controller
                     // Extract attribute items for the product
                     $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
 
-                    $attr=null;
+                    $totalAttributePrice = 0;
+                    $attr = null;
+
                     foreach($cartItem as $keyItem=>$vItem){
                         if (!is_array($vItem) && is_numeric($keyItem)) {
                             if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
-                                //log::info(collect($productAttributeItems[$keyItem])->where('name', $vItem)->first());
                                 $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
-                                // $total_items=$all_attribute->where('id',$keyItem)->first();
-                                // $attr = $total_items->findItemByName($vItem);
 
                                 if($attr){
                                     $priceAttr = $attr->sale_price ?? $attr->price ;
                                     if (!is_null($priceAttr)){
                                         $attributeNames[] = $attr->name;
                                         $totalAttributePrice += $priceAttr * $quantity;
-                                        //log::info($attr->name);
                                     }
                                 }
-
                             }
-
                         }
-
                     }
 
                     // Check if the product has a sale price
@@ -363,13 +347,10 @@ class OrderController extends Controller
                         "total" => number_format( ($product->sale_price ?? $product->price ) * $quantity + $totalAttributePrice), // Calculate total price for each item
                     ];
                 }
-
             }
 
             // Update the cart count
-            $cartCount = count($cartItems);
-
-
+            $cartCount = count($sessionData);
         }
 
         $response = [
@@ -380,21 +361,25 @@ class OrderController extends Controller
             "items" => $items, // Add items to the response
         ];
 
-        return response()->json($response)->cookie('cart', json_encode($cookieData));
+        // Update the session with the modified cart data
+        $request->session()->put('cart', $sessionData);
 
+        // Return the response along with the updated cart data
+        return response()->json($response);
     }
+
 
     public function getCartItemCount(Request $request)
     {
         $cartCount = 0;
 
-        if ($request->cookie('cart')) {
-            $cartItems = json_decode($request->cookie('cart'), true);
+        if ($request->session()->has('cart')) {
+            $cartItems = $request->session()->get('cart');
             $cartCount = count($cartItems);
-
         }
 
         return $cartCount;
     }
+
 
 }
