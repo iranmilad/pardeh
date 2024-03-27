@@ -16,7 +16,7 @@
       max-width: 85%;
     }
   }
-  
+
   /* Custom breakpoints for a 32-inch monitor */
   @media (min-width: 1600px) {
     .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container  {
@@ -28,7 +28,7 @@
       max-width: 1728px; /* Adjust as needed based on the monitor's resolution and pixel density */
     }
   }
-  
+
 
 @layer components {
     .error {
@@ -2444,4 +2444,28 @@ label.category-label-checkbox{
 
 .blog-category-box{
     @apply tw-flex tw-items-center tw-justify-between tw-p-4 tw-mt-2 tw-rounded-xl tw-border tw-border-solid tw-border-brand-500 tw-text-brand-500;
+}
+
+#mini-cart-items{
+    @apply tw-pl-3
+}
+
+#mini-cart-items::-webkit-scrollbar {
+    margin-left: 5px;
+    width: 7px;
+    transition: 0.2s;
+}
+
+#mini-cart-items::-webkit-scrollbar-thumb {
+    background-color: theme('colors.zinc.300');
+    border-radius: 4px;
+    padding-left: 20px;
+}
+
+#mini-cart-items-container.active{
+    @apply tw-h-[calc(105%-46px)];
+}
+
+#mini-cart-items-container{
+    @apply tw-h-auto;
 }

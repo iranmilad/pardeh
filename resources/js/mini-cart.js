@@ -24,12 +24,21 @@ document
                 },
                 success: (response) => {
                     block.release();
-                    if (response.items) {
+                    if (response.items.length > 0) {
                         $("#mini-cart-items").html("");
+                        $("#mini-cart-items-container").addClass("active");
                         hydrate(createElement(MiniCartBox, {items: response.items,removeFunc,updateFunc}),document.getElementById("mini-cart-items"));
                         $("#mini-cart-calculated").show();
                         $(".navbar-cart span").text(response.cart.count);
                         $("#mini-cart-price").text(response.cart.total);
+                        $("#mini-cart-empty").hide();
+                    }
+                    else{
+                        $("#mini-cart-items-container").removeClass("active");
+                        $("#mini-cart-empty").show();
+                        $("#mini-cart-calculated").hide();
+                        $("#mini-cart-items").html("");
+                        $(".navbar-cart span").text("0");
                     }
                 },
                 error: (err) => {
@@ -68,13 +77,19 @@ function updateFunc(id,count){
             success: (response) => {
                 block.release();
                 if (response.cart && response.cart.count > 0) {
+                    $("#mini-cart-items").html("");
+                    $("#mini-cart-items-container").addClass("active");
                     hydrate(createElement(MiniCartBox, { items: response.items, removeFunc, updateFunc }), document.getElementById("mini-cart-items"));
                     $("#mini-cart-calculated").show();
                     $(".navbar-cart span").text(response.cart.count);
                     $("#mini-cart-price").text(response.cart.total);
+                    $("#mini-cart-empty").hide();
                 } else {
+                    $("#mini-cart-items-container").removeClass("active");
                     $("#mini-cart-empty").show();
                     $("#mini-cart-calculated").hide();
+                    $("#mini-cart-items").html("");
+                    $(".navbar-cart span").text("0");
                 }
                 resolve(response); // Resolve the promise with the response
             },
@@ -101,13 +116,19 @@ function removeFunc(id,target) {
         success: function (response) {
             block.release();
             if (response.cart && response.cart.count > 0) {
+                $("#mini-cart-items").html("");
+                $("#mini-cart-items-container").addClass("active");
                 hydrate(createElement(MiniCartBox, { items: response.items, removeFunc, updateFunc }), document.getElementById("mini-cart-items"));
                 $("#mini-cart-calculated").show();
                 $(".navbar-cart span").text(response.cart.count);
                 $("#mini-cart-price").text(response.cart.total);
+                $("#mini-cart-empty").hide();
             } else {
+                $("#mini-cart-items-container").removeClass("active");
                 $("#mini-cart-empty").show();
                 $("#mini-cart-calculated").hide();
+                $("#mini-cart-items").html("");
+                $(".navbar-cart span").text("0");
             }
         },
         error: function (xhr, status, error) {
