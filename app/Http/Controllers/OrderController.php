@@ -134,6 +134,7 @@ class OrderController extends Controller
                         "id" => $key,
                         "name" => $product->title,
                         "img" => $product->img,
+                        "link" => $product->link,
                         "quantity" => $quantity,
                         "total" => number_format( ($product->sale_price ?? $product->price ) * $quantity + $totalAttributePrice), // Calculate total price for each item
                     ];
@@ -226,6 +227,7 @@ class OrderController extends Controller
                             "id" => $key,
                             "name" => $product->title,
                             "img" => $product->img,
+                            "link" => $product->link,
                             "quantity" => $quantity,
                             "total" => number_format( ($product->sale_price ?? $product->price ) * $quantity + $totalAttributePrice), // Calculate total price for each item
                         ];
@@ -356,6 +358,7 @@ class OrderController extends Controller
                         "id" => $key,
                         "name" => $product->title,
                         "img" => $product->img,
+                        "link" => $product->link,
                         "quantity" => $quantity,
                         "total" => number_format( ($product->sale_price ?? $product->price ) * $quantity + $totalAttributePrice), // Calculate total price for each item
                     ];
