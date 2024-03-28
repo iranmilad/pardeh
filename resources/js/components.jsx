@@ -233,7 +233,7 @@ export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
             {items.map(item => (
                     <div className="mini-cart-box">
                     <div className="tw-flex tw-items-center tw-justify-center tw-w-20 tw-h-20 tw-bg-gray-100 tw-rounded-xl tw-mr-3">
-                        <img className="tw-w-full tw-h-full tw-block tw-rounded-xl" src={item.img} alt="" />
+                        <img className="tw-w-full tw-h-full tw-block tw-rounded-xl tw-object-cover" src={item.img} alt="" />
                     </div>
                     <div className="tw-flex-1 tw-mr-2 tw-h-full">
                         <div className="tw-flex tw-items-start tw-flex-row tw-justify-between tw-h-full">

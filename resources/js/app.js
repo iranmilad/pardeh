@@ -606,3 +606,12 @@ $("#remove-all-carts").on("click", function (e) {
         },
     });
 });
+
+// Shipping checkbox to collapse #anotherAddress
+$("#sendtoanotheraddress").on("change", function () {
+    if ($(this).is(":checked")) {
+        $("#anotherAddress").slideDown();
+    } else {
+        $("#anotherAddress").slideUp();
+    }
+});

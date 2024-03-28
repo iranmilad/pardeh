@@ -79,73 +79,75 @@
         </div>
         <div class="col-12">
             <div class="form-check mb-3">
-                <input name="sendtoanotheraddress" class="form-check-input" type="checkbox" value="" id="sendtoanotheraddress" data-bs-toggle="collapse" data-bs-target="#anotherAddress">
+                <input name="sendtoanotheraddress" class="form-check-input" type="checkbox" value="" id="sendtoanotheraddress">
                 <label class="form-check-label ms-2 fs-7" for="sendtoanotheraddress">
                     سفارش به آدرس دیگری حمل شود
                 </label>
             </div>
         </div>
-        <div class="row collapse tw-rounded-xl mb-3 tw-mx-auto tw-bg-gray-50 tw-border tw-border-solid tw-border-gray-100" id="anotherAddress">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="shipping_name" class="form-label fs-7">نام</label>
-                    <input name="shipping_name" type="text" class="form-control fs-7" id="shipping_name">
+        <div id="anotherAddress" style="display: none;">
+            <div class="row tw-rounded-xl mb-3 tw-mx-auto tw-bg-gray-50 tw-border tw-border-solid tw-border-gray-100">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="shipping_name" class="form-label fs-7">نام</label>
+                        <input name="shipping_name" type="text" class="form-control fs-7" id="shipping_name">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="shipping_family" class="form-label fs-7">نام خانوادگی</label>
-                    <input name="shipping_family" type="text" class="form-control fs-7" id="shipping_family">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="shipping_family" class="form-label fs-7">نام خانوادگی</label>
+                        <input name="shipping_family" type="text" class="form-control fs-7" id="shipping_family">
+                    </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3">
-                    <label for="shipping_mobile" class="form-label fs-7">شماره موبایل</label>
-                    <input name="shipping_mobile" type="text" class="form-control fs-7" id="shipping_mobile">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="shipping_mobile" class="form-label fs-7">شماره موبایل</label>
+                        <input name="shipping_mobile" type="text" class="form-control fs-7" id="shipping_mobile">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="shipping_nationalcode" class="form-label fs-7">کد ملی</label>
-                    <input name="shipping_nationalcode" type="text" class="form-control fs-7" id="shipping_nationalcode">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="shipping_nationalcode" class="form-label fs-7">کد ملی</label>
+                        <input name="shipping_nationalcode" type="text" class="form-control fs-7" id="shipping_nationalcode">
+                    </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="shipping_country" class="form-label fs-7">کشور</label>
-                    <select name="shipping_country" class="form-select fs-7 shipping_country" id="shipping_country">
-                        <option value="iran" selected disabled>ایران</option>
-                    </select>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="shipping_country" class="form-label fs-7">کشور</label>
+                        <select name="shipping_country" class="form-select fs-7 shipping_country" id="shipping_country">
+                            <option value="iran" selected disabled>ایران</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="shipping_province" class="form-label fs-7">استان</label>
-                    <select name="shipping_province" class="form-select fs-7 province" id="shipping_province" data-province-target="#shipping_city">
-                        <option disabled selected>--انتخاب کنید --</option>
-                        <option value="1">1</option>
-                    </select>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="shipping_province" class="form-label fs-7">استان</label>
+                        <select name="shipping_province" class="form-select fs-7 province" id="shipping_province" data-province-target="#shipping_city">
+                            <option disabled selected>--انتخاب کنید --</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="shipping_city" class="form-label fs-7">شهر</label>
-                    <select name="shipping_city" class="form-select fs-7 " id="shipping_city">
-                        <option disabled selected>لطفا ابتدا استان را انتخاب کنید</option>
-                        <option value="2">1</option>
-                    </select>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="shipping_city" class="form-label fs-7">شهر</label>
+                        <select name="shipping_city" class="form-select fs-7 " id="shipping_city">
+                            <option disabled selected>لطفا ابتدا استان را انتخاب کنید</option>
+                            <option value="2">1</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3">
-                    <label for="shipping_address" class="form-label fs-7">آدرس</label>
-                    <input name="shipping_address" type="text" class="form-control fs-7" id="shipping_address" placeholder="آدرس کامل">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="shipping_address" class="form-label fs-7">آدرس</label>
+                        <input name="shipping_address" type="text" class="form-control fs-7" id="shipping_address" placeholder="آدرس کامل">
+                    </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3">
-                    <label for="shipping_postal_code" class="form-label fs-7">کد پستی 10 رقمی (انگلیسی وارد کنید)</label>
-                    <input name="shipping_postal_code" type="text" class="form-control fs-7" id="shipping_postal_code">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="shipping_postal_code" class="form-label fs-7">کد پستی 10 رقمی (انگلیسی وارد کنید)</label>
+                        <input name="shipping_postal_code" type="text" class="form-control fs-7" id="shipping_postal_code">
+                    </div>
                 </div>
             </div>
         </div>
