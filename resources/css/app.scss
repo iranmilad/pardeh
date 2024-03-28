@@ -2223,6 +2223,7 @@ label.required {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
 }
 
 .product-counter-inner input[type="number"] {
@@ -2263,6 +2264,7 @@ label.required {
     justify-content: center;
     background: theme("colors.emerald.100");
     border-radius: 50%;
+    border: none;
 }
 
 .product-counter-inner .count-plus i {

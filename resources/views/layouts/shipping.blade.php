@@ -95,7 +95,7 @@ $notActive = "gray-700 pay basket";
 
                 <!--                            Checkout Btn:start-->
                 <div class="d-grid gap-2 p-3">
-                    <a href="" class="btn custom-btn-primary border-radius-xl">ادامه فرایند خرید</a>
+                    <button type="submit" id="shipping-pay" class="btn custom-btn-primary border-radius-xl">ادامه فرایند خرید</button>
                 </div>
                 <!--                            Checkout Btn:end-->
             </div>

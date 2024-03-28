@@ -112,6 +112,13 @@ function onChange(page) {
                 block.release();
                 resolve(response);
                 $(".category-post").html(response.html);
+                // scroll to #products_boxes
+                $("html, body").animate(
+                    {
+                        scrollTop: $("#products_boxes").offset().top - 20,
+                    },
+                    "fast"
+                );
             },
             error: (err) => {
                 // Code on error

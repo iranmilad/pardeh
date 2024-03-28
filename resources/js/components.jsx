@@ -233,11 +233,13 @@ export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
             {items.map(item => (
                     <div className="mini-cart-box">
                     <div className="tw-flex tw-items-center tw-justify-center tw-w-20 tw-h-20 tw-bg-gray-100 tw-rounded-xl tw-mr-3">
-                        <img className="tw-w-full tw-h-full tw-block tw-rounded-xl" src={item.img} alt="" />
+                        <a href={item?.link}>
+                            <img className="tw-w-full tw-h-full tw-block tw-rounded-xl tw-object-cover" src={item.img} alt="" />
+                        </a>
                     </div>
                     <div className="tw-flex-1 tw-mr-2 tw-h-full">
                         <div className="tw-flex tw-items-start tw-flex-row tw-justify-between tw-h-full">
-                            <div className="tw-h-full tw-flex tw-flex-col tw-items-start tw-flex-grow">
+                            <a href={item?.link} className="tw-h-full tw-flex tw-flex-col tw-items-start tw-flex-grow">
                                 <h3 className="tw-text-sm tw-font-medium tw-mb-1">{item.name}</h3>
                                 <div className="tw-flex tw-items-center">
                                     <span className="tw-text-gray-500 tw-text-sm">قیمت:</span>
@@ -245,7 +247,7 @@ export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
                                             <use xlinkHref="#toman"></use>
                                         </svg></span>
                                 </div>
-                            </div>
+                            </a>
                             <div className="tw-flex tw-flex-col tw-items-end tw-justify-between tw-h-full">
                                 <button className="btn remove-item" onClick={(e) => removeFunc(item.id,e.target)}><i className="fal fa-trash"></i></button>
                                 <div className="product-counter-inner has-toast" data-max="2" data-min="1">
