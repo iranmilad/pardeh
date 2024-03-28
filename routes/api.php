@@ -514,19 +514,19 @@ Route::delete("/wishlist",function(Request $request){
 
 Route::post("/category",[CategoryController::class,'list'])->name('api.category');
 
-Route::post("/add-to-cart",[OrderController::class,'addToCart'])->name('api.addToCart');
+Route::group(['middleware' => ['web']], function () {
 
-Route::get("/mini-cart", [OrderController::class,'showMiniCart'])->name('api.showMiniCart');
-Route::get("/cart-item-count", [OrderController::class,'getCartItemCount'])->name('api.getCartItemCount');
+    Route::post("/add-to-cart",[OrderController::class,'addToCart'])->name('api.addToCart');
 
-
-Route::post("/remove-cart", [OrderController::class,'removeItemCart'])->name('api.removeItemCart');
-
-Route::post("/update-cart", [OrderController::class,'updateCart'])->name('api.updateCart');
+    Route::get("/mini-cart", [OrderController::class,'showMiniCart'])->name('api.showMiniCart');
+    Route::get("/cart-item-count", [OrderController::class,'getCartItemCount'])->name('api.getCartItemCount');
 
 
+    Route::post("/remove-cart", [OrderController::class,'removeItemCart'])->name('api.removeItemCart');
 
-Route::get('/set-cookie', function () {
-    $cart = session()->put('cart', "dsdd");
-    return "cart: $cart";
+    Route::post("/update-cart", [OrderController::class,'updateCart'])->name('api.updateCart');
+
+    Route::get('/set-cookie', function () {
+        return response('Cookie set successfully')->cookie('language', 'ssa', 120);
+    });
 });

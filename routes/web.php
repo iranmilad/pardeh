@@ -4,6 +4,7 @@ use Livewire\Livewire;
 use App\Models\Product;
 use App\Livewire\Counter;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Livewire\ProductComponent;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
@@ -219,13 +221,8 @@ Route::get('/terms', function () {
     return view('terms');
 });
 
+Route::get('/cart', [OrderController::class,'showCart'])->name('cart');
 
-
-
-Route::get('/cart', function () {
-    $uuid = Str::uuid();
-    return view('cart',['uuid' => $uuid]);
-})->name('cart');
 
 Route::get('/shipping', function () {
     $uuid = Str::uuid();
@@ -358,7 +355,8 @@ Livewire::setUpdateRoute(function ($handle) {
 
 Route::get('/counter', Counter::class);
 
+
+
 Route::get('/get-cookie', function () {
-    $cart = session('cart');
-    return "cart: $cart";
+    return request()->cookie('language');
 });

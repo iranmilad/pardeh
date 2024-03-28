@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Components\Cart\Cart;
 use App\Exceptions\DeliveryApi;
@@ -96,7 +97,7 @@ class OrderController extends Controller
                     // Extract quantity from the item using regular expressions
                     $attribute = $all_attribute->where('name', 'تعداد')->first();
                     $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
-
+                    $cartCount += $quantity;
                     // Extract attribute items for the product
                     $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
 
@@ -140,8 +141,6 @@ class OrderController extends Controller
 
             }
 
-            // Update the cart count
-            $cartCount = count($cartItems);
         }
 
         $response = [
@@ -173,8 +172,6 @@ class OrderController extends Controller
                 // Remove the item with the specified ID from the cart
                 unset($cartItems[$id]);
 
-                // Update the cart count
-                $cartCount = count($cartItems);
 
                 // Iterate through each cart item to calculate the total price
                 foreach ($cartItems as $key => $cartItem) {
@@ -192,7 +189,7 @@ class OrderController extends Controller
                         // Extract quantity from the item using regular expressions
                         $attribute = $all_attribute->where('name', 'تعداد')->first();
                         $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
-
+                        $cartCount += $quantity;
                         // Extract attribute items for the product
                         $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
 
@@ -322,7 +319,7 @@ class OrderController extends Controller
                     // Extract quantity from the item using regular expressions
                     $attribute = $all_attribute->where('name', 'تعداد')->first();
                     $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
-
+                    $cartCount += $quantity;
                     // Extract attribute items for the product
                     $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
 
@@ -366,10 +363,6 @@ class OrderController extends Controller
 
             }
 
-            // Update the cart count
-            $cartCount = count($cartItems);
-
-
         }
 
         $response = [
@@ -390,18 +383,37 @@ class OrderController extends Controller
 
         if ($request->cookie('cart')) {
             $cartItems = json_decode($request->cookie('cart'), true);
-            $cartCount = count($cartItems);
+            // Iterate through each cart item to calculate the total price
+            foreach ($cartItems as $key => $cartItem) {
+                if(!isset($cartItem['product']))
+                continue;
+                // Assuming the product ID is provided as 'product'
+                $productId = $cartItem['product'];
+                // Retrieve the product from the database
+                $product = Product::find($productId);
+                if ($product) {
+
+
+                    $all_attribute = $product->attributes;
+                    // Extract quantity from the item using regular expressions
+                    $attribute = $all_attribute->where('name', 'تعداد')->first();
+                    $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
+                    $cartCount += $quantity;
+
+                }
+
+            }
 
         }
 
-        $response = [
-            "cart" => [
-                "count" => $cartCount,
-            ] 
-        ];
-
-        return response()->json($response);
+        return $cartCount;
 
     }
+
+    public function showCart(){
+        $uuid = Str::uuid();
+        return view('cart',['uuid' => $uuid]);
+    }
+
 
 }

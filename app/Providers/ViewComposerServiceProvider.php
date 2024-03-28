@@ -33,14 +33,14 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         });
 
-        // View::composer('partials.header', function ($view) {
-        //     $cartCount = 0;
+        View::composer('partials.header', function ($view) {
+            $cartCount = 0;
 
-        //     $orderController = new OrderController();
-        //     $cartCount = $orderController->getCartItemCount(request());
+            $orderController = new OrderController();
+            $cartCount = $orderController->getCartItemCount(request());
 
-        //     $view->with('cartCount', $cartCount);
-        // });
+            $view->with('cartCount', $cartCount);
+        });
 
 
     }
