@@ -222,12 +222,9 @@ Route::get('/terms', function () {
 });
 
 Route::get('/cart', [OrderController::class,'showCart'])->name('cart');
+Route::get('/shipping', [OrderController::class,'shipping'])->name('shipping');
 
 
-Route::get('/shipping', function () {
-    $uuid = Str::uuid();
-    return view('shipping',['uuid' => $uuid]);
-});
 
 Route::get('/about-us', function () {
     return view('about-us');

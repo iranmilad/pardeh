@@ -37,10 +37,10 @@
                     </div>
 
                     <div class="input-group has-validation mt-4">
-                        <input type="email" name="email" class="form-control border-radius-xl tw-text-right {{ $errors->has('email') ? 'is-invalid' : '' }}" placeholder="ایمیل (اختیاری)" autocomplete="off" id="email" aria-describedby="inputGroupPrepend" required>
+                        <input type="mobile" name="mobile" class="form-control border-radius-xl tw-text-right {{ $errors->has('email') ? 'is-invalid' : '' }}" placeholder="شماره همراه" autocomplete="off" id="mobile" aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
-                            @if($errors->has("email"))
-                            {{$errors->first("email")}}
+                            @if($errors->has("mobile"))
+                            {{$errors->first("mobile")}}
                             @endif
                         </div>
                     </div>

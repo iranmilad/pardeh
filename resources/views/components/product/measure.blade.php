@@ -1,1 +1,1 @@
-{!! $product->article->guide !!}
+{!! $product->article->guide ?? '' !!}

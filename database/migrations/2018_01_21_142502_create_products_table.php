@@ -31,6 +31,7 @@ class CreateProductsTable extends Migration
 
             $table->boolean('is_top')->defalut(false);
             $table->boolean('is_new')->defalut(false);
+            $table->boolean('service')->defalut(false);
             $table->string('img')->default("/images/defaultProduct.png");
             $table->string('hover_img')->nullable();;
 

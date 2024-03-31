@@ -74,4 +74,11 @@ class Category extends Model
         $totalCount = $this->countProducts();
         return ceil($totalCount / $perPage);
     }
+
+
+    public function getLinkAttribute()
+    {
+        return ("/category/".$this->alias);
+
+    }
 }

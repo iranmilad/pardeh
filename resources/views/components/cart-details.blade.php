@@ -1,6 +1,6 @@
 <div>
     <div class="tw-flex tw-items-start">
-        <img class="tw-w-32 tw-h-32 tw-rounded-xl tw-block" src="{{ Vite::asset($img) }}" alt="">
+        <img class="tw-w-32 tw-h-32 tw-rounded-xl tw-block" src="{{ $img }}" alt="">
         <div class="tw-mr-3">
             <h6 class="tw-text-gray-600 tw-font-semibold">{{ $title }}</h6>
             <div class="row tw-mt-6">
@@ -22,10 +22,16 @@
 
     <div class="tw-mt-4"><span class="tw-text-sm">گزینه ها:</span></div>
     <div class="row tw-mt-2">
-        @foreach($options as $key => $value)
+        @foreach($options as $option)
         <div class="col-6 tw-text-sm">
-            <span class="tw-text-gray-500">{{$key}} : </span>
-            <span class="tw-text-gray-900">{{$value}}</span>
+            @foreach ($option as $key=>$value)
+                <span class="tw-text-gray-500">{{$key}} : </span>
+                @if (is_array($value))
+                    <span class="tw-text-gray-900">{{implode(' ',$value)}}</span>
+                @else
+                    <span class="tw-text-gray-900">{{$value}}</span>
+                @endif
+            @endforeach
         </div>
         @endforeach
     </div>

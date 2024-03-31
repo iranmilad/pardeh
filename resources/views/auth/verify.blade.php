@@ -11,7 +11,7 @@
         <a href="/"><img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="" title="" width="150" height="150" class="mx-auto d-block"></a>
             <a href="login.html"><i class="fa fa-arrow-right position-absolute"></i></a>
             <div class="form-info text-right my-3">
-                <h1 class="fw-bold fs-5">کد بازیابی پیامک شده را وارد کنید</h1>
+                <h1 class="fw-bold fs-5">کد پیامک شده را وارد کنید</h1>
             </div>
             <form class="mt-5" id="verifyForm" method="post" action="{{ route('verify.remember.submit') }}">
                 @csrf

@@ -28,12 +28,14 @@ class Product extends Model
         'is_new',
         'img',
         'hover_img',
+        'service',
         'description',
     ];
 
     protected $casts = [
         'is_top' => 'boolean',
         'is_new' => 'boolean',
+        'service' => 'boolean',
     ];
 
     public function categories()
@@ -214,4 +216,10 @@ class Product extends Model
                             ->where('name', $attributeName)
                             ->first();
     }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
 }

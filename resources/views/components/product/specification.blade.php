@@ -1,3 +1,3 @@
 <div class="container">
-    {!! $product->article->specification !!}
+    {!! $product->article->specification ?? '' !!}
 </div>

@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\View;
 
 class CategoryController extends Controller{
 
-    public function index(){
+    public function index($slug=null){
         // دریافت تمامی پارامترها از پرس و جوی URL
         $options = request()->all();
         $maxPrice = request()->input('maxprice');
         $minPrice = request()->input('minprice');
         $page = request()->input('page');
         $sort = request()->input('sort');
-        $slug = request()->input('slug');
+        //$slug = request()->input('slug');
         $function = request()->input('function');
         $ability =  request()->input('ability');  // data value is ability= a,b,c
         $inventory =  request()->input('inventory',0);

@@ -149,8 +149,18 @@
             <div class="row gy-2 gx-3 category-post">
 
             @foreach ($products as $product)
+                @php
+                    if(request()->has('installer'))
+                        $link = $product->link ."?installer=".request()->input('installer');
+                    elseif(request()->has('design'))
+                        $link = $product->link ."?design=".request()->input('design');
+                    elseif(request()->has('sewing'))
+                        $link = $product->link ."?sewing=".request()->input('sewing');
+                    else
+                        $link = $product->link;
+                @endphp
                 <div class="col-sm-12 col-md-6 col-lg-4 position-relative tw-h-auto">
-                    <x-product mobile name="{{ $product->title }}"  nobtn available="{{ ($product->quantity >0) ? true : false }}" stock="{{ $product->quantity }}" discountedPrice="{{ $product->sale_price }}" discount="{{  $product->discountPercentage  }}" price="{{ $product->price }}" image="{{ $product->img }}" link="{{ $product->link }}" />
+                    <x-product mobile name="{{ $product->title }}"  nobtn available="{{ ($product->quantity >0) ? true : false }}" stock="{{ $product->quantity }}" discountedPrice="{{ $product->sale_price }}" discount="{{  $product->discountPercentage  }}" price="{{ $product->price }}" image="{{ $product->img }}" link="{{ $link }}" />
                 </div>
             @endforeach
             </div>

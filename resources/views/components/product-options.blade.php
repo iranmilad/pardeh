@@ -226,6 +226,20 @@
     <!-- START: OPTION -->
     <div class="accordion accordion-product" id="accordionExample">
         <input type="hidden" data-real="true" name="param[product]" value="{{ $product->id }}">
+
+        @if(request()->has('installer'))
+            <input type="hidden" data-real="true" name="param[installer]" value="{{ request()->input('installer') }}">
+        @endif
+
+        @if(request()->has('design'))
+            <input type="hidden" data-real="true" name="param[design]" value="{{ request()->input('design') }}">
+        @endif
+
+        @if(request()->has('sewing'))
+            <input type="hidden" data-real="true" name="param[sewing]" value="{{ request()->input('sewing') }}">
+        @endif
+
+
         @foreach ($product->attributes()->get() as $attributes)
 
 

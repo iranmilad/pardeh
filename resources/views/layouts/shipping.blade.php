@@ -48,25 +48,25 @@ $notActive = "gray-700 pay basket";
         <!--                    Products Prices:start-->
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 tw-mt-3 lg:tw-mt-0">
             @if(Route::current()->uri() == 'cart')
-            <div class="cart-cal border tw-rounded-2xl overflow-hidden">
-                <form class="tw-flex tw-items-center tw-justify-between px-3 pt-3 mb-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="کد تخفیف">
-                        <button class="btn btn-dark" type="button" id="button-addon2">اعمال</button>
-                    </div>
+                <div class="cart-cal border tw-rounded-2xl overflow-hidden">
+                    <form class="tw-flex tw-items-center tw-justify-between px-3 pt-3 mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="کد تخفیف">
+                            <button class="btn btn-dark" type="button" id="button-addon2">اعمال</button>
+                        </div>
 
-                </form>
-            </div>
+                    </form>
+                </div>
             @endif
             <div class="cart-cal border tw-rounded-2xl overflow-hidden mt-3">
                 <!--                            All Prices:start-->
                 <div class="all-price d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
                     <p class="fs-7 fw-bold">
                         قیمت کالاها
-                        <span>(2)</span>
+                        <span>({{ $orders->cart->count  }})</span>
                     </p>
                     <p class="fs-7 gray-600 fw-bold">
-                        19,200,000 تومان
+                    {{ $orders->cart->total  }} تومان
                     </p>
                 </div>
                 <!--                            All Prices:end-->
@@ -74,10 +74,10 @@ $notActive = "gray-700 pay basket";
                 <!--                            All Prices Discounted:start-->
                 <div class="all-price-discounted d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
                     <p class="fs-7 fw-bold">
-                        جمع سبد خرید
+                        تخفیف
                     </p>
                     <p class="fs-7 gray-600 fw-bold">
-                        19,000,000 تومان
+                        0 تومان
                     </p>
                 </div>
                 <!--                            All Prices Discounted:end-->
@@ -85,10 +85,10 @@ $notActive = "gray-700 pay basket";
                 <!--                           Purchase:start-->
                 <div class="purchase-profit d-flex justify-content-between align-items-center mb-3 px-3 pt-1">
                     <p class="fs-7 fw-bold text-primary">
-                        سود شما از خرید
+                        مبلغ قابل پرداخت
                     </p>
                     <p class="fs-6 fw-bold text-primary">
-                        100,000 تومان
+                        {{ $orders->cart->total  }} تومان
                     </p>
                 </div>
                 <!--                            Purchase:end-->

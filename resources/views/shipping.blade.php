@@ -4,6 +4,28 @@
 
 @section('shipping-content')
 <div class="border tw-rounded-2xl tw-px-5">
+
+    <!--                        Cart Header:start-->
+    <div class="cart-header d-flex align-items-center my-4">
+        <p class="fw-bold">
+            اگر نام کاربری دارید ابتدا وارد شوید
+        </p>
+    </div>
+
+    <div class="row form">
+        <div class="col-md-3">
+            <div class="mb-3">
+                <a href="http://127.0.0.1:8000/login" class="login-register-btn tw-h-[46px]">
+                    <i class="fa-solid fa-user-large"></i>
+                    <span class="tw-hidden md:tw-block"> ورود به حساب کاربری</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--                        Cart Header:end-->
+
+
+
     <!--                        Cart Header:start-->
     <div class="cart-header d-flex justify-content-between align-items-center my-4">
         <p class="fw-bold">
