@@ -17,6 +17,7 @@ trait VerificationCode
 
         if (!$vCode) {
             $code = random_int(10000, 99999);
+            $code = 55555;          // set for develop time
             $guId = uniqid();
             $vCode=VerificationCodeModel::query()->create([
                 "gu_id" => $guId,
@@ -26,7 +27,7 @@ trait VerificationCode
                 "expire_at" => now()->addMinutes(5)
             ]);
             //if (env('APP_DEBUG') != "true")
-                $a=SendSmsJob::dispatch($mobile, "کد تایید : $code");
+                //$a=SendSmsJob::dispatch($mobile, "کد تایید : $code");
                 //Log::info(json_encode($mobile));
         }
         return $vCode;
@@ -40,6 +41,7 @@ trait VerificationCode
 
         if (!$vCode) {
             $code = random_int(10000, 99999);
+            $code = 55555;          // set for develop time
             $guId = uniqid();
             $vCode=VerificationCodeModel::query()->create([
                 "gu_id" => $guId,
@@ -49,7 +51,7 @@ trait VerificationCode
                 "expire_at" => now()->addMinutes(5)
             ]);
             //if (env('APP_DEBUG') != "true")
-                $a=SendSmsJob::dispatch($mobile, " رمز بازیابی : $code");
+                //$a=SendSmsJob::dispatch($mobile, " رمز تایید : $code");
                 //Log::info(json_encode($mobile));
         }
         return $vCode;

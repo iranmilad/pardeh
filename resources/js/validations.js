@@ -288,9 +288,26 @@ let shippingForm = $("#shippingForm").validate({
     ...validationPlaces,
 });
 
+
+// shipping form
+let deliveryForm = $("#deliveryForm").validate({
+    rules: {
+        time: "required",
+    },
+    messages: {
+        time: "لطفا تاریخ و ساعت تحویل را مشخص کنید",
+    },
+    ...validationPlaces,
+});
+
 $("#shipping-pay").on("click", function(e){
     shippingForm.form();
     $("#shippingForm").submit();
+});
+
+$("#delivery-pay").on("click", function(e){
+    deliveryForm.form();
+    $("#deliveryForm").submit();
 });
 
 // dashboard user info

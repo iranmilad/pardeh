@@ -42,68 +42,16 @@ $notActive = "gray-700 pay basket";
         <!--    Payment Header:end-->
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-9">
-            @yield('shipping-content')
-        </div>
-        <!--                    Products Prices:start-->
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 tw-mt-3 lg:tw-mt-0">
-            @if(Route::current()->uri() == 'cart')
-                <div class="cart-cal border tw-rounded-2xl overflow-hidden">
-                    <form class="tw-flex tw-items-center tw-justify-between px-3 pt-3 mb-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="کد تخفیف">
-                            <button class="btn btn-dark" type="button" id="button-addon2">اعمال</button>
-                        </div>
 
-                    </form>
-                </div>
-            @endif
-            <div class="cart-cal border tw-rounded-2xl overflow-hidden mt-3">
-                <!--                            All Prices:start-->
-                <div class="all-price d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
-                    <p class="fs-7 fw-bold">
-                        قیمت کالاها
-                        <span>({{ $orders->cart->count  }})</span>
-                    </p>
-                    <p class="fs-7 gray-600 fw-bold">
-                    {{ $orders->cart->total  }} تومان
-                    </p>
-                </div>
-                <!--                            All Prices:end-->
-
-                <!--                            All Prices Discounted:start-->
-                <div class="all-price-discounted d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
-                    <p class="fs-7 fw-bold">
-                        تخفیف
-                    </p>
-                    <p class="fs-7 gray-600 fw-bold">
-                        0 تومان
-                    </p>
-                </div>
-                <!--                            All Prices Discounted:end-->
-
-                <!--                           Purchase:start-->
-                <div class="purchase-profit d-flex justify-content-between align-items-center mb-3 px-3 pt-1">
-                    <p class="fs-7 fw-bold text-primary">
-                        مبلغ قابل پرداخت
-                    </p>
-                    <p class="fs-6 fw-bold text-primary">
-                        {{ $orders->cart->total  }} تومان
-                    </p>
-                </div>
-                <!--                            Purchase:end-->
-
-                <!--                            Checkout Btn:start-->
-                <div class="d-grid gap-2 p-3">
-                    <button type="submit" id="shipping-pay" class="btn custom-btn-primary border-radius-xl">ادامه فرایند خرید</button>
-                </div>
-                <!--                            Checkout Btn:end-->
+            <div class="col-sm-12 col-md-12 col-lg-8 col-xl-9">
+                @yield('shipping-content')
             </div>
-            <p class="text-start mt-3 fs-8">
-                هزینه این سفارش هنوز پرداخت نشده‌ و در صورت اتمام موجودی، کالاها از سبد حذف می‌شوند
-            </p>
-        </div>
-        <!--                    Products Prices:end-->
+            <!--                    Products Prices:start-->
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 tw-mt-3 lg:tw-mt-0">
+                @yield('shipping-menu')
+            </div>
+            <!--                    Products Prices:end-->
+
     </div>
 </div>
 

@@ -11,11 +11,16 @@ class OrderItem extends Model
 
 
     protected $fillable = [
+        'id',
         'order_id',
         'product_id',
-        'variation_id',
         'quantity',
-        'holo_code',
+        'installer',
+        'designer',
+        'sewing',
+        'price',
+        'sale_price',
+        'total',
         'item_type',
     ];
 
@@ -24,10 +29,13 @@ class OrderItem extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function orderItems()
+    public function product()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(Product::class);
     }
 
-
+    public function orderAttributeItems()
+    {
+        return $this->hasMany(OrderAttributeItem::class);
+    }
 }

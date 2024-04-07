@@ -14,12 +14,26 @@ class CreateOrderItemsTable extends Migration
     public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id')->primary();
+
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('variation_id')->nullable();
+
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
             $table->integer('quantity');
+
+            $table->bigInteger('installer')->nullable();
+            $table->bigInteger('designer')->nullable();
+            $table->bigInteger('sewing')->nullable();
+
+            $table->bigInteger('price')->nullable();
+            $table->bigInteger('sale_price')->nullable();
+
+            $table->bigInteger('total')->nullable();
+
+
             $table->enum('item_type', ['simple', 'variation', 'shipping']);
             $table->timestamps();
         });

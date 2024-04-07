@@ -179,11 +179,14 @@ use App\Http\Controllers\Auth\LoginController;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('login.home');
+Route::get('/loginRequire', [HomeController::class,'loginRequire'])->name('loginRequire');
+
 Route::post('/check_verify',[VerifyController::class, 'index'])->name('check_verify');
 
 Route::get('login', [LoginController::class,'index'])->name('login');
 Route::post('login', [LoginController::class,'login'])->name('user.login');
-
+Route::get('logout', [LoginController::class,'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'registerSubmit'])->name('register.submit');
@@ -221,9 +224,17 @@ Route::get('/terms', function () {
     return view('terms');
 });
 
-Route::get('/cart', [OrderController::class,'showCart'])->name('cart');
-Route::get('/shipping', [OrderController::class,'shipping'])->name('shipping');
 
+// auth user access
+Route::group(['middleware' => ['auth']],function(){
+    Route::get('/shipping', [OrderController::class,'shipping'])->name('shipping');
+    Route::get('/cart', [OrderController::class,'showCart'])->name('cart');
+    Route::post('/shipping', [OrderController::class,'shippingStore'])->name('shipping.store');
+    Route::get('/delivery/{deliveryType?}', [OrderController::class,'delivery'])->name('delivery');
+    Route::post('/delivery', [OrderController::class,'storeDelivery'])->name('delivery.store');
+    Route::get('/payment/{paymentMethod?}', [OrderController::class,'payment'])->name('payment');
+    Route::get('/orderComplete', [OrderController::class,'complete'])->name('order.complete');
+} );
 
 
 Route::get('/about-us', function () {
@@ -265,16 +276,12 @@ Route::get('/payment-return', function () {
     return view('payment-return');
 })->name('payment-return');
 
-Route::get('/payment', function () {
-    return view('payment');
-})->name('payment');
 
 
 
 
-Route::get('/delivery', function () {
-    return view('delivery');
-})->name('delivery');
+
+
 
 Route::group(['prefix' => 'dashboard'], function () {
     // Define routes that have the 'dashboard' prefix

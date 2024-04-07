@@ -2,54 +2,13 @@
 
 namespace App\Models;
 
-use Auth;
-use AutoKit\Components\Cart\Calculator;
-use AutoKit\Components\Delivery\Address;
-use AutoKit\Components\Money\Currency;
-use AutoKit\Components\Money\Exchanger;
-use AutoKit\Components\Money\Money;
-use AutoKit\Events\NewOrder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Stripe\ApiResource;
 
-/**
- * AutoKit\Order
- *
- * @property int $id
- * @property string $customer_name
- * @property string $customer_email
- * @property string $customer_phone_number
- * @property int|null $user_id
- * @property int $is_self_delivery
- * @property string|null $payment_id
- * @property mixed $cart
- * @property int $shipping_price
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereCart($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereCustomerEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereCustomerName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereCustomerPhoneNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereIsSelfDelivery($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order wherePaymentId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereShippingPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereUserId($value)
- * @mixin \Eloquent
- * @property string|null $warehouse_id
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereWarehouseId($value)
- * @property-read \AutoKit\User|null $user
- * @property string|null $warehouse
- * @method static \Illuminate\Database\Eloquent\Builder|\AutoKit\Order whereWarehouse($value)
- * @property-read float $total_dimensions
- * @property-read Money|null $total_price
- * @property-read float $total_weight
- */
 class Order extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'customer_name',
         'customer_email',
@@ -70,6 +29,7 @@ class Order extends Model
         'shipping_phone',
         // اضافه کردن فیلد کد تخفیف
         'discount_code_id',
+        'deliveryType',
     ];
 
 
@@ -86,5 +46,40 @@ class Order extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    // تعریف ارتباط یک به چند با مدل Check
+    public function checks()
+    {
+        return $this->hasMany(Check::class);
+    }
+
+    /**
+     * Get the total amount of unpaid checks for the user.
+     *
+     * @param int $userId
+     * @return float
+     */
+    public static function getTotalUnpaidUserChecksAmount($userId)
+    {
+        return self::where('user_id', $userId)
+            ->whereHas('checks', function ($query) {
+                $query->where('payment_status', 'unpaid');
+            })
+            ->withSum('checks', 'amount')
+            ->sum('checks.sum_amount');
+    }
+
+
+    /**
+     * Get the total amount of unpaid checks for the order.
+     *
+     * @return float
+     */
+    public function getTotalUnpaidChecksAmount()
+    {
+        return $this->checks()
+            ->where('payment_status', 'unpaid')
+            ->sum('amount');
     }
 }

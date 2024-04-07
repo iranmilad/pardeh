@@ -30,6 +30,7 @@ class Product extends Model
         'hover_img',
         'service',
         'description',
+        'delivery_type',
     ];
 
     protected $casts = [
@@ -222,4 +223,57 @@ class Product extends Model
         return $this->hasMany(Service::class);
     }
 
+    public function credits()
+    {
+        return $this->belongsToMany(Credit::class);
+    }
+
+
+
+    public function creditPlanProduct()
+    {
+        return $this->hasMany(CreditPlanProduct::class);
+    }
+
+
+    public function creditPlan()
+    {
+        return $this->belongsTo(CreditPlan::class);
+    }
+
+
+    /**
+     * Get the credit installment timeline for the product.
+     *
+     * @param float $totalAmount
+     * @return object
+     */
+    public function creditInstallmentTimeline($totalAmount)
+    {
+        $creditPlanProduct=$this->creditPlanProduct()->first();
+        if ($creditPlanProduct){
+            $creditPlan = $creditPlanProduct->creditPlan;
+            $numberOfInstallments = $creditPlan->installments_count ;
+            $totalCredit = $creditPlan->credit_percentage * $totalAmount / 100;
+        }
+        else {
+            // اگر محصول به هیچ CreditPlan مرتبط نبود
+            $numberOfInstallments = 0;
+            $totalCredit = 0;
+        }
+
+
+        $installmentAmount = ($numberOfInstallments != 0) ? $totalCredit / $numberOfInstallments : 0;
+        $timeline = [];
+
+        // محاسبه زمان‌های هر قسط اعتباری
+        for ($i = 1; $i <= $numberOfInstallments; $i++) {
+            $timeline[$i] = (object) [
+                'month' => $i,
+                'amount' => $installmentAmount,
+            ];
+        }
+
+        return (object) ["timeline" => $timeline, "totalCredit" => $totalCredit];
+    }
 }

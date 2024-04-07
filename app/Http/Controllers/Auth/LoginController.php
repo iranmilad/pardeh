@@ -67,4 +67,16 @@ class LoginController extends Controller
 
     }
 
+
+    public function logout()
+    {
+        // // Remove remember password cookie if exists
+        // if (Cookie::has('remember_password')) {
+        //     Cookie::forget('remember_password');
+        // }
+
+        auth()->logout();
+
+        return redirect('/'); // Redirect to home or any desired page after logout
+    }
 }

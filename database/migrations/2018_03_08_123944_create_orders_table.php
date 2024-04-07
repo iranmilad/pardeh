@@ -26,6 +26,8 @@ class CreateOrdersTable extends Migration
             $table->integer('tax');
             $table->longText('cart');
             $table->integer('shipping_price');
+            $table->dateTime('delivery_date')->nullable();
+            $table->string('delivery_time')->nullable();
 
             $table->string('shipping_country')->nullable();
             $table->string('shipping_province')->nullable();
@@ -33,7 +35,8 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_address')->nullable();
             $table->string('shipping_postal_code')->nullable();
             $table->string('shipping_phone')->nullable();
-
+            $table->enum('deliveryType', ['home_delivery', 'store_delivery'])->defalut('store_delivery');
+            $table->enum('paymentMethod', ['cash', 'credit','check'])->defalut('cash');
             $table->timestamps();
         });
     }

@@ -24,13 +24,30 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
         'address',
         'postal_code',
         'phone',
+        'check_payment_active',
+        'credit_payment_active',
+        'credit_limit',
     ];
 
+    protected $casts = [
+        'check_payment_active' => 'boolean',
+        'credit_payment_active' => 'boolean',
+    ];
 
 	public function payments()
 	{
 		return $this->hasMany(Payment::class);
 	}
+
+    public function credits()
+    {
+        return $this->hasMany(Credit::class);
+    }
+
+    public function checks()
+    {
+        return $this->hasMany(Check::class);
+    }
 
 	public function notifications()
 	{
@@ -75,7 +92,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
     {
         return $this->belongsTo(Role::class);
     }
-
+    public function hasRole(string $role): bool
+    {
+        return $this->role()->where('title', $role)->exists();
+    }
 
     public function isAdmin(): bool
     {
@@ -99,5 +119,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
     {
         return $this->hasMany(Post::class);
     }
+
+    public function calculateAvailableCredit()
+    {
+
+        $totalCreditLimit = $this->credit_limit;
+
+        $allocatedUnpaidCredits = $this->credits()->where('payment_status', 'unpaid')->sum('amount');
+
+        $availableCredit = $totalCreditLimit - $allocatedUnpaidCredits;
+
+        return $availableCredit;
+    }
+
 
 }

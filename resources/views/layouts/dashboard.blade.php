@@ -113,7 +113,7 @@ $extractedPart = isset($matches[1]) ? $matches[1] : '';
                                             پیام ها
                                         </span>
                                     </a></li>
-                                <li><a href="" class="text-danger">
+                                <li><a href="/logout" class="text-danger">
                                         <i class="fa fa-sign-out-alt"></i>
                                         <span class="ps-2">
                                             خروج

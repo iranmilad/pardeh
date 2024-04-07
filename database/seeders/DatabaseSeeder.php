@@ -44,7 +44,8 @@ class DatabaseSeeder extends Seeder
         $this->call(WarrantyAttributeSeeder::class);
         $this->call(WidgetSeeder::class);
         $this->call(ReviewsTableSeeder::class);
-
+        $this->call(CreditPlanSeeder::class);
+        $this->call(CheckSeeder::class);
 
         // $this->call(CategoriesTableSeeder::class);
         // $this->call(BrandsTableSeeder::class);

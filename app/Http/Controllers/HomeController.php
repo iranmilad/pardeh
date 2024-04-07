@@ -67,4 +67,9 @@ class HomeController extends Controller
         event(new UserEditInfo($request->user()));
         return back();
     }
+
+
+    public function loginRequire(){
+        return view('loginRequire');
+    }
 }
