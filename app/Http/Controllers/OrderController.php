@@ -98,7 +98,11 @@ class OrderController extends Controller
         else{
             // Handle authenticated user
             $user = Auth::user();
-            $order = Order::where('user_id', $user->id)->latest()->first(); // Get the last order of the user
+            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
+            if(!$order){
+                $this->firstStore();
+                $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
+            }
             $param = $request->input('param');
 
             //generate a random number
@@ -112,24 +116,28 @@ class OrderController extends Controller
                 'order_id' => $order->id,
                 'product_id' => $productId,
                 'quantity' => 1,
-                'installer' => $param['installer'] ?? null,
-                'designer' => $param['designer'] ?? null,
-                'sewing' => $param['sewing'] ?? null,
                 'price' => $product->price,
                 'sale_price' => $product->sale_price,
                 'total' => ($product->sale_price ?? $product->price) * 1,
             ]);
             $orderItem->save();
 
+
+
+
+            $all_attribute = $orderItem->product->attributes;
+
             $totlaAttribute=0;
             // Save data to order_attribute_items table
             foreach ($param as $key => $value) {
                 if (!is_array($value) && is_numeric($key)) {
                     $attr = (object)collect($productAttributeItems[$key])->where('name', $value)->first();
+                    $attribute= (object)collect($all_attribute)->where('id',$key)->first();
+                    $name = $attribute->name;
                     $orderAttributeItem = new OrderAttributeItem([
                         'order_item_id' => $randomNumber,
                         'attribute_item_id' => $key,
-                        'name' => "",
+                        'name' => $name,
                         'value' => $attr->name ?? null,
                         'price' => $attr->price,
                         'sale_price' => $attr->sale_price ?? null,
@@ -144,6 +152,26 @@ class OrderController extends Controller
             //update  total price of the item in the order_items
             $orderItem->total= ($product->sale_price ?? $product->price) * 1 + $totlaAttribute;
             $orderItem->save();
+
+            //check if installer exist in $param and update it in the product table
+
+
+            if(isset($param['installer']) and $param['installer']!=null){
+                $OrderItem = OrderItem::find($param['installer']);
+                $OrderItem->installer = $param['installer'];
+                $OrderItem->save();
+            }
+            elseif(isset($param['designer']) and $param['designer']!=null){
+                $OrderItem = OrderItem::find($param['designer']);
+                $OrderItem->designer = $param['designer'];
+                $OrderItem->save();
+            }
+            elseif(isset($param['sewing']) and $param['sewing']!=null){
+                $OrderItem = OrderItem::find($param['sewing']);
+                $OrderItem->sewing = $param['sewing'];
+                $OrderItem->save();
+            }
+
 
             $orders= $this->basket($order);
 
@@ -164,8 +192,18 @@ class OrderController extends Controller
         if(Auth::check()) {
             // If the user is logged in, get the orders for the logged-in user
             $user = Auth::user();
-            $order = Order::where('user_id', $user->id)->latest()->first(); // Get the last order of the user
+
+            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
+            if (!$order) {
+                # code...
+                $this->firstStore();
+                $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); //get last order of user
+            }
+            if ($request->cookie('cart')) {
+                $this->transferCookie($request,$order->id);
+            }
             $orders = $this->basket($order);
+            //return response()->json($orders)->cookie('cart', null);
         }
         else {
             // If the user is not logged in, get the orders from the cookie
@@ -308,7 +346,7 @@ class OrderController extends Controller
                 $orderItem->delete();
             }
 
-            $order = Order::where('user_id', $user->id)->latest()->first(); // Get the last order of the user
+            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
             $orders = $this->basket($order);
             if($orders->cart->count>0)
                 $response = [
@@ -485,7 +523,7 @@ class OrderController extends Controller
             $orderItem = OrderItem::find($id);
             $orderItem->quantity = $count;
             $orderItem->save();
-            $order = Order::where('user_id', $user->id)->latest()->first(); // Get the last order of the user
+            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
             $orders = $this->basket($order);
             $response = [
                 "cart" => [
@@ -533,7 +571,7 @@ class OrderController extends Controller
         }
         else{
             $user = Auth::user();
-            $order = Order::where('user_id', $user->id)->latest()->first(); // Get the last order of the user
+            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
             $orders = $this->basket($order);
             $cartCount = $orders->cart->count;
         }
@@ -546,12 +584,12 @@ class OrderController extends Controller
 
 
         $user=Auth::user();
-        $order = Order::where('user_id',$user->id)->latest()->first();//get last order of user
+        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); //get last order of user
         if (!$order) {
             # code...
-            $order_id=$this->firstStore();
+            $this->firstStore();
+            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); //get last order of user
         }
-
         $orders=$this->basket($order);
         //dd($orders);
 
@@ -637,7 +675,7 @@ class OrderController extends Controller
         }
         else{
             $user=Auth::user();
-            $order = Order::where('user_id',$user->id)->latest()->first();//get last order of use
+            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of use
             $orders=$this->basket($order);
             foreach($orders->items as $item){
                 if($item->id==$id){
@@ -659,7 +697,7 @@ class OrderController extends Controller
     public function shipping(Request $request){
 
         $user=Auth::user();
-        $order = Order::where('user_id',$user->id)->latest()->first();//get last order of user
+        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
         $orders=$this->basket($order);
         //dd($orders);
 
@@ -701,64 +739,16 @@ class OrderController extends Controller
             'note' => 'nullable|string',
         ]);
 
-        $orderId=$this->store($validatedData);
-
-
-        // Check if the cart cookie exists
-        $items= $this->basketCookie($request);
-
-
-        foreach ($items as $item) {
-            // Save data to order_items table
-            $orderItem = new OrderItem([
-                'id' =>  $item->id,
-                'order_id' => $orderId, // Replace with actual order ID
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
-                'installer' => $item->installer ?? null,
-                'designer' => $item->designer ?? null,
-                'sewing' => $item->sewing ?? null,
-                'price' => $item->price,
-                'sale_price' => $item->sale_price,
-                'total' => $item->total,
-            ]);
-            $orderItem->save();
+        $user=Auth::user();
+        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
+        $orderId=$order->id;
+        $this->store($order,$validatedData);
 
 
 
-            $all_attribute = $orderItem->product->attributes;
-            $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
-
-            // Save data to order_attribute_items table
-            foreach ($item->attributeSeries as $key => $value) {
-                if (!is_array($value) && is_numeric($key)) {
-                    $attr = (object)collect($productAttributeItems[$key])->where('name', $value)->first();
-                    $orderAttributeItem = new OrderAttributeItem([
-                        'order_item_id' => $item->id,
-                        'attribute_item_id' => $key, // Replace with actual attribute item ID
-                        'name' => "",
-                        'value' => $attr->name ?? null, // Assuming $item->services is an object containing service information
-                        'price' => $attr->price, // Replace with actual price
-                        'sale_price' => $attr->sale_price ?? null, // Replace with actual sale price
-                        'total' => ($attr->sale_price ?? $attr->price) * $item->quantity,
-                    ]);
-                    $orderAttributeItem->save();
-                }
-
-            }
-        };
 
 
-
-        $orders =(object) [
-            "cart" =>(object) [
-                "count" => $cartCount,
-                "total" => number_format($totalPrice), // Format the total price
-
-                "totalPayed" => number_format($totalPrice + $totalDiscountPrice),
-            ],
-            "items" => $items, // Add items to the response
-        ];
+        $orders=$this->basket($order);
         //dd($orders);
 
 
@@ -767,8 +757,6 @@ class OrderController extends Controller
         return redirect()->route("delivery", compact('orders'));
 
     }
-
-
 
     public function delivery(Request $request,$deliveryType=null){
 
@@ -807,7 +795,7 @@ class OrderController extends Controller
 
 
         $user=Auth::user();
-        $order = Order::where('user_id',$user->id)->latest()->first();//get last order of user
+        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
         if ($order) {
             $order->deliveryType = $deliveryType ?? 'store_delivery';
             $order->save(); // Use save() instead of update() to update the model
@@ -830,7 +818,7 @@ class OrderController extends Controller
         $date = $fulldate[0];
 
         $user=Auth::user();
-        $order = Order::where('user_id',$user->id)->latest()->first();//get last order of user
+        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
         if ($order) {
             $totalTime=$this->calculateTotalTime($order);
             $order->deliveryType = $request->input('deliveryType');
@@ -851,7 +839,7 @@ class OrderController extends Controller
     public function payment(Request $request,$paymentMethod=null){
 
         $user=Auth::user();
-        $order = Order::where('user_id',$user->id)->latest()->first();//get last order of user
+        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
         if ($order) {
             if ($user->check_payment_active and $paymentMethod=='check') {
                 $order->paymentMethod = $paymentMethod;
@@ -874,7 +862,7 @@ class OrderController extends Controller
 
         $user=Auth::user();
 
-        $order = Order::where('user_id',$user->id)->latest()->first();//get last order of user
+        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
         return redirect("https://bankmelat.ir");
 
     }
@@ -895,17 +883,16 @@ class OrderController extends Controller
         return $cartItems;
     }
 
-
-    private function store($validatedData)
+    private function store($order,$validatedData)
     {
 
 
         // Create a new instance of Order model
-        $order = new Order();
+
         if(isset($validatedData['sendtoanotheraddress']) && $validatedData['sendtoanotheraddress']) {
 
             // Fill the model with validated form data for shipping to another address
-            $order->user_id = Auth::user()->id;
+
             $order->customer_name = $validatedData['shipping_first_name'] . ' '. $validatedData['shipping_last_name'];
             $order->customer_email = $validatedData['email']; // Assuming customer email is still used for communication
             $order->customer_phone_number = $validatedData['shipping_mobile'];
@@ -920,7 +907,7 @@ class OrderController extends Controller
         }
         else{
             // Fill the model with validated form data
-            $order->user_id = Auth::user()->id;
+
             $order->customer_name = $validatedData['first_name'] . ' '. $validatedData['last_name'];
             $order->customer_email = $validatedData['email'];
             $order->customer_phone_number = $validatedData['mobile'];
@@ -936,7 +923,7 @@ class OrderController extends Controller
         }
 
         // return order id from function  save() to use it in cart table update
-        return $order->id;
+
     }
 
     private function firstStore()
@@ -958,6 +945,62 @@ class OrderController extends Controller
         return $order->id;
     }
 
+    private function transferCookie(Request $request,$orderId)
+    {
+
+        $orders=$this->basketCookie($request);
+
+        foreach ($orders->items as $item) {
+            // Save data to order_items table
+            // بررسی وجود مورد با این آی دی
+            if (!OrderItem::where('id', $item->id)->exists()) {
+                // اگر مورد موجود نباشد، مورد جدید را ایجاد کنید
+                $orderItem = new OrderItem([
+                    'id' =>  $item->id,
+                    'order_id' => $orderId, // جایگزین شود با آی دی واقعی سفارش
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity,
+                    'installer' => $item->installer ?? null,
+                    'designer' => $item->designer ?? null,
+                    'sewing' => $item->sewing ?? null,
+                    'price' => $item->price,
+                    'sale_price' => $item->sale_price,
+                    'total' => $item->total,
+                ]);
+                $orderItem->save();
+
+                $all_attribute = $orderItem->product->attributes;
+
+                $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
+
+                // Save data to order_attribute_items table
+                foreach ($item->attributeSeries as $key => $value) {
+                    if (!is_array($value) && is_numeric($key)) {
+
+                        $attr = (object)collect($productAttributeItems[$key])->where('name', $value)->first();
+                        $name = $productAttributeItems[$key];
+                        $attribute= (object)collect($all_attribute)->where('id',$key)->first();
+                        $name = $attribute->name;
+                        $orderAttributeItem = new OrderAttributeItem([
+                            'order_item_id' => $item->id,
+                            'attribute_item_id' => $key, // Replace with actual attribute item ID
+                            'name' =>  $name,
+                            'value' => $attr->name ?? null, // Assuming $item->services is an object containing service information
+                            'price' => $attr->price, // Replace with actual price
+                            'sale_price' => $attr->sale_price ?? null, // Replace with actual sale price
+                            'total' => ($attr->sale_price ?? $attr->price) * $item->quantity,
+                        ]);
+                        $orderAttributeItem->save();
+                    }
+
+                }
+            }
+
+        };
+
+
+    }
+
 
     private function basket($order){
 
@@ -968,116 +1011,135 @@ class OrderController extends Controller
         $attributeNames = [];
         $options = [];
         $totalDiscountPrice =0;
-        $cartItems = $order->orderItems;
         $summedAmounts=[];
+        if($order){
+
+            $cartItems = $order->orderItems;
 
 
-        foreach ($cartItems as  $cartItem) {
+            foreach ($cartItems as  $cartItem) {
 
-            $totalAttributePrice = 0;
-            $totalAttributeSalePrice =0;
+                $totalAttributePrice = 0;
+                $totalAttributeSalePrice =0;
 
-            // Assuming the product ID is provided as 'product'
-            $product = $cartItem->product;
+                // Assuming the product ID is provided as 'product'
+                $product = $cartItem->product;
 
 
 
-            if ($product) {
+                if ($product) {
 
-                $attributes = $cartItem->orderAttributeItems;
-                // Extract quantity from the item using regular expressions
-                $quantity =  $cartItem->quantity;
-                $cartCount += $quantity;
+                    $attributes = $cartItem->orderAttributeItems;
+                    // Extract quantity from the item using regular expressions
+                    $quantity =  $cartItem->quantity;
+                    $cartCount += $quantity;
 
-                // Extract attribute items for the product
+                    // Extract attribute items for the product
 
-                foreach($attributes as $attributeItem){
+                    foreach($attributes as $attributeItem){
 
-                    $priceAttr = $attributeItem->sale_price ?? $attributeItem->price ;
-                    if (!is_null($priceAttr)){
-                        $attributeNames[] = $attributeItem->name;
-                        $totalAttributeSalePrice += $priceAttr;
-                        $totalAttributePrice += $attributeItem->price ;
-                        $options[] = [$attributeItem->name =>$attributeItem->value];
+                        $priceAttr = $attributeItem->sale_price ?? $attributeItem->price ;
+                        if (!is_null($priceAttr)){
+                            $attributeNames[] = $attributeItem->name;
+                            $totalAttributeSalePrice += $priceAttr;
+                            $totalAttributePrice += $attributeItem->price ;
+                            $options[] = [$attributeItem->name =>$attributeItem->value];
+                        }
+
+
                     }
 
+                    // Check if the product has a sale price
+                    $price = $product->sale_price ?? $product->price;
 
-                }
-
-                // Check if the product has a sale price
-                $price = $product->sale_price ?? $product->price;
-
-                $totalProductPrice= ($price + $totalAttributeSalePrice ) * $quantity;
-                $totalPrice += $totalProductPrice;
+                    $totalProductPrice= ($price + $totalAttributeSalePrice ) * $quantity;
+                    $totalPrice += $totalProductPrice;
 
 
-                $credit=$product->creditInstallmentTimeline($totalProductPrice);
-                $productTimeline = $credit->timeline;
+                    $credit=$product->creditInstallmentTimeline($totalProductPrice);
+                    $productTimeline = $credit->timeline;
 
-                foreach ($productTimeline as $key => $value) {
-                    // اگر مقدار مشابه وجود داشته باشد، به آن اضافه شود، در غیر این صورت ایجاد شود
-                    if (isset($summedAmounts[$key])) {
-                        $summedAmounts[$key] += $value->amount;
-                    } else {
-                        $summedAmounts[$key] = $value->amount;
+                    foreach ($productTimeline as $key => $value) {
+                        // اگر مقدار مشابه وجود داشته باشد، به آن اضافه شود، در غیر این صورت ایجاد شود
+                        if (isset($summedAmounts[$key])) {
+                            $summedAmounts[$key] += $value->amount;
+                        } else {
+                            $summedAmounts[$key] = $value->amount;
+                        }
                     }
+
+                    $availableCreditPlan += $credit->totalCredit;
+                    // Add product details to the items array
+                    $items[] = (object)[
+                        "id" => $cartItem->id,
+                        "product_id" => $product->id,
+                        "name" => $product->title,
+                        "img" => $product->img,
+                        "link" => $product->link,
+                        "price" => $product->price + $totalAttributePrice,
+                        "sale_price"  => $product->sale_price + $totalAttributeSalePrice,
+                        "discountPercentage" => $product->discountPercentage,
+                        'options' => $options,
+                        "quantity" => $quantity,
+                        "attribute" => $attributeNames,
+                        "credit" => $credit,
+                        "service" => $product->service,
+                        "services" =>(object) [
+                            "sewing" => $product->services()->where('type', 'sewing')->first(),
+                            "installer" => $product->services()->where('type', 'installer')->first(),
+                            "design" => $product->services()->where('type', 'design')->first(),
+                        ],
+                        "installer" => $cartItem->installer ?? null,
+                        "sewing" => $cartItem->sewing ?? null,
+                        "design" => $cartItem->design ?? null,
+                        "total" => ($product->sale_price ?? $product->price + $totalAttributeSalePrice ) * $quantity  , // Calculate total price for each item
+                    ];
                 }
 
-                $availableCreditPlan += $credit->totalCredit;
-                // Add product details to the items array
-                $items[] = (object)[
-                    "id" => $cartItem->id,
-                    "product_id" => $product->id,
-                    "name" => $product->title,
-                    "img" => $product->img,
-                    "link" => $product->link,
-                    "price" => $product->price + $totalAttributePrice,
-                    "sale_price"  => $product->sale_price + $totalAttributeSalePrice,
-                    "discountPercentage" => $product->discountPercentage,
-                    'options' => $options,
-                    "quantity" => $quantity,
-                    "attribute" => $attributeNames,
-                    "credit" => $credit,
-                    "service" => $product->service,
-                    "services" =>(object) [
-                        "sewing" => $product->services()->where('type', 'sewing')->first(),
-                        "installer" => $product->services()->where('type', 'installer')->first(),
-                        "design" => $product->services()->where('type', 'design')->first(),
-                    ],
-                    "installer" => $cartItem->installer ?? null,
-                    "sewing" => $cartItem->sewing ?? null,
-                    "design" => $cartItem->design ?? null,
-                    "total" => ($product->sale_price ?? $product->price + $totalAttributeSalePrice ) * $quantity  , // Calculate total price for each item
-                ];
             }
 
+
+            // ایجاد timeline کلی با مقادیر جمع شده
+
+            $totalTimeline=$this->calculateDueDates($summedAmounts);
+
+            $availableCreditPlan=($order->paymentMethod=='credit') ? $availableCreditPlan :0;
+            $availableCheck = ($order->paymentMethod=='check') ? $order->getTotalUnpaidChecksAmount() :0;
+
+            $deliveryCost = $this->deliveryCost($order);
+            $orders =(object) [
+                "cart" =>(object) [
+                    "count" => $cartCount,
+                    "total" => number_format($totalPrice), // Format the total price
+                    'deliveryType' => $order->deliveryType ,
+                    'paymentMethod' => $order->paymentMethod,
+                    'deliveryCost' => $deliveryCost,
+                    'availableCreditPlan' => number_format($availableCreditPlan),
+                    "availableCheck"  => number_format($availableCheck),
+                    'totalTimeline'  => $totalTimeline,
+                    'totalCheckTimeline' => $order->checks,
+                    "totalPayed" => number_format($totalPrice + $totalDiscountPrice + $deliveryCost - $availableCreditPlan -$availableCheck ),
+                ],
+                "items" => $items, // Add items to the response
+            ];
         }
-
-
-        // ایجاد timeline کلی با مقادیر جمع شده
-
-        $totalTimeline=$this->calculateDueDates($summedAmounts);
-
-        $availableCreditPlan=($order->paymentMethod=='credit') ? $availableCreditPlan :0;
-        $availableCheck = ($order->paymentMethod=='check') ? $order->getTotalUnpaidChecksAmount() :0;
-
-        $deliveryCost = $this->deliveryCost($order);
-        $orders =(object) [
-            "cart" =>(object) [
-                "count" => $cartCount,
-                "total" => number_format($totalPrice), // Format the total price
-                'deliveryType' => $order->deliveryType ,
-                'paymentMethod' => $order->paymentMethod,
-                'deliveryCost' => $deliveryCost,
-                'availableCreditPlan' => number_format($availableCreditPlan),
-                "availableCheck"  => number_format($availableCheck),
-                'totalTimeline'  => $totalTimeline,
-                'totalCheckTimeline' => $order->checks,
-                "totalPayed" => number_format($totalPrice + $totalDiscountPrice + $deliveryCost - $availableCreditPlan -$availableCheck ),
-            ],
-            "items" => $items, // Add items to the response
-        ];
-
+        else{
+            $orders =(object) [
+                "cart" =>(object) [
+                    "count" => $cartCount,
+                    "total" => 0, // Format the total price
+                    'deliveryType' => 'cash' ,
+                    'paymentMethod' => 'cash',
+                    'deliveryCost' => 0,
+                    'availableCreditPlan' => 0,
+                    "availableCheck"  => 0,
+                    'totalTimeline'  => [],
+                    'totalCheckTimeline' => [],
+                    "totalPayed" => 0,
+                ],
+                "items" => [], // Add items to the response
+            ];
+        }
 
         return $orders;
     }
@@ -1117,6 +1179,8 @@ class OrderController extends Controller
                     $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
 
                     $attr=null;
+                    $attributeSeries =[];
+
                     foreach($cartItem as $keyItem=>$vItem){
                         if (!is_array($vItem) && is_numeric($keyItem)) {
                             if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
@@ -1130,6 +1194,7 @@ class OrderController extends Controller
                                         $attributeNames[] = $attr->name;
                                         $totalAttributeSalePrice += $priceAttr;
                                         $totalAttributePrice += $attr->price ;
+                                        $attributeSeries[$keyItem] = $vItem;
                                     }
                                 }
 
@@ -1150,12 +1215,13 @@ class OrderController extends Controller
                         "name" => $product->title,
                         "img" => $product->img,
                         "link" => $product->link,
-                        "price" => number_format($product->price + $totalAttributePrice),
-                        "sale_price"  => number_format($product->sale_price + $totalAttributeSalePrice),
+                        "price" =>$product->price + $totalAttributePrice,
+                        "sale_price"  => $product->sale_price + $totalAttributeSalePrice,
                         "discountPercentage" => $product->discountPercentage,
                         "quantity" => $quantity,
                         "attribute" => $attributeNames,
                         "service" => $product->service,
+                        "attributeSeries" => $attributeSeries,
                         "services" =>(object) [
                             "sewing" => $product->services()->where('type', 'sewing')->first(),
                             "installer" => $product->services()->where('type', 'installer')->first(),
@@ -1164,7 +1230,7 @@ class OrderController extends Controller
                         "installer" => $cartItem["installer"] ?? null,
                         "sewing" => $cartItem["sewing"] ?? null,
                         "design" => $cartItem["design"] ?? null,
-                        "total" => number_format( ($product->sale_price ?? $product->price + $totalAttributeSalePrice ) * $quantity  ), // Calculate total price for each item
+                        "total" => ($product->sale_price ?? $product->price + $totalAttributeSalePrice ) * $quantity, // Calculate total price for each item
                     ];
 
                 }
@@ -1198,7 +1264,6 @@ class OrderController extends Controller
             return 0;
         }
     }
-
 
     private function calculateTotalTime($order){
         $totalTime=0;
@@ -1240,7 +1305,6 @@ class OrderController extends Controller
 
         return $totalTime;
     }
-
 
     private function CalculationNearestTime(){
 

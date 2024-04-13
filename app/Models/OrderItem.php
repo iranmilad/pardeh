@@ -22,6 +22,7 @@ class OrderItem extends Model
         'sale_price',
         'total',
         'item_type',
+        'status',
     ];
 
     public function order()

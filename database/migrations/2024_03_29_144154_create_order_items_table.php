@@ -35,6 +35,8 @@ class CreateOrderItemsTable extends Migration
 
 
             $table->enum('item_type', ['simple', 'variation', 'shipping']);
+            $table->enum('status', ['waiting', 'processing', 'complete','cancel','stop','referral'])->default('waiting');
+
             $table->timestamps();
         });
     }

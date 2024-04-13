@@ -7,54 +7,64 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form id="reviewForm" action="/dashboard/review" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">کیفیت</label>
+                                <label for="quality" class="form-label">کیفیت</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3 tw-flex tw-justify-end">
                                 <!-- Example rate readonly with default rate -->
-                                <x-rating readOnly rate="5" />
+                                <x-rating name="quality" />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">ارسال</label>
+                                <label for="performance" class="form-label">عملکرد</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3 tw-flex tw-justify-end">
-                                <x-rating name="rate2" />
+                                <x-rating name="performance" />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">جنس</label>
+                                <label for="design" class="form-label">زیبایی</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3 tw-flex tw-justify-end">
-                                <x-rating name="rate3" />
+                                <x-rating name="design" />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">طرح</label>
+                                <label for="price" class="form-label">قیمت</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3 tw-flex tw-justify-end">
-                                <x-rating name="rate4" />
+                                <x-rating name="price" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="ease_of_use" class="form-label">کاربری</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3 tw-flex tw-justify-end">
+                                <x-rating name="ease_of_use" />
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">متن دیدگاه</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="text" class="form-label">متن دیدگاه</label>
+                                <textarea class="form-control" id="text" name="text" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-12">
@@ -62,12 +72,12 @@
                         </div>
                     </div>
                     <input type="hidden" name="file" id="new-msg-file">
-                    <input type="hidden" name="product-id" value="product_1">
+                    <input type="hidden" id="product_id" name="product_id" value="{{ $product }}">
                 </form>
             </div>
             <div class="modal-footer border-0">
                 <button type="button" class="btn btn-secondary btn-sm tw-rounded-lg" data-bs-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-primary btn-sm tw-rounded-lg">ثبت دیدگاه</button>
+                <button type="button" id="reviewSubmit" class="btn btn-primary btn-sm tw-rounded-lg">ثبت دیدگاه</button>
             </div>
         </div>
     </div>

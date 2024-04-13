@@ -13,7 +13,7 @@
     </div>
 </div>
 <!-- SPECEFIC DISCOUNT -->
-<!--                        User Panel Orders:start-->
+<!-- User Panel Orders:start -->
 <div class="user-panel-orders border border-radius-xl p-3 mb-3 mt-3 mt-lg-0 tw-shadow-sm">
     <p class="fw-bold mb-4 d-flex tw-items-center">
         سفارش های من
@@ -22,27 +22,28 @@
         <div class="col-4 tw-flex-col lg:tw-flex-row tw-flex tw-items-center tw-border-gray-300 tw-border-solid tw-border-0 tw-border-l">
             <img class="tw-size-12 lg:tw-size-16" src="{{ Vite::asset('resources/images/status-processing.png') }}" alt="">
             <div class="tw-flex tw-flex-col tw-justify-center tw-items-center mt-2 md:mt-0 tw-space-y-1 md:tw-space-y-2 ms-lg-3">
-                <span class="tw-text-sm lg:tw-text-base fw-bold">0 سفارش</span>
+                <span class="tw-text-sm lg:tw-text-base fw-bold">{{ auth()->user()->getOpenOrdersCount() }} سفارش</span>
                 <span class="tw-text-xs">جاری</span>
             </div>
         </div>
         <div class="col-4 tw-flex-col lg:tw-flex-row tw-flex tw-items-center tw-border-gray-300 tw-border-solid tw-border-0 tw-border-l">
             <img class="tw-size-12 lg:tw-size-16" src="{{ Vite::asset('resources/images/status-delivered.png') }}" alt="">
             <div class="tw-flex tw-flex-col tw-justify-center tw-items-center mt-2 md:mt-0 tw-space-y-1 md:tw-space-y-2 ms-lg-3">
-                <span class="tw-text-sm lg:tw-text-base fw-bold">0 سفارش</span>
+                <span class="tw-text-sm lg:tw-text-base fw-bold">{{ auth()->user()->getCompletedOrdersCount() }} سفارش</span>
                 <span class="tw-text-xs">تحویل شده</span>
             </div>
         </div>
         <div class="col-4 tw-flex-col lg:tw-flex-row tw-flex tw-items-center">
             <img class="tw-size-12 lg:tw-size-16" src="{{ Vite::asset('resources/images/status-canceled.png') }}" alt="">
             <div class="tw-flex tw-flex-col tw-justify-center tw-items-center mt-2 md:mt-0 tw-space-y-1 md:tw-space-y-2 ms-lg-3">
-                <span class="tw-text-sm lg:tw-text-base fw-bold">0 سفارش</span>
+                <span class="tw-text-sm lg:tw-text-base fw-bold">{{ auth()->user()->getCanceledOrdersCount() }} سفارش</span>
                 <span class="tw-text-xs">لغو شده</span>
             </div>
         </div>
     </div>
 </div>
-<!--                        User Panel Orders:end-->
+<!-- User Panel Orders:end -->
+
 
 <!--                        User Panel Status:start-->
 <div class="user-panel-status mb-3">
@@ -51,9 +52,13 @@
             <!--                        My Wallet:start-->
             <div class="user-panel-wallet p-4 tw-rounded-xl tw-shadow-sm tw-h-full d-flex tw-flex-col tw-items-start tw-justify-center">
                 <p class="gray-600 mb-2">اعتبار شما</p>
-                <h4 class="text-white fs-2">24,000,000 تومان</h4>
-                <p class="gray-600 mb-1">آخرین شارژ حساب در: 1402/3/21</p>
-                <label class="tw-text-white mb-1" for="">تاریخ سر رسید بعدی: 1402/3/21</label>
+                <h4 class="text-white fs-2">{{ number_format($user->calculateAvailableCredit()) }} تومان</h4>
+                @if ($user->lastPaidPayment())
+                    <p class="gray-600 mb-1">آخرین شارژ حساب در: {{ $user->lastPaidPayment()->dueDateShamsi ?? '-' }}</p>
+                @endif
+                @if($user->nextUnpaidPaymentDueDate())
+                    <label class="tw-text-white mb-1" for="">تاریخ سر رسید بعدی: {{ $user->nextUnpaidPaymentDueDate()->dueDateShamsi ?? '-' }}</label>
+                @endif
             </div>
             <!--                        My Wallet:end-->
         </div>
@@ -69,7 +74,7 @@
                             </span>
                             <div class="ms-3">
                                 <p class="fs-7 gray-150">مبلغ کل سفارشات</p>
-                                <p class="fs-5">135,789 تومان</p>
+                                <p class="fs-5">{{ number_format($user->getTotalOrderAmount()) }} تومان</p>
 
                             </div>
                         </div>
@@ -87,7 +92,7 @@
                             </span>
                             <div class="ms-3">
                                 <p class="fs-7 gray-150">دیدگاه های شما</p>
-                                <p class="fs-5">3</p>
+                                <p class="fs-5">{{ count($comments) }}</p>
 
                             </div>
                         </div>

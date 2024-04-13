@@ -31,6 +31,7 @@ class Product extends Model
         'service',
         'description',
         'delivery_type',
+        'status'
     ];
 
     protected $casts = [

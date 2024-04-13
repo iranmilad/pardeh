@@ -12,6 +12,7 @@ class CreatePaymentsTable extends Migration
 			$table->bigIncrements("id");
 			$table->string("gu_id");
 			$table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("order_id");
 			$table->bigInteger("reference_id");
 			$table->string("ref_id")->nullable();
 			$table->bigInteger("amount");
@@ -23,6 +24,7 @@ class CreatePaymentsTable extends Migration
 
 			$table->timestamps();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 		});
 	}
 

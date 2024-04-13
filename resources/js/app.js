@@ -246,9 +246,11 @@ new Swiper(".category-boxes-slider", {
 $(document).on("DOMContentLoaded", function () {
     if ($(".province")) {
         const provinceSelect = $(".province");
-        provinceSelect.append(
-            '<option value="" selected disabled>لطفاً یک استان را انتخاب کنید</option>'
-        );
+        const selectedProvince = $(this).val();
+
+        // provinceSelect.append(
+        //     '<option value="" selected disabled>لطفاً یک استان را انتخاب کنید</option>'
+        // );
         iranData.forEach((province) => {
             provinceSelect.append(new Option(province.name, province.name));
             // select first province
@@ -282,6 +284,8 @@ $(document).on("DOMContentLoaded", function () {
                 citySelect.trigger("change");
             }
         });
+
+
     }
 });
 
@@ -624,3 +628,21 @@ $("#sendtoanotheraddress").on("change", function () {
         $("#anotherAddress").slideUp();
     }
 });
+
+
+//Submit Review in User Dashboard Execute the code after the DOM (Document Object Model) is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+    // Find the "Submit Review" button by its id
+    var reviewSubmitBtn = document.getElementById("reviewSubmit");
+
+    // Add a click event listener to the button
+    reviewSubmitBtn.addEventListener("click", function() {
+        // Find the form by its id
+        var reviewForm = document.getElementById("reviewForm");
+
+        // Submit the form
+        reviewForm.submit();
+    });
+});
+
+

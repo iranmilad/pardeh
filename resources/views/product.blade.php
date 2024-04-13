@@ -178,7 +178,7 @@
         <div class="tab-pane fade lg:tw-px-20" id="comments" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
             <x-product.comments :product="$product" />
             <livewire:WidgetReviewsList :slug="$product->id" type="new review" options="" />
-            <x-product-comment-modal />
+
             <x-uploadFileModal />
         </div>
         <div class="tab-pane" id="measureguide" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">

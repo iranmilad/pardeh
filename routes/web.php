@@ -17,7 +17,9 @@ use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -283,65 +285,25 @@ Route::get('/payment-return', function () {
 
 
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     // Define routes that have the 'dashboard' prefix
 
-    Route::get('/', function () {
-        // Your dashboard home page logic
-        return view('dashboard.dashboard');
-    })->name('dashboard.home');
 
-    Route::get('/user-info', function () {
-        // Your dashboard home page logic
-        return view('dashboard.user-info');
-    })->name('dashboard.user-info');
 
-    Route::get('/notifications', function () {
-        // Your dashboard home page logic
-        return view('dashboard.notifications');
-    })->name('dashboard.notifications');
-
-    Route::get('/comments', function () {
-        // Your dashboard home page logic
-        return view('dashboard.comments');
-    })->name('dashboard.comments');
-
-    // when user is logged in
-    // in this page we always use cookie instead of database
-    Route::get('/favorites', function () {
-        // Your dashboard home page logic
-        return view('dashboard.favorites');
-    })->name('dashboard.favorites');
-
-    Route::get('/changepass', function () {
-        // Your dashboard home page logic
-        return view('dashboard.changepass');
-    })->name('dashboard.changepass');
-
-    Route::get('/orders', function () {
-        // Your dashboard home page logic
-        return view('dashboard.orders');
-    })->name('dashboard.orders');
-
-    Route::get('/checks', function () {
-        // Your dashboard home page logic
-        return view('dashboard.checks');
-    })->name('dashboard.checks');
-
-    Route::get('/payment-deadline', function () {
-        // Your dashboard home page logic
-        return view('dashboard.payment-deadline');
-    })->name('dashboard.payment-deadline');
-
-    Route::get('/order', function () {
-        // Your dashboard home page logic
-        return view('dashboard.order');
-    })->name('dashboard.order');
-
-    Route::get('/invoice', function () {
-        // Your dashboard home page logic
-        return view('dashboard.invoice');
-    })->name('dashboard.invoice');
+    Route::get('/', [UserController::class,'index'])->name('dashboard.home');
+    Route::get('/comments', [UserController::class,'comments'])->name('dashboard.comments');
+    Route::get('/user-info', [UserController::class,'userInfo'])->name('dashboard.user-info');
+    Route::post('/user-info-update', [UserController::class,'userInfoUpdate'])->name('dashboard.user-info.update');
+    Route::get('/orders', [UserController::class,'orders'])->name('dashboard.orders');
+    Route::get('/order/{id}', [UserController::class,'order'])->name('dashboard.order');
+    Route::post('/review', [UserController::class,'review'])->name('dashboard.review.store');
+    Route::get('/changepass', [UserController::class,'changePass'])->name('dashboard.change-pass');
+    Route::post('/change-password', [UserController::class,'setNewPassword'])->name('dashboard.setNewPassword');
+    Route::get('/notifications', [UserController::class,'notifications'])->name('dashboard.notifications');
+    Route::get('/favorites', [UserController::class,'favorites'])->name('dashboard.favorites');
+    Route::get('/checks', [UserController::class,'checks'])->name('dashboard.checks');
+    Route::get('/payment-deadline', [UserController::class,'paymentDeadLine'])->name('dashboard.payment-deadline');
+    Route::get('/invoice', [UserController::class,'invoice'])->name('dashboard.invoice');
 
     // Add more routes as needed
 });

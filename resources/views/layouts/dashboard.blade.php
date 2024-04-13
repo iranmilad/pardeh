@@ -29,16 +29,16 @@ $extractedPart = isset($matches[1]) ? $matches[1] : '';
 
                             <!--                            User Name:start-->
                             <a href="/dashboard/user-info" class="d-flex tw-mx-auto tw-justify-center tw-items-center fw-bold mt-2">
-                                فرهاد باقری
+                                {{ $user->fullName }}
                                 <span href="" class="ps-2">
                                     <i class="fa fa-pen tw-text-indigo-500 fa-md"></i>
                                 </span>
                             </a>
-                            <p class="gray-500">09374039436</p>
+                            <p class="gray-500">{{ $user->mobile }}</p>
                             <!--                            User Name:end-->
                             <div class="fs-7 d-flex align-items-center tw-mx-auto tw-max-w-max">
                                 <i class="me-2 text-warning fa-solid fa-badge-dollar"></i>
-                                <span>اعتبار شما : <span>24,000,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></span></span>
+                                <span>اعتبار شما : <span>{{ number_format($user->calculateAvailableCredit()) }} <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></span></span>
                             </div>
                         </div>
                         <!--            User Panel Header:end-->

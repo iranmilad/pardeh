@@ -11,11 +11,13 @@
     <p class="fw-bold mb-4 d-flex tw-items-center">
         چک های ثبت شده ی شما
     </p>
+    @if ($checks->isEmpty())
     <div class="p-4 tw-w-auto tw-mx-auto tw-text-center">
         <span>هنوز چک برای شما ثبت نشده است</span>
     </div>
+    @else
     <div class="table-responsive">
-        <table  class="table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>شماره چک</th>
@@ -25,33 +27,38 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($checks as $check)
                 <tr>
-                    <td scope="row">1234#</td>
-                    <td>25,000,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></td>
-                    <td>25-3-1402</td>
-                    <td><i class="tw-text-emerald-500 fa-solid fa-circle-check"></i></td>
+                    <td scope="row">{{ $check->check_number }}</td>
+                    <td>{{ number_format($check->amount) }} <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></td>
+                    <td>{{ $check->dueDateShamsi }}</td>
+                    <td>
+                        @if ($check->payment_status=='paid')
+                        <i class="tw-text-emerald-500 fa-solid fa-circle-check"></i>
+
+                        @elseif ($check->payment_status=='unpaid' and $check->due_date < $today)
+                        <i class="fa fa-times-circle"></i>
+
+                        @endif
+                    </td>
                 </tr>
-                <tr>
-                    <td scope="row">1234#</td>
-                    <td>25,000,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></td>
-                    <td>25-3-1402</td>
-                    <td><i class="tw-text-emerald-500 fa-solid fa-circle-check"></i></td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
     <div>
-        <label class="tw-text-gray-500 fs-7" for="">میزان نقدی: </label>
-        <span class="fw-bold fs-7" >2,000,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></span>
+        <label class="tw-text-gray-500 fs-7" for="">میزان وصول شده: </label>
+        <span class="fw-bold fs-7">{{ number_format($totalReceived) }} <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></span>
     </div>
     <div>
-        <label class="tw-text-gray-500 fs-7" for="">جمع کل نقد: </label>
-        <span class="fw-bold fs-7" >500,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></span>
+        <label class="tw-text-gray-500 fs-7" for="">جمع در انتظار وصول: </label>
+        <span class="fw-bold fs-7">{{ number_format($totalPending) }} <svg style="width: 16px; height: 16px; fill: var(--undefined);"><use xlink:href="#toman"></use></svg></span>
     </div>
     <div>
         <label class="tw-text-gray-500 fs-7" for="">جمع کل چک: </label>
-        <span class="fw-bold fs-7" >2</span>
+        <span class="fw-bold fs-7">{{ $totalChecks }}</span>
     </div>
+    @endif
 </div>
 <!--                        User Panel Orders:end-->
 @endsection

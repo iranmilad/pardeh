@@ -9,9 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 {
 	use SoftDeletes;
 	protected $fillable=["id","gu_id","user_id","reference_id","ref_id","amount","state","type"];
-	
+
 	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}
+
+	public function order()
+	{
+		return $this->belongsTo(Order::class);
+	}
+
 }
