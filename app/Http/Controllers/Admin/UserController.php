@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Check;
 use App\Models\Review;
+use App\Models\Product;
 use App\Traits\Paginate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,16 @@ class UserController extends Controller
 	{
         $user= Auth::user();
         $comments = $user->comments;
-        return view('dashboard.dashboard',compact('user','comments'));
+
+        if ($request->cookie('favorites')) {
+            $favorites=json_decode($request->cookie('favorites'), true);
+            $favorites = Product::whereIn('id', $favorites)->get();
+        }
+        else{
+            $favorites = [];
+        }
+
+        return view('dashboard.dashboard',compact('user','comments','favorites'));
 	}
 
 	public function comments()
@@ -151,9 +161,17 @@ class UserController extends Controller
         return view('dashboard.notifications',compact('user'));
     }
 
-    public function favorites(){
+    public function favorites(Request $request){
         $user = Auth::user();
-        return view('dashboard.favorites',compact('user'));
+        if ($request->cookie('favorites')) {
+            $favorites=json_decode($request->cookie('favorites'), true);
+            $favorites = Product::whereIn('id', $favorites)->get();
+        }
+        else{
+            $favorites = [];
+        }
+
+        return view('dashboard.favorites',compact('user','favorites'));
     }
 
     public function checks(){

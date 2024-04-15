@@ -11,7 +11,7 @@ class MemberList extends Model
 
     public function users()
     {
-        return $this->hasMany(UserMemberList::class);
+        return $this->belongsToMany(User::class, 'user_member_lists', 'member_list_id', 'user_id');
     }
 
     public function subscribes()
@@ -36,6 +36,11 @@ class MemberList extends Model
             return true;
         }
         return false;
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
     }
 
 }

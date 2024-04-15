@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,20 +56,20 @@ Route::get('card/{id}', function ($id) {
     return response()->json(['html' => $html]);
 });
 
-Route::post('/file/upload', function (Request $request) {
-    $uploadedFiles = [];
+// Route::post('/file/upload', function (Request $request) {
+//     $uploadedFiles = [];
 
-    foreach ($request->file('files') as $file) {
-        $uuid = Uuid::uuid4()->toString();
-        $uploadedFiles[] = [
-            'uuid' => $uuid,
-            'original_name' => $file->getClientOriginalName(),
-            'mime_type' => $file->getMimeType(),
-        ];
-    }
+//     foreach ($request->file('files') as $file) {
+//         $uuid = Uuid::uuid4()->toString();
+//         $uploadedFiles[] = [
+//             'uuid' => $uuid,
+//             'original_name' => $file->getClientOriginalName(),
+//             'mime_type' => $file->getMimeType(),
+//         ];
+//     }
 
-    return response()->json(['files' => $uploadedFiles], 200);
-});
+//     return response()->json(['files' => $uploadedFiles], 200);
+// });
 
 // FOR MESSAGE IN DASHBOARD
 Route::get('/messages/{id}', function ($id) {
@@ -359,32 +361,7 @@ Route::post('/file/upload', function (Request $request) {
 });
 
 // FOR MESSAGE IN DASHBOARD
-Route::get('/messages/{id}', function ($id) {
-    $message = [
-        'id' => $id,
-        'sender' => 'مدیریت',
-        'priority' => 'زیاد',
-        'title' => 'پیام اول',
-        'messages' => [
-            [
-                'id' => 1,
-                'message' => 'پیام اول',
-                'created_at' => '1400/01/01 12:00:00',
-                'files' => ['https://placehold.co/600x400','https://placehold.co/600x400'],
-                'you' => true
-            ],
-            [
-                'id' => 2,
-                'message' => 'پیام دوم',
-                'created_at' => '1400/01/01 12:00:00',
-                'files' => ['https://placehold.co/600x400','https://placehold.co/600x400'],
-                'you' => false
-            ],
-        ],
-    ];
-
-    return response()->json(['message' => $message]);
-});
+Route::get('/messages/{id}', [SessionController::class,'messages'])->name('api.messages.get');
 
 // FOR IMAGE DOT. IT GETS DATA OF PRODUCT {ID} AND FILTER
 Route::get("/imgdot/{id}",function($id){
@@ -534,4 +511,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/set-cookie', function () {
         return response('Cookie set successfully')->cookie('language', 'ssa', 120);
     });
+
+
+    Route::post('/file/upload', [FileController::class,'upload'])->name('api.dashboard.upload');
+    Route::delete('/file/remove', [FileController::class,'remove'])->name('api.dashboard.remove');
 });

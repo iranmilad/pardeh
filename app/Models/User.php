@@ -65,10 +65,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 		return $this->hasMany(UserQuestion::class);
 	}
 
-	public function memberLists()
-	{
-		return $this->hasMany(UserMemberList::class);
-	}
+    public function memberLists()
+    {
+        return $this->belongsToMany(MemberList::class, 'user_member_lists', 'user_id', 'member_list_id');
+    }
+
     public function articles()
     {
         return $this->hasMany(Article::class);
@@ -120,6 +121,24 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
     {
         return $this->hasMany(Post::class);
     }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'recipient_id');
+    }
+
+
+
 
     public function calculateAvailableCredit()
     {

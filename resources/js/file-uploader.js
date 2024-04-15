@@ -26,29 +26,33 @@ if(document.getElementById("upload-file-modal")){
         allowMultipleUploadBatches: false,
         // tranlsation
         locale: Persian,
+
     });
-    
+
+
     uppy.use(XHRUpload, {
         endpoint: "/api/file/upload",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         fieldName: "file",
         formData: true,
     });
-    
+
     uppy.use(ThumbnailGenerator, {
         thumbnailWidth: 200,
     });
-    
+
     uppy.use(ProgressBar, { target: "#progress-bar" });
-    
+
     // uppy.use(StatusBar,{target:"#upload-status-bar"})
-    
+
     uppy.use(Dashboard, {
         inline: true,
         target: "#file-uploader",
         proudlyDisplayPoweredByUppy: false,
     });
-    
-    
+
     // Function to update the file input value
     function updateFileInputValue(inputId, fileId) {
         let fileInput = document.getElementById(inputId);
@@ -57,7 +61,7 @@ if(document.getElementById("upload-file-modal")){
         fileArray.push(fileId);
         fileInput.value = fileArray.join(",");
     }
-    
+
     // Function to remove the file from the input
     function removeFileFromInput(inputId, fileId) {
         let fileInput = document.getElementById(inputId);
@@ -67,19 +71,24 @@ if(document.getElementById("upload-file-modal")){
         fileArray.splice(index, 1);
         fileInput.value = fileArray.join(",");
     }
-    
+
+
+
+
     uppy.on("upload-success", (file, response) => {
         const fileId = response.body.id; // Adjust this based on your server response
-    
+
         if (UploadType === "new") {
             updateFileInputValue("new-msg-file", fileId);
         }
-    
+
         if (UploadType === "exist") {
             updateFileInputValue("exist-msg-file", fileId);
         }
     });
-    
+
+
+
     // Set event for removing a file
     uppy.on("file-removed", (file, reason) => {
         // Send request to server to remove the file
@@ -89,38 +98,41 @@ if(document.getElementById("upload-file-modal")){
             data: {
                 id: file.id,
             },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function (response) {
                 if (UploadType === "new") {
                     removeFileFromInput("new-msg-file", file.id);
                 }
-    
+
                 if (UploadType === "exist") {
                     removeFileFromInput("exist-msg-file", file.id);
                 }
             },
         });
     });
-    
+
     // if uppy is empty, show a message
     uppy.on("file-removed", () => {
         if(uppy.getFiles().length === 0){
             $(".uppy-Dashboard-AddFiles-list").html("<p>10 فایل با حداکثر حجم 10 مگابایت</p>")
         }
     });
-    
+
     $(".uppy-Dashboard-AddFiles-list").html("<p>10 فایل با حداکثر حجم 10 مگابایت</p>")
-    
+
     /**
-     * @type {enum} 
+     * @type {enum}
      */
     let UploadType = "";
-    
+
     $('#new-message-file').on('click', function () {
         UploadType = "new";
         let modal = new bootstrap.Modal(document.getElementById("upload-file-modal"));
         modal.show();
     })
-    
+
     $('#exist-message-file').on('click', function () {
         UploadType = "exist";
         let modal = new bootstrap.Modal(document.getElementById("upload-file-modal"));

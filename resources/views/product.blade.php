@@ -109,9 +109,9 @@
                             @if ($product->isAvailable())
                                 <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
                                     <!-- ADD TO FAVORITE BUTTON -->
-                                    <button class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
+                                    <a class="btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables."  href="{{ '/wishlist/'.$product->id }}">
                                         <i class="fa-regular fa-heart"></i>
-                                    </button>
+                                    </a>
                                     <!-- ADD TO CART BUTTON -->
                                     <x-add-to-cart />
                                 </div>

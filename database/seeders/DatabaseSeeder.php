@@ -46,6 +46,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewsTableSeeder::class);
         $this->call(CreditPlanSeeder::class);
         $this->call(CheckSeeder::class);
+        $this->call(MemberListTableSeeder::class);
+
 
         // $this->call(CategoriesTableSeeder::class);
         // $this->call(BrandsTableSeeder::class);

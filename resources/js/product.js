@@ -359,7 +359,9 @@ function wishlist() {
             type: "POST",
             url: "/api/wishlist",
             data: {
-                url: window.location.href,
+                param: {
+                    product: $("input[name='param[product]']").val(),
+                },
             },
             beforeSend: function () {
                 block.block();
@@ -375,6 +377,7 @@ function wishlist() {
         });
     });
 }
+
 
 // if run it first to make sure it might when page is loaded default wishlist button works
 wishlist();

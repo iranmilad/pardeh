@@ -16,9 +16,11 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\SessionController;
 
 
 /*
@@ -238,6 +240,9 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('/orderComplete', [OrderController::class,'complete'])->name('order.complete');
 } );
 
+Route::get('/wishlist/{id}', [WishlistController::class,'storeWishlist'])->name('storeWishlist');
+Route::get('/delete-wishlist/{id}', [WishlistController::class,'delete'])->name('deleteFavorites');
+Route::get('/favorites', [WishlistController::class,'index'])->name('favorites');
 
 Route::get('/about-us', function () {
     return view('about-us');
@@ -268,9 +273,6 @@ Route::get('/blog', function () {
 // when user is not logged in
 // if user is logged in, we use dashboard
 // in this page we always use cookie instead of database
-Route::get('/favorites', function () {
-    return view('favorites');
-})->name('favorites');
 
 
 
@@ -304,6 +306,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/checks', [UserController::class,'checks'])->name('dashboard.checks');
     Route::get('/payment-deadline', [UserController::class,'paymentDeadLine'])->name('dashboard.payment-deadline');
     Route::get('/invoice', [UserController::class,'invoice'])->name('dashboard.invoice');
+    Route::post('/sessions/store', [SessionController::class, 'store'])->name('sessions.store');
 
     // Add more routes as needed
 });
