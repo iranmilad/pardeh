@@ -41,6 +41,9 @@ function fetchMessages(id) {
                 createElement(Messages, { messages: data.message.messages }),
                 document.querySelector(".chatbox .main")
             );
+            // Set the value of 'session' input field to the session id
+            $("input[name='session']").val(data.message.id);
+
             block.release();
             $(".chatbox").fadeIn(200);
             if ($(window).width() < 992) {

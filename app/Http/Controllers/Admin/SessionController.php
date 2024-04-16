@@ -72,4 +72,21 @@ class SessionController extends Controller
         return response()->json(['message' => $message]);
 
     }
+
+
+    public function save(Request $request){
+        $user = $request->user();
+        $id = $request->session;
+
+        $session = Session::where('id', $id)->first();
+        //save message in message model
+        $message = new Message();
+
+        $message->message = $request->message;
+        $message->image = $request->file ?? null; // اینجا فایل را بررسی و ذخیره کنید
+        $message->session_id = $session->id; // انتساب جلسه به پیام
+        $message->sender_id = $user->id; // ذخیره شناسه کاربر کنونی
+        $message->save();
+        return redirect()->back()->with('success', 'پیام با موفقیت ارسال شد.');
+    }
 }

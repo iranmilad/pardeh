@@ -307,7 +307,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/payment-deadline', [UserController::class,'paymentDeadLine'])->name('dashboard.payment-deadline');
     Route::get('/invoice', [UserController::class,'invoice'])->name('dashboard.invoice');
     Route::post('/sessions/store', [SessionController::class, 'store'])->name('sessions.store');
-
+    Route::post('notifications', [SessionController::class,'save'])->name('dashboard.messages.save');
     // Add more routes as needed
 });
 

@@ -14,12 +14,14 @@
         <!-- MESSAGES -->
     </div>
     <div class="tw-px-5">
-        <form action="" method="post" class="send-box" id="send-box">
+        <form action="/dashboard/notifications" method="post" class="send-box" id="send-box">
+            @csrf
+            <input type="hidden" name="session" value="">
             <button type="button" class="btn tw-text-gray-400" id="exist-message-file">
                 <i class="fa-regular fa-paperclip "></i>
             </button>
             <textarea name="message" id="" placeholder="متن خود را بنویسید"></textarea>
-            
+
             <!-- value is filled liek: value="[1,2,3,4]" -->
             <!-- an array of ids of uploaded files -->
             <input type="hidden" name="file" id="exist-msg-file">

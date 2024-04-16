@@ -3,6 +3,7 @@
 
 use Ramsey\Uuid\Uuid;
 // routes/web.php or routes/api.php
+use App\Models\Product;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\SessionController;
@@ -72,32 +74,32 @@ Route::get('card/{id}', function ($id) {
 // });
 
 // FOR MESSAGE IN DASHBOARD
-Route::get('/messages/{id}', function ($id) {
-    $message = [
-        'id' => $id,
-        'sender' => 'مدیریت',
-        'priority' => 'زیاد',
-        'title' => 'پیام اول',
-        'messages' => [
-            [
-                'id' => 1,
-                'message' => 'پیام اول',
-                'created_at' => '1400/01/01 12:00:00',
-                'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
-                'you' => true
-            ],
-            [
-                'id' => 2,
-                'message' => 'پیام دوم',
-                'created_at' => '1400/01/01 12:00:00',
-                'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
-                'you' => false
-            ],
-        ],
-    ];
+// Route::get('/messages/{id}', function ($id) {
+//     $message = [
+//         'id' => $id,
+//         'sender' => 'مدیریت',
+//         'priority' => 'زیاد',
+//         'title' => 'پیام اول',
+//         'messages' => [
+//             [
+//                 'id' => 1,
+//                 'message' => 'پیام اول',
+//                 'created_at' => '1400/01/01 12:00:00',
+//                 'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
+//                 'you' => true
+//             ],
+//             [
+//                 'id' => 2,
+//                 'message' => 'پیام دوم',
+//                 'created_at' => '1400/01/01 12:00:00',
+//                 'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
+//                 'you' => false
+//             ],
+//         ],
+//     ];
 
-    return response()->json(['message' => $message]);
-});
+//     return response()->json(['message' => $message]);
+// });
 
 // FOR IMAGE DOT. IT GETS DATA OF PRODUCT {ID} AND FILTER
 Route::get("/imgdot/{id}", function ($id) {
@@ -119,36 +121,36 @@ Route::get("/imgdot/{id}", function ($id) {
  * this route returns the product details and update price and time and discount and also the images of product.
  *
  */
-Route::post("/product", function (Request $request) {
+// Route::post("/product", function (Request $request) {
 
-    /**
-     * regular_price & sale_price & discount & time_delivery are optional.
-     * images are required. if they are not exist, use a default image.
-     */
-    $response = [
-        "name" => $request->name,
-        "images" => [
-            "/images/5.jpg",
-            "/images/6.jpg",
-        ],
-        "regular_price" => "25,000,000",
-        "sale_price" => "18,000,000",
-        "discount" => "20%",
-        "time_delivery" => 2
-    ];
+//     /**
+//      * regular_price & sale_price & discount & time_delivery are optional.
+//      * images are required. if they are not exist, use a default image.
+//      */
+//     $response = [
+//         "name" => $request->name,
+//         "images" => [
+//             "/images/5.jpg",
+//             "/images/6.jpg",
+//         ],
+//         "regular_price" => "25,000,000",
+//         "sale_price" => "18,000,000",
+//         "discount" => "20%",
+//         "time_delivery" => 2
+//     ];
 
-    /**
-     * [ Unavailable product ]
-     */
-    // $response = [
-    //     "name" => $request->name,
-    //     "images" => [
-    //         "https://placehold.co/900?text=2",
-    //     ],
-    // ];
+//     /**
+//      * [ Unavailable product ]
+//      */
+//     // $response = [
+//     //     "name" => $request->name,
+//     //     "images" => [
+//     //         "https://placehold.co/900?text=2",
+//     //     ],
+//     // ];
 
-    return response()->json($response);
-});
+//     return response()->json($response);
+// });
 
 // Route::post("/add-to-cart", function (Request $request) {
 //     $response = [
@@ -363,6 +365,7 @@ Route::post('/file/upload', function (Request $request) {
 // FOR MESSAGE IN DASHBOARD
 Route::get('/messages/{id}', [SessionController::class,'messages'])->name('api.messages.get');
 
+
 // FOR IMAGE DOT. IT GETS DATA OF PRODUCT {ID} AND FILTER
 Route::get("/imgdot/{id}",function($id){
     $product = [
@@ -383,36 +386,36 @@ Route::get("/imgdot/{id}",function($id){
  * this route returns the product details and update price and time and discount and also the images of product.
  *
  */
-Route::post("/product",function(Request $request){
+// Route::post("/product",function(Request $request){
 
-    /**
-     * regular_price & sale_price & discount & time_delivery are optional.
-     * images are required. if they are not exist, use a default image.
-     */
-    $response = [
-        "name" => $request->name,
-        "images" => [
-            "/images/5.jpg",
-            "/images/6.jpg",
-        ],
-        "regular_price" => "25,000,000",
-        "sale_price" => "18,000,000",
-        "discount" => "20%",
-        "time_delivery" => 2
-    ];
+//     /**
+//      * regular_price & sale_price & discount & time_delivery are optional.
+//      * images are required. if they are not exist, use a default image.
+//      */
+//     $response = [
+//         "name" => $request->name,
+//         "images" => [
+//             "/images/5.jpg",
+//             "/images/6.jpg",
+//         ],
+//         "regular_price" => "25,000,000",
+//         "sale_price" => "18,000,000",
+//         "discount" => "20%",
+//         "time_delivery" => 2
+//     ];
 
-    /**
-     * [ Unavailable product ]
-     */
-    // $response = [
-    //     "name" => $request->name,
-    //     "images" => [
-    //         "https://placehold.co/900?text=2",
-    //     ],
-    // ];
+//     /**
+//      * [ Unavailable product ]
+//      */
+//     // $response = [
+//     //     "name" => $request->name,
+//     //     "images" => [
+//     //         "https://placehold.co/900?text=2",
+//     //     ],
+//     // ];
 
-    return response()->json($response);
-});
+//     return response()->json($response);
+// });
 
 
 
@@ -516,3 +519,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/file/upload', [FileController::class,'upload'])->name('api.dashboard.upload');
     Route::delete('/file/remove', [FileController::class,'remove'])->name('api.dashboard.remove');
 });
+
+Route::post("/product",  [ProductController::class,'getTotalPrice'])->name('api.product.getTotalPrice');

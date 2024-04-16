@@ -148,7 +148,7 @@
     @endif
 
     <!-- CHATBOX for messages between user and admin and other people -->
-    <x-chat />
+    <x-chat  />
 
     <!-- a modal to upload images -->
     <x-uploadFileModal />

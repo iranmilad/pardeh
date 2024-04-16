@@ -30,6 +30,8 @@ if(document.getElementById("upload-file-modal")){
     });
 
 
+
+
     uppy.use(XHRUpload, {
         endpoint: "/api/file/upload",
         headers: {
