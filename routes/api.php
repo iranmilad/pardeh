@@ -74,12 +74,37 @@ Route::get('card/{id}', function ($id) {
 // });
 
 // FOR MESSAGE IN DASHBOARD
+Route::get('/messages/{id}', function ($id) {
+    $message = [
+        'id' => $id,
+        'sender' => 'مدیریت',
+        'priority' => 'زیاد',
+        'title' => 'پیام اول',
+        'timestamp' => 100,
+        'messages' => [
+            [
+                'id' => 1,
+                'message' => 'پیام اول',
+                'created_at' => '1400/01/01 12:00:00',
+                'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
+                'you' => true
+            ],
+            [
+                'id' => 2,
+                'message' => 'پیام دوم',
+                'created_at' => '1400/01/01 12:00:00',
+                'files' => ['https://placehold.co/600x400', 'https://placehold.co/600x400'],
+                'you' => false
+            ],
+        ],
+    ];
 // Route::get('/messages/{id}', function ($id) {
 //     $message = [
 //         'id' => $id,
 //         'sender' => 'مدیریت',
 //         'priority' => 'زیاد',
 //         'title' => 'پیام اول',
+//         'timestamp' => 100,
 //         'messages' => [
 //             [
 //                 'id' => 1,
@@ -98,8 +123,13 @@ Route::get('card/{id}', function ($id) {
 //         ],
 //     ];
 
-//     return response()->json(['message' => $message]);
-// });
+//    return response()->json(['message' => $message]);
+});
+
+Route::get('/messages/{id}/timestamp', function ($id) {
+    $timestamp = 200;
+    return response()->json(array("timestamp" => $timestamp));
+});
 
 // FOR IMAGE DOT. IT GETS DATA OF PRODUCT {ID} AND FILTER
 Route::get("/imgdot/{id}", function ($id) {

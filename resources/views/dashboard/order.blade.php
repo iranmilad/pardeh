@@ -168,6 +168,8 @@
 
         </div>
     </div>
+    <x-product-comment-modal />
+    <x-uploadFileModal />
     <!--                        User Panel Orders:end-->
     @if (session('success'))
         <div class="alert alert-success">
@@ -184,5 +186,3 @@
         </div>
     @endif
     @endsection
-
-
