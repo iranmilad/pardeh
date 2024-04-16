@@ -147,7 +147,7 @@
             <?php endfor; ?>
             </div>
     </div>
+    <x-product-comment-modal />
+    <x-uploadFileModal />
     <!--                        User Panel Orders:end-->
     @endsection
-
-    <x-product-comment-modal />

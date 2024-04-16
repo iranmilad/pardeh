@@ -2,20 +2,30 @@ import $ from "jquery";
 import { hydrate, createElement } from "preact";
 import "jquery-validation";
 import KTBlockUI from "./tools/blockui";
+import queryString from "query-string";
 
-let block = new KTBlockUI(document.getElementById("messages-whole-box"));
+let block = new KTBlockUI(document.getElementById("messages-whole-box"), {
+    overlayClass: "z-[999999]",
+});
+let timestamp = 0;
+// check timestamp
+let timestampInterval = null;
 
 $(".messages-private-box").on("click", function (event) {
     let id = $(this).data("id");
     window.history.pushState("", "", `?id=${id}`);
     fetchMessages(id);
+    $("#send-box #message_id").val(id);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
     let url = new URL(window.location.href);
-    let id = url.searchParams.get("id");
-    if (id) {
-        fetchMessages(id);
+    if (url.pathname === "/dashboard/notifications") {
+        let id = url.searchParams.get("id");
+        if (id) {
+            fetchMessages(id);
+            $("#send-box #message_id").val(id);
+        }
     }
 });
 
@@ -23,6 +33,8 @@ $("#chatbox-back").on("click", function (event) {
     $(".chatbox").fadeOut(200);
     window.history.pushState("", "", window.location.pathname);
     $("body").css("overflow", "auto");
+    $("#send-box #message_id").val("");
+    clearInterval(timestampInterval);
 });
 
 function fetchMessages(id) {
@@ -33,9 +45,12 @@ function fetchMessages(id) {
             block.block();
         },
         success: function (data) {
+            timestamp = data.message.timestamp;
             $(".chatbox .header span").html(data.message.title);
             hydrate(
-                createElement(Messages, { messages: data.message.messages }),
+                createElement(Messages, {
+                    messages: data.message.messages,
+                }),
                 document.querySelector(".chatbox .main")
             );
             block.release();
@@ -44,6 +59,25 @@ function fetchMessages(id) {
                 $("body").css("overflow", "hidden");
                 // set scroll to top 0
             }
+            clearInterval(timestampInterval);
+            timestampInterval = setInterval(() => {
+                let url = new URL(window.location.href);
+                let id = url.searchParams.get("id");
+                let token = $('#send-box [name="_token"]').val();
+
+                $.ajax({
+                    url: `/api/messages/${id}/timestamp`,
+                    method: "GET",
+                    headers: {
+                        "X-CSRF-TOKEN": token,
+                    },
+                    success: (response) => {
+                        if (+response.timestamp !== +timestamp) {
+                            fetchMessages(id);
+                        }
+                    },
+                });
+            }, 5000);
         },
         error: function (xhr, status, error) {
             block.release();
@@ -67,7 +101,7 @@ $("#send-box [name='message']").on("input", function (event) {
 });
 
 const Messages = ({ messages }) => {
-    console.log(messages)
+    console.log(messages);
     return messages.map((message, id) => {
         if (message.you === true) {
             return (

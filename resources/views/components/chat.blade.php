@@ -15,6 +15,7 @@
     </div>
     <div class="tw-px-5">
         <form action="" method="post" class="send-box" id="send-box">
+            @csrf
             <button type="button" class="btn tw-text-gray-400" id="exist-message-file">
                 <i class="fa-regular fa-paperclip "></i>
             </button>
@@ -23,6 +24,7 @@
             <!-- value is filled liek: value="[1,2,3,4]" -->
             <!-- an array of ids of uploaded files -->
             <input type="hidden" name="file" id="exist-msg-file">
+            <input type="hidden" name="msg_id" id="message_id">
             <button type="submit" class="btn custom-btn-primary" id="sendMessage">
                 <i class="fa-solid fa-paper-plane-top"></i>
             </button>

@@ -74,6 +74,7 @@ Route::get('/messages/{id}', function ($id) {
         'sender' => 'مدیریت',
         'priority' => 'زیاد',
         'title' => 'پیام اول',
+        'timestamp' => 100,
         'messages' => [
             [
                 'id' => 1,
@@ -93,6 +94,11 @@ Route::get('/messages/{id}', function ($id) {
     ];
 
     return response()->json(['message' => $message]);
+});
+
+Route::get('/messages/{id}/timestamp', function ($id) {
+    $timestamp = 200;
+    return response()->json(array("timestamp" => $timestamp));
 });
 
 // FOR IMAGE DOT. IT GETS DATA OF PRODUCT {ID} AND FILTER
