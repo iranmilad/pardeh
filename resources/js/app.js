@@ -46,9 +46,7 @@ import "./tour.js";
 import "./mini-cart.js";
 import "./category.js";
 import { handleChangeFilter } from "./category.js";
-
-
-
+import { Modal } from "bootstrap";
 
 // this is my swiper .headerSlider
 
@@ -364,8 +362,6 @@ $(".remove-favorite-user").on("click", function (e) {
     $(this).parent().parent().parent().hide().append(div).fadeIn(100);
 });
 
-
-
 $(".payment-accordion:not(.disabled) input[type=checkbox]").on(
     "change",
     function () {
@@ -646,3 +642,19 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
+
+// showing send comment modal
+$(".send-comment-btn-order").on("click", function (e) {
+    let modal = new Modal("#commentModal");
+    let id = $(this).data("id");
+    window["productId"] = id;
+    modal.show();
+});
+
+if ($("#commentModal").length > 0) {
+    const myModalEl = document.getElementById("commentModal");
+    myModalEl.addEventListener("hidden.bs.modal", (event) => {
+        window["productId"] = "";
+    });
+}

@@ -12,8 +12,25 @@ import "@uppy/core/dist/style.min.css";
 import "@uppy/drag-drop/dist/style.min.css";
 import "@uppy/status-bar/dist/style.min.css";
 import "@uppy/progress-bar/dist/style.min.css";
+import { Messages } from "./messages-dashboard";
+import { hydrate,createElement } from "preact";
 
-if(document.getElementById("upload-file-modal")){
+function getIdForMessagesOrComments() {
+    let url = new URL(window.location.href);
+    if (url.pathname === "/dashboard/notifications") {
+        let id = url.searchParams.get("id");
+        return { message: id };
+    }
+
+    if (url.pathname === "/dashboard/order") {
+        let orderId = url.searchParams.get("id");
+        let id = window["productId"];
+        return { order: orderId, productId: id };
+    }
+}
+
+
+if (document.getElementById("upload-file-modal")) {
     const uppy = new Uppy({
         autoProceed: false,
         // file types and size
@@ -28,6 +45,7 @@ if(document.getElementById("upload-file-modal")){
         locale: Persian,
 
     });
+
 
 
 
@@ -55,6 +73,15 @@ if(document.getElementById("upload-file-modal")){
         proudlyDisplayPoweredByUppy: false,
     });
 
+    uppy.on("file-added", (file) => {
+        uppy.setFileState(file.id, {
+            xhrUpload: {
+                ...file.xhrUpload,
+                headers: getIdForMessagesOrComments(),
+            },
+        });
+    });
+
     // Function to update the file input value
     function updateFileInputValue(inputId, fileId) {
         let fileInput = document.getElementById(inputId);
@@ -77,6 +104,7 @@ if(document.getElementById("upload-file-modal")){
 
 
 
+
     uppy.on("upload-success", (file, response) => {
         const fileId = response.body.id; // Adjust this based on your server response
 
@@ -85,9 +113,28 @@ if(document.getElementById("upload-file-modal")){
         }
 
         if (UploadType === "exist") {
-            updateFileInputValue("exist-msg-file", fileId);
+            const fileUrl = response.body.url;
+            const date = response.body.date;
+            let messages = [
+                {
+                    id: fileId,
+                    message: "",
+                    created_at: date,
+                    files: [fileUrl],
+                    you: true,
+                },
+            ];
+            let elm = document.createElement("div");
+            hydrate(
+                createElement(Messages, {
+                    messages,
+                }),
+                elm
+            );
+            $(".chatbox .main").append(elm.outerHTML);
         }
     });
+
 
 
 
@@ -115,36 +162,49 @@ if(document.getElementById("upload-file-modal")){
         });
     });
 
+
     // if uppy is empty, show a message
     uppy.on("file-removed", () => {
-        if(uppy.getFiles().length === 0){
-            $(".uppy-Dashboard-AddFiles-list").html("<p>10 فایل با حداکثر حجم 10 مگابایت</p>")
+        if (uppy.getFiles().length === 0) {
+            $(".uppy-Dashboard-AddFiles-list").html(
+                "<p>10 فایل با حداکثر حجم 10 مگابایت</p>"
+            );
         }
     });
 
-    $(".uppy-Dashboard-AddFiles-list").html("<p>10 فایل با حداکثر حجم 10 مگابایت</p>")
+    $(".uppy-Dashboard-AddFiles-list").html(
+        "<p>10 فایل با حداکثر حجم 10 مگابایت</p>"
+    );
 
     /**
      * @type {enum}
      */
     let UploadType = "";
 
-    $('#new-message-file').on('click', function () {
+    $("#new-message-file").on("click", function () {
         UploadType = "new";
-        let modal = new bootstrap.Modal(document.getElementById("upload-file-modal"));
+        let modal = new bootstrap.Modal(
+            document.getElementById("upload-file-modal")
+        );
         modal.show();
+    });
+
+    $("#exist-message-file").on("click", function () {
     })
 
     $('#exist-message-file').on('click', function () {
         UploadType = "exist";
-        let modal = new bootstrap.Modal(document.getElementById("upload-file-modal"));
+        let modal = new bootstrap.Modal(
+            document.getElementById("upload-file-modal")
+        );
         modal.show();
-    })
+    });
 
-    $("#commentsFileUpload").on("click",function(){
+    $("#commentsFileUpload").on("click", function () {
         UploadType = "new";
-        let modal = new bootstrap.Modal(document.getElementById("upload-file-modal"));
+        let modal = new bootstrap.Modal(
+            document.getElementById("upload-file-modal")
+        );
         modal.show();
-    })
+    });
 }
-
