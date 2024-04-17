@@ -117,7 +117,7 @@
                             </svg></span>
                         <div class="tw-flex tw-flex-row tw-w-full lg:tw-w-max tw-justify-between lg:tw-justify-start">
                             <button type="button" class="btn fs-7 px-0  tw-max-w-max text-primary mt-2" data-bs-toggle="collapse" data-bs-target="#id_<?= $id; ?>">مشاهده جزئیات</button>
-                            <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6" data-bs-toggle="modal" data-bs-target="#commentModal">ارسال نظر</button>
+                            <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6 send-comment-btn-order" data-id="1212">ارسال نظر</button>
                         </div>
                     </div>
                 </a>
@@ -143,11 +143,11 @@
                         </div>
                     </div>
                 </div>
-                </ش>
-            <?php endfor; ?>
             </div>
+        <?php endfor; ?>
     </div>
-    <x-product-comment-modal />
-    <x-uploadFileModal />
-    <!--                        User Panel Orders:end-->
-    @endsection
+</div>
+<x-product-comment-modal />
+<x-uploadFileModal />
+<!--                        User Panel Orders:end-->
+@endsection

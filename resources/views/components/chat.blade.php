@@ -21,9 +21,7 @@
             </button>
             <textarea name="message" id="" placeholder="متن خود را بنویسید"></textarea>
             
-            <!-- value is filled liek: value="[1,2,3,4]" -->
             <!-- an array of ids of uploaded files -->
-            <input type="hidden" name="file" id="exist-msg-file">
             <input type="hidden" name="msg_id" id="message_id">
             <button type="submit" class="btn custom-btn-primary" id="sendMessage">
                 <i class="fa-solid fa-paper-plane-top"></i>

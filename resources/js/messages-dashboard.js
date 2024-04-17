@@ -100,16 +100,18 @@ $("#send-box [name='message']").on("input", function (event) {
     }
 });
 
-const Messages = ({ messages }) => {
-    console.log(messages);
+export const Messages = ({ messages }) => {
     return messages.map((message, id) => {
         if (message.you === true) {
             return (
                 <div class="your">
-                    <div class="text-chat">
-                        <span>{message.message}</span>
-                        <span class="chat-time">{message.created_at}</span>
-                    </div>
+                    {message.message && (
+                        <div class="text-chat">
+                            <span>{message.message}</span>
+                            <span class="chat-time">{message.created_at}</span>
+                        </div>
+                    )}
+                    <span class="chat-time">{message.created_at}</span>
                     <div class="files">
                         {message.files.map((file, id) => (
                             <a key={id} href={file} target="_blank">
