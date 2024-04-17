@@ -55,6 +55,17 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function waitingLists()
+    {
+        return $this->hasMany(ProductWaitingList::class);
+    }
+
+    public function isUserInWaitingList($userId)
+    {
+        return $this->waitingLists()->where('user_id', $userId)->exists();
+    }
+
+
     public function getDiscountPercentageAttribute()
     {
         // Calculate discount percentage

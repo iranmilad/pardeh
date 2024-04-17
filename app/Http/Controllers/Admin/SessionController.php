@@ -66,6 +66,7 @@ class SessionController extends Controller
             'sender' =>  $session->user->fullName,
             'priority' =>  $session->priority,
             'title' =>  $session->title,
+            'timestamp' => count($messages),
             'messages' => $messages,
         ];
 
@@ -89,4 +90,29 @@ class SessionController extends Controller
         $message->save();
         return redirect()->back()->with('success', 'پیام با موفقیت ارسال شد.');
     }
+
+    public function timestamp(Request $request,$id){
+
+        $user = $request->user();
+        $session = Session::where('id', $id)->first();
+        $session_msgs = $session->messages;
+        $messages=[];
+
+        foreach ($session_msgs as $text) {
+            $message = (object) $text;
+            $messages[] = [
+                'id' => $message->id,
+                'message' =>  $message->message,
+                'created_at' => $message->create_at,
+                'files' => ($message->image!= null) ? [$message->image] : [],
+                'you' => ($message->sender_id == $user->id) ? true : false,
+            ];
+        };
+
+        $timestamp=count($messages);
+
+        return response()->json(array("timestamp" => $timestamp));
+
+    }
+
 }

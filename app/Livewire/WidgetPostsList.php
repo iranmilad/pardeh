@@ -31,8 +31,8 @@ class WidgetPostsList extends Component
     public function render()
     {
 
-        $posts = $this->posts;
 
+        $posts = Post::latest()->paginate(10);
         return view('livewire.widget-posts-list', compact('posts'));
     }
 }

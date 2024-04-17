@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\SessionController;
+use App\Http\Controllers\Admin\ProductWaitingListController;
 
 
 /*
@@ -308,6 +309,9 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/invoice', [UserController::class,'invoice'])->name('dashboard.invoice');
     Route::post('/sessions/store', [SessionController::class, 'store'])->name('sessions.store');
     Route::post('notifications', [SessionController::class,'save'])->name('dashboard.messages.save');
+    Route::get('/product/{id}/add-to-waiting-list', [ProductWaitingListController::class, 'addToWaitingList'])->name('product.waiting-list.add');
+    Route::get('/product/{productId}/remove-waiting-list', [ProductWaitingListController::class, 'removeFromWaitingList'])->name('product.waiting-list.remove');
+
     // Add more routes as needed
 });
 

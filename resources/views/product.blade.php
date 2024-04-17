@@ -120,16 +120,28 @@
                                 <!-- این بخش برای نمایش هنگامی که محصول موجود نیست -->
                                 <div>
                                     <h4 class="text-center tw-text-brand-500">ناموجود</h4>
+                                    @if (Auth::user() and !$product->isUserInWaitingList(Auth::id()))
+                                        <div class="text-center tw-text-sm">
+                                            این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
+                                            موجود شدن، به شما خبر دهیم.
+                                        </div>
+                                        <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
+                                            <a href="/dashboard/product/{{ $product->id }}/add-to-waiting-list" class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
+                                                <i class="fa-solid fa-bell tw-ml-2"></i>
+                                                خبرم کن
+                                            </a>
+                                        </div>
+                                    @else
                                     <div class="text-center tw-text-sm">
-                                        این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
-                                        موجود شدن، به شما خبر دهیم.
+                                        شما در لیست انتظار برای موجود شدن کالا قرار دارید به محض موجود شدن به شما اطلاع داده خواهد شد
                                     </div>
                                     <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
-                                        <button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
+                                        <a href="/dashboard/product/{{ $product->id }}/remove-waiting-list" class="btn btn-warning btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
                                             <i class="fa-solid fa-bell tw-ml-2"></i>
-                                            خبرم کن
-                                        </button>
+                                            خارج شدن لیست انتظار
+                                        </a>
                                     </div>
+                                    @endif
                                 </div>
                                 <!-- LET ME KNOW -->
                             @endif

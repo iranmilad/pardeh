@@ -137,7 +137,7 @@
                                     <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6" data-bs-toggle="modal" data-bs-target="#commentModal">ارسال نظر</button>
                                 @endif
                                 <x-product-comment-modal  :product="$product" />
-
+                                <x-uploadFileModal :product="$product" />
                             </div>
                         </div>
                     </a>
@@ -168,8 +168,8 @@
 
         </div>
     </div>
-    <x-product-comment-modal />
-    <x-uploadFileModal />
+
+
     <!--                        User Panel Orders:end-->
     @if (session('success'))
         <div class="alert alert-success">

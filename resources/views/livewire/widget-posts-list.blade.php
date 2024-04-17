@@ -1,7 +1,10 @@
 <div>
     <h5>{{ $options['title'] }}</h5>
     <div class="row gx-4 gy-4 mt-1 tw-items-stretch">
-        @foreach($posts as $post)
+        @if ($posts)
+
+
+        @forelse ($posts as $post)
         <a href="{{ $post->link }}" class="col-12 col-lg-6">
             <div class="card post-box-blog">
                 <img class="img" src="{{ asset($post->image) }}" alt="{{ $post->title }}">
@@ -23,12 +26,21 @@
                 </div>
             </div>
         </a>
-        @endforeach
+
+        @empty
+        <div>مطلبی یافت نشد</div>
+        @endforelse
+        @else
+        <div>مطلبی یافت نشد</div>
+
+        @endif
     </div>
     <div class="counter-a"></div>
     <div class="counter-a"></div>
     <div class="cs-pagination mt-5 tw-w-max tw-mx-auto">
+        @if ($posts)
         {{ $posts->links() }}
+        @endif
     </div>
 
     <!-- <nav class="cs-pagination mt-5 tw-w-max tw-mx-auto">

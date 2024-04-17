@@ -8,7 +8,7 @@
         elseif(request()->has('sewing'))
             $link = $product->link ."?sewing=".request()->input('sewing');
         else
-            $link = $peoduct->link;
+            $link = $product->link;
     @endphp
     <x-product mobile name="{{ $product->title }}"  nobtn available="{{ ($product->quantity >0) ? true : false }}" stock="{{ $product->quantity }}" discountedPrice="{{ $product->sale_price }}" discount="{{  $product->discountPercentage  }}" price="{{ $product->price }}" image="{{ $product->img }}" link="{{ $link }}" />
 </div>

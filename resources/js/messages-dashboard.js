@@ -69,13 +69,13 @@ function fetchMessages(id) {
             timestampInterval = setInterval(() => {
                 let url = new URL(window.location.href);
                 let id = url.searchParams.get("id");
-                let token = $('#send-box [name="_token"]').val();
+
 
                 $.ajax({
-                    url: `/api/messages/${id}/timestamp`,
+                    url: `/api/messages/timestamp/${id}`,
                     method: "GET",
                     headers: {
-                        "X-CSRF-TOKEN": token,
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: (response) => {
                         if (+response.timestamp !== +timestamp) {
