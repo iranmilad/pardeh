@@ -25,28 +25,28 @@ class FileController extends Controller
 
                 $file = $request->file('file');
                 $fileName = $file->getClientOriginalName();
-                $filePath = $file->storeAs('public/uploads', $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
+                $filePath = $file->storePubliclyAs('public/uploads', $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
                 $uploadedFiles = $filePath;
 
                 $message->message = "";
-                $message->image = "\\". 'storage\\uploads\\'.$fileName ?? null; // اینجا فایل را بررسی و ذخیره کنید
+                $message->image = "\\". 'uploads\\'.$fileName ?? null; // اینجا فایل را بررسی و ذخیره کنید
                 $message->session_id = $sesstion_id; // انتساب جلسه به پیام
                 $message->sender_id = Auth::id(); // ذخیره شناسه کاربر کنونی
                 $message->save();
 
-                return response()->json(['url' =>"\\". 'storage\\uploads\\'.$fileName,'date' => $message->create_at], 200);
+                return response()->json(['url' =>"\\". 'uploads\\'.$fileName,'date' => $message->create_at], 200);
             }
             elseif($request->hasHeader('Order') and $request->hasHeader('Productid')){
 
                 $order_id = $headers->order;
                 $product_id = $headers->productid;
 
-               
+
                 $user= Auth::user();
 
                 $file = $request->file('file');
                 $fileName = $file->getClientOriginalName();
-                $filePath = $file->storeAs('public/uploads/customers/reviews/'.$user->id."/".$product_id[0], $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
+                $filePath = $file->storePubliclyAs('public/uploads/customers/reviews/'.$user->id."/".$product_id[0], $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
                 $uploadedFiles = $filePath;
 
                 return response()->json(['url' =>'/uploads/customers/reviews/'.$user->id."/".$product_id[0]."/".$fileName], 200);
@@ -63,7 +63,7 @@ class FileController extends Controller
         $id = $request->input('id');
         // اینجا کدی برای حذف فایل از سیستم فایل شما قرار بگیرد
         // مثال:
-        Storage::delete('uploads/' . explode("-",$id)[2]);
+        unlink(public_path('uploads/' . explode("-", $id)[2]));
 
         // در صورت موفقیت آمیز بودن حذف فایل
         return response()->json(['success' => true, 'message' => 'فایل با موفقیت حذف شد']);
