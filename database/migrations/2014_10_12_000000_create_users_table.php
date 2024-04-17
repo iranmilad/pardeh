@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
             $table->boolean('credit_payment_active')->default(false);
 
 
-            $table->unsignedBigInteger('credit_limit', 10, 2)->nullable();
+            $table->unsignedBigInteger('credit_limit')->nullable();
 
 			$table->timestamps();
         });
