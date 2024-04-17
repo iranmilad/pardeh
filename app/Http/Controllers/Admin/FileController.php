@@ -25,7 +25,9 @@ class FileController extends Controller
 
                 $file = $request->file('file');
                 $fileName = $file->getClientOriginalName();
-                $filePath = $file->storePubliclyAs('public/uploads', $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
+                $filePath = $file->storeAs('public/uploads', $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
+                $file->move(public_path('uploads'), $fileName);
+
                 $uploadedFiles = $filePath;
 
                 $message->message = "";
@@ -46,7 +48,8 @@ class FileController extends Controller
 
                 $file = $request->file('file');
                 $fileName = $file->getClientOriginalName();
-                $filePath = $file->storePubliclyAs('public/uploads/customers/reviews/'.$user->id."/".$product_id[0], $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
+                $filePath = $file->storeAs('public/uploads/customers/reviews/'.$user->id."/".$product_id[0], $fileName); // ذخیره فایل در مسیر مورد نظر، مانند storage/app/uploads
+                $file->move(public_path('uploads/customers/reviews/'.$user->id.'/'.$product_id[0]), $fileName);
                 $uploadedFiles = $filePath;
 
                 return response()->json(['url' =>'/uploads/customers/reviews/'.$user->id."/".$product_id[0]."/".$fileName], 200);
@@ -63,7 +66,7 @@ class FileController extends Controller
         $id = $request->input('id');
         // اینجا کدی برای حذف فایل از سیستم فایل شما قرار بگیرد
         // مثال:
-        unlink(public_path('uploads/' . explode("-", $id)[2]));
+        Storage::delete('uploads/' . explode("-",$id)[2]);
 
         // در صورت موفقیت آمیز بودن حذف فایل
         return response()->json(['success' => true, 'message' => 'فایل با موفقیت حذف شد']);
