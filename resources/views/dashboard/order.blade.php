@@ -134,7 +134,7 @@
                             <div class="tw-flex tw-flex-row tw-w-full lg:tw-w-max tw-justify-between lg:tw-justify-start">
                                 <button type="button" class="btn fs-7 px-0  tw-max-w-max text-primary mt-2" data-bs-toggle="collapse" data-bs-target="#id_{{ $item->id }}">مشاهده جزئیات</button>
                                 @if ($item->review==false)
-                                    <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6 send-comment-btn-order" data-id="1212">ارسال نظر</button>
+                                    <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6 send-comment-btn-order" data-id="{{ $product }}" data-order="{{ $basket->cart->id }}">ارسال نظر</button>
                                 @endif
                                 <x-product-comment-modal  :product="$product" />
                                 <x-uploadFileModal :product="$product" />

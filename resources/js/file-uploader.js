@@ -22,8 +22,8 @@ function getIdForMessagesOrComments() {
         return { message: id };
     }
 
-    if (url.pathname === "/dashboard/order") {
-        let orderId = url.searchParams.get("id");
+    else {
+        let orderId = window["orderId"];
         let id = window["productId"];
         return { order: orderId, productId: id };
     }

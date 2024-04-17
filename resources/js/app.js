@@ -630,15 +630,17 @@ $("#sendtoanotheraddress").on("change", function () {
 document.addEventListener("DOMContentLoaded", function() {
     // Find the "Submit Review" button by its id
     var reviewSubmitBtn = document.getElementById("reviewSubmit");
+    if(reviewSubmitBtn){
+        // Add a click event listener to the button
+        reviewSubmitBtn.addEventListener("click", function() {
+            // Find the form by its id
+            var reviewForm = document.getElementById("reviewForm");
 
-    // Add a click event listener to the button
-    reviewSubmitBtn.addEventListener("click", function() {
-        // Find the form by its id
-        var reviewForm = document.getElementById("reviewForm");
+            // Submit the form
+            reviewForm.submit();
+        });
 
-        // Submit the form
-        reviewForm.submit();
-    });
+    }
 });
 
 
@@ -648,7 +650,10 @@ document.addEventListener("DOMContentLoaded", function() {
 $(".send-comment-btn-order").on("click", function (e) {
     let modal = new Modal("#commentModal");
     let id = $(this).data("id");
+    let order = $(this).data("order");
     window["productId"] = id;
+    window["orderId"] = order;
+    $("#product_id").val(id);
     modal.show();
 });
 

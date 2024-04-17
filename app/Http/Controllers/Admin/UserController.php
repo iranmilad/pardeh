@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\User\UserCollection;
 use App\Http\Requests\User\storeUserRequest;
 use App\Http\Requests\User\updateUserRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -101,7 +103,10 @@ class UserController extends Controller
             'product_id' => 'required|integer',
         ]);
         $user= Auth::user();
-        $images = $validatedData['images'] ?? [];
+
+        //get all image load in storeAs as path
+        $imagePath= 'public/uploads/customers/reviews/'.$user->id."/".$validatedData['product_id'];
+        $images = $this->getCustomerUploadedImages($imagePath);
 
         // Create a new review instance
         $review = new Review;
@@ -211,6 +216,33 @@ class UserController extends Controller
     public function invoice(){
         $user = Auth::user();
         return view('dashboard.invoice',compact('user'));
+    }
+
+
+    private function getCustomerUploadedImages($imagePath){
+        // بررسی وجود مسیر مورد نظر
+        if (Storage::exists($imagePath)) {
+
+            // دریافت تمام فایل‌های موجود در مسیر
+            $files = Storage::files($imagePath);
+
+            // ایجاد یک آرایه برای نگهداری آدرس‌های فایل‌ها
+            $imageUrls = [];
+
+            // بررسی هر فایل و افزودن آدرس آن به آرایه
+            foreach ($files as $file) {
+                // ایجاد آدرس مربوط به فایل
+                $url = Storage::url($file);
+                
+                // اضافه کردن آدرس به آرایه
+                $imageUrls[] = $url;
+            }
+        } 
+        else {
+            // اگر مسیر وجود نداشته باشد، آرایه را خالی می‌کنیم
+            $imageUrls = [];
+        }
+        return $imageUrls;
     }
 
 
