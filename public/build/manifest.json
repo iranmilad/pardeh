@@ -228,7 +228,7 @@
   },
   "resources/images/categories/4.jpg": {
     "file": "assets/4-DiwDTIja.jpg",
-    "src": "resources/images/categories/4.jpg"
+    "src": "resources/images/categories/6.jpg"
   },
   "resources/images/categories/5.jpg": {
     "file": "assets/5-CQpe5n-D.jpg",
@@ -236,7 +236,7 @@
   },
   "resources/images/categories/6.jpg": {
     "file": "assets/4-DiwDTIja.jpg",
-    "src": "resources/images/categories/4.jpg"
+    "src": "resources/images/categories/6.jpg"
   },
   "resources/images/categories/7.jpg": {
     "file": "assets/7-CaDgXcIY.jpg",
@@ -556,7 +556,7 @@
     "css": [
       "assets/app-DLjMfry3.css"
     ],
-    "file": "assets/app-DyFLe8QK.js",
+    "file": "assets/app-CiU7Picy.js",
     "imports": [
       "_jquery-D4JSgyTa.js",
       "_bootstrap.esm-BoXi6Bit.js"
