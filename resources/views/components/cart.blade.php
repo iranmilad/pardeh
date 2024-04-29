@@ -66,7 +66,7 @@
                 <!-- START: Suggest box  ACTIVE -->
                 <!-- href is linked to cart-service.blade.php div -->
                 @if ($order->services->sewing)
-                    <a href="{{ isset($order->sewing) ? '#service_'.$order->sewing : $order->services->sewing->category->link ?? '/category/swing' }}{{ !isset($order->sewing) ? '?sewing='.$order->id : '' }}" class="suggest-box {{ isset($order->sewing) ? 'active' : ''}}">
+                    <a href="{{ isset($order->sewing) ? '#service_'.$order->sewing : $order->services->sewing->category->link ?? '/category/خدمت-دوخت' }}{{ !isset($order->sewing) ? '?sewing='.$order->id : '' }}" class="suggest-box {{ isset($order->sewing) ? 'active' : ''}}">
                         <div class="tw-flex tw-flex-col tw-h-full">
                             <p class="tw-text-sm">
                                 <span>
@@ -88,7 +88,7 @@
                 @endif
                 <!-- END: Suggest box ACTIVE -->
                 @if ($order->services->installer)
-                    <a  href="{{ isset($order->installer) ? '#service_'.$order->installer : $order->services->installer->category->link ?? '/category/installer' }}{{ !isset($order->installer) ? '?installer='.$order->id : '' }}" class="suggest-box {{ isset($order->installer) ? 'active' : ''}}">
+                    <a  href="{{ isset($order->installer) ? '#service_'.$order->installer : $order->services->installer->category->link ?? '/category/خدمت-نصب' }}{{ !isset($order->installer) ? '?installer='.$order->id : '' }}" class="suggest-box {{ isset($order->installer) ? 'active' : ''}}">
                         <div class="tw-flex tw-flex-col tw-h-full">
                             <p class="tw-text-sm">
                                 <span>
@@ -110,7 +110,7 @@
                 @endif
 
                 @if ($order->services->design)
-                    <a href="{{ isset($order->design) ? '#service_'.$order->design : $order->services->design->category->link ?? '/category/design' }}{{ !isset($order->design) ? '?design='.$order->id : '' }}" class="suggest-box {{ isset($order->design) ? 'active' : ''}}">
+                    <a href="{{ isset($order->design) ? '#service_'.$order->design : $order->services->design->category->link ?? '/category/خدمت-طراحی' }}{{ !isset($order->design) ? '?design='.$order->id : '' }}" class="suggest-box {{ isset($order->design) ? 'active' : ''}}">
                         <div class="tw-flex tw-flex-col tw-h-full">
                             <p class="tw-text-sm">
                                 <span>

@@ -21,7 +21,7 @@ class CategoryController extends Controller{
         $inventory =  request()->input('inventory',0);
         $colorBox = request()->input('colorBox');
         // یافتن دسته بندی مرتبط با نشانه
-        if ($slug) {
+        if ($slug!=null) {
             $category = Category::where(['alias' => $slug])->first();
         } else {
             $category = Category::first();
