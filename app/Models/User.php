@@ -382,12 +382,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
     public function getCompletedOrders()
     {
-        return $this->getOrdersByStatus('completed');
+        return $this->getOrdersByStatus('complete');
     }
 
     public function getCanceledOrders()
     {
-        return $this->getOrdersByStatus('canceled');
+        return $this->getOrdersByStatus('cancel');
     }
 
     public function getRejectOrders()

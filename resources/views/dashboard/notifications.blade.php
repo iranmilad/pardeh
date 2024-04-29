@@ -21,6 +21,7 @@
                 <div class="mb-3">
                     <label for="department" class="form-label">بخش</label>
                     <select class="form-select" name="department" id="department">
+                        <option selected value="7">مدیریت</option>
                         @foreach ($user->memberLists as $member)
                             <option selected value="{{ $member->id }}">{{ $member->title }}</option>
                         @endforeach

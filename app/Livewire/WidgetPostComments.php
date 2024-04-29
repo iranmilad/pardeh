@@ -40,6 +40,12 @@ class WidgetPostComments extends Component
         $comment->email = $this->email;
         $comment->text = $this->content;
         $comment->post_id = $this->post->id; // اضافه کردن ارتباط با پست
+
+        // اگر کاربر لاگین شده است، اطلاعات کاربر را به عنوان نویسنده نظر ثبت کنید
+        if (auth()->check()) {
+            $comment->user_id = auth()->user()->id;
+        }
+
         $comment->save();
 
         // پس از ذخیره کردن نظر، مقادیر فیلد‌ها را صفر یا خالی کنید

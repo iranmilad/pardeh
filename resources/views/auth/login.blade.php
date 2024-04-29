@@ -49,6 +49,21 @@
                         <a class="fs-7" href="{{ route('mobile.verification.form') }}">فراموشی رمز عبور</a>
                     </div>
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success mt-3">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
                     <div class="d-grid gap-2 mt-3">
                         <button type="submit" class="btn custom-btn-primary btn-block border-radius-xl fw-bold tw-text-white">ادامه</button>
                     </div>

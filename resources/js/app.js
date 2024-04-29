@@ -295,8 +295,11 @@ $(document).on("DOMContentLoaded", function () {
 $(".deleteSentComment").on("click", function () {
     let parent = $(this).parent().parent().parent().parent().parent();
     $.ajax({
-        url: "https://jsonplaceholder.typicode.com/posts",
+        url: "/dashboard/comment/delete",
         method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         success: function (response) {
             parent.animate(
                 {

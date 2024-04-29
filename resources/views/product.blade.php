@@ -35,11 +35,16 @@
             <div class="tw-flex mt-3">
                 <div thumbsSlider="" class="swiper tw-w-full productImages me-2">
                     <div class="swiper-wrapper">
-                        @foreach($product->images as $image)
-                        <div class="swiper-slide">
-                            <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ $image->url }}" alt="">
-                        </div>
-                        @endforeach
+                        @forelse ($product->images as $image)
+                            <div class="swiper-slide">
+                                <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="{{ $image->url }}" alt="">
+                            </div>
+                        @empty
+                            <div class="swiper-slide">
+                                <img class="tw-block tw-relative tw-w-full tw-h-full tw-object-cover tw-rounded-xl" src="/images/blank_image.jpg" alt="">
+                            </div>
+                        @endforelse
+
                     </div>
                     <div class="swiper-button-prev" id="product-images-prev"></div>
                     <div class="swiper-button-next" id="product-images-next"></div>

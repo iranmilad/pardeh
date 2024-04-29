@@ -30,7 +30,7 @@
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </a>
                         <ul class="dropdown-menu *:tw-text-sm">
-                            <li><button class="dropdown-item text-danger deleteSentComment" data-id="{{ $loop->count }}" >حذف</button></li>
+                            <li><a class="dropdown-item text-danger" href="/dashboard/comment/delete/{{$comment->id}}" data-id="{{ $loop->count }}" >حذف</a></li>
                         </ul>
                     </div>
                 </div>

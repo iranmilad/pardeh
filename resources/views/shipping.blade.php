@@ -69,12 +69,15 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="province" class="form-label fs-7">استان</label>
-                    @if ($user->province==null)
-                        <option value="" selected disabled>لطفاً یک استان را انتخاب کنید</option>
-                    @else
-                        <option value="{{ old('province', $user->province) }}">{{ $user->province }}</option>
-                        <option value="{{ old('province', $user->province) }}" selected>{{ $user->province }} (پیش فرض)</option>
-                    @endif
+                    <select name="province" class="form-select fs-7 province " id="province" data-province-target="#city">
+                        @if ($user->province==null)
+                            <option value="" selected disabled>لطفاً یک استان را انتخاب کنید</option>
+
+                        @else
+                            <option value="{{ old('province', $user->province) }}">{{ $user->province }}</option>
+                            <option value="{{ old('province', $user->province) }}" selected>{{ $user->province }} (پیش فرض)</option>
+                        @endif
+                    </select>
                 </div>
             </div>
             <div class="col-md-6">

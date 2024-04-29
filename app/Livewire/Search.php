@@ -59,13 +59,14 @@ class Search extends Component
                         'category_id' => $product->category_id,
                         'description' => $product->description,
                         'thumbnail' => $product->img,
+                        'link' => $product->link,
                     ];
                 }),
                 'categories' => $categories->map(function ($category) {
                     return (object) [
                         'id' => $category->id,
                         'name' => $category->title,
-                        'link' => '#',
+                        'link' => $category->link,
                     ];
                 }),
             ];

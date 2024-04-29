@@ -25,10 +25,21 @@
                 <input type="hidden" name="gu_id" value="{{ $id }}">
                 <input type="hidden" name="mobile" value="{{ $mobile }}">
                 <input type="text" name="code" id="code" style="visibility: hidden;opacity: 0;">
-                @if ($errors)
-                    <span class="text-danger">{{ $errors }}</span>
-                @endif
 
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success mt-3">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="d-grid gap-2 mt-3">
                     <button type="submit" class="btn custom-btn-primary btn-block border-radius-xl fw-bold">ادامه</button>
                 </div>

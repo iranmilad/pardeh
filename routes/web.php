@@ -295,6 +295,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
 
     Route::get('/', [UserController::class,'index'])->name('dashboard.home');
     Route::get('/comments', [UserController::class,'comments'])->name('dashboard.comments');
+    Route::get('/comment/delete/{id}', [UserController::class,'commentsDelete'])->name('dashboard.comments.delete');
     Route::get('/user-info', [UserController::class,'userInfo'])->name('dashboard.user-info');
     Route::post('/user-info-update', [UserController::class,'userInfoUpdate'])->name('dashboard.user-info.update');
     Route::get('/orders', [UserController::class,'orders'])->name('dashboard.orders');

@@ -61,7 +61,8 @@ class AuthController extends Controller
 
             $this->verifySmsCode($request);
             // Verification successful, you can customize the redirect route
-            return redirect()->route('login');
+            return redirect()->route('login')->with('success', 'ثبت نام شما با موفقیت انجام شد');
+
         }
         catch (\Exception $e) {
             // Verification failed, handle the error and redirect back

@@ -40,7 +40,7 @@
                 محصولات مرتبط</span>
             @foreach($results->products as $product)
             <!-- Search Item:start-->
-            <a href="#" class="search-result-item position-relative border-bottom p-3 text-dark ">
+            <a href="{{ $product->link }}" class="search-result-item position-relative border-bottom p-3 text-dark ">
                 <img src="{{ asset($product->thumbnail) }}" class="tw-w-16 tw-h-16 fw-md fs-5 gray-500 tw-block tw-relative tw-rounded-md" alt="{{ $product->name }}">
                 <div class="d-inline-block ms-2">
                     <span class="d-inline-block fw-bold ms-1">{{ $product->name }}</span>

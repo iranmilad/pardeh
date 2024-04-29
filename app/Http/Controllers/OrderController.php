@@ -1109,6 +1109,7 @@ class OrderController extends Controller
             $deliveryCost = $this->deliveryCost($order);
             $orders =(object) [
                 "cart" =>(object) [
+
                     "count" => $cartCount,
                     "total" => number_format($totalPrice), // Format the total price
                     'deliveryType' => $order->deliveryType ,

@@ -31,15 +31,15 @@
                 </a>
                 <a href="#nav-complete" class="nav-link" id="nav-home-tab" data-bs-toggle="tab" role="tab">
                     تحویل شده
-                    <span class="badge">{{ $user->orders()->where('status', 'completed')->count() }}</span>
+                    <span class="badge">{{ $user->orders()->where('status', 'complete')->count() }}</span>
                 </a>
                 <a href="#nav-returned" class="nav-link" id="nav-home-tab" data-bs-toggle="tab" role="tab">
                     مرجوع شده
-                    <span class="badge">{{ $user->orders()->where('status', 'rejected')->count() }}</span>
+                    <span class="badge">{{ $user->orders()->where('status', 'reject')->count() }}</span>
                 </a>
                 <a href="#nav-canceled" class="nav-link" id="nav-home-tab" data-bs-toggle="tab" role="tab">
                     لغو شده
-                    <span class="badge">{{ $user->orders()->where('status', 'canceled')->count() }}</span>
+                    <span class="badge">{{ $user->orders()->where('status', 'cancel')->count() }}</span>
                 </a>
 
 

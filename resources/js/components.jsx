@@ -243,7 +243,7 @@ export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
                                 <h3 className="tw-text-sm tw-font-medium tw-mb-1">{item.name}</h3>
                                 <div className="tw-flex tw-items-center">
                                     <span className="tw-text-gray-500 tw-text-sm">قیمت:</span>
-                                    <span className="tw-text-gray-800 tw-text-sm">{item.total} <svg style="width: 16px; height: 16px; fill: var(--undefined);">
+                                    <span className="tw-text-gray-800 tw-text-sm">{item.sale_price} <svg style="width: 16px; height: 16px; fill: var(--undefined);">
                                             <use xlinkHref="#toman"></use>
                                         </svg></span>
                                 </div>
@@ -258,7 +258,7 @@ export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
                         </div>
                     </div>
                 </div>
-            ))}        
+            ))}
         </>
     )
 }

@@ -6,17 +6,18 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Check;
 use App\Models\Review;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Traits\Paginate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\User\UserCollection;
 use App\Http\Requests\User\storeUserRequest;
 use App\Http\Requests\User\updateUserRequest;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -44,6 +45,30 @@ class UserController extends Controller
         $comments = $user->comments;
 		return view('dashboard.comments',compact('user','comments'));
 	}
+
+    public function commentsDelete($id)
+    {
+        // یافتن نظر با شناسه مورد نظر
+        $comment = Comment::find($id);
+
+        // بررسی آیا نظر وجود دارد
+        if ($comment) {
+            // بررسی آیا کاربر لاگین شده همان کاربری است که نظر را ارسال کرده یا خیر
+            if (auth()->check() && $comment->user_id == auth()->id()) {
+                // حذف نظر
+                $comment->delete();
+
+                // بازگشت به صفحه ارسالی با پیام موفقیت
+                return redirect()->back()->with('success', 'نظر با موفقیت حذف شد.');
+            } else {
+                // اگر کاربر لاگین نکرده یا نظر او نیست، بازگشت به صفحه ارسالی با پیام خطا
+                return redirect()->back()->with('error', 'شما مجاز به حذف این نظر نیستید یا نظر مورد نظر وجود ندارد.');
+            }
+        } else {
+            // اگر نظری با شناسه مورد نظر یافت نشد، بازگشت به صفحه ارسالی با پیام خطا
+            return redirect()->back()->with('error', 'نظر مورد نظر یافت نشد یا قبلاً حذف شده است.');
+        }
+    }
 
 
     public function userInfo(){
@@ -233,11 +258,11 @@ class UserController extends Controller
             foreach ($files as $file) {
                 // ایجاد آدرس مربوط به فایل
                 $url = Storage::url($file);
-                
+
                 // اضافه کردن آدرس به آرایه
                 $imageUrls[] = $url;
             }
-        } 
+        }
         else {
             // اگر مسیر وجود نداشته باشد، آرایه را خالی می‌کنیم
             $imageUrls = [];
