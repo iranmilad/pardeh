@@ -31,25 +31,25 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="first_name" class="form-label fs-7">نام</label>
-                    <input name="first_name" type="text" class="form-control fs-7" id="first_name" value="{{ old('first_name', $user->first_name) }}">
+                    <input  type="text" class="form-control fs-7" name="first_name" id="first_name" value="{{ old('first_name', $user->first_name) }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="last_name" class="form-label fs-7">نام خانوادگی</label>
-                    <input name="last_name" type="text" class="form-control fs-7" id="last_name"  value="{{ old('last_name', $user->last_name) }}">
+                    <input  type="text" class="form-control fs-7" id="last_name"  name="last_name" value="{{ old('last_name', $user->last_name) }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="mobile" class="form-label fs-7">شماره موبایل</label>
-                    <input name="mobile" type="text" class="form-control fs-7" id="mobile"  value="{{ old('mobile', $user->mobile) }}">
+                    <input  type="text" class="form-control fs-7" id="mobile" name="mobile" value="{{ old('mobile', $user->mobile) }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="email" class="form-label fs-7">آدرس ایمیل</label>
-                    <input name="email" type="email" class="form-control fs-7" id="email" value="{{ old('email', $user->email) }}">
+                    <input  class="form-control fs-7" name="email" type="email" id="email" value="{{ old('email', $user->email) }}">
                 </div>
             </div>
             <!-- <div class="col-md-6 d-none">
@@ -95,7 +95,7 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label for="address" class="form-label fs-7">آدرس</label>
-                    <input name="address" type="address" class="form-control fs-7" id="address" placeholder="آدرس کامل" value="{{ old('address', $user->address) }}">
+                    <input  type="address" class="form-control fs-7" name="address" id="address" placeholder="آدرس کامل" value="{{ old('address', $user->address) }}">
                 </div>
             </div>
             <div class="col-12">
@@ -106,7 +106,7 @@
             </div>
             <div class="col-12">
                 <div class="form-check mb-3">
-                    <input name="sendtoanotheraddress" class="form-check-input" type="checkbox" value="" id="sendtoanotheraddress">
+                    <input  class="form-check-input" type="checkbox" value="" name="sendtoanotheraddress" id="sendtoanotheraddress">
                     <label class="form-check-label ms-2 fs-7" for="sendtoanotheraddress">
                         سفارش به آدرس دیگری حمل شود
                     </label>
