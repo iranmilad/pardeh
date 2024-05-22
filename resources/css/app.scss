@@ -2478,3 +2478,8 @@ label.category-label-checkbox{
 #countdown span{
     @apply tw-bg-slate-800 tw-text-white tw-h-9 tw-min-w-9 tw-max-w-10 tw-rounded-md tw-flex tw-items-center tw-justify-center tw-ring-2 tw-ring-offset-1 tw-ring-slate-800;
 }
+
+#countdown.product-box-countdown span{
+    font-size: 12px;
+    @apply tw-h-6 tw-min-w-7 tw-max-w-9;
+}

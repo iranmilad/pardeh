@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class product extends Component
+class Product extends Component
 {
     public $name;
     public $image;
@@ -19,12 +19,23 @@ class product extends Component
     public $mobile;
     public $link;
     public $nobtn;
+    public $salePriceDate;
 
     /**
      * Create a new component instance.
      *
      * @param string $name
      * @param string|null $image
+     * @param string|null $image2
+     * @param string|null $price
+     * @param string|null $discountedPrice
+     * @param string|null $discount
+     * @param string|null $stock
+     * @param string|null $available
+     * @param bool $mobile
+     * @param string $link
+     * @param bool|null $nobtn
+     * @param string $sale_price_date
      */
     public function __construct(
         string $name,
@@ -37,7 +48,8 @@ class product extends Component
         string $available = null,
         bool $mobile = false,
         string $link = '',
-        bool $nobtn = null
+        bool $nobtn = null,
+        string $salePriceDate = ''
     ) {
         $this->name = $name;
         $this->image = $image;
@@ -50,6 +62,7 @@ class product extends Component
         $this->mobile = $mobile;
         $this->link = $link;
         $this->nobtn = $nobtn;
+        $this->salePriceDate = $salePriceDate;
     }
 
     /**
@@ -58,9 +71,18 @@ class product extends Component
     public function render(): View|Closure|string
     {
         return view('components.product', [
-            'name' => $this->name, 'image' => $this->image,$this->image2, 'price' => $this->price,
-            'discountedPrice' => $this->discountedPrice, 'discount' => $this->discount,
-            'stock' => $this->stock, 'available' => $this->available, 'mobile' => $this->mobile, 'link' => $this->link, 'nobtn' => $this->nobtn
+            'name' => $this->name,
+            'image' => $this->image,
+            'image2' => $this->image2,
+            'price' => $this->price,
+            'discountedPrice' => $this->discountedPrice,
+            'discount' => $this->discount,
+            'stock' => $this->stock,
+            'available' => $this->available,
+            'mobile' => $this->mobile,
+            'link' => $this->link,
+            'nobtn' => $this->nobtn,
+            'salePriceDate' => $this->salePriceDate
         ]);
     }
 }

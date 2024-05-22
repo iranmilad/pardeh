@@ -15,7 +15,16 @@
                     </span>
                 @endif
             </div>
-                <span class="tw-line-through tw-text-gray-400 tw-text-xs tw-pl-[22px] tw-text-left tw-w-full">{{$discountedPrice ?? ''}}</span>
+                <div class="tw-w-full tw-justify-between tw-flex tw-items-center">
+                @if(isset($salePriceDate) && !empty($salePriceDate))
+                    <div dir="ltr" x-data="countdown({{ $salePriceDate }})" x-init="startCountdown">
+                        <div id="countdown" class="product-box-countdown">
+                            <span x-text="formattedHours"></span>:<span x-text="formattedMinutes"></span>:<span x-text="formattedSeconds"></span>
+                        </div>
+                    </div>
+                @endif
+                    <span class="tw-line-through tw-text-gray-400 tw-text-xs tw-pl-[22px] tw-text-left tw-w-full">{{$discountedPrice ?? ''}}</span>
+                </div>
                 @if($stock ?? null)
                     <span class="stock-span">
                         <i class="fa-duotone fa-store"></i>
