@@ -98,6 +98,14 @@
                                 <span class="tw-text-gray-500">تخفیف : </span>
                                 <span class="badge tw-bg-red-500 tw-rounded-full">50%</span>
                             </div>
+                            <div class="tw-flex tw-items-center tw-justify-between pb-4 pt-3 border-top">
+                                <span class="tw-text-gray-500 tw-text-sm">زمان باقی مانده : </span>
+                                <div dir="ltr" x-data="countdown(new Date('2024-05-31T23:59:59'))" x-init="startCountdown">
+                                    <div id="countdown">
+                                        <span x-text="formattedHours"></span>:<span x-text="formattedMinutes"></span>:<span x-text="formattedSeconds"></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
                                 <span class="tw-text-gray-500">زمان تحویل : </span>
                                 <span>7 روز</span>
@@ -201,7 +209,7 @@
                     <img id="product-sticky-thumbnail" class="tw-hidden lg:tw-block tw-relative tw-w-[60px] tw-object-cover tw-rounded-xl tw-ml-5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
                     <div class="tw-flex tw-items-start tw-flex-col sticky-price-time">
                         <!-- UNAVAILABLE TEXT -->
-                            <!-- <span class='tw-text-sm tw-text-brand-500'>ناموجود</span> -->
+                        <!-- <span class='tw-text-sm tw-text-brand-500'>ناموجود</span> -->
                         <!-- UNAVAILABLE TEXT -->
                         <div class="tw-text-sm md:tw-text-base">
                             <span class="tw-text-gray-600 tw-font-semibold">
@@ -238,4 +246,47 @@
     <i class="fa-solid fa-arrow-up"></i>
 </a>
 
+@endsection
+
+@section("js")
+<script>
+    function countdown(targetDate) {
+        return {
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            get formattedHours() {
+                return String(this.hours).padStart(2, '0');
+            },
+            get formattedMinutes() {
+                return String(this.minutes).padStart(2, '0');
+            },
+            get formattedSeconds() {
+                return String(this.seconds).padStart(2, '0');
+            },
+            targetDate: targetDate,
+            startCountdown() {
+                this.updateCountdown();
+                setInterval(() => {
+                    this.updateCountdown();
+                }, 1000);
+            },
+            updateCountdown() {
+                const now = new Date();
+                const diff = this.targetDate - now;
+
+                if (diff <= 0) {
+                    this.hours = 0;
+                    this.minutes = 0;
+                    this.seconds = 0;
+                    return;
+                }
+
+                this.hours = Math.floor(diff / (1000 * 60 * 60));
+                this.minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                this.seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            },
+        };
+    }
+</script>
 @endsection
