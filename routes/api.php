@@ -117,6 +117,27 @@ Route::get("/imgdot/{id}", function ($id) {
 });
 
 Route::get("/marker/{id}", function ($id) {
+    // in database top and left dont have %. please add "%" to them.
+    // in database top and left dont have %. please add "%" to them.
+    // in database top and left dont have %. please add "%" to them.
+    // in database top and left dont have %. please add "%" to them.
+    // $positions = [
+    //     [
+    //         "id" => 1,
+    //         "top" => "5" . "%",
+    //         "left" => "5" . "%"
+    //     ],
+    //     [
+    //         "id" => 2,
+    //         "top" => "20" . "%",
+    //         "left" => "30" . "%"
+    //     ],
+    //     [
+    //         "id" => 3,
+    //         "top" => "50" . "%",
+    //         "left" => "50" . "%"
+    //     ],
+    // ];
     $marker = '
     <div class="image_dotter">
     <img src="https://javidcode.com/images/auth.jpg" />
