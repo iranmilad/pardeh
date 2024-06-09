@@ -272,6 +272,10 @@ Route::get('/delivery', function () {
     return view('delivery');
 })->name('delivery');
 
+Route::get('/maintenance', function () {
+    return view('errors.maintenance');
+})->name('maintenance');
+
 Route::group(['prefix' => 'dashboard'], function () {
     // Define routes that have the 'dashboard' prefix
 

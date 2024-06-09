@@ -2483,3 +2483,8 @@ label.category-label-checkbox{
     font-size: 12px;
     @apply tw-h-6 tw-min-w-7 tw-max-w-9;
 }
+
+#countdown.product-box-countdown.maintenance span{
+    font-size: 30px;
+    @apply tw-h-16 tw-min-w-16 tw-max-w-20;
+}
