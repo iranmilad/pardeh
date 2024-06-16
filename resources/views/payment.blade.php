@@ -12,16 +12,27 @@
     </div>
     <!--                        Cart Header:end-->
 
-    <form action="">
+    <form action="" x-data="{ selectedMethod: '' }">
 
         <label for="credit_payment" class="payment-method">
             <div class="tw-flex tw-items-start">
-                <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="payment-method" id="credit_payment">
+                <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="payment-method" id="credit_payment" value="online_payment" x-model="selectedMethod">
                 <i class="fa-solid fa-credit-card fs-3 tw-h-4"></i>
             </div>
             <div class="tw-flex tw-items-start tw-flex-col tw-mr-3">
                 <span class="tw-text-base fw-bold ">پرداخت اینترنی</span>
                 <span class="tw-text-sm ">پرداخت آنلاین با تمامی کارت‌های بانکی</span>
+            </div>
+        </label>
+
+        <label for="cardbycard" class="payment-method">
+            <div class="tw-flex tw-items-start">
+                <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="payment-method" id="cardbycard" value="cardbycard" x-model="selectedMethod">
+                <i class="fa-solid fa-credit-card fs-3 tw-h-4"></i>
+            </div>
+            <div class="tw-flex tw-items-start tw-flex-col tw-mr-3">
+                <span class="tw-text-base fw-bold ">کارت به کارت</span>
+                <span class="tw-text-sm ">پرداخت با روش کارت به کارت</span>
             </div>
         </label>
 
@@ -144,6 +155,49 @@
             </div>
         </label>
         <!-- END: DISABLED METHOD -->
+        <div class="row" x-show="selectedMethod === 'online_payment'" x-transition.opacity>
+            <div class="col-12 col-md-6 col-xl-4">
+                <label for="zarinpal" class="payment-method">
+                    <div class="tw-flex tw-items-start">
+                        <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="payment-online-method" id="zarinpal">
+                        <img class="tw-size-14" src="{{ Vite::asset('resources/images/zarinpal.png') }}" alt="">
+                    </div>
+                    <div class="tw-flex tw-items-start tw-flex-col tw-mr-3">
+                        <span class="tw-text-base fw-bold ">درگاه زرین پال</span>
+                    </div>
+                </label>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4">
+                <label for="behpardakht" class="payment-method">
+                    <div class="tw-flex tw-items-start">
+                        <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="payment-online-method" id="behpardakht">
+                        <img class="tw-size-14" src="{{ Vite::asset('resources/images/behpardakht.png') }}" alt="">
+                    </div>
+                    <div class="tw-flex tw-items-start tw-flex-col tw-mr-3">
+                        <span class="tw-text-base fw-bold ">به پرداخت ملت</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div x-show="selectedMethod === 'cardbycard'" x-transition.opacity>
+            <table class="table">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">نام بانک</th>
+                        <th scope="col">شماره حساب</th>
+                        <th scope="col">شماره کارت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>سامان</td>
+                        <td>1234567890</td>
+                        <td>1111 2222 3333 4444</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </form>
 
 </div>
