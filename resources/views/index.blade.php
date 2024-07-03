@@ -27,7 +27,7 @@
 @section('content')
 <!-- Your home page content here -->
 <!-- Countdown timer section -->
-<div class="countdown-bar">
+<div class="countdown-bar d-none">
    تا افتتاحیه سایت <span id="countdown-date"></span>   مانده است
 </div>
 
@@ -72,29 +72,29 @@
 
 @section("js")
 <script>
-       // Set your target date (replace with your desired date)
-       const targetDate = new Date('2024-08-22T23:59:59');
+    //    // Set your target date (replace with your desired date)
+    //    const targetDate = new Date('2024-08-22T23:59:59');
 
-        // Function to update countdown
-        function updateCountdown() {
-            const currentDate = new Date();
-            const timeRemaining = targetDate - currentDate;
+    //     // Function to update countdown
+    //     function updateCountdown() {
+    //         const currentDate = new Date();
+    //         const timeRemaining = targetDate - currentDate;
 
-            // Calculate days, hours, minutes, and seconds
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+    //         // Calculate days, hours, minutes, and seconds
+    //         const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    //         const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    //         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-            // Display countdown
-            document.getElementById('countdown-date').textContent = `${days} روز, ${hours} ساعت, ${minutes} دقیقه, ${seconds} ثانیه`;
-        }
+    //         // Display countdown
+    //         document.getElementById('countdown-date').textContent = `${days} روز, ${hours} ساعت, ${minutes} دقیقه, ${seconds} ثانیه`;
+    //     }
 
-        // Initial call to update countdown
-        updateCountdown();
+    //     // Initial call to update countdown
+    //     updateCountdown();
 
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
+    //     // Update countdown every second
+    //     setInterval(updateCountdown, 1000);
 
 </script>
 @endsection
