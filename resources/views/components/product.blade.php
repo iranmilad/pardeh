@@ -6,7 +6,7 @@
         <span class="title tw-text-right tw-w-full tw-font-semibold">{{$name ?? ''}}</span>
         @if(!isset($available))
             <div class="tw-w-full tw-center {{$discountedPrice ? 'tw-justify-between' : 'tw-justify-end'}}">
-                <span class="badge tw-bg-red-500 rounded-pill">{{ $discount ?? ''}}</span>
+                <span class="badge tw-bg-[var(--sale-badge)]  rounded-pill">{{ $discount ?? ''}}</span>
                 @if($price ?? null)
                     <span class="tw-text-sm">{{$price ?? ''}}
                         <svg style="width: 16px; height: 16px; fill: var(--undefined);">

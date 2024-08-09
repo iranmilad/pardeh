@@ -1,7 +1,7 @@
 @extends('layouts.primary')
 
 <?php
-$activeClass = "tw-text-indigo-500 pay";
+$activeClass = "tw-text-[var(--primary)] pay";
 $notActive = "gray-700 pay basket";
 ?>
 
@@ -52,7 +52,7 @@ $notActive = "gray-700 pay basket";
                 <form class="tw-flex tw-items-center tw-justify-between px-3 pt-3 mb-3">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="کد تخفیف">
-                        <button class="btn btn-dark" type="button" id="button-addon2">اعمال</button>
+                        <button class="btn tw-bg-primary tw-text-white" type="button" id="button-addon2">اعمال</button>
                     </div>
 
                 </form>
@@ -84,10 +84,10 @@ $notActive = "gray-700 pay basket";
 
                 <!--                           Purchase:start-->
                 <div class="purchase-profit d-flex justify-content-between align-items-center mb-3 px-3 pt-1">
-                    <p class="fs-7 fw-bold text-primary">
+                    <p class="fs-7 fw-bold tw-text-[var(--primary)] ">
                         سود شما از خرید
                     </p>
-                    <p class="fs-6 fw-bold text-primary">
+                    <p class="fs-6 fw-bold tw-text-[var(--primary)] ">
                         100,000 تومان
                     </p>
                 </div>

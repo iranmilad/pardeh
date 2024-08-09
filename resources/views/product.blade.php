@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="bigLoading">
-    <div class="spinner-border text-primary" role="status">
+    <div class="spinner-border tw-text-[var(--primary)] " role="status">
         <span class="visually-hidden">صبر کنید ...</span>
     </div>
 </div>
@@ -70,8 +70,8 @@
                     <div class="swiper-button-next" id="product-images-next"></div>
                 </div>
                 <a href="#" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-xl">
-                    <i class="fa-solid fa-play"></i>
-                    <span>ویدئو</span>
+                    <i class="fa-solid fa-play" style="color: white;"></i>
+                    <span style="color: white;">ویدئو</span>
                 </a>
             </div>
         </div>
@@ -85,10 +85,10 @@
                     </div>
                     <div class="tw-flex tw-items-center">
                         <x-rating readOnly rate="4" />
-                        <a class="tw-text-indigo-500 tw-mr-3">دیدگاه (500)</a>
+                        <a class="tw-text-[var(--primary)] tw-mr-3">دیدگاه (500)</a>
                     </div>
                     <p class="tw-text-sm tw-leading-loose">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته <a href="#product-tabs-card" class="tw-text-indigo-500">بیشتر ...</a>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته <a href="#product-tabs-card" class="tw-text-[var(--primary)]">بیشتر ...</a>
                     </p>
                 </div>
                 <div class="col-lg-5">
@@ -96,7 +96,7 @@
                         <div class="card-body" id="main-cart-price-details">
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between pb-4">
                                 <span class="tw-text-gray-500">تخفیف : </span>
-                                <span class="badge tw-bg-red-500 tw-rounded-full">50%</span>
+                                <span class="badge tw-bg-[var(--sale-badge)]  tw-rounded-full">50%</span>
                             </div>
                             <div class="tw-flex tw-items-center tw-justify-between pb-4 pt-3 border-top">
                                 <span class="tw-text-gray-500 tw-text-sm">زمان باقی مانده : </span>
@@ -136,7 +136,7 @@
 
                             <!-- LET ME KNOW -->
                             <!-- <div>
-                                <h4 class="text-center tw-text-brand-500">ناموجود</h4>
+                                <h4 class="text-center tw-text-[var(--primary)]">ناموجود</h4>
                                 <div class="text-center tw-text-sm">
                                     این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
                                     موجود شدن، به شما خبر دهیم.
@@ -209,7 +209,7 @@
                     <img id="product-sticky-thumbnail" class="tw-hidden lg:tw-block tw-relative tw-w-[60px] tw-object-cover tw-rounded-xl tw-ml-5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
                     <div class="tw-flex tw-items-start tw-flex-col sticky-price-time">
                         <!-- UNAVAILABLE TEXT -->
-                        <!-- <span class='tw-text-sm tw-text-brand-500'>ناموجود</span> -->
+                        <!-- <span class='tw-text-sm tw-text-[var(--primary)]'>ناموجود</span> -->
                         <!-- UNAVAILABLE TEXT -->
                         <div class="tw-text-sm md:tw-text-base">
                             <span class="tw-text-gray-600 tw-font-semibold">

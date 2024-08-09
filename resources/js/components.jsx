@@ -61,7 +61,7 @@ export const StarComponent = ({ dataStars, no_label, rateable }) => {
 export const BellProduct = () => {
     return (
         <div>
-            <h4 class="text-center tw-text-brand-500">ناموجود</h4>
+            <h4 class="text-center tw-text-[var(--primary)]">ناموجود</h4>
             <div class="text-center tw-text-sm">
                 این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
                 موجود شدن، به شما خبر دهیم.
@@ -84,7 +84,7 @@ export const PriceProduct = (props) => {
             {discount && (
                 <div className="tw-flex tw-items-center tw-text-sm tw-justify-between pb-4">
                     <span className="tw-text-gray-500">تخفیف : </span>
-                    <span className="badge tw-bg-red-500 tw-rounded-full">
+                    <span className="badge tw-bg-[var(--sale-badge)]  tw-rounded-full">
                         {discount}%
                     </span>
                 </div>
@@ -206,7 +206,7 @@ export const RemoveOptionCategory = ({ options,onChange }) => {
         <>
             {options.map((item) => (
                 <div class="tw-w-full tw-flex tw-items-center tw-justify-between tw-mt-2">
-                    <span class="tw-text-sm tw-text-gray-600 hover:tw-text-brand-500 tw-cursor-pointer" onClick={() => removeOption(item)}>
+                    <span class="tw-text-sm tw-text-gray-600 hover:tw-text-[var(--primary)] tw-cursor-pointer" onClick={() => removeOption(item)}>
                         {item.title}
                     </span>
                     <button
@@ -214,7 +214,7 @@ export const RemoveOptionCategory = ({ options,onChange }) => {
                         className="btn tw-p-0"
                         onClick={() => removeOption(item)}
                     >
-                        <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-brand-500 tw-cursor-pointer"></i>
+                        <i class="fa-solid fa-xmark tw-text-gray-600 hover:tw-text-[var(--primary)] tw-cursor-pointer"></i>
                     </button>
                 </div>
             ))}
@@ -239,7 +239,7 @@ export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
                     </div>
                     <div className="tw-flex-1 tw-mr-2 tw-h-full">
                         <div className="tw-flex tw-items-start tw-flex-row tw-justify-between tw-h-full">
-                            <a href={item?.link} className="tw-h-full tw-flex tw-flex-col tw-items-start tw-flex-grow">
+                            <a href={item?.link} className="tw-h-full tw-flex tw-flex-col tw-items-start tw-flex-grow " style={{color: "var(--primary)"}}>
                                 <h3 className="tw-text-sm tw-font-medium tw-mb-1">{item.name}</h3>
                                 <div className="tw-flex tw-items-center">
                                     <span className="tw-text-gray-500 tw-text-sm">قیمت:</span>

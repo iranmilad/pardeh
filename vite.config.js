@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/css/vendors/dataTables/datatables.css',
                 'resources/css/app.scss',
                 'resources/css/style.css',
+                'resources/css/global-style.css',
                 'resources/css/vendors/bootstrap/bootstrap.rtl.css',
                 'resources/css/vendors/fontawesome/fontawesome.css',
                 'resources/js/app.js',

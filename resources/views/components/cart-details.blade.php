@@ -11,7 +11,7 @@
                     <span class="tw-text-gray-500">قیمت با تخفیف: <span class="tw-text-gray-900">{{ $discounted_price }}</span></span>
                 </div>
                 <div class="col-12 tw-text-sm">
-                    <span class="badge tw-bg-red-500 tw-px-2 rounded-pill">تخفیف: {{ $discount }}</span>
+                    <span class="badge tw-bg-[var(--sale-badge)]  tw-px-2 rounded-pill">تخفیف: {{ $discount }}</span>
                 </div>
             </div>
 

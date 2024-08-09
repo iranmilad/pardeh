@@ -346,12 +346,12 @@
 }
 
 .noUi-connect {
-    background: #8A0000;
+    background: var(--primary);
 }
 
 .noUi-handle {
     background-color: #ffffff;
-    border: 1px solid #8A0000;
+    border: 1px solid var(--primary);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     width: 20px !important;
     height: 20px !important;

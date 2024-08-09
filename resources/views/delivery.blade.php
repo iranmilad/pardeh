@@ -12,7 +12,7 @@
     <div class="card mb-4 border-0">
         <div class="card-body">
             <div class="tw-center tw-w-max mb-4">
-                <div class="tw-p-2 tw-py-1 tw-bg-indigo-500 tw-text-white tw-rounded-md"><i class="fa-solid fa-truck"></i></div>
+                <div class="tw-p-2 tw-py-1 tw-bg-[var(--primary)] tw-text-white tw-rounded-md"><i class="fa-solid fa-truck"></i></div>
                 <h6 class="tw-ml-5 tw-mr-2">ارسال عادی</h6>
                 <div class="tw-p-2 tw-py-1 tw-text-xs tw-bg-gray-100 tw-rounded-md">4 کالا</div>
             </div>

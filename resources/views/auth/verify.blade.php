@@ -34,9 +34,9 @@
                 </div>
             </form>
             <div class="tw-flex tw-justify-between tw-items-center mt-3">
-                <a href="{{ route('register.form') }}" class="nav-link tw-text-indigo-500 btn-block fs-7 border-radius-xl fw-bold">تغییر شماره تلفن</a>
-                <span class="tw-cursor-text tw-bg-transparent tw-border-none tw-outline-none tw-text-indigo-500 p-0 d-block" id="count">1:00</span>
-                <button class="tw-bg-transparent tw-border-none fs-7 tw-outline-none tw-text-indigo-500 p-0 d-none" id="resendcode">ارسال مجدد کد</button>
+                <a href="{{ route('register.form') }}" class="nav-link tw-text-[var(--primary)] btn-block fs-7 border-radius-xl fw-bold">تغییر شماره تلفن</a>
+                <span class="tw-cursor-text tw-bg-transparent tw-border-none tw-outline-none tw-text-[var(--primary)] p-0 d-block" id="count">1:00</span>
+                <button class="tw-bg-transparent tw-border-none fs-7 tw-outline-none tw-text-[var(--primary)] p-0 d-none" id="resendcode">ارسال مجدد کد</button>
             </div>
         </div>
     </div>

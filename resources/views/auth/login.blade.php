@@ -56,7 +56,7 @@
                 <p class="text-center mt-3 gray-600 fs-7">ورود شما به معنای پذیرش <a href="/terms" class="nav-link  d-inline-block text-dark fw-bold p-0"><span>شرایط و قوانین</span></a> <span class="">{{config('app.name')}}</span> است.</p>
                 <div class="tw-w-full tw-text-center tw-text-sm tw-mt-6">
                     <span>حساب کاربری ندارید ؟</span>
-                    <a class="fw-bold tw-text-primary" href="{{ route('register.form') }}">ثبت نام</a>
+                    <a class="fw-bold tw-tw-text-[var(--primary)] " href="{{ route('register.form') }}">ثبت نام</a>
                 </div>
             </div>
         </div>

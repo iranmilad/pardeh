@@ -18,7 +18,7 @@ var KTBlockUI = function(element, options) {
         zIndex: false,
         overlayClass: '',
         overflow: 'hidden',
-        message: '<span class="spinner-border text-primary"></span>'
+        message: '<span class="spinner-border tw-text-[var(--primary)] "></span>'
     };
 
     ////////////////////////////

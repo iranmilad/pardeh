@@ -148,7 +148,7 @@
                 <?php $id = uniqid('') ?>
                 <div class="card p-3 tw-mt-3 first:tw-mt-0">
                     <div class="card-header p-0 tw-bg-transparent tw-border-none d-flex align-items-center justify-content-between">
-                        <p>پیام از طرف <span class="fw-bold tw-text-indigo-500">ادمین</span><span class="fs-8 ms-3 tw-text-gray-400" dir="ltr"><?= date('Y-m-d h:i'); ?></span></p>
+                        <p>پیام از طرف <span class="fw-bold tw-text-[var(--primary)]">ادمین</span><span class="fs-8 ms-3 tw-text-gray-400" dir="ltr"><?= date('Y-m-d h:i'); ?></span></p>
                         <button class="btn btn-sm custom-btn-primary rounded-pill px-3" data-bs-toggle="collapse" data-bs-target="#id_<?= $id ?>">
                             نمایش
                         </button>

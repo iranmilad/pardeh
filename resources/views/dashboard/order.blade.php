@@ -13,7 +13,7 @@
             <button class="btn btn-sm custom-btn-primary me-2 my-0"><i class="fa-solid fa-arrow-right"></i></button>
             جزئیات سفارش
         </p>
-        <span href="#" class="text-primary tw-text-sm">
+        <span href="#" class="tw-text-[var(--primary)]  tw-text-sm">
             <i class="fa-duotone fa-file-invoice"></i>
             <span>مشاهده فاکتور</span>
         </span>
@@ -95,7 +95,7 @@
                             <use xlink:href="#toman"></use>
                         </svg></label>
                 </div>
-                <div class="labely text-primary">
+                <div class="labely tw-text-[var(--primary)] ">
                     <span>تخفیف: </span>
                     <label for="">25%</label>
                 </div>
@@ -116,8 +116,8 @@
                                 <use xlink:href="#toman"></use>
                             </svg></span>
                         <div class="tw-flex tw-flex-row tw-w-full lg:tw-w-max tw-justify-between lg:tw-justify-start">
-                            <button type="button" class="btn fs-7 px-0  tw-max-w-max text-primary mt-2" data-bs-toggle="collapse" data-bs-target="#id_<?= $id; ?>">مشاهده جزئیات</button>
-                            <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6 send-comment-btn-order" data-id="1212">ارسال نظر</button>
+                            <button type="button" class="btn fs-7 px-0  tw-max-w-max tw-text-[var(--primary)]  mt-2" data-bs-toggle="collapse" data-bs-target="#id_<?= $id; ?>">مشاهده جزئیات</button>
+                            <button class="btn fs-7 px-0 tw-w-max tw-text-[var(--primary)] mt-2 lg:tw-mr-6 send-comment-btn-order" data-id="1212">ارسال نظر</button>
                         </div>
                     </div>
                 </a>

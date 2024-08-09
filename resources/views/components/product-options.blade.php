@@ -640,10 +640,10 @@
                                         <div class="tw-relative">
                                             <img src="https://placehold.co/138" alt="">
                                             <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
-                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
                                                     <i class="fa-solid fa-play"></i>
                                                 </a>
-                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
                                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                                 </a>
                                             </div>
@@ -663,10 +663,10 @@
                                         <div class="tw-relative">
                                             <img src="https://placehold.co/138" alt="">
                                             <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
-                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
                                                     <i class="fa-solid fa-play"></i>
                                                 </a>
-                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
                                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                                 </a>
                                             </div>
@@ -690,10 +690,10 @@
                                         <div class="tw-relative">
                                             <img src="https://placehold.co/138" alt="">
                                             <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
-                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
                                                     <i class="fa-solid fa-play"></i>
                                                 </a>
-                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-indigo-500 tw-ml-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
                                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                                 </a>
                                             </div>
@@ -707,7 +707,7 @@
                                             <div class="tw-w-full tw-px-2 tw-mt-2">
                                                 <span>
                                                     کنترل
-                                                    <i class="fa-solid fa-circle-info tw-text-xs tw-text-indigo-500"></i>
+                                                    <i class="fa-solid fa-circle-info tw-text-xs tw-text-[var(--primary)]"></i>
                                                 </span>
                                                 <select class="form-select tw-text-xs" name="" id="">
                                                     <option value="" selected>بله</option>
@@ -717,7 +717,7 @@
                                             <div class="tw-w-full tw-px-2 tw-mt-2">
                                                 <span>
                                                     اتصال با وای فای
-                                                    <i class="fa-solid fa-circle-info tw-text-xs tw-text-indigo-500"></i>
+                                                    <i class="fa-solid fa-circle-info tw-text-xs tw-text-[var(--primary)]"></i>
                                                 </span>
                                                 <select class="form-select tw-text-xs" name="" id="">
                                                     <option value="">بله</option>
@@ -770,7 +770,7 @@
                                         <label class="form-check-label" for="warranty1">
                                             3 سال گارانتی محدود
                                         </label>
-                                        <span class="tw-text-indigo-500 ms-3">رایگان</span>
+                                        <span class="tw-text-[var(--primary)] ms-3">رایگان</span>
                                     </div>
                                 </div>
                                 <div class="form-check">
@@ -779,7 +779,7 @@
                                         <label class="form-check-label" for="warranty2">
                                             5 سال گارانتی محدود
                                         </label>
-                                        <span class="tw-text-indigo-500 ms-3">60 هزارتومان</span>
+                                        <span class="tw-text-[var(--primary)] ms-3">60 هزارتومان</span>
                                     </div>
                                 </div>
                                 <div class="form-check">
@@ -788,7 +788,7 @@
                                         <label class="form-check-label" for="warranty3">
                                             5 سال گارانتی نامحدود
                                         </label>
-                                        <span class="tw-text-indigo-500 ms-2">120 هزارتومان</span>
+                                        <span class="tw-text-[var(--primary)] ms-2">120 هزارتومان</span>
                                     </div>
                                 </div>
                             </div>

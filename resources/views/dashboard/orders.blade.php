@@ -85,7 +85,7 @@
                         <img src="{{ Vite::asset('resources/images/posts/4.jpg') }}" alt="">
                     </div>
                 </div>
-                <span href="#" class="text-primary mt-3 tw-text-sm">
+                <span href="#" class="tw-text-[var(--primary)]  mt-3 tw-text-sm">
                     <i class="fa-duotone fa-file-invoice"></i>
                     <span>مشاهده فاکتور</span>
                 </span>

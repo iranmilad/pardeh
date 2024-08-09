@@ -246,7 +246,7 @@
     <div class="best-suggestions tw-py-10 tw-mt-16 tw-rounded-3xl tw-p-5 tw-px-8 tw-flex tw-flex-col">
         <!-- Slider:start -->
         <div class="tw-flex  tw-flex-col md:tw-flex-row tw-w-full tw-ml-4 tw-justify-center md:tw-justify-between tw-items-center">
-            <h4 class="tw-font-bold tw-text-white tw-text-lg md:tw-text-2xl">
+            <h4 class="tw-font-bold tw-text-lg md:tw-text-2xl best-suggestion-title">
                 پیشنهاد
                 شگفت انگیز
             </h4>
@@ -335,7 +335,7 @@
             <div class="row">
                 <div class="swiper blogSwiper">
                     <div class="swiper-wrapper">
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
@@ -350,7 +350,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
@@ -365,7 +365,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
@@ -380,7 +380,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
@@ -395,7 +395,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
@@ -410,7 +410,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
@@ -425,7 +425,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">
@@ -440,7 +440,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-amber-400 tw-text-white">
+                        <a href="#" class="swiper-slide tw-rounded-3xl tw-bg-[var(--blog-box-bg)] tw-text-white">
                             <div class="tw-rounded-3xl overflow-hidden">
                                 <figure class="tw-relative">
                                     <img class="tw-rounded-3xl tw-h-60 tw-block tw-w-full tw-object-cover" src="{{ Vite::asset('resources/images/blog/1.webp') }}" alt="" title="" class="img-fluid tw-max-h-52 tw-object-cover card-img">

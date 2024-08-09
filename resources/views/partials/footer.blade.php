@@ -53,7 +53,7 @@
         </div>
     </div>
 </div>
-<div class="tw-bg-slate-800 tw-text-gray-100 mt-3 {{ Route::currentRouteName() == 'product' ? 'tw-pb-[80px]': '' }}">
+<div class="tw-bg-[var(--footer)] tw-text-gray-100 mt-3 {{ Route::currentRouteName() == 'product' ? 'tw-pb-[80px]': '' }}">
     <div class="container">
         <footer class="footer">
             <div class="container">
@@ -61,7 +61,7 @@
                     <div class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-5">
                         <div class="tw-col-span-1">
                             <h3 class="fw-bold fs-6 title-dot text-white">دسترسی سریع</h3>
-                            <ul class="tw-pr-5 tw-text-xs">
+                            <ul class="tw-pr-5 tw-text-xs footer_links">
                                 <li class="my-3"><a class="" href="/">صفحه ی خانه</a></li>
                                 <li class="my-3"><a href="/">ورود/ثبت نام</a></li>
                                 <li class="my-3"><a href="/">راهنمای اندازه گیزی</a></li>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="tw-col-span-1">
                             <h3 class="fw-bold fs-6 title-dot text-white">دسته بندی ها</h3>
-                            <ul class="tw-pr-5 tw-text-xs">
+                            <ul class="tw-pr-5 tw-text-xs footer_links">
                                 <li class="my-3"><a href="#">پرده</a></li>
                                 <li class="my-3"><a href="#">رو تختی</a></li>
                                 <li class="my-3"><a href="#">کاغذ دیواری</a></li>

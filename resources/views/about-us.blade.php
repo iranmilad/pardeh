@@ -5,7 +5,7 @@
 @section('content')
 <div class="container xl:tw-w-2/3">
     <div class="about-us-content">
-        <h1 class="tw-font-semibold">درباره <span class="tw-text-brand-500">{{config('app.name')}}</span></h1>
+        <h1 class="tw-font-semibold">درباره <span class="tw-text-[var(--primary)]">{{config('app.name')}}</span></h1>
         <div class="tw-mt-16">
             <p class="tw-text-lg tw-leading-8">
                 با افتخار به شما معرفی می‌کنیم که در دنیای وبسایت ما، تجربه‌ای منحصر به فرد از طراحی و اجرای پرده‌های شگفت‌انگیز را خواهید یافت. محصولات متنوع ما، از لحاظ طراحی و دقت اجرا، علامتی از دقت و حرفه‌ای بالا دارند که هرکدام با زیبایی خاص خود، داستانی خاص و جذاب را در جلوهٔ چشمان شما باز می‌کنند.
