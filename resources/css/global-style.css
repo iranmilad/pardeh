@@ -1,17 +1,22 @@
 :root{
-    --font-family: YekanBakh , "Aldhabi";
-    --primary: #ab0000;
-    --bg-background: #fff;
-    --header-bg: #EBEDF06B;
-    --title: #1e293b;
-    --product-card: #10b981;
-    --product-card-hover: #1e293b;
-    --sale-badge: #ef4444;
-    --blog-box-bg: #fbbf24;
-    --footer: #1e293b;
-    --best-suggestion: #ff3a4e;
+    --font-family: IranYekan , "Aldhabi" /* فونت پیشفرض*/;
+    --primary: #ab0000 /* رنگ اصلی */;
+    --bg-background: #fff /*رنگ پس زمینه*/;
+    --header-bg: #EBEDF06B /*رنگ پس زمینه هدر*/;
+    --title: #1e293b /*رنگ عناوین*/;
+    --product-card: #10b981 /* رنگ دکمه ی باکس محصول */;
+    --product-card-hover: #1e293b /*رنگ هاور دکمه ی باکس محصول*/;
+    --sale-badge: #ef4444 /*رنگ نشان تخفیف ها*/;
+    --blog-box-bg: #fbbf24 /*رنگ باکس وبلاگ در صفحه اصلی*/;
+    --footer: #1e293b /*رنگ پس زمینه فوتر*/;
+    --best-suggestion: #ff3a4e /* رنگ پس‌زمینه فروش ویژه*/;
 }
 
+
+/* DONT CHANGE THIS CODES !!! */
+/* DONT CHANGE THIS CODES !!! */
+/* DONT CHANGE THIS CODES !!! */
+/* DONT CHANGE THIS CODES !!! */
 body{
     background-color: var(--bg-background) !important;
     -moz-font-feature-settings: "ss02";

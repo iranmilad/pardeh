@@ -14,12 +14,17 @@
   @livewireStyles
   @vite('resources/css/vendors/bootstrap/bootstrap.rtl.css')
   @vite('resources/fonts/iranyekan/font.css')
-  @vite('resources/css/global-style.css')
+
+  @vite('resources/css/global-style.css') <!-- شخصی سازی صفحه با متغیر های سی اس اس-->
+
+  <!-- جایگزین کردن مقادیر با دیتا های بک اند -->
   <style>
     :root{
       --font-family: IranYekan , "Aldhabi";
     }
   </style>
+  <!-- جایگزین کردن مقادیر با دیتا های بک اند -->
+
   @vite('resources/css/vendors/fontawesome/fontawesome.css')
   @vite('resources/css/style.css')
   @vite('resources/css/app.scss')
