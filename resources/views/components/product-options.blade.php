@@ -254,7 +254,7 @@
                         <div class="swiper swiper-product-options">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <label class="product-template" for="m1">
+                                    <label class="product-template not_found" for="m1">
                                         <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
                                             <rect width="100%" height="100%" fill="#334155" />
                                         </svg>
@@ -263,7 +263,7 @@
                                     </label>
                                 </div>
                                 <div class="swiper-slide">
-                                    <label class="product-template" for="m2">
+                                    <label class="product-template not_found" for="m2">
                                         <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
                                             <rect width="100%" height="100%" fill="#ef4444" />
                                         </svg>
@@ -272,7 +272,7 @@
                                     </label>
                                 </div>
                                 <div class="swiper-slide">
-                                    <label class="product-template" for="m3">
+                                    <label class="product-template not_found" for="m3">
                                         <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
                                             <rect width="100%" height="100%" fill="#f97316" />
                                         </svg>

@@ -2507,3 +2507,18 @@ label.category-label-checkbox{
 .best-suggestion-title{
     color: white !important;
 }
+
+.product-template{
+    position: relative;
+}
+
+.product-template.not_found::before{
+    content: "\e59b";
+    font-family: "Font Awesome 6 Pro","Font Awesome 6 Duotone";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #b91c1c;
+    font-size: 50px;
+}
