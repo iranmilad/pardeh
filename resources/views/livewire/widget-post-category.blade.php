@@ -9,7 +9,7 @@
             <li class="blog-category-box">
 
                     <span><a href="{{ $category->link }}" >{{ $category->name }}</a></span>
-                    <div class="badge tw-bg-brand-500 rounded-pill">{{ $category->totalPosts }} </div>
+                    <div class="badge tw-bg-[var(--primary)]  rounded-pill">{{ $category->totalPosts }} </div>
 
             </li>
         @endforeach

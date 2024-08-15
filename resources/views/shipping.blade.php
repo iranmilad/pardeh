@@ -220,10 +220,10 @@
 
         <!--                           Purchase:start-->
         <div class="purchase-profit d-flex justify-content-between align-items-center mb-3 px-3 pt-1">
-            <p class="fs-7 fw-bold text-primary">
+            <p class="fs-7 fw-bold  tw-text-[var(--primary)]">
                 مبلغ قابل پرداخت
             </p>
-            <p class="fs-6 fw-bold text-primary">
+            <p class="fs-6 fw-bold  tw-text-[var(--primary)]">
                 {{ $orders->cart->total  }} تومان
             </p>
         </div>
@@ -231,7 +231,7 @@
 
         <!--                            Checkout Btn:start-->
         <div class="d-grid gap-2 p-3">
-            <button type="submit" id="shipping-pay" class="btn custom-btn-primary border-radius-xl">ادامه فرایند خرید</button>
+            <button type="submit" id="shipping-pay" class="btn tw-bg-primary tw-text-white border-radius-xl">ادامه فرایند خرید</button>
         </div>
         <!--                            Checkout Btn:end-->
     </div>
