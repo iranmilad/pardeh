@@ -8,7 +8,7 @@
         @if((isset($available) && $available == true) or !isset($available))
             <div class="tw-w-full tw-center {{($discountedPrice && $discountedPrice != null) ? 'tw-justify-between' : 'tw-justify-end'}}">
                 @if(($discountedPrice && $discountedPrice != null))
-                <span class="badge tw-bg-red-500 rounded-pill">{{ $discount + $product->calculateTotalPriceWithAttributes() ?? ''}}</span>
+                <span class="badge tw-bg-[var(--sale-badge)]  rounded-pill">{{ $discount + $product->calculateTotalPriceWithAttributes() ?? ''}}</span>
                 @endif
 
                 @if($price)
@@ -19,8 +19,17 @@
                     </span>
                 @endif
             </div>
-                <span class="tw-line-through tw-text-gray-400 tw-text-xs tw-pl-[22px] tw-text-left tw-w-full">{{$discountedPrice ?? ''}}</span>
-                @if(isset($stock) and $stock<3 and $stock>0)
+                {{-- <div class="tw-w-full tw-justify-between tw-flex tw-items-center">
+                @if(isset($salePriceDate) && !empty($salePriceDate))
+                    <div dir="ltr" x-data="countdown({{ $salePriceDate }})" x-init="startCountdown">
+                        <div id="countdown" class="product-box-countdown">
+                            <span x-text="formattedHours"></span>:<span x-text="formattedMinutes"></span>:<span x-text="formattedSeconds"></span>
+                        </div>
+                    </div>
+                @endif
+                    <span class="tw-line-through tw-text-gray-400 tw-text-xs tw-pl-[22px] tw-text-left tw-w-full">{{$discountedPrice ?? ''}}</span>
+                </div> --}}
+                @if($stock ?? null)
                     <span class="stock-span">
                         <i class="fa-duotone fa-store"></i>
                         {{$stock}} عدد در انبار

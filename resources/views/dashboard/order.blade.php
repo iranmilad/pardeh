@@ -13,7 +13,7 @@
             <button class="btn btn-sm custom-btn-primary me-2 my-0"><i class="fa-solid fa-arrow-right"></i></button>
             جزئیات سفارش
         </p>
-        <span href="#" class="text-primary tw-text-sm">
+        <span href="#" class="tw-text-[var(--primary)]  tw-text-sm">
             <i class="fa-duotone fa-file-invoice"></i>
             <span>مشاهده فاکتور</span>
         </span>
@@ -101,7 +101,7 @@
                             <use xlink:href="#toman"></use>
                         </svg></label>
                 </div>
-                <div class="labely text-primary">
+                <div class="labely tw-text-[var(--primary)]">
                     <span>مبلغ قابل پرداخت</span>
                     <label for="">{{  $order->basket()->cart->totalPayed }} <svg style="width: 16px; height: 16px; fill: var(--undefined);">
                         <use xlink:href="#toman"></use>
@@ -109,53 +109,44 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="col-12 mt-4 pb-3 text-dark">
-            @php
-                $basket = $order->basket();
-            @endphp
-
-            @if ($basket)
-                @foreach ($basket->items as $item)
-                    @php
-                        $product = $item->product_id;
-                    @endphp
-                    <a href="#id_{{ $item->id }}" class="d-flex tw-w-full text-dark mt-5">
-                        <div class="tw-relative tw-w-max">
-                            <img class="tw-size-28 tw-rounded-xl" src="{{ $item->img }}" alt="">
-                            <div class="tw-bg-slate-800 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-text-white tw-text-xs tw-min-w-5 tw-h-5 tw-absolute -tw-top-2 -tw-left-2 tw-mx-auto tw-max-w-max tw-shadow-md">{{ $item->quantity }}</div>
+        <?php
+        for ($i = 0; $i < 2; $i++) : ?>
+            <?php $id = uniqid(); ?>
+            <div class="col-12 mt-4 pb-3 text-dark">
+                <a href="#" class="d-flex tw-w-full text-dark">
+                    <div class="tw-relative tw-w-max">
+                        <img class="tw-size-28 tw-rounded-xl" src="{{ Vite::asset('resources/images/posts/4.jpg') }}" alt="">
+                        <div class="tw-bg-slate-800 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-text-white tw-text-xs tw-min-w-5 tw-h-5 tw-absolute -tw-top-2 -tw-left-2 tw-mx-auto tw-max-w-max tw-shadow-md">2</div>
+                    </div>
+                    <div class="tw-flex tw-flex-col tw-w-full tw-mr-3 lg:tw-mr-7 mt-lg-0">
+                        <h6 class="fw-bold">محصول نمونه</h6>
+                        <span class="fw-bold tw-text-lg mt-2">6,290,000 <svg style="width: 16px; height: 16px; fill: var(--undefined);">
+                                <use xlink:href="#toman"></use>
+                            </svg></span>
+                        <div class="tw-flex tw-flex-row tw-w-full lg:tw-w-max tw-justify-between lg:tw-justify-start">
+                            <button type="button" class="btn fs-7 px-0  tw-max-w-max tw-text-[var(--primary)] mt-2" data-bs-toggle="collapse" data-bs-target="#id_<?= $id; ?>">مشاهده جزئیات</button>
+                            <button class="btn fs-7 px-0 tw-w-max tw-text-[var(--primary)] mt-2 lg:tw-mr-6 send-comment-btn-order" data-id="1212">ارسال نظر</button>
                         </div>
-                        <div class="tw-flex tw-flex-col tw-w-full tw-mr-3 lg:tw-mr-7 mt-lg-0">
-                            <h6 class="fw-bold">{{ $item->name }}</h6>
-                            <span class="fw-bold tw-text-lg mt-2">{{ number_format($item->price) }} <svg style="width: 16px; height: 16px; fill: var(--undefined);">
-                                    <use xlink:href="#toman"></use>
-                                </svg></span>
-                            <div class="tw-flex tw-flex-row tw-w-full lg:tw-w-max tw-justify-between lg:tw-justify-start">
-                                <button type="button" class="btn fs-7 px-0  tw-max-w-max text-primary mt-2" data-bs-toggle="collapse" data-bs-target="#id_{{ $item->id }}">مشاهده جزئیات</button>
-                                @if ($item->review==false)
-                                    <button class="btn fs-7 px-0 tw-w-max tw-text-brand-500 mt-2 lg:tw-mr-6 send-comment-btn-order" data-id="{{ $product }}" data-order="{{ $basket->cart->id }}">ارسال نظر</button>
-                                @endif
-                                <x-product-comment-modal  :product="$product" />
-                                <x-uploadFileModal :product="$product" />
+                    </div>
+                </a>
+                <div class="collapse mt-2" id="id_<?= $id; ?>">
+                    <div class="card card-body tw-rounded-xl tw-shadow-sm">
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-lg-3 labely">
+                                <span>تعداد: </span>
+                                <label for="">2</label>
                             </div>
-                        </div>
-                    </a>
-                    <div class="collapse mt-2" id="id_{{ $item->id }}">
-                        <div class="card card-body tw-rounded-xl tw-shadow-sm">
-                            <div class="row">
-                                @foreach ($item->options as $option)
-                                    @foreach ($option as $key=>$value)
-                                        <div class="col-6 col-md-4 col-lg-3 labely">
-                                            <span>{{ $key }}: </span>
-                                            @if (is_array($value))
-                                                <label for="">{{implode(' ',$value)}}</label>
-                                            @else
-                                                <label for="">{{ $value }}</label>
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                @endforeach
+                            <div class="col-6 col-md-4 col-lg-3 labely">
+                                <span>طول: </span>
+                                <label for="">5 متر</label>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 labely">
+                                <span>عرض: </span>
+                                <label for="">10 متر</label>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 labely">
+                                <span>رنگ: </span>
+                                <label for="">مشکی</label>
                             </div>
                         </div>
                     </div>

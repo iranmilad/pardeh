@@ -78,7 +78,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <span href="#" class="text-primary mt-3 tw-text-sm">
+                    <span href="#" class="tw-text-[var(--primary)] mt-3 tw-text-sm">
                         <i class="fa-duotone fa-file-invoice"></i>
                         <span>مشاهده فاکتور</span>
                     </span>
@@ -121,7 +121,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <span href="#" class="text-primary mt-3 tw-text-sm">
+                    <span href="#" class="tw-text-[var(--primary)] mt-3 tw-text-sm">
                         <i class="fa-duotone fa-file-invoice"></i>
                         <span>مشاهده فاکتور</span>
                     </span>
@@ -165,7 +165,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <span href="#" class="text-primary mt-3 tw-text-sm">
+                    <span href="#" class="tw-text-[var(--primary)] mt-3 tw-text-sm">
                         <i class="fa-duotone fa-file-invoice"></i>
                         <span>مشاهده فاکتور</span>
                     </span>
@@ -220,7 +220,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <span href="#" class="text-primary mt-3 tw-text-sm">
+                    <span href="#" class="tw-text-[var(--primary)] mt-3 tw-text-sm">
                         <i class="fa-duotone fa-file-invoice"></i>
                         <span>مشاهده فاکتور</span>
                     </span>
@@ -263,7 +263,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <span href="#" class="text-primary mt-3 tw-text-sm">
+                    <span href="#" class="tw-text-[var(--primary)] mt-3 tw-text-sm">
                         <i class="fa-duotone fa-file-invoice"></i>
                         <span>مشاهده فاکتور</span>
                     </span>

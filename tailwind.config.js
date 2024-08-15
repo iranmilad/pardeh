@@ -18,7 +18,8 @@ module.exports = {
                     800:"var(--bs-brand_800)",
                     900:"var(--bs-brand_900)",
                     950:"var(--bs-brand_950)",
-                  }
+                  },
+                  primary: "var(--primary)"
             },
         },
     },

@@ -615,61 +615,77 @@
                                         @endforelse
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            @if($attribute->display_type == 'options')
-                @php
-                    $attribute=$attribute;
-                    $items = $attribute->properties;
-                @endphp
-                    <!-- START: Options -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{ $loop->index  }}" aria-expanded="true" aria-controls="collapse">
-                                <div class="stepNum">
-                                    <span>{{ $loop->index+1 }}</span>
-                                    <i class="fa-regular fa-circle-exclamation"></i>
-                                </div>
-                                <span>انتخاب {{$attribute->name}}</span>
-                            </button>
-                        </h2>
-                        <div id="col{{ $loop->index  }}" class="accordion-collapse collapse  {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <a class="ms-3 tw-text-xs tw-underline tw-text-left tw-w-full tw-flex tw-justify-end" href="#">راهنما</a>
-                                <div class="alert alert-danger tw-text-sm">
-                                    <i class="fa-regular fa-circle-exclamation"></i>
-                                    لطفا گزینه مورد نظر  {{$attribute->name}} را انتخاب کنید
-                                </div>
-                                <div class="box">
-                                    <div class="row mt-2">
-                                        <div class="tw-hidden lg:tw-block col-lg-2  tw-text-7xl tw-text-amber-500">
-                                            <i class="fa-regular fa-shield-check"></i>
+                                <div class="swiper-slide tw-h-auto">
+                                    <label class="product-type" for="qwerty1">
+                                        <div class="tw-relative">
+                                            <img src="https://placehold.co/138" alt="">
+                                            <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
+                                                    <i class="fa-solid fa-play"></i>
+                                                </a>
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
+                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="col-12 col-lg-10">
-                                            @forelse ($items as $item)
-
-                                                    <div class="form-check">
-                                                        @if ($item->isInStock($product->id))
-                                                            <input class="form-check-input" type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
-                                                        @else
-                                                            <input class="form-check-input" type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" disabled>
-                                                        @endif
-                                                        <div>
-                                                            <label class="form-check-label" for="{{ $item->id }}">
-                                                                {{ $item->description }}
-                                                            </label>
-
-                                                            <span class="tw-text-indigo-500 ms-3">{{ $item->price>0 ? $item->price.' تومان ': 'رایگان' }} </span>
-                                                        </div>
-                                                    </div>
-
-                                            @empty
-                                                <div> خصوصیتی برای این ویژگی تعریف نشده</div>
-                                            @endforelse
+                                        <input type="radio" name="xyzabc" id="qwerty1">
+                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                            <div class="center-between">
+                                                <span>بی سیم</span>
+                                                <a href="#"><i class="fa-solid fa-circle-info"></i></a>
+                                            </div>
+                                            <span class="tw-font-semibold tw-text-black tw-mt-auto">1,000,000
+                                                <svg style="width: 16px; height: 16px;" class="tw-inline-block">
+                                                    <use xlink:href="#toman"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="swiper-slide tw-h-auto">
+                                    <label class="product-type" for="qwerty1">
+                                        <div class="tw-relative">
+                                            <img src="https://placehold.co/138" alt="">
+                                            <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
+                                                    <i class="fa-solid fa-play"></i>
+                                                </a>
+                                                <a href="" class="tw-text-sm tw-p-1 tw-py-0 tw-rounded-s-sm tw-bg-white border tw-border-indigo-500 tw-text-[var(--primary)] tw-ml-1">
+                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <input type="radio" name="xyzabc" id="qwerty1">
+                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                            <div class="center-between">
+                                                <span>همراه با موتور</span>
+                                                <a href="#"><i class="fa-solid fa-circle-info"></i></a>
+                                            </div>
+                                            <div class="tw-w-full tw-px-2 tw-mt-2">
+                                                <span>
+                                                    کنترل
+                                                    <i class="fa-solid fa-circle-info tw-text-xs tw-text-[var(--primary)]"></i>
+                                                </span>
+                                                <select class="form-select tw-text-xs" name="" id="">
+                                                    <option value="" selected>بله</option>
+                                                    <option value="">خیر</option>
+                                                </select>
+                                            </div>
+                                            <div class="tw-w-full tw-px-2 tw-mt-2">
+                                                <span>
+                                                    اتصال با وای فای
+                                                    <i class="fa-solid fa-circle-info tw-text-xs tw-text-[var(--primary)]"></i>
+                                                </span>
+                                                <select class="form-select tw-text-xs" name="" id="">
+                                                    <option value="">بله</option>
+                                                    <option value="" selected>خیر</option>
+                                                </select>
+                                            </div>
+                                            <span class="tw-font-semibold tw-text-black tw-mt-auto">1,000,000
+                                                <svg style="width: 16px; height: 16px;" class="tw-inline-block">
+                                                    <use xlink:href="#toman"></use>
+                                                </svg>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -744,13 +760,41 @@
                         <i class="fa-regular fa-circle-exclamation"></i>
                         لطفا تعداد مورد نظر را انتخاب کنید
                     </div>
-                    <div class="mb-3 tw-w-36">
-
-                            <label for="count_input" class="title form-label">
-                                تعداد سفارش
-                                <a href="#"><i class="fa-regular fa-circle-question"></i></a>
-                            </label>
-                            <input data-real="true" name="quantity" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="عدد ">
+                    <div class="box">
+                        <div class="row mt-2">
+                            <div class="tw-hidden lg:tw-block col-lg-2">
+                                <i class="fa-regular fa-shield-check tw-text-7xl tw-text-amber-500"></i>
+                            </div>
+                            <div class="col-12 col-lg-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="warranty" value="1warranty" id="warranty1">
+                                    <div>
+                                        <label class="form-check-label" for="warranty1">
+                                            3 سال گارانتی محدود
+                                        </label>
+                                        <span class="tw-text-[var(--primary)] ms-3">رایگان</span>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="warranty" value="2warranty" id="warranty2" checked>
+                                    <div>
+                                        <label class="form-check-label" for="warranty2">
+                                            5 سال گارانتی محدود
+                                        </label>
+                                        <span class="tw-text-[var(--primary)] ms-3">60 هزارتومان</span>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="warranty" value="3warranty" id="warranty3" checked>
+                                    <div>
+                                        <label class="form-check-label" for="warranty3">
+                                            5 سال گارانتی نامحدود
+                                        </label>
+                                        <span class="tw-text-[var(--primary)] ms-2">120 هزارتومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

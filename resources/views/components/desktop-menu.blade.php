@@ -1,5 +1,5 @@
 <div class="">
-    <div class="container tw-py-4 tw-bg-[#EBEDF06B] tw-rounded-b-2xl">
+    <div class="container tw-py-4 tw-bg-[var(--header-bg)] tw-rounded-b-2xl">
         <div class="tw-w-full md:tw-w-[70%] tw-mx-auto tw-flex tw-justify-center lg:tw-hidden">
             @livewire('search')
         </div>

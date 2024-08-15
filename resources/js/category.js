@@ -172,8 +172,6 @@ export function handleChangeFilter(e) {
     if (minChange === false) delete groupedFilters.minprice;
     if (maxChange === false) delete groupedFilters.maxprice;
 
-    console.log(groupedFilters);
-
     let query = queryString.stringify(groupedFilters, { arrayFormat: "comma" });
 
     // clean the query

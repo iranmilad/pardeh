@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="fw-bold tw-text-center">تماس با <span class="tw-text-brand-500">{{config('app.name')}}</span></h1>
+    <h1 class="fw-bold tw-text-center">تماس با <span class="tw-text-[var(--primary)]">{{config('app.name')}}</span></h1>
     <!-- ARTICLE LIKE BLOG -->
     <div >
         <p class="tw-text-center tw-mb-5">در صورت داشتن هرگونه سوال، انتقاد یا پیشنهادی میتوانید از طریق فرم زیر با ما در ارتباط باشید.</p>

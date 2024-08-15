@@ -1,7 +1,7 @@
 @extends('layouts.primary')
 
 <?php
-$activeClass = "tw-text-indigo-500 pay";
+$activeClass = "tw-text-[var(--primary)] pay";
 $notActive = "gray-700 pay basket";
 ?>
 

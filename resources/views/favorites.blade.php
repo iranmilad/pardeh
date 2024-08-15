@@ -32,7 +32,7 @@
 
                         <!-- Add Product To Shopping Cart:start-->
                         <div class="product-item-s2-add-to-cart !tw-opacity-100 !tw-visible">
-                            <a href="{{ $favorite->link }}" class="btn btn-sm w-100 tw-rounded-xl mt-4">مشاهده محصول</a>
+                            <a href="{{ $favorite->link }}" class="btn btn-sm btn-primary w-100 tw-rounded-xl mt-4">مشاهده محصول</a>
                         </div>
                         <!-- Add Product To Shopping Cart:end-->
                     </div>

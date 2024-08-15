@@ -146,6 +146,39 @@ Route::get("/imgdot/{id}", function ($id) {
     return response()->json(['html' => $html]);
 });
 
+Route::get("/marker/{id}", function ($id) {
+    // in database top and left dont have %. please add "%" to them.
+    // in database top and left dont have %. please add "%" to them.
+    // in database top and left dont have %. please add "%" to them.
+    // in database top and left dont have %. please add "%" to them.
+    // $positions = [
+    //     [
+    //         "id" => 1,
+    //         "top" => "5" . "%",
+    //         "left" => "5" . "%"
+    //     ],
+    //     [
+    //         "id" => 2,
+    //         "top" => "20" . "%",
+    //         "left" => "30" . "%"
+    //     ],
+    //     [
+    //         "id" => 3,
+    //         "top" => "50" . "%",
+    //         "left" => "50" . "%"
+    //     ],
+    // ];
+    $marker = '
+    <div class="image_dotter">
+    <img src="https://javidcode.com/images/auth.jpg" />
+    <span style="top: 5%;left: 5%;" data-id="1"></span>
+    <span style="top: 20%;left: 30%;" data-id="2"></span>
+    <span style="top: 50%;left: 50%;" data-id="3"></span>
+</div>';
+
+    return response()->json(['html' => $marker]);
+});
+
 
 /**
  * this route returns the product details and update price and time and discount and also the images of product.

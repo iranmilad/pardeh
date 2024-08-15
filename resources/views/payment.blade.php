@@ -12,7 +12,7 @@
     </div>
     <!--                        Cart Header:end-->
 
-    <form action="">
+    <form action="" x-data="{ selectedMethod: '' }">
 
         <label for="credit_payment" class="payment-method">
             <div class="tw-flex tw-items-start">

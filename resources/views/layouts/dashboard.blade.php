@@ -28,10 +28,10 @@ $extractedPart = isset($matches[1]) ? $matches[1] : '';
                             <!--                            User Picture:end-->
 
                             <!--                            User Name:start-->
-                            <a href="/dashboard/user-info" class="d-flex tw-mx-auto tw-justify-center tw-items-center fw-bold mt-2">
+                            <a href="/dashboard/user-info" class="d-flex tw-mx-auto tw-justify-center tw-items-center fw-bold mt-2 tw-text-[var(--primary)]">
                                 {{ $user->fullName }}
                                 <span href="" class="ps-2">
-                                    <i class="fa fa-pen tw-text-indigo-500 fa-md"></i>
+                                    <i class="fa fa-pen tw-tw-text-[var(--primary)]  fa-md"></i>
                                 </span>
                             </a>
                             <p class="gray-500">{{ $user->mobile }}</p>
@@ -113,7 +113,7 @@ $extractedPart = isset($matches[1]) ? $matches[1] : '';
                                             پیام ها
                                         </span>
                                     </a></li>
-                                <li><a href="/logout" class="text-danger">
+                                <li><a href="/logout" class="tw-tw-text-[var(--primary)] ">
                                         <i class="fa fa-sign-out-alt"></i>
                                         <span class="ps-2">
                                             خروج

@@ -35,7 +35,7 @@
                         <span class="tw-text-gray-500 lg:text-sm tw-text-sm font-medium">قیمت:</span>
                         <div class="tw-flex tw-items-end justify-end tw-flex-col tw-mr-3">
                             @if ($order->sale_price)
-                                <b class="lg:text-sm tw-text-sm tw-text-indigo-500 tw-line-through">{{ $order->price }} تومان</b>
+                                <b class="lg:text-sm tw-text-sm tw-text-[var(--primary)] tw-line-through">{{ $order->price }} تومان</b>
                                 <b class="lg:text-sm tw-text-xs tw-text-gray-500">{{ $order->sale_price }} تومان</b>
 
                             @else
@@ -43,11 +43,15 @@
                             @endif
                         </div>
                     </div>
+                    <div class="tw-flex tw-items-center tw-justify-between tw-mt-3 tw-w-full">
+                        <span class="tw-text-gray-500 lg:text-sm tw-text-sm font-medium">تخفیف:</span>
+                        <div class="tw-flex tw-items-end justify-end tw-flex-col tw-mr-3">
+                            <div class="badge tw-bg-[var(--sale-badge)]  rounded-pill">20%</div>
                     @if ($order->discountPercentage!=0)
                         <div class="tw-flex tw-items-center tw-justify-between tw-mt-3 tw-w-full">
                             <span class="tw-text-gray-500 lg:text-sm tw-text-sm font-medium">تخفیف:</span>
                             <div class="tw-flex tw-items-end justify-end tw-flex-col tw-mr-3">
-                                <div class="badge tw-bg-red-500 rounded-pill">{{ $order->discountPercentage }}</div>
+                                <div class="badge tw-bg-[var(--sale-badge)] rounded-pill">{{ $order->discountPercentage }}</div>
                             </div>
                         </div>
                     @endif

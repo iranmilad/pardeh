@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="bigLoading">
-    <div class="spinner-border text-primary" role="status">
+    <div class="spinner-border tw-text-[var(--primary)] " role="status">
         <span class="visually-hidden">صبر کنید ...</span>
     </div>
 </div>
@@ -49,9 +49,9 @@
                     <div class="swiper-button-prev" id="product-images-prev"></div>
                     <div class="swiper-button-next" id="product-images-next"></div>
                 </div>
-                <a href="#video" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-xl">
-                    <i class="fa-solid fa-play"></i>
-                    <span>ویدئو</span>
+                <a href="#" class="tw-w-[20%] tw-text-sm tw-h-auto tw-bg-[#1e3b6f] hover:tw-text-white tw-text-white tw-flex tw-flex-col tw-items-center tw-justify-center tw-rounded-xl">
+                    <i class="fa-solid fa-play" style="color: white;"></i>
+                    <span style="color: white;">ویدئو</span>
                 </a>
             </div>
 
@@ -72,6 +72,8 @@
                         </div>
                     @endif
                     <div class="tw-flex tw-items-center">
+                        <x-rating readOnly rate="4" />
+                        <a class="tw-text-[var(--primary)] tw-mr-3">دیدگاه (500)</a>
                         <x-rating readOnly rate="{{ $product->overallRatingAverage() }}" />
                         <a class="tw-text-indigo-500 tw-mr-3">دیدگاه ({{ $product->reviews()->count() }})</a>
                     </div>
@@ -90,7 +92,7 @@
                             @if ($product->discountPercentage!=0)
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
                                 <span class="tw-text-gray-500">تخفیف : </span>
-                                <span class="badge tw-bg-red-500 tw-rounded-full">{{ $product->discountPercentage  }}</span>
+                                <span class="badge tw-bg-[var(--sale-badge)]  tw-rounded-full">{{ $product->discountPercentage  }}</span>
                             </div>
 
                             @endif
@@ -111,42 +113,27 @@
                                     @endif
                                 </div>
                             </div>
-                            @if ($product->isAvailable())
-                                <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
-                                    <!-- ADD TO FAVORITE BUTTON -->
-                                    <a class="btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables."  href="{{ '/wishlist/'.$product->id }}">
-                                        <i class="fa-regular fa-heart"></i>
-                                    </a>
-                                    <!-- ADD TO CART BUTTON -->
-                                    <x-add-to-cart />
+                            <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
+                                <!-- ADD TO FAVORITE BUTTON -->
+                                <button class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+                                <!-- ADD TO CART BUTTON -->
+                                <x-add-to-cart />
+                            </div>
+
+                            <!-- LET ME KNOW -->
+                            <!-- <div>
+                                <h4 class="text-center tw-text-[var(--primary)]">ناموجود</h4>
+                                <div class="text-center tw-text-sm">
+                                    این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
+                                    موجود شدن، به شما خبر دهیم.
                                 </div>
-                            @else
-                                <!-- LET ME KNOW -->
-                                <!-- این بخش برای نمایش هنگامی که محصول موجود نیست -->
-                                <div>
-                                    <h4 class="text-center tw-text-brand-500">ناموجود</h4>
-                                    @if (Auth::user() and !$product->isUserInWaitingList(Auth::id()))
-                                        <div class="text-center tw-text-sm">
-                                            این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
-                                            موجود شدن، به شما خبر دهیم.
-                                        </div>
-                                        <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
-                                            <a href="/dashboard/product/{{ $product->id }}/add-to-waiting-list" class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
-                                                <i class="fa-solid fa-bell tw-ml-2"></i>
-                                                خبرم کن
-                                            </a>
-                                        </div>
-                                    @else
-                                    <div class="text-center tw-text-sm">
-                                        شما در لیست انتظار برای موجود شدن کالا قرار دارید به محض موجود شدن به شما اطلاع داده خواهد شد
-                                    </div>
-                                    <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
-                                        <a href="/dashboard/product/{{ $product->id }}/remove-waiting-list" class="btn btn-warning btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
-                                            <i class="fa-solid fa-bell tw-ml-2"></i>
-                                            خارج شدن لیست انتظار
-                                        </a>
-                                    </div>
-                                    @endif
+                                <div class="tw-w-full tw-flex tw-items-center tw-justify-center">
+                                    <button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 let-me-know">
+                                        <i class="fa-solid fa-bell tw-ml-2"></i>
+                                        خبرم کن
+                                    </button>
                                 </div>
                                 <!-- LET ME KNOW -->
                             @endif
@@ -216,7 +203,7 @@
                     <img id="product-sticky-thumbnail" class="tw-hidden lg:tw-block tw-relative tw-w-[60px] tw-object-cover tw-rounded-xl tw-ml-5" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
                     <div class="tw-flex tw-items-start tw-flex-col sticky-price-time">
                         <!-- UNAVAILABLE TEXT -->
-                            <!-- <span class='tw-text-sm tw-text-brand-500'>ناموجود</span> -->
+                        <!-- <span class='tw-text-sm tw-text-[var(--primary)]'>ناموجود</span> -->
                         <!-- UNAVAILABLE TEXT -->
                         <div class="tw-text-sm md:tw-text-base">
                             <span class="tw-text-gray-600 tw-font-semibold">
