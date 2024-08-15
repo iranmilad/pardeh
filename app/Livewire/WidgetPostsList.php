@@ -20,12 +20,8 @@ class WidgetPostsList extends Component
         $this->options = json_decode($options, true);
         $count = $this->options['count'] ?? 10;
 
-        if ($this->type == "new post") {
-            $this->posts = Post::latest()->paginate($count);
-        }
-        elseif($this->type == "search") {
-            $this->posts = Post::latest()->paginate($count);
-        }
+        $this->posts = Post::latest()->paginate($count);
+
     }
 
     public function render()

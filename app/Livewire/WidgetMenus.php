@@ -19,14 +19,7 @@ class WidgetMenus extends Component
         $this->options = json_decode($options, true);
         $this->slug = $slug;
 
-        if ($this->type == "category") {
-
-            $alias = $this->options['alias'] ?? [];
-
-            $this->menus = Menu::where(['alias'=>$alias,])
-            ->first();
-        }
-        elseif ($this->type == "menu_category") {
+        if ($this->type == "menu_category") {
 
             $alias = $slug ?? null;
             if ($alias) {

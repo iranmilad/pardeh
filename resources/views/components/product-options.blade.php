@@ -7,7 +7,39 @@
 <!-- use data-real="true" if you want to get calculated price and time after changing items. use in input -->
 
 <!-- use checked in input to set default  -->
+<style>
+    .img-container {
+    position: relative;
+    display: inline-block;
+}
 
+.img-container img {
+    display: block;
+    width: 100%;
+    height: 135px;
+}
+
+.img-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.5); /* نیمه شفاف قرمز */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.img-container.out-of-stock .overlay {
+    visibility: visible;
+}
+
+</style>
 <form id="product-options">
     @csrf
     <!-- START: LOOP -->
@@ -240,18 +272,16 @@
         @endif
 
 
-        @foreach ($product->attributes()->get() as $attributes)
+        @foreach ($product->attributes()->get() as $attribute)
 
-
-
-            @if($attributes->display_type =='color' )
+            @if($attribute->display_type =='color' )
                 @php
-                    $attribute=$attributes;
+                    $attribute=$attribute;
                 @endphp
                 <!-- START: COLOR -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{ '#col'.$loop->index  }}" aria-expanded="true" aria-controls="collapse">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="{{ '#col'.$loop->index  }}" aria-expanded="true" aria-controls="collapse">
                             <div class="stepNum">
                                 <span>{{ $loop->index+1 }}</span>
                                 <i class="fa-regular fa-circle-exclamation"></i>
@@ -259,7 +289,8 @@
                             انتخاب {{ $attribute->name }}
                         </button>
                     </h2>
-                    <div id="{{ 'col'.$loop->index  }}" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+
+                    <div id="{{ 'col'.$loop->index  }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
 
                                 <div class="alert alert-danger tw-text-sm">
@@ -280,21 +311,31 @@
                                     <div class="swiper swiper-product-options">
                                         <div class="swiper-wrapper">
                                             <!-- Loop through attribute items and generate HTML for each color option -->
-                                            @foreach($attribute->items()->get() as $item)
-                                            <div class="swiper-slide">
-                                                <label class="product-template" for="{{ $item->id }}">
-                                                    @if ($item->img)
-                                                        <img width="100%" height="135" src="{{$item->img}}" alt="{{ $item->name }}" srcset="">
-                                                    @else
-                                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                                            <rect width="100%" height="100%" fill="{{ $item->name }}" />
-                                                        </svg>
-                                                    @endif
-                                                    <span>{{ $item->details }}</span>
-                                                    <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->name }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
-                                                </label>
-                                            </div>
-                                            @endforeach
+                                            @forelse($attribute->properties as $item)
+
+                                                    <div class="swiper-slide">
+                                                        <label class="product-template" for="{{ $item->id }}">
+                                                            @if ($item->img)
+                                                                <img width="100%" height="135" src="{{$item->img}}" alt="{{ $item->value }}" srcset="">
+                                                            @else
+                                                                <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect width="100%" height="100%" fill="{{ $item->value }}" />
+                                                                </svg>
+                                                            @endif
+                                                            <span>{{ $item->description }}</span>
+
+                                                            @if ($item->isInStock($product->id))
+                                                                <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
+                                                            @else
+                                                                <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" disabled>
+                                                            @endif
+                                                        </label>
+                                                    </div>
+
+
+                                            @empty
+                                                <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
@@ -305,10 +346,10 @@
 
             @endif
 
-            @if($attributes->display_type == 'material')
+            @if($attribute->display_type == 'material')
                 @php
-                    $attribute=$attributes;
-                    $items = $attribute->items;
+                    $attribute=$attribute;
+                    $items = $attribute->properties;
                 @endphp
 
                 <!-- START: item -->
@@ -322,7 +363,7 @@
                             انتخاب {{ $attribute->name }}
                         </button>
                     </h2>
-                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse  {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="alert alert-danger tw-text-sm">
                                 <i class="fa-regular fa-circle-exclamation"></i>
@@ -342,15 +383,26 @@
                                 <div class="swiper swiper-product-options">
                                     <div class="swiper-wrapper">
                                         <!-- Loop through attribute items and generate HTML for each item option -->
-                                        @foreach($items as $item)
-                                        <div class="swiper-slide">
-                                            <label class="product-template" for="{{ $item['name'] }}">
-                                                <img src="{{ $item['img'] }}" alt="">
-                                                <span>{{ $item['details'] }}</span>
-                                                <input type="radio" data-real="true" name="param[{{ $attribute->id }}]"  id="{{ $item['name'] }}" value="{{ $item['name'] }}" {{ $loop->first ? 'checked' : '' }}>
-                                            </label>
-                                        </div>
-                                        @endforeach
+                                        @forelse ($items as $item)
+
+                                                <div class="swiper-slide">
+                                                    <label class="product-template" for="{{ $item->value }}">
+                                                        <img src="{{ $item->img }}" alt="">
+                                                        <span>{{ $item->description }}</span>
+                                                        @if ($item->isInStock($product->id))
+                                                            <input type="radio" data-real="true" name="param[{{ $attribute->id }}]"  id="{{ $item->value }}" value="{{ $item->value }}" {{ $loop->first ? 'checked' : '' }}>
+                                                        @else
+                                                            <input type="radio" data-real="true" name="param[{{ $attribute->id }}]"  id="{{ $item->value }}" value="{{ $item->value }}" disabled>
+
+                                                        @endif
+                                                    </label>
+                                                </div>
+
+                                        @empty
+                                            <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                        @endforelse
+
+
                                     </div>
                                 </div>
                             </div>
@@ -360,13 +412,10 @@
                 <!-- END: item -->
             @endif
 
-
-
-
-            @if($attributes->display_type == 'size')
+            @if($attribute->display_type == 'size')
                 @php
-                    $attribute=$attributes;
-                    $items = $attribute->items;
+                    $attribute=$attribute;
+                    $items = $attribute->properties;
                 @endphp
                 <!-- START: OTHER OPTIONS Size-->
                 <div class="accordion-item">
@@ -379,7 +428,7 @@
                             انتخاب {{$attribute->name}}
                         </button>
                     </h2>
-                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse  {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="alert alert-danger tw-text-sm">
                                 <i class="fa-regular fa-circle-exclamation"></i>
@@ -398,17 +447,25 @@
                                 </div>
                                 <div class="swiper swiper-product-options">
                                     <div class="swiper-wrapper">
-                                        @foreach($items as $item)
-                                        <div class="swiper-slide">
-                                            <div class="product-type" for="">
-                                                <img src="{{ $item->img }}" alt="">
-                                                <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
-                                                    <span>{{ $item->details }} ( {{ $item->base_unit }} )</span>
-                                                    <input class="form-control" name="param[{{ $attribute->id }}][{{ $item->name }}]" data-real="true" type="number" value="0" placeholder="{{ $item->base_unit }}">
+                                        @forelse ($items as $item)
+
+                                                <div class="swiper-slide">
+                                                    <div class="product-type" for="">
+                                                        <img src="{{ $item->img }}" alt="">
+                                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                            <span>{{ $item->description }} ( {{ $item->base_unit }} )</span>
+                                                            @if ($item->isInStock($product->id))
+                                                                <input class="form-control" name="param[{{ $attribute->id }}][{{ $item->value }}]" data-real="true" type="number" value="0" placeholder="{{ $item->base_unit }}">
+                                                            @else
+                                                                <input class="form-control" name="param[{{ $attribute->id }}][{{ $item->value }}]" data-real="true" type="number" value="0" placeholder="{{ $item->base_unit }}" disabled>
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
+
+                                        @empty
+                                            <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
@@ -418,10 +475,10 @@
                 <!-- END: OTHER OPTIONS -->
             @endif
 
-            @if($attributes->display_type == 'model')
+            @if($attribute->display_type == 'model')
                 @php
-                    $attribute=$attributes;
-                    $items = $attribute->items;
+                    $attribute=$attribute;
+                    $items = $attribute->properties;
                 @endphp
                 <!-- START: MATERIAL -->
                 <div class="accordion-item">
@@ -434,7 +491,7 @@
                             انتخاب {{$attribute->name}}
                         </button>
                     </h2>
-                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="alert alert-danger tw-text-sm">
                                 <i class="fa-regular fa-circle-exclamation"></i>
@@ -453,15 +510,24 @@
                                 </div>
                                 <div class="swiper swiper-product-options">
                                     <div class="swiper-wrapper">
-                                        @foreach($items as $item)
-                                        <div class="swiper-slide">
-                                            <label class="product-type" for="{{ $item->id }}">
-                                                <img src="{{ $item->img }}" alt="">
-                                                <span>{{ $item->details }}</span>
-                                                <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->name }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
-                                            </label>
-                                        </div>
-                                        @endforeach
+                                        @forelse ($items as $item)
+
+                                                <div class="swiper-slide">
+                                                    <label class="product-type" for="{{ $item->id }}">
+                                                        <img src="{{ $item->img }}" alt="">
+                                                        <span>{{ $item->description }}</span>
+                                                        @if ($item->isInStock($product->id))
+                                                        <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
+                                                        @else
+                                                        <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" disabled>
+
+                                                        @endif
+                                                    </label>
+                                                </div>
+
+                                        @empty
+                                            <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
@@ -471,33 +537,30 @@
                 <!-- END: MATERIAL -->
             @endif
 
-
-            @if($attributes->display_type == 'priceModel')
+            @if($attribute->display_type == 'priceModel' && $attribute->independent==1)
                 @php
-                    $attribute=$attributes;
-                    $items = $attribute->items;
+                    $items = $attribute->properties;
                 @endphp
-                <!-- START: OTHER OPTIONS -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{ $loop->index  }}" aria-expanded="true" aria-controls="collapse">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{ $loop->index }}" aria-expanded="true" aria-controls="collapse">
                             <div class="stepNum">
-                                <span>{{ $loop->index+1 }}</span>
+                                <span>{{ $loop->index + 1 }}</span>
                                 <i class="fa-regular fa-circle-exclamation"></i>
                             </div>
-                            انتخاب {{$attribute->name}}
+                            انتخاب {{ $attribute->name }}
                         </button>
                     </h2>
-                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="col{{ $loop->index }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="alert alert-danger tw-text-sm">
                                 <i class="fa-regular fa-circle-exclamation"></i>
-                                لطفا {{$attribute->unit}} مورد نظر را انتخاب کنید
+                                لطفا {{ $attribute->unit }} مورد نظر را انتخاب کنید
                             </div>
                             <div class="box">
                                 <div class="tw-flex tw-items-center tw-justify-between mb-3">
                                     <span class="title">
-                                        {{$attribute->name}}
+                                        {{ $attribute->name }}
                                         <a href="#"><i class="fa-regular fa-circle-question"></i></a>
                                     </span>
                                     <div class="product-option-next-prev">
@@ -507,57 +570,61 @@
                                 </div>
                                 <div class="swiper swiper-product-options">
                                     <div class="swiper-wrapper">
-                                        @foreach($items as $item)
-                                        <div class="swiper-slide">
-                                            <label class="product-type" for="{{ $item->id }}">
-                                                <div class="tw-relative">
-                                                    <img src="{{ $item->img }}" alt="">
-                                                    <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1">
-                                                    </div>
-                                                </div>
-                                                <input type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->name }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
-                                                <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
-                                                    <div class="center-between">
-                                                        <span>{{ $item->details }}</span>
-                                                        <a href="#"><i class="fa-solid fa-circle-info"></i></a>
-                                                    </div>
-                                                    <!-- <div class="tw-w-full tw-px-2 tw-mt-2 d-none">
-                                                        <span>
-                                                            کنترل
-                                                            <i class="fa-solid fa-circle-info tw-text-xs tw-text-indigo-500"></i>
-                                                        </span>
-                                                        <select class="form-select tw-text-xs" name="" id="">
-                                                            <option value="" selected="">بله</option>
-                                                            <option value="">خیر</option>
-                                                        </select>
-                                                    </div> -->
+                                        @forelse ($items as $item)
 
-                                                    @if ($item->price>0)
-                                                    <span class="tw-font-semibold tw-text-black tw-mt-auto">{{ $item->price }}
-                                                        <svg style="width: 16px; height: 16px;" class="tw-inline-block">
-                                                            <use xlink:href="#toman"></use>
-                                                        </svg>
-                                                    </span>
-                                                    @else
-                                                    <span class="tw-font-semibold tw-text-black tw-mt-auto">رایگان</span>
-                                                    @endif
+                                                @php
+                                                    $combinations = $item->attributeCombinations->where('product_id', $product->id);
+                                                @endphp
+                                                <div class="swiper-slide">
+                                                    <label class="product-type" for="{{ $item->id }}">
+                                                        <div class="tw-relative">
+                                                            <img src="{{ $item->img }}" alt="">
+                                                            <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1"></div>
+                                                        </div>
+                                                        @if ($item->isInStock($product->id))
+                                                            <input type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
+                                                        @else
+                                                            <input type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" disabled>
+                                                        @endif
+                                                        <div class="tw-flex py-1 tw-items-center tw-justify-between my-1 body">
+                                                            <div class="center-between">
+                                                                <span>{{ $item->description }}</span>
+                                                                <a href="#"><i class="fa-solid fa-circle-info"></i></a>
+                                                            </div>
+                                                            @if ($combinations->isNotEmpty())
+                                                                @foreach ($combinations as $combination)
+                                                                    @if ($combination->price > 0)
+                                                                        <span class="tw-font-semibold tw-text-black tw-mt-auto">{{ $combination->sale_price ?? $combination->price }}
+                                                                            <svg style="width: 16px; height: 16px;" class="tw-inline-block">
+                                                                                <use xlink:href="#toman"></use>
+                                                                            </svg>
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="tw-font-semibold tw-text-black tw-mt-auto">رایگان</span>
+                                                                    @endif
+                                                                @endforeach
+                                                            @else
+                                                                <span class="tw-font-semibold tw-text-black tw-mt-auto">رایگان</span>
+                                                            @endif
+                                                        </div>
+                                                    </label>
                                                 </div>
-                                            </label>
-                                        </div>
-                                        @endforeach
+
+                                        @empty
+                                            <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- END: OTHER OPTIONS -->
             @endif
 
-            @if($attributes->display_type == 'options')
+            @if($attribute->display_type == 'options')
                 @php
-                    $attribute=$attributes;
-                    $items = $attribute->items;
+                    $attribute=$attribute;
+                    $items = $attribute->properties;
                 @endphp
                     <!-- START: Options -->
                     <div class="accordion-item">
@@ -570,7 +637,7 @@
                                 <span>انتخاب {{$attribute->name}}</span>
                             </button>
                         </h2>
-                        <div id="col{{ $loop->index  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div id="col{{ $loop->index  }}" class="accordion-collapse collapse  {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <a class="ms-3 tw-text-xs tw-underline tw-text-left tw-w-full tw-flex tw-justify-end" href="#">راهنما</a>
                                 <div class="alert alert-danger tw-text-sm">
@@ -583,18 +650,26 @@
                                             <i class="fa-regular fa-shield-check"></i>
                                         </div>
                                         <div class="col-12 col-lg-10">
-                                            @foreach($items as $item)
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->name }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
-                                                <div>
-                                                    <label class="form-check-label" for="{{ $item->id }}">
-                                                        {{ $item->details }}
-                                                    </label>
+                                            @forelse ($items as $item)
 
-                                                    <span class="tw-text-indigo-500 ms-3">{{ $item->price>0 ? $item->price.' تومان ': 'رایگان' }} </span>
-                                                </div>
-                                            </div>
-                                            @endforeach
+                                                    <div class="form-check">
+                                                        @if ($item->isInStock($product->id))
+                                                            <input class="form-check-input" type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
+                                                        @else
+                                                            <input class="form-check-input" type="radio" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" disabled>
+                                                        @endif
+                                                        <div>
+                                                            <label class="form-check-label" for="{{ $item->id }}">
+                                                                {{ $item->description }}
+                                                            </label>
+
+                                                            <span class="tw-text-indigo-500 ms-3">{{ $item->price>0 ? $item->price.' تومان ': 'رایگان' }} </span>
+                                                        </div>
+                                                    </div>
+
+                                            @empty
+                                                <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
@@ -605,11 +680,10 @@
 
             @endif
 
-
-            @if($attributes->display_type == 'value')
+            @if($attribute->display_type == 'value')
                 @php
-                    $attribute=$attributes;
-                    $items = $attribute->items;
+                    $attribute=$attribute;
+                    $items = $attribute->properties;
                 @endphp
                 <!-- START: OTHER OPTIONS Count -->
                 <div class="accordion-item">
@@ -622,20 +696,27 @@
                             {{$attribute->name}}
                         </button>
                     </h2>
-                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="col{{ $loop->index  }}" class="accordion-collapse collapse  {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="alert alert-danger tw-text-sm">
                                 <i class="fa-regular fa-circle-exclamation"></i>
                                 لطفا گزینه مورد نظر  {{$attribute->name}} را انتخاب کنید
                             </div>
                             <div class="mb-3 tw-w-36">
-                                @foreach($items as $item)
-                                <label for="count_input" class="title form-label">
-                                    {{ $item->details }}
-                                    <a href="#"><i class="fa-regular fa-circle-question"></i></a>
-                                </label>
-                                <input data-real="true" name="param[{{ $attribute->id }}][{{ $item->name }}]" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="{{ $item->base_unit }}">
-                                @endforeach
+                                @forelse ($items as $item)
+
+                                        <label for="count_input" class="title form-label">
+                                            {{ $item->description }}
+                                            <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                                        </label>
+                                        @if ($item->isInStock($product->id))
+                                        <input data-real="true" name="param[{{ $attribute->id }}][{{ $item->value }}]" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="{{ $item->base_unit }}">
+                                        @else
+                                        <input data-real="true" name="param[{{ $attribute->id }}][{{ $item->value }}]" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="{{ $item->base_unit }}" disabled>
+                                        @endif
+                                @empty
+                                    <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -643,7 +724,40 @@
                 <!-- END: OTHER OPTIONS -->
             @endif
 
+
         @endforeach
+
+        <!-- START: OTHER OPTIONS Count -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{ $product->attributes->count()+1  }}" aria-expanded="true" aria-controls="collapse">
+                    <div class="stepNum">
+                        <span>{{ $product->attributes->count()+1  }}</span>
+                        <i class="fa-regular fa-circle-exclamation"></i>
+                    </div>
+                    تعداد سفارش
+                </button>
+            </h2>
+            <div id="col{{ $product->attributes->count()+1  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="alert alert-danger tw-text-sm">
+                        <i class="fa-regular fa-circle-exclamation"></i>
+                        لطفا تعداد مورد نظر را انتخاب کنید
+                    </div>
+                    <div class="mb-3 tw-w-36">
+
+                            <label for="count_input" class="title form-label">
+                                تعداد سفارش
+                                <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                            </label>
+                            <input data-real="true" name="quantity" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="عدد ">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: OTHER OPTIONS -->
+
+
 
 
     </div>

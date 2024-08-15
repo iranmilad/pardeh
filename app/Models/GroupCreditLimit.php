@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductImage extends Model
+class GroupCreditLimit extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'product_id',
-        'url',
+        'group_id',
+        'title',
+        'min_score',
+        'max_score',
     ];
 
-    public function product()
+    public function group()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Group::class);
     }
 }

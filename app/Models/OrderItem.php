@@ -9,7 +9,6 @@ class OrderItem extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'id',
         'order_id',
@@ -35,8 +34,59 @@ class OrderItem extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function orderAttributeItems()
+    public function combinations()
     {
-        return $this->hasMany(OrderAttributeItem::class);
+        return $this->belongsToMany(ProductAttributeCombination::class, 'order_item_combinations', 'order_item_id', 'combination_id');
+    }
+
+    public function getCombinationAttributesProperties()
+    {
+        $combinations = $this->combinations()->with('attributeProperties.property', 'attributeProperties.attribute')->get();
+
+        $result = [];
+
+        foreach ($combinations as $combination) {
+            foreach ($combination->attributeProperties as $property) {
+                $result[] = [
+                    'combination_id' => $combination->id,
+                    'attribute_id' => $property->attribute->id,
+                    'attribute_name' => $property->attribute->name,
+                    'property_id' => $property->property->id,
+                    'property_value' => $property->property->value,
+                    'independent' => $combination->independent,
+                    'holo_code' => $combination->holo_code,
+                    'price' => $combination->price,
+                    'sale_price' => $combination->sale_price,
+                    'wholesale_price' => $combination->wholesale_price,
+                    'stock_quantity' => $combination->stock_quantity,
+                    'description' => $combination->description,
+                    'img' => $combination->img
+                ];
+            }
+        }
+
+        return collect($result);
+    }
+
+    public function findCombinationByAttributes($attributes)
+    {
+        $combinations = ProductAttributeCombination::where('product_id', $this->product_id)->get();
+
+        foreach ($combinations as $combination) {
+            $match = true;
+
+            foreach ($attributes as $attributeId => $propertyId) {
+                if (!$combination->attributeProperties()->where('attribute_id', $attributeId)->where('property_id', $propertyId)->exists()) {
+                    $match = false;
+                    break;
+                }
+            }
+
+            if ($match) {
+                return $combination;
+            }
+        }
+
+        return null;
     }
 }

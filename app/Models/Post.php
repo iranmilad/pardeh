@@ -1,35 +1,21 @@
 <?php
-
 namespace App\Models;
 
-use App\Models\Comment;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'title',
-        'content',
-        'image',
-        'summary',
-        'keywords',
-        'publish',
-        'views',
-        'slug',
 
-        // Add more attributes here if needed
+    protected $fillable = [
+        'title', 'content', 'slug', 'image', 'summary', 'keywords',
+        'views', 'published', 'comments_enabled', 'user_id'
     ];
 
-    public function getLinkAttribute()
+    public function categories()
     {
-        return "/blog/".$this->slug;
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(PostCategory::class, 'post_category_id');
+        return $this->belongsToMany(PostCategory::class, 'post_category_post', 'post_id', 'post_category_id');
     }
 
     public function tags()
@@ -37,10 +23,9 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    // مدل Post رابطه‌ی user را اضافه کنید
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function comments()
@@ -48,9 +33,20 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-
     public function commentsCount()
     {
         return $this->comments()->count();
+    }
+
+    public function getDateShamsiAttribute()
+    {
+        $gregorianDate = \Carbon\Carbon::parse($this->due_date);
+        $jalaliDate = \Morilog\Jalali\Jalalian::fromCarbon($gregorianDate);
+        return $jalaliDate->format('Y/m/d');
+    }
+
+    public function getLinkAttribute()
+    {
+        return "/blog/".$this->slug;
     }
 }

@@ -6,9 +6,11 @@ use App\Models\Article;
 use Morilog\Jalali\Jalalian;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
  class User extends Authenticatable
 {
+    use Notifiable;
 	//use SoftDeletes;
     protected $fillable = [
         'password',
@@ -25,15 +27,24 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
         'address',
         'postal_code',
         'phone',
+        'national_code',
+        'avatar',
         'check_payment_active',
         'credit_payment_active',
         'credit_limit',
+        'role_id',
     ];
 
     protected $casts = [
         'check_payment_active' => 'boolean',
         'credit_payment_active' => 'boolean',
     ];
+
+    // Define the relationship with the Product model
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 
 	public function payments()
 	{
@@ -94,6 +105,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
     {
         return $this->belongsTo(Role::class);
     }
+
     public function hasRole(string $role): bool
     {
         return $this->role()->where('title', $role)->exists();
@@ -101,8 +113,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
     public function isAdmin(): bool
     {
-        return $this->role->title === 'admin';
+        return $this->role->title !== 'user';
     }
+
 	public function tokens()
 	{
 		return $this->hasMany(UserToken::class);
@@ -206,7 +219,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
             ->first();
     }
 
-    private function basket($status){
+    public function basket($orderStatus=null){
+        $status =[];
         $total =[];
         $cartCount = 0; // Initialize cart count
         $totalPrice = 0; // Initialize total price
@@ -216,7 +230,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
         $options = [];
         $totalDiscountPrice =0;
         $summedAmounts=[];
-        $orders = $this->orders()->where('status', $status)->get();
+        if($orderStatus)
+            $orders = $this->orders()->where('status', $orderStatus)->get();
+        else
+            $orders = $this->orders()->get();
 
         foreach($orders as $order){
             if($order){
@@ -228,7 +245,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
                     $totalAttributePrice = 0;
                     $totalAttributeSalePrice =0;
-
+                    $status[]= $cartItem->status;
                     // Assuming the product ID is provided as 'product'
                     $product = $cartItem->product;
 
@@ -236,7 +253,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
                     if ($product) {
 
-                        $attributes = $cartItem->orderAttributeItems;
+                        $attributes = $cartItem->orderProperties;
                         // Extract quantity from the item using regular expressions
                         $quantity =  $cartItem->quantity;
                         $cartCount += $quantity;
@@ -281,6 +298,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
                             "id" => $cartItem->id,        //order id
                             "product_id" => $product->id,
                             "name" => $product->title,
+                            "status" => $cartItem->status,
                             "img" => $product->img,
                             "link" => $product->link,
                             "price" => $product->price + $totalAttributePrice,
@@ -320,6 +338,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
                         "id" => $order->id,
                         "count" => $cartCount,
                         "total" => number_format($totalPrice), // Format the total price
+                        "status" => $status,
+                        "orderStatus" => $order->status ,
                         'deliveryType' => $order->deliveryType ,
                         'paymentMethod' => $order->paymentMethod,
                         'deliveryCost' => $deliveryCost,
@@ -338,6 +358,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
                     "cart" =>(object) [
                         "count" => $cartCount,
                         "total" => 0, // Format the total price
+                        "status" => [],
+                        "orderStatus" => $order->status ,
                         'deliveryType' => 'cash' ,
                         'paymentMethod' => 'cash',
                         'deliveryCost' => 0,
@@ -382,12 +404,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
     public function getCompletedOrders()
     {
-        return $this->getOrdersByStatus('complete');
+        return $this->getOrdersByStatus('completed');
     }
 
     public function getCanceledOrders()
     {
-        return $this->getOrdersByStatus('cancel');
+        return $this->getOrdersByStatus('canceled');
     }
 
     public function getRejectOrders()
@@ -452,4 +474,126 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
             return 0;
         }
     }
+
+    public function creditPlans()
+    {
+        return $this->belongsToMany(CreditPlan::class, 'credit_plan_user');
+    }
+
+    public function loginSessions()
+    {
+        return $this->hasMany(LoginSession::class);
+    }
+
+    // رابطه‌ی بسیار به بسیار با تخفیف‌ها
+    public function discountCodes()
+    {
+        return $this->belongsToMany(DiscountCode::class, 'discount_user', 'user_id', 'discount_code_id');
+    }
+
+    // تعریف رابطه با مدل TransportRegion
+    public function transportRegions()
+    {
+        return $this->hasMany(TransportRegion::class);
+    }
+
+    public function activeServices()
+    {
+        return $this->hasMany(ServiceDetail::class);
+    }
+
+    public function worktimes()
+    {
+        return $this->hasMany(Worktime::class);
+    }
+
+    public function getCurrentMonthTotalHours()
+    {
+        $currentJalaliMonth = Jalalian::now();
+
+        // استخراج سال و ماه شمسی
+        $year = $currentJalaliMonth->getYear();
+        $month = $currentJalaliMonth->getMonth();
+
+        // تعیین تعداد روزهای ماه جاری
+        $daysInMonth = 30; // پیش فرض برای ماه‌های 30 روزه
+        if ($month <= 6) {
+            $daysInMonth = 31; // ماه‌های 31 روزه (فروردین تا شهریور)
+        } elseif ($month == 12) {
+            $daysInMonth = $currentJalaliMonth->isLeapYear() ? 30 : 29; // اسفند ماه (سال کبیسه یا غیر کبیسه)
+        }
+
+        if ($month < 10) {
+            $month = "0" . $month;
+        }
+
+        // تاریخ شروع ماه جاری (اولین روز ماه شمسی)
+        $startOfMonthJalali = Jalalian::fromFormat('Y-m-d', "$year-$month-01");
+        $startOfMonth = $startOfMonthJalali->toCarbon()->toDateString();
+
+        // تاریخ پایان ماه جاری (آخرین روز ماه شمسی)
+        $endOfMonthJalali = Jalalian::fromFormat('Y-m-d', "$year-$month-$daysInMonth");
+        $endOfMonth = $endOfMonthJalali->toCarbon()->toDateString();
+
+        return $this->worktimes()
+                    ->whereBetween('date', [$startOfMonth, $endOfMonth])
+                    ->sum('hours');
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_user');
+    }
+
+    public function creditScore()
+    {
+        return $this->hasOne(CreditScore::class);
+    }
+
+    // فرض بر این است که مدل User مربوط به جدول users است و شامل روابط لازم برای نقش‌ها و پرمیشن‌ها می‌باشد.
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * بررسی دسترسی برای یک کد دسترسی خاص
+     *
+     * @param string $permissionName
+     * @param string $type
+     * @return bool
+     */
+    public function hasPermission($permissionName, $type = 'read_own')
+    {
+
+        if ($this->role->hasPermission($permissionName, $type)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * بررسی دسترسی خواندن
+     *
+     * @param string $permissionName
+     * @return bool
+     */
+    public function hasReadPermission($permissionName)
+    {
+        return $this->hasPermission($permissionName, 'read_own');
+    }
+
+    /**
+     * بررسی دسترسی نوشتن
+     *
+     * @param string $permissionName
+     * @return bool
+     */
+    public function hasWritePermission($permissionName)
+    {
+        return $this->hasPermission($permissionName, 'write_own');
+    }
+
+
 }
