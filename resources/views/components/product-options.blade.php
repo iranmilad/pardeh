@@ -442,7 +442,7 @@
                         <div class="swiper swiper-product-options">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <label class="product-type" for="BKJ23">
+                                    <label class="product-type not_found" for="BKJ23">
                                         <img src="{{ Vite::asset('resources/images/product/inside.svg') }}" alt="">
                                         <span>داخلی</span>
                                         <input type="radio" data-real="true" name="XYZ" value="XYZ1" id="BKJ23">

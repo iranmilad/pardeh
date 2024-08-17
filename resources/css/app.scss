@@ -2508,11 +2508,11 @@ label.category-label-checkbox{
     color: white !important;
 }
 
-.product-template{
+.product-type,.product-template{
     position: relative;
 }
 
-.product-template.not_found::before{
+.product-type.not_found::before ,.product-template.not_found::before{
     content: "\e59b";
     font-family: "Font Awesome 6 Pro","Font Awesome 6 Duotone";
     position: absolute;
@@ -2521,4 +2521,5 @@ label.category-label-checkbox{
     transform: translate(-50%,-50%);
     color: #b91c1c;
     font-size: 50px;
+    z-index: 6;
 }
