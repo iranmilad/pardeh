@@ -2,59 +2,9 @@
 <div class="container tw-mt-10">
     <img class="tw-w-full tw-h-full" src="{{ Vite::asset('resources/images/footer-light.png') }}" alt="">
 </div>
-<div class="tw-py-5 mt-5 tw-mb-5">
-    <div class="container">
-        <div class="row tw-justify-center gy-4">
-            <div class="col-lg-2 col-12 col-md-4">
-                <div class="icon-footer-box">
-                    <i class="fa-regular fa-box tw-text-amber-500"></i>
-                    <div class="tw-flex tw-flex-col">
-                        <span>تحویل اکسپرس</span>
-                        <label for="">ارسال سریع به سراسر کشور</label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-12 col-md-4">
-                <div class="icon-footer-box">
-                    <i class="fa-regular fa-credit-card tw-text-emerald-500"></i>
-                    <div class="tw-flex tw-flex-col">
-                        <span>خرید آنلاین مطمئن</span>
-                        <label for="">نماد اعتماد الکترونیکی</label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-12 col-md-4">
-                <div class="icon-footer-box">
-                    <i class="fa-regular fa-badge-check tw-text-purple-500"></i>
-                    <div class="tw-flex tw-flex-col">
-                        <span>تضمین اصالت کالا</span>
-                        <label for="">فاکتور رسمی نمایندگی سامسونگ</label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-12 col-md-4">
-                <div class="icon-footer-box">
-                    <i class="fa-regular fa-person-dolly-empty tw-text-sky-500"></i>
-                    <div class="tw-flex tw-flex-col">
-                        <span>مشاور رایگان خرید</span>
-                        <label for="">توسط کارشناسان فروش بوم سام</label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-12 col-md-4">
-                <div class="icon-footer-box">
-                    <i class="fa-regular fa-headphones-simple tw-text-rose-500"></i>
-                    <div class="tw-flex tw-flex-col">
-                        <span>ضمانت بازگشت</span>
-                        <label for="">7 روز ضمانت بازگشت کالا</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="tw-bg--[var(--footer)] tw-text-gray-100 mt-3 {{ Route::currentRouteName() == 'product' ? 'tw-pb-[80px]': '' }}">
+
+<div class="tw-bg-[var(--footer)] tw-text-gray-100 mt-3 {{ Route::currentRouteName() == 'product' ? 'tw-pb-[80px]': '' }}">
     <div class="container">
         <footer class="footer">
             <div class="container">
@@ -63,20 +13,8 @@
                         <div class="tw-col-span-1">
                             <x-footer-menu :alias="'quick_access'"/>
                         </div>
+
                         <div class="tw-col-span-1">
-                            <h3 class="fw-bold fs-6 title-dot text-white">دسته بندی ها</h3>
-                            <ul class="tw-pr-5 tw-text-xs footer_links">
-                                <li class="my-3"><a href="#">پرده</a></li>
-                                <li class="my-3"><a href="#">رو تختی</a></li>
-                                <li class="my-3"><a href="#">کاغذ دیواری</a></li>
-                                <li class="my-3"><a href="#">موکت</a></li>
-                                <li class="my-3"><a href="#">فرش</a></li>
-                                <li class="my-3"><a href="#">کوسن و روبالشی</a></li>
-                                <li class="my-3"><a href="#">لوستر و آباژور</a></li>
-                                <li class="my-3"><a href="#">قالیچه و پادری</a></li>
-                                <li class="my-3"><a href="#">مبلمان</a></li>
-                                <li class="my-3"><a href="#">آینه</a></li>
-                            </ul>
                             <x-footer-menu :alias="'categories_footer'"/>
                         </div>
 

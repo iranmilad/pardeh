@@ -1,45 +1,9 @@
 <!-- notice: you can use random id for label and input. -->
-<!-- notice: you can use random id for label and input. -->
-<!-- notice: you can use random id for label and input. -->
 
 <!-- use data-real="true" if you want to get calculated price and time after changing items. use in input -->
-<!-- use data-real="true" if you want to get calculated price and time after changing items. use in input -->
-<!-- use data-real="true" if you want to get calculated price and time after changing items. use in input -->
+
 
 <!-- use checked in input to set default  -->
-<style>
-    .img-container {
-    position: relative;
-    display: inline-block;
-}
-
-.img-container img {
-    display: block;
-    width: 100%;
-    height: 135px;
-}
-
-.img-container .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 0, 0, 0.5); /* نیمه شفاف قرمز */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 2em;
-    font-weight: bold;
-    visibility: hidden;
-}
-
-.img-container.out-of-stock .overlay {
-    visibility: visible;
-}
-
-</style>
 <form id="product-options">
     @csrf
     <!-- START: LOOP -->
@@ -257,7 +221,7 @@
 
     <!-- START: OPTION -->
     <div class="accordion accordion-product" id="accordionExample">
-        <input type="hidden" data-real="true" name="param[product]" value="{{ $product->id }}">
+
 
         @if(request()->has('installer'))
             <input type="hidden" data-real="true" name="param[installer]" value="{{ request()->input('installer') }}">
@@ -271,6 +235,7 @@
             <input type="hidden" data-real="true" name="param[sewing]" value="{{ request()->input('sewing') }}">
         @endif
 
+        <input type="hidden" data-real="true" name="param[product]" value="{{ $product->id }}">
 
         @foreach ($product->attributes()->get() as $attribute)
 
@@ -314,7 +279,7 @@
                                             @forelse($attribute->properties as $item)
 
                                                     <div class="swiper-slide">
-                                                        <label class="product-template" for="{{ $item->id }}">
+                                                        <label class="product-template  {{ !$item->isInStock($product->id) ? 'not_found' : '' }}" for="{{ $item->id }}">
                                                             @if ($item->img)
                                                                 <img width="100%" height="135" src="{{$item->img}}" alt="{{ $item->value }}" srcset="">
                                                             @else
@@ -386,7 +351,7 @@
                                         @forelse ($items as $item)
 
                                                 <div class="swiper-slide">
-                                                    <label class="product-template" for="{{ $item->value }}">
+                                                    <label class="product-template  {{ !$item->isInStock($product->id) ? 'not_found' : '' }}" for="{{ $item->value }}">
                                                         <img src="{{ $item->img }}" alt="">
                                                         <span>{{ $item->description }}</span>
                                                         @if ($item->isInStock($product->id))
@@ -513,7 +478,7 @@
                                         @forelse ($items as $item)
 
                                                 <div class="swiper-slide">
-                                                    <label class="product-type" for="{{ $item->id }}">
+                                                    <label class="product-type {{ !$item->isInStock($product->id) ? 'not_found' : '' }}" for="{{ $item->id }}" >
                                                         <img src="{{ $item->img }}" alt="">
                                                         <span>{{ $item->description }}</span>
                                                         @if ($item->isInStock($product->id))
@@ -576,7 +541,7 @@
                                                     $combinations = $item->attributeCombinations->where('product_id', $product->id);
                                                 @endphp
                                                 <div class="swiper-slide">
-                                                    <label class="product-type" for="{{ $item->id }}">
+                                                    <label class="product-type {{ !$item->isInStock($product->id) ? 'not_found' : '' }}" for="{{ $item->id }}">
                                                         <div class="tw-relative">
                                                             <img src="{{ $item->img }}" alt="">
                                                             <div class="tw-absolute -tw-bottom-2 tw-z-20 tw-right-0 tw-flex tw-items-center tw-w-full tw-px-1"></div>
@@ -615,7 +580,7 @@
                                         @endforelse
                                     </div>
                                 </div>
-                                <div class="swiper-slide tw-h-auto">
+                                {{-- <div class="swiper-slide tw-h-auto">
                                     <label class="product-type" for="qwerty1">
                                         <div class="tw-relative">
                                             <img src="https://placehold.co/138" alt="">
@@ -688,7 +653,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -760,7 +725,15 @@
                         <i class="fa-regular fa-circle-exclamation"></i>
                         لطفا تعداد مورد نظر را انتخاب کنید
                     </div>
-                    <div class="box">
+                    <div class="mb-3 tw-w-36">
+
+                        <label for="count_input" class="title form-label">
+                            تعداد سفارش
+                            <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                        </label>
+                        <input data-real="true" name="quantity" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="عدد ">
+                    </div>
+                    {{-- <div class="box">
                         <div class="row mt-2">
                             <div class="tw-hidden lg:tw-block col-lg-2">
                                 <i class="fa-regular fa-shield-check tw-text-7xl tw-text-amber-500"></i>
@@ -795,7 +768,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

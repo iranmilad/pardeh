@@ -54,6 +54,7 @@ class MenusTableSeeder extends Seeder
             ],
         ];
 
+
         // Insert menu items
         foreach ($menuItems as $item) {
             $alias = 'features_menu_' . $item['id'];

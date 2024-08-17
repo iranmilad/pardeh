@@ -72,10 +72,8 @@
                         </div>
                     @endif
                     <div class="tw-flex tw-items-center">
-                        <x-rating readOnly rate="4" />
-                        <a class="tw-text-[var(--primary)] tw-mr-3">دیدگاه (500)</a>
                         <x-rating readOnly rate="{{ $product->overallRatingAverage() }}" />
-                        <a class="tw-text-indigo-500 tw-mr-3">دیدگاه ({{ $product->reviews()->count() }})</a>
+                        <a class="tw-text-[var(--primary)] tw-mr-3">دیدگاه ({{ $product->reviews()->count() }})</a>
                     </div>
                     <p class="tw-text-sm tw-leading-loose">
                         {{ $product->description }}
@@ -90,10 +88,10 @@
                                 <span>7 روز</span>
                             </div>
                             @if ($product->discountPercentage!=0)
-                            <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
-                                <span class="tw-text-gray-500">تخفیف : </span>
-                                <span class="badge tw-bg-[var(--sale-badge)]  tw-rounded-full">{{ $product->discountPercentage  }}</span>
-                            </div>
+                                <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
+                                    <span class="tw-text-gray-500">تخفیف : </span>
+                                    <span class="badge tw-bg-[var(--sale-badge)]  tw-rounded-full">{{ $product->discountPercentage  }}</span>
+                                </div>
 
                             @endif
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
@@ -123,7 +121,7 @@
                             </div>
 
                             <!-- LET ME KNOW -->
-                            <!-- <div>
+                            {{-- <div>
                                 <h4 class="text-center tw-text-[var(--primary)]">ناموجود</h4>
                                 <div class="text-center tw-text-sm">
                                     این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض
@@ -135,8 +133,8 @@
                                         خبرم کن
                                     </button>
                                 </div>
-                                <!-- LET ME KNOW -->
-                            @endif
+                            </div> --}}
+
 
                         </div>
                     </div>

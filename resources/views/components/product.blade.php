@@ -8,11 +8,11 @@
         @if((isset($available) && $available == true) or !isset($available))
             <div class="tw-w-full tw-center {{($discountedPrice && $discountedPrice != null) ? 'tw-justify-between' : 'tw-justify-end'}}">
                 @if(($discountedPrice && $discountedPrice != null))
-                <span class="badge tw-bg-[var(--sale-badge)]  rounded-pill">{{ $discount + $product->calculateTotalPriceWithAttributes() ?? ''}}</span>
+                <span class="badge tw-bg-[var(--sale-badge)]  rounded-pill">{{ $discount }}</span>
                 @endif
 
                 @if($price)
-                    <span class="tw-text-sm">{{$price + $product->calculateTotalPriceWithAttributes() ?? ''}}
+                    <span class="tw-text-sm">{{$price}}
                         <svg style="width: 16px; height: 16px; fill: var(--undefined);">
                             <use xlink:href="#toman"></use>
                         </svg>
