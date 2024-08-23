@@ -59,6 +59,7 @@ inputs
                         $(".sticky-price-time").html(
                             "<span class='tw-text-sm tw-text-[var(--primary)]'>ناموجود</span>"
                         );
+                        $(".sticky-add-to-cart-btn").html("")
                         $(".sticky-add-to-cart-btn").append(
                             `<button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 tw-px-3 let-me-know"> <i class="fa-solid fa-bell tw-ml-2"></i> خبرم کن </button>`
                         );
