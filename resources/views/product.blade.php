@@ -97,13 +97,13 @@
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
                                 <span class="tw-text-gray-500">قیمت : </span>
                                 <div class="tw-flex tw-flex-col tw-items-end">
-                                    <span>{{ ($product->sale_price ?? $product->price)+ $product->calculateTotalPriceWithAttributes() }}
+                                    <span>{{ ($product->sale_price ?? $product->price) }}
                                         <svg style="width: 16px; height: 16px; fill: var(--undefined);">
                                             <use xlink:href="#toman"></use>
                                         </svg>
                                     </span>
                                     @if ($product->sale_price)
-                                        <span class="tw-text-xs tw-text-gray-400">{{ $product->price + $product->calculateTotalPriceWithAttributes() }}
+                                        <span class="tw-text-xs tw-text-gray-400">{{ $product->price }}
                                             <svg class="tw-fill-gray-400" style="width: 16px; height: 16px;">
                                                 <use xlink:href="#toman"></use>
                                             </svg>
@@ -141,7 +141,8 @@
                 </div>
             </div>
             <!-- افزودن سایر گزینه‌ها و امکانات -->
-            <x-product-options :product="$product"/>
+            @livewire('product-attributes', ['product' => $product])
+
         </div>
 
     </div>
@@ -239,6 +240,3 @@
 </a>
 
 @endsection
-
-
-

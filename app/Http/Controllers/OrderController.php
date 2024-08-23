@@ -259,8 +259,7 @@ class OrderController extends Controller
 
                             $all_attribute = $product->attributes;
                             // Extract quantity from the item using regular expressions
-                            $attribute = $all_attribute->where('name', 'تعداد')->first();
-                            $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
+                            $quantity =  $cartItem['quantity'] ?? 1;
                             $cartCount += $quantity;
                             // Extract attribute items for the product
                             $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
@@ -419,10 +418,10 @@ class OrderController extends Controller
 
                     $all_attribute = $product->attributes;
                     // Extract quantity from the item using regular expressions
-                    $attribute = $all_attribute->where('name', 'تعداد')->first();
-                    $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
 
-                    $cookieData[$id][$attribute->id]['تعداد'] = $count;
+                    $quantity =  $cartItem['quantity'] ?? 1;
+
+                    $cookieData[$id]['quantity'] = $count;
 
                     // add installer id to exist parent order
                     if($cookieData[$id]['installer']){
@@ -462,8 +461,8 @@ class OrderController extends Controller
 
                         $all_attribute = $product->attributes;
                         // Extract quantity from the item using regular expressions
-                        $attribute = $all_attribute->where('name', 'تعداد')->first();
-                        $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
+
+                        $quantity =  $cartItem['quantity'] ?? 1;
                         $cartCount += $quantity;
                         // Extract attribute items for the product
                         $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
@@ -559,8 +558,8 @@ class OrderController extends Controller
 
                         $all_attribute = $product->attributes;
                         // Extract quantity from the item using regular expressions
-                        $attribute = $all_attribute->where('name', 'تعداد')->first();
-                        $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
+
+                        $quantity =  $cartItem['quantity'] ?? 1;
                         $cartCount += $quantity;
 
                     }
@@ -621,8 +620,8 @@ class OrderController extends Controller
 
                         $all_attribute = $product->attributes;
                         // Extract quantity from the item using regular expressions
-                        $attribute = $all_attribute->where('name', 'تعداد')->first();
-                        $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
+
+                        $quantity =  $cartItem['quantity'] ?? 1;
                         $cartCount += $quantity;
                         // Extract attribute items for the product
                         $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
@@ -1173,8 +1172,8 @@ class OrderController extends Controller
 
                     $all_attribute = $product->attributes;
                     // Extract quantity from the item using regular expressions
-                    $attribute = $all_attribute->where('name', 'تعداد')->first();
-                    $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
+
+                    $quantity =  $cartItem['quantity'] ?? 1;
                     $cartCount += $quantity;
                     // Extract attribute items for the product
                     $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
@@ -1284,8 +1283,8 @@ class OrderController extends Controller
 
                 $attributes = $cartItem->orderAttributeItems;
                 // Extract quantity from the item using regular expressions
-                $attribute_count = $attributes->where('name', 'تعداد')->first();
-                $quantity =  $attribute_count->value ?? 1;
+
+                $quantity = $cartItem->quantity ?? 1;
 
 
                 // Extract attribute items for the product

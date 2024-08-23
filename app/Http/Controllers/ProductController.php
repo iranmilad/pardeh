@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -42,8 +42,8 @@ class ProductController extends Controller
 
             $all_attribute = $product->attributes;
             // Extract quantity from the item using regular expressions
-            $attribute = $all_attribute->where('name', 'تعداد')->first();
-            $quantity =  $cartItem[$attribute->id]['تعداد'] ?? 1;
+
+            $quantity =  $cartItem['quantity'] ?? 1;
             $cartCount += $quantity;
             // Extract attribute items for the product
             $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
@@ -57,9 +57,9 @@ class ProductController extends Controller
 
                         $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
 
-
-                        if($attr){
-                            $priceAttr = $attr->sale_price ?? $attr->price ;
+                        //log::info($attr);
+                        if(property_exists($attr,"price")){
+                            $priceAttr = $attr->sale_price ?? $attr->price;
                             if (!is_null($priceAttr)){
                                 $attributeNames[] = $attr->name;
                                 $totalAttributeSalePrice += $priceAttr;

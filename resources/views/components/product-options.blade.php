@@ -239,14 +239,14 @@
 
         @foreach ($product->attributes()->get() as $attribute)
 
-            @if($attribute->display_type =='color' )
+            @if($attribute->display_type == 'color' )
                 @php
-                    $attribute=$attribute;
+                    $attribute = $attribute;
                 @endphp
                 <!-- START: COLOR -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="{{ '#col'.$loop->index  }}" aria-expanded="true" aria-controls="collapse">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="{{ '#col'.$loop->index }}" aria-expanded="true" aria-controls="collapse">
                             <div class="stepNum">
                                 <span>{{ $loop->index+1 }}</span>
                                 <i class="fa-regular fa-circle-exclamation"></i>
@@ -255,60 +255,54 @@
                         </button>
                     </h2>
 
-                    <div id="{{ 'col'.$loop->index  }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
+                    <div id="{{ 'col'.$loop->index }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : ''}}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-
-                                <div class="alert alert-danger tw-text-sm">
-                                    <i class="fa-regular fa-circle-exclamation"></i>
-                                    لطفا یک گزینه را انتخاب کنید
-                                </div>
-                                <div class="box">
-                                    <div class="tw-flex tw-items-center tw-justify-between mb-3">
-                                        <span class="title">
-                                            {{ $attribute->name }}
-                                            <a href="#"><i class="fa-regular fa-circle-question"></i></a>
-                                        </span>
-                                        <div class="product-option-next-prev">
-                                            <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
-                                            <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="swiper swiper-product-options">
-                                        <div class="swiper-wrapper">
-                                            <!-- Loop through attribute items and generate HTML for each color option -->
-                                            @forelse($attribute->properties as $item)
-
-                                                    <div class="swiper-slide">
-                                                        <label class="product-template  {{ !$item->isInStock($product->id) ? 'not_found' : '' }}" for="{{ $item->id }}">
-                                                            @if ($item->img)
-                                                                <img width="100%" height="135" src="{{$item->img}}" alt="{{ $item->value }}" srcset="">
-                                                            @else
-                                                                <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect width="100%" height="100%" fill="{{ $item->value }}" />
-                                                                </svg>
-                                                            @endif
-                                                            <span>{{ $item->description }}</span>
-
-                                                            @if ($item->isInStock($product->id))
-                                                                <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }}>
-                                                            @else
-                                                                <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" disabled>
-                                                            @endif
-                                                        </label>
-                                                    </div>
-
-
-                                            @empty
-                                                <div> خصوصیتی برای این ویژگی تعریف نشده</div>
-                                            @endforelse
-                                        </div>
+                            <div class="alert alert-danger tw-text-sm">
+                                <i class="fa-regular fa-circle-exclamation"></i>
+                                لطفا یک گزینه را انتخاب کنید
+                            </div>
+                            <div class="box">
+                                <div class="tw-flex tw-items-center tw-justify-between mb-3">
+                                    <span class="title">
+                                        {{ $attribute->name }}
+                                        <a href="#"><i class="fa-regular fa-circle-question"></i></a>
+                                    </span>
+                                    <div class="product-option-next-prev">
+                                        <button class="product-option-prev"><i class="fa fa-chevron-right"></i></button>
+                                        <button class="product-option-next"><i class="fa fa-chevron-left"></i></button>
                                     </div>
                                 </div>
+                                <div class="swiper swiper-product-options">
+                                    <div class="swiper-wrapper">
+                                        @forelse($attribute->properties as $item)
+                                            <div class="swiper-slide">
+                                                <label class="product-template {{ !$item->isInStock($product->id) ? 'not_found' : '' }}" for="{{ $item->id }}">
+                                                    @if ($item->img)
+                                                        <img width="100%" height="135" src="{{ $item->img }}" alt="{{ $item->value }}" srcset="">
+                                                    @else
+                                                        <svg width="100%" height="135" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect width="100%" height="100%" fill="{{ $item->value }}" />
+                                                        </svg>
+                                                    @endif
+                                                    <span>{{ $item->description }}</span>
+
+                                                    @if ($item->isInStock($product->id))
+                                                        <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" {{ $loop->first ? 'checked' : '' }} wire:model.defer="selectedAttributes.{{ $attribute->id }}" wire:click="checkStock">
+                                                    @else
+                                                        <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" disabled>
+                                                    @endif
+                                                </label>
+                                            </div>
+                                        @empty
+                                            <div> خصوصیتی برای این ویژگی تعریف نشده</div>
+                                        @endforelse
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- END: COLOR -->
-
             @endif
 
             @if($attribute->display_type == 'material')

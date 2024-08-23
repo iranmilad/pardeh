@@ -324,5 +324,18 @@ class Product extends Model
         return $totalPrice;
     }
 
+    public function getCombinationDetails($attributes)
+    {
+        $combinations = $this->attributeCombinations();
+
+        foreach ($attributes as $attributeId => $value) {
+            $combinations = $combinations->whereHas('attributeProperties.property', function($query) use ($attributeId, $value) {
+                $query->where('attribute_id', $attributeId)
+                      ->where('value', $value);
+            });
+        }
+        //dd($combinations->first());
+        return $combinations->first();
+    }
 
 }
