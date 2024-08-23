@@ -61,7 +61,7 @@
                                             @endphp
                                             @forelse($attribute->properties as $item)
 
-                                                <div class="swiper-slide  {{ $firstSelect==false ? 'swiper-slide-active' : '' }}">
+                                                <div class="swiper-slide {{ $firstSelect==false ? 'swiper-slide-active' : '' }}">
                                                     <label class="product-template {{ !$item->isInStock($product->id) ? 'not_found' : '' }}" for="{{ $item->id }}">
                                                         @if ($item->img)
                                                             <img width="100%" height="135" src="{{ $item->img }}" alt="{{ $item->value }}" srcset="">
@@ -73,7 +73,7 @@
                                                         <span>{{ $item->description }}</span>
 
                                                         @if ($item->isInStock($product->id))
-                                                            <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" wire:model.defer="selectedAttributes.{{ $attribute->id }}" wire:click="checkStockAndPrice" {{ $firstSelect==false ? 'selected' : '' }}>
+                                                            <input type="radio" data-real="true" name="param[{{ $attribute->id }}]" value="{{ $item->value }}" id="{{ $item->id }}" wire:model.defer="selectedAttributes.{{ $attribute->id }}" wire:click="checkStockAndPrice"  {{ $selectedAttributes[$attribute->id] == $item->value ? 'checked' : '' }}>
                                                             @php
                                                                 $firstSelect=true;
                                                             @endphp

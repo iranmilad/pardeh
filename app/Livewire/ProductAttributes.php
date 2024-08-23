@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire;
 
 use Livewire\Component;
@@ -16,15 +15,24 @@ class ProductAttributes extends Component
     public function mount($product)
     {
         $this->product = $product;
+
+        // Set default selected attributes
+        foreach ($this->product->attributes as $attribute) {
+            if ($attribute->properties->isNotEmpty()) {
+                // Set the first property value as default for each attribute
+                $this->selectedAttributes[$attribute->id] = $attribute->properties->first()->value;
+            }
+        }
     }
 
     public function checkStockAndPrice()
     {
         $combination = $this->product->getCombinationDetails($this->selectedAttributes);
-        if ($combination && $combination->stock_quantity>0) {
+        if ($combination && $combination->stock_quantity > 0) {
             $this->selectedCombinationStock = $combination->stock_quantity;
             $this->selectedCombinationPrice = $combination->sale_price ?? $combination->price;
-        } else {
+        }
+        else {
             $this->selectedCombinationStock = 0;
             $this->selectedCombinationPrice = 0;
         }

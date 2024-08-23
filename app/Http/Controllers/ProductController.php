@@ -50,6 +50,7 @@ class ProductController extends Controller
 
             $attr=null;
             $attributeSeries =[];
+            $notFound =false;
 
             foreach ($params as $keyItem => $vItem){
                 if (!is_array($vItem) && is_numeric($keyItem)) {
@@ -66,6 +67,9 @@ class ProductController extends Controller
                                 $totalAttributePrice += $attr->price ;
                                 $attributeSeries[$keyItem] = $vItem;
                             }
+                        }
+                        else{
+                            $notFound=true;
                         }
 
                     }
@@ -87,15 +91,28 @@ class ProductController extends Controller
             foreach($all_images as $image){
                 $images[] = $image->url;
             }
+            if($notFound==false){
 
-            $response = [
-                "name" => $product->title,
-                "images" => $images,
-                "regular_price" => number_format($product->price + $totalAttributePrice),
-                "sale_price" => number_format($product->sale_price + $totalAttributeSalePrice),
-                "discount" => $product->discountPercentage,
-                "time_delivery" => 7
-            ];
+                $response = [
+                    "name" => $product->title,
+                    "images" => $images,
+                    "regular_price" => number_format($product->price + $totalAttributePrice),
+                    "sale_price" => number_format($product->sale_price + $totalAttributeSalePrice),
+                    "discount" => $product->discountPercentage,
+                    "time_delivery" => 7
+                ];
+            }
+            else{
+                $response = [
+                    "name" => $product->title,
+                    "images" => $images,
+                    "regular_price" => number_format($product->price + $totalAttributePrice),
+                    "sale_price" => number_format($product->sale_price + $totalAttributeSalePrice),
+                    "discount" => $product->discountPercentage,
+                    "time_delivery" => 7,
+                    "unavailable_option" =>true,
+                ];
+            }
 
 
             // Add product details to the items array
