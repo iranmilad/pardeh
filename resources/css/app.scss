@@ -1036,7 +1036,7 @@ label.required {
 .product-template,
 .product-type {
     @apply tw-flex tw-flex-col tw-items-center tw-bg-white has-[:checked]:tw-border-blue-800 tw-border-2 tw-border-solid
-     tw-border-transparent tw-cursor-pointer hover:tw-border-blue-800 tw-pb-4 tw-relative;
+     tw-border-transparent tw-cursor-pointer hover:tw-border-blue-800 tw-pb-4 tw-relative tw-rounded-lg tw-overflow-hidden;
 }
 /*
 .product-template{
