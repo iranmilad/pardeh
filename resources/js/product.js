@@ -39,20 +39,31 @@ inputs
             success: function (response) {
                 block.release();
                 if (!response.regular_price) {
-                    $("#main-cart-price-details").html("");
-                    $("#main-cart-price-details").html(
-                        hydrate(
-                            createElement(BellProduct, {}),
-                            document.getElementById("main-cart-price-details")
-                        )
-                    );
-                    $(".sticky-price-time").html(
-                        "<span class='tw-text-sm tw-text-[var(--primary)]'>ناموجود</span>"
-                    );
-                    $(".sticky-add-to-cart-btn").append(
-                        `<button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 tw-px-3 let-me-know"> <i class="fa-solid fa-bell tw-ml-2"></i> خبرم کن </button>`
-                    );
-                    letmeknow();
+                    console.log(response.unavailable_options === true)
+                    if(response.unavailable_options === true){
+                        $("#main-cart-price-details").html("");
+                        $(".sticky-price-time").html(
+                            "<span class='tw-text-sm tw-text-[var(--primary)]'>این ترکیب موجود نیست</span>"
+                        );
+                        $(".sticky-add-to-cart-btn").html("");
+                        $("#main-cart-price-details").html("<div><div class='mb-3 text-danger'><b>این ترکیب موجود نیست</b></div><div class='tw-text-sm text-muted'>لطفا ترکیب ویژگی های انتخاب شده را تغییر دهید</div></div>");
+                    }
+                    else{
+                        $("#main-cart-price-details").html("");
+                        $("#main-cart-price-details").html(
+                            hydrate(
+                                createElement(BellProduct, {}),
+                                document.getElementById("main-cart-price-details")
+                            )
+                        );
+                        $(".sticky-price-time").html(
+                            "<span class='tw-text-sm tw-text-[var(--primary)]'>ناموجود</span>"
+                        );
+                        $(".sticky-add-to-cart-btn").append(
+                            `<button class="btn custom-btn-primary btn-sm btn-block tw-rounded-xl tw-w-full mt-3 tw-px-3 let-me-know"> <i class="fa-solid fa-bell tw-ml-2"></i> خبرم کن </button>`
+                        );
+                        letmeknow();
+                    }
 
                     /**
                      * Add product images

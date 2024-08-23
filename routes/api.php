@@ -168,6 +168,7 @@ Route::post("/product", function (Request $request) {
         ],
         "regular_price" => "25,000,000",
         "sale_price" => "18,000,000",
+        "unavailable_options" => true,
         "discount" => "20%",
         "time_delivery" => 2
     ];
