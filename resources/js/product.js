@@ -117,6 +117,7 @@ inputs
                             document.getElementById("main-cart-price-details")
                         )
                     );
+                    $(".sticky-price-time").html('<div class="tw-text-sm md:tw-text-base"> <span class="tw-text-gray-600 tw-font-semibold"> <i class="fa-solid fa-tag"></i> قیمت : </span> <span class="tw-font-semibold tw-text-gray-700 price-sticky-tag" ></span > </div> <div class="tw-text-sm md:tw-text-base"> <span class="tw-text-gray-600 tw-font-semibold"> <i class="fa-solid fa-truck-clock"></i> زمان تحویل: </span> <span class="tw-font-semibold tw-text-gray-700 time_delivery_sticky_tag" > </span> </div>')
                     $(".price-sticky-tag").text(response.regular_price);
                     $(".time_delivery_sticky_tag").text(response.time_delivery);
                     $(".sticky-add-to-cart-btn")
