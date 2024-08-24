@@ -20,162 +20,67 @@ class ProductController extends Controller
     }
 
 
-    public function getTotalPrice(Request $request){
-
+    public function getTotalPrice(Request $request)
+    {
         $params = $request->input("param");
-        $cartCount = 0; // Initialize cart count
         $totalPrice = 0; // Initialize total price
-        $items = []; // Initialize cart items array
         $attributeNames = [];
-        $totalDiscountPrice =0;
-
+        $totalDiscountPrice = 0;
 
         $productId = $params["product"];
         // Retrieve the product from the database
         $product = Product::find($productId);
 
-        $totalAttributePrice = 0;
-        $totalAttributeSalePrice =0;
-
-
         if ($product) {
+            $quantity = $params['quantity'] ?? 1;
+            $selectedAttributes = [];
 
-            $all_attribute = $product->attributes;
-            // Extract quantity from the item using regular expressions
-
-            $quantity =  $cartItem['quantity'] ?? 1;
-            $cartCount += $quantity;
-            // Extract attribute items for the product
-            $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
-
-            $attr=null;
-            $attributeSeries =[];
-            $notFound =false;
-
-            foreach ($params as $keyItem => $vItem){
+            // Parse selected attributes from params
+            foreach ($params as $keyItem => $vItem) {
                 if (!is_array($vItem) && is_numeric($keyItem)) {
-                    if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
-
-                        $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
-
-                        //log::info($attr);
-                        if(property_exists($attr,"price")){
-                            $priceAttr = $attr->sale_price ?? $attr->price;
-                            if (!is_null($priceAttr)){
-                                $attributeNames[] = $attr->name;
-                                $totalAttributeSalePrice += $priceAttr;
-                                $totalAttributePrice += $attr->price ;
-                                $attributeSeries[$keyItem] = $vItem;
-                            }
-                        }
-                        else{
-                            $notFound=true;
-                        }
-
-                    }
-
+                    $selectedAttributes[$keyItem] = $vItem;
                 }
             }
 
+            // Get combination details based on selected attributes
+            $combination = $product->getCombinationDetails($selectedAttributes);
+            $productPrice = $product->sale_price ?? $product->price ;
 
-
-            // Check if the product has a sale price
-            $price = $product->sale_price ?? $product->price;
-
-            $totalPrice += ($price + $totalAttributeSalePrice ) * $quantity ;
-
-            $all_images = $product->images;
-
-            $images=[];
-
-            foreach($all_images as $image){
-                $images[] = $image->url;
-            }
-            if($notFound==false){
+            if ($combination && $combination->stock_quantity>0) {
+                // If combination exists, use its price and stock
+                $price = $combination->sale_price ?? $combination->price;
+                $totalPrice =($productPrice + $price) * $quantity;
 
                 $response = [
                     "name" => $product->title,
-                    "images" => $images,
-                    "regular_price" => number_format($product->price + $totalAttributePrice),
-                    "sale_price" => number_format($product->sale_price + $totalAttributeSalePrice),
+                    "images" => $product->images->pluck('url')->toArray(),
+                    "regular_price" => number_format($product->price + $combination->price),
+                    "sale_price" => number_format($productPrice + $price),
                     "discount" => $product->discountPercentage,
                     "time_delivery" => 7
                 ];
             }
-            else{
+            else {
+                // If no combination found, return an unavailable response
                 $response = [
                     "name" => $product->title,
-                    "images" => $images,
-                    "regular_price" => number_format($product->price + $totalAttributePrice),
-                    "sale_price" => number_format($product->sale_price + $totalAttributeSalePrice),
+                    "images" => $product->images->pluck('url')->toArray(),
                     "discount" => $product->discountPercentage,
-                    "time_delivery" => 7,
-                    "unavailable_option" =>true,
+                    "time_delivery" => 8,
+                    "unavailable_options" => true,
                 ];
             }
-
-
-            // Add product details to the items array
-            // $items[] = (object)[
-            //     "id" => 0,
-            //     "product_id" => $product->id,
-            //     "name" => $product->title,
-            //     "img" => $product->img,
-            //     "link" => $product->link,
-            //     "price" =>$product->price + $totalAttributePrice,
-            //     "sale_price"  => $product->sale_price + $totalAttributeSalePrice,
-            //     "discountPercentage" => $product->discountPercentage,
-            //     "quantity" => $quantity,
-            //     "attribute" => $attributeNames,
-            //     "service" => $product->service,
-            //     "attributeSeries" => $attributeSeries,
-            //     "services" =>(object) [
-            //         "sewing" => $product->services()->where('type', 'sewing')->first(),
-            //         "installer" => $product->services()->where('type', 'installer')->first(),
-            //         "design" => $product->services()->where('type', 'design')->first(),
-            //     ],
-            //     "installer" => $cartItem["installer"] ?? null,
-            //     "sewing" => $cartItem["sewing"] ?? null,
-            //     "design" => $cartItem["design"] ?? null,
-            //     "total" => ($product->sale_price ?? $product->price + $totalAttributeSalePrice ) * $quantity, // Calculate total price for each item
-            // ];
-
+        } else {
+            // If product is not found, return an error response
+            $response = [
+                "name" => $product->title,
+                "images" => $product->images->pluck('url')->toArray(),
+            ];
         }
 
-
-
-
-
-
-        /**
-         * regular_price & sale_price & discount & time_delivery are optional.
-         * images are required. if they are not exist, use a default image.
-         */
-        // $response = [
-        //     "name" => $request->name,
-        //     "images" => [
-        //         "/images/5.jpg",
-        //         "/images/6.jpg",
-        //     ],
-        //     "regular_price" => "21,000,000",
-        //     "sale_price" => "11,000,000",
-        //     "discount" => "20%",
-        //     "time_delivery" => 2
-        // ];
-
-        /**
-         * [ Unavailable product ]
-         */
-        // $response = [
-        //     "name" => $request->name,
-        //     "images" => [
-        //         "https://placehold.co/900?text=2",
-        //     ],
-        // ];
-
         return response()->json($response);
-
     }
+
 
 
 }
