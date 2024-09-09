@@ -5,1331 +5,663 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderItem;
-use Illuminate\Support\Str;
-use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
-use App\Components\Cart\Cart;
-use App\Exceptions\DeliveryApi;
-use App\Components\Stripe\Charge;
-use App\Components\Money\Currency;
-use App\Models\OrderAttributeItem;
-use App\Http\Requests\OrderRequest;
+
 use Illuminate\Support\Facades\Log;
-use App\Components\Delivery\Address;
+use App\Models\OrderItemCombination;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
-use App\Exceptions\QuantityOverstated;
+use App\Traits\DeliveryTimeTrait;
 
 class OrderController extends Controller
 {
+    use DeliveryTimeTrait;
 
-    public function index(){
+    public function index()
+    {
         return view('order');
     }
-
-    public function addToCart(Request $request){
-
-        //$request is form parameter example data
-        //param[product]
-        //param[installer]
-        //param[designer]
-        //param[sewing]
-        //param[466][طول]: 0
-        // param[546]: سه ساله
-        // param[586]: بیرونی
-        // param[626]: داخلی
-        // param[666]: کتان مخمل
-        // param[706][تعداد]: 1
-        // param[746]: pink
-
-        if (!Auth::check()) {
-
-            $param = $request->input('param');
-            $cartCount = 0; // Initialize cart count
-
-            // Check if the cart cookie exists
-            if ($request->cookie('cart')) {
-                // Get the current cart items from the cookie
-                $cartItems = json_decode($request->cookie('cart'), true);
-                //generate a random number
-                $randomNumber=rand(1000000,9999999);
-
-
-                // add installer id to exist parent order
-                if(isset($param['installer']))
-                    $cartItems=$this->editCartArray($cartItems,$param['installer'],'installer',$randomNumber);
-                    unset($param["installer"]);
-                // add sewing id to exist parent order
-                if (isset($param['sewing']))
-                    $cartItems=$this->editCartArray($cartItems,$param['sewing'],'sewing',$randomNumber);
-                    unset($param["sewing"]);
-                // add design id to exist parent order
-                if  (isset($param['design']))
-                    $cartItems=$this->editCartArray($cartItems,$param['design'],'design',$randomNumber);
-                    unset($param["design"]);
-
-                // Append the new item to the cart
-                $cartItems[$randomNumber] = $param;
-
-
-                // Update the cart count
-                $cartCount = count($cartItems);
-            } else {
-                //generate a random number
-                $randomNumber=rand(1000000,9999999);
-
-                // Append the new item to the cart
-                $cartItems[$randomNumber] = $param;
-
-                $cartCount = 1; // Update the cart count
-            }
-
-            // Store the updated cart items in the cookie
-            return response()->json([
-                "status" => "success",
-                "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
-                "cart" => [
-                    "count" => $cartCount,
-                ],
-            ])->cookie('cart', json_encode($cartItems));
-        }
-        else{
-            // Handle authenticated user
-            $user = Auth::user();
-            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
-            if(!$order){
-                $this->firstStore();
-                $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
-            }
-            $param = $request->input('param');
-
-            //generate a random number
-            $randomNumber=rand(1000000,9999999);
-            $productId=$param['product'];
-            $product = Product::find($productId);
-            $productAttributeItems = $product->attributes->pluck('items', 'id')->toArray();
-
-            $orderItem = new OrderItem([
-                'id' => $randomNumber,
-                'order_id' => $order->id,
-                'product_id' => $productId,
-                'quantity' => 1,
-                'price' => $product->price,
-                'sale_price' => $product->sale_price,
-                'total' => ($product->sale_price ?? $product->price) * 1,
-            ]);
-            $orderItem->save();
-
-
-
-
-            $all_attribute = $orderItem->product->attributes;
-
-            $totlaAttribute=0;
-            // Save data to order_attribute_items table
-            foreach ($param as $key => $value) {
-                if (!is_array($value) && is_numeric($key)) {
-                    $attr = (object)collect($productAttributeItems[$key])->where('name', $value)->first();
-                    $attribute= (object)collect($all_attribute)->where('id',$key)->first();
-                    $name = $attribute->name;
-                    $orderAttributeItem = new OrderAttributeItem([
-                        'order_item_id' => $randomNumber,
-                        'attribute_item_id' => $key,
-                        'name' => $name,
-                        'value' => $attr->name ?? null,
-                        'price' => $attr->price,
-                        'sale_price' => $attr->sale_price ?? null,
-                        'total' => ($attr->sale_price ?? $attr->price) * 1,
-                    ]);
-                    $orderAttributeItem->save();
-                    $totlaAttribute += ($attr->sale_price ?? $attr->price) * 1;
-                }
-            }
-
-            $orderItem = OrderItem::find($randomNumber);
-            //update  total price of the item in the order_items
-            $orderItem->total= ($product->sale_price ?? $product->price) * 1 + $totlaAttribute;
-            $orderItem->save();
-
-            //check if installer exist in $param and update it in the product table
-
-
-            if(isset($param['installer']) and $param['installer']!=null){
-                $OrderItem = OrderItem::find($param['installer']);
-                $OrderItem->installer = $param['installer'];
-                $OrderItem->save();
-            }
-            elseif(isset($param['designer']) and $param['designer']!=null){
-                $OrderItem = OrderItem::find($param['designer']);
-                $OrderItem->designer = $param['designer'];
-                $OrderItem->save();
-            }
-            elseif(isset($param['sewing']) and $param['sewing']!=null){
-                $OrderItem = OrderItem::find($param['sewing']);
-                $OrderItem->sewing = $param['sewing'];
-                $OrderItem->save();
-            }
-
-
-            $orders= $this->basket($order);
-
-            // Store the updated cart items in the cookie
-            return response()->json([
-                "status" => "success",
-                "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
-                "cart" => [
-                    "count" => $orders->cart->count,
-                ],
-            ]);
-        }
+    public function addToCart(Request $request)
+    {
+        $param = $request->input('param');
+        return Auth::check() ? $this->handleAuthenticatedAddToCart($request, $param) : $this->handleGuestAddToCart($request, $param);
     }
-
-    public function showMiniCart(Request $request){
-
-        // Check if the user is logged in
-        if(Auth::check()) {
-            // If the user is logged in, get the orders for the logged-in user
-            $user = Auth::user();
-
-            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
-            if (!$order) {
-                # code...
-                $this->firstStore();
-                $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); //get last order of user
-            }
-            if ($request->cookie('cart')) {
-                $this->transferCookie($request,$order->id);
-            }
-            $orders = $this->basket($order);
-            //return response()->json($orders)->cookie('cart', null);
-        }
-        else {
-            // If the user is not logged in, get the orders from the cookie
-            $orders = $this->basketCookie($request);
-        }
-
-        // Return the response as JSON
+    public function showMiniCart(Request $request)
+    {
+        //$orders = $this->getAuthenticatedMiniCart($request);
+        //$orders = $this->getGuestMiniCart($request);
+        $orders = Auth::check() ? $this->getAuthenticatedMiniCart($request) : $this->getGuestMiniCart($request);
         return response()->json($orders);
     }
-
-    public function removeItemCart(Request $request) {
+    public function removeItemCart(Request $request)
+    {
         $id = $request->input('id');
-
-        if (!Auth::check()) {
-            $cartCount = 0; // Initialize cart count
-            $totalPrice = 0; // Initialize total price
-
-            $items = []; // Initialize cart items array
-            // Check if the cart cookie exists
-            if ($request->cookie('cart')) {
-                // Get the current cart items from the cookie
-                $cartItems = json_decode($request->cookie('cart'), true);
-
-                // Check if the item with the specified ID exists in the cart
-                if (isset($cartItems[$id])) {
-
-                    // add installer id to exist parent order
-                    if(isset($cartItems[$id]['installer']))
-                        $this->editCartArray($cartItems,$cartItems[$id]['installer'],'installer',null);
-                    // add sewing id to exist parent order
-                    if (isset($cartItems[$id]['sewing']))
-                        $this->editCartArray($cartItems,$cartItems[$id]['sewing'],'sewing',null);
-                    // add design id to exist parent order
-                    if  (isset($cartItems[$id]['design']))
-                        $this->editCartArray($cartItems,$cartItems[$id]['design'],'design',null);
-
-
-                    // Remove the item with the specified ID from the cart
-                    unset($cartItems[$id]);
-
-
-                    // Iterate through each cart item to calculate the total price
-                    foreach ($cartItems as $key => $cartItem) {
-                        // Assuming the product ID is provided as 'product'
-                        $productId = $cartItem['product'];
-                        // Retrieve the product from the database
-                        $product = Product::find($productId);
-
-                        $totalAttributePrice = 0;
-
-                        if ($product) {
-
-
-                            $all_attribute = $product->attributes;
-                            // Extract quantity from the item using regular expressions
-                            $quantity =  $cartItem['quantity'] ?? 1;
-                            $cartCount += $quantity;
-                            // Extract attribute items for the product
-                            $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
-
-                            $attr=null;
-                            foreach($cartItem as $keyItem=>$vItem){
-                                if (!is_array($vItem) && is_numeric($keyItem)) {
-                                    if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
-                                        //log::info(collect($productAttributeItems[$keyItem])->where('name', $vItem)->first());
-                                        $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
-                                        // $total_items=$all_attribute->where('id',$keyItem)->first();
-                                        // $attr = $total_items->findItemByName($vItem);
-
-                                        if($attr){
-                                            $priceAttr = $attr->sale_price ?? $attr->price ;
-                                            if (!is_null($priceAttr)){
-                                                $attributeNames[] = $attr->name;
-                                                $totalAttributePrice += $priceAttr * $quantity;
-                                                //log::info($attr->name);
-                                            }
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-
-                            // Check if the product has a sale price
-                            $price = $product->sale_price ?? $product->price;
-
-                            $totalPrice += $price * $quantity + $totalAttributePrice ;
-                            // Add product details to the items array
-                            $items[] = [
-                                "id" => $key,
-                                "name" => $product->title,
-                                "img" => $product->img,
-                                "link" => $product->link,
-                                "quantity" => $quantity,
-                                "total" => number_format( ($product->sale_price ?? $product->price ) * $quantity + $totalAttributePrice), // Calculate total price for each item
-                            ];
-                        }
-
-                    }
-                    if($cartCount>0)
-                        $response = [
-                            "status" => "success",
-                            "message" => "محصول با موفقیت از سبد خرید حذف شد.",
-                            "cart" => [
-                                "count" => $cartCount,
-                                "total" => number_format($totalPrice), // Format the total price
-                                "profit" => "0",
-                                "discounts" => "0%"
-                            ],
-                            "items" => $items, // Add items to the response
-                        ];
-                    else{
-                        $response = [
-                            "status" => "success",
-                            "message" => "محصول با موفقیت از سبد خرید حذف شد.",
-                            "cart" => array(),
-                        ];
-                    }
-
-                    return response()->json($response)->cookie('cart', json_encode($cartItems));
-                }
-                else {
-                    // If the item with the specified ID does not exist in the cart
-                    $response = [
-                        "status" => "error",
-                        "message" => "محصول در سبد خرید یافت نشد.",
-                    ];
-
-                    // Return the error response
-                    return response()->json($response);
-                }
-            }
-        }
-        else{
-            $user = Auth::user();
-            $orderItem = OrderItem::find($id);
-            if($orderItem){
-                $orderItem->delete();
-            }
-
-            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
-            $orders = $this->basket($order);
-            if($orders->cart->count>0)
-                $response = [
-                    "status" => "success",
-                    "message" => "محصول با موفقیت از سبد خرید حذف شد.",
-                    "cart" => [
-                        "count" => $orders->cart->count,
-                        "total" => $orders->cart->total, // Format the total price
-                        "profit" => "0",
-                        "discounts" => "0%"
-                    ],
-                    "items" => $orders->items, // Add items to the response
-                ];
-            else{
-                $response = [
-                    "status" => "success",
-                    "message" => "محصول با موفقیت از سبد خرید حذف شد.",
-                    "cart" => array(),
-                ];
-            }
-
-            return response()->json($response);
-
-        }
+        return Auth::check() ? $this->removeItemAuthenticated($id) : $this->removeItemGuest($request, $id);
     }
-
-    public function removeAllCart(Request $request) {
-        $response = [
-            "status" => "success",
-            "message" => "همه محصولات با موفقیت از سبد خرید حذف شد.",
-        ];
-        if (!Auth::check()) {
-            // Check if the cart cookie exists
-            if ($request->cookie('cart')) {
-                // Remove the cart cookie by setting it to null
-                return response()->json($response)->cookie('cart', null);
-            }
-        }
-        else{
-            $user = Auth::user();
-            Order::where(["user_id",$user->id])->delete();
-        }
-
-        return response()->json($response);
+    public function removeAllCart(Request $request)
+    {
+        $response = ["status" => "success", "message" => "All items removed from cart."];
+        return Auth::check() ? $this->removeAllAuthenticatedCart() : $this->removeAllGuestCart($request, $response);
     }
-
-    public function updateCart(Request  $request){
-        // استخراج اطلاعات محصول از درخواست
+    public function updateCart(Request $request)
+    {
         $id = $request->input('id');
         $count = $request->input('count');
-        if (!Auth::check()) {
-            $cartCount = 0; // Initialize cart count
-            $totalPrice = 0; // Initialize total price
-            $items = []; // Initialize cart items array
-            $attributeNames = [];
-
-            // استخراج اطلاعات کوکی سبد خرید از درخواست
-            $cookieData = json_decode($request->cookie('cart'), true);
-
-            // بررسی و به‌روزرسانی تعداد محصول در سبد خرید
-            if (isset($cookieData[$id])) {
-                $cartItem = $cookieData[$id];
-                // Assuming the product ID is provided as 'product'
-                $productId = $cartItem['product'];
-                // Retrieve the product from the database
-                $product = Product::find($productId);
-
-                if ($product) {
-
-
-                    $all_attribute = $product->attributes;
-                    // Extract quantity from the item using regular expressions
-
-                    $quantity =  $cartItem['quantity'] ?? 1;
-
-                    $cookieData[$id]['quantity'] = $count;
-
-                    // add installer id to exist parent order
-                    if($cookieData[$id]['installer']){
-                        unset($cookieData[$cookieData[$id]['installer']]);
-                        unset( $cookieData[$id]['installer']);
-                    }
-
-                    // add sewing id to exist parent order
-                    if (isset($cookieData[$id]['sewing'])){
-                        unset($cookieData[$cookieData[$id]['sewing']]);
-                        unset($cookieData[$id]['sewing']);
-                    }
-
-                    // add design id to exist parent order
-                    if  (isset($cookieData[$id]['design'])){
-                        unset($cookieData[$cookieData[$id]['design']]);
-                        unset($cookieData[$id]['design']);
-                    }
-
-
-
-                }
-
-                $cartItems = $cookieData;
-
-                // Iterate through each cart item to calculate the total price
-                foreach ($cartItems as $key => $cartItem) {
-                    if(!isset($cartItem['product']))
-                    continue;
-                    $totalAttributePrice = 0;
-                    // Assuming the product ID is provided as 'product'
-                    $productId = $cartItem['product'];
-                    // Retrieve the product from the database
-                    $product = Product::find($productId);
-                    if ($product) {
-
-
-                        $all_attribute = $product->attributes;
-                        // Extract quantity from the item using regular expressions
-
-                        $quantity =  $cartItem['quantity'] ?? 1;
-                        $cartCount += $quantity;
-                        // Extract attribute items for the product
-                        $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
-
-                        $attr=null;
-                        foreach($cartItem as $keyItem=>$vItem){
-                            if (!is_array($vItem) && is_numeric($keyItem)) {
-                                if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
-                                    //log::info(collect($productAttributeItems[$keyItem])->where('name', $vItem)->first());
-                                    $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
-                                    // $total_items=$all_attribute->where('id',$keyItem)->first();
-                                    // $attr = $total_items->findItemByName($vItem);
-
-                                    if($attr){
-                                        $priceAttr = $attr->sale_price ?? $attr->price ;
-                                        if (!is_null($priceAttr)){
-                                            $attributeNames[] = $attr->name;
-                                            $totalAttributePrice += $priceAttr * $quantity;
-                                            //log::info($attr->name);
-                                        }
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                        // Check if the product has a sale price
-                        $price = $product->sale_price ?? $product->price;
-
-                        $totalPrice += $price * $quantity + $totalAttributePrice ;
-                        // Add product details to the items array
-                        $items[] = [
-                            "id" => $key,
-                            "name" => $product->title,
-                            "img" => $product->img,
-                            "link" => $product->link,
-                            "quantity" => $quantity,
-                            "total" => number_format( ($product->sale_price ?? $product->price ) * $quantity + $totalAttributePrice), // Calculate total price for each item
-                        ];
-                    }
-
-                }
-
-            }
-            $response = [
-                "cart" => [
-                    "count" => $cartCount,
-                    "total" => $totalPrice, // Format the total price
-                ],
-                "items" => $items, // Add items to the response
-            ];
-        }
-        else{
-            $user = Auth::user();
-            $orderItem = OrderItem::find($id);
-            $orderItem->quantity = $count;
-            $orderItem->save();
-            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
-            $orders = $this->basket($order);
-            $response = [
-                "cart" => [
-                    "count" => $orders->cart->count,
-                    "total" => $orders->cart->total, // Format the total price
-                ],
-                "items" => $orders->items, // Add items to the response
-            ];
-        }
-
-
-
-        return response()->json($response);
-
+        return Auth::check() ? $this->updateCartAuthenticated($id, $count) : $this->updateCartGuest($request, $id, $count);
     }
-
     public function getCartItemCount(Request $request)
     {
-        $cartCount = 0;
-        if (!Auth::check()) {
-            if ($request->cookie('cart')) {
-                $cartItems = json_decode($request->cookie('cart'), true);
-                // Iterate through each cart item to calculate the total price
-                foreach ($cartItems as $key => $cartItem) {
-                    if(!isset($cartItem['product']))
-                    continue;
-                    // Assuming the product ID is provided as 'product'
-                    $productId = $cartItem['product'];
-                    // Retrieve the product from the database
-                    $product = Product::find($productId);
-                    if ($product) {
-
-
-                        $all_attribute = $product->attributes;
-                        // Extract quantity from the item using regular expressions
-
-                        $quantity =  $cartItem['quantity'] ?? 1;
-                        $cartCount += $quantity;
-
-                    }
-
-                }
-
-            }
-        }
-        else{
-            $user = Auth::user();
-            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); // Get the last order of the user
-            $orders = $this->basket($order);
-            $cartCount = $orders->cart->count;
-        }
-
-        return $cartCount;
-
+        //return $this->getGuestCartItemCount($request);
+        return Auth::check() ? $this->getAuthenticatedCartItemCount() : $this->getGuestCartItemCount($request);
     }
-
-    public function showCart(Request $request){
-
-
-        $user=Auth::user();
-        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); //get last order of user
-        if (!$order) {
-            # code...
-            $this->firstStore();
-            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first(); //get last order of user
-        }
-        $orders=$this->basket($order);
-        //dd($orders);
-
-        return view('cart',compact('orders'));
+    public function showCart(Request $request)
+    {
+        $orders = $this->getAuthenticatedOrder();
+        return view('cart', compact('orders'));
     }
+    public function cartItemDetail(Request $request, $id)
+    {
+        $user = Auth::user();
+        $order = Order::where(['user_id' => $user->id, 'status' => 'basket'])->latest()->first(); // آخرین سفارش سبد خرید کاربر
 
-    public function cartItemDetail(Request $request,$id){
+        // دریافت آیتم‌ها
+        $orders = $this->basket($order);
 
-        $cartCount = 0; // Initialize cart count
-        $totalPrice = 0; // Initialize total price
-        $data =[]; // Data will be sent back if item is found
-        $options =[];
-        if (!Auth::check()) {
-            // Check if the cart cookie exists
-            if ($request->cookie('cart')) {
-                // Get the current cart items from the cookie
-                $cartItems = json_decode($request->cookie('cart'), true);
+        $data = null;
 
-                // Check if the item with the specified ID exists in the cart
-                if (isset($cartItems[$id])) {
-                    $cartItem = $cartItems[$id];
-                    $productId = $cartItem['product'];
-                    // Retrieve the product from the database
-                    $product = Product::find($productId);
-                    if ($product) {
-
-                        $totalAttributePrice = 0;
-                        $totalAttributeSalePrice =0;
-
-                        $all_attribute = $product->attributes;
-                        // Extract quantity from the item using regular expressions
-
-                        $quantity =  $cartItem['quantity'] ?? 1;
-                        $cartCount += $quantity;
-                        // Extract attribute items for the product
-                        $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
-
-                        $attr=null;
-                        foreach($cartItem as $keyItem=>$vItem){
-                            if (!is_array($vItem) && is_numeric($keyItem)) {
-                                if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
-
-                                    $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
-
-
-                                    if($attr){
-                                        $priceAttr = $attr->sale_price ?? $attr->price ;
-                                        if (!is_null($priceAttr)){
-                                            $parentAttribute = $all_attribute->where('id', $keyItem)->first();
-                                            $options[] = [$parentAttribute->name => $attr->name];
-                                            $totalAttributeSalePrice += $priceAttr;
-                                            $totalAttributePrice += $attr->price ;
-                                        }
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                        // Check if the product has a sale price
-                        $price = $product->sale_price ?? $product->price;
-
-                        $totalPrice += ($price + $totalAttributeSalePrice ) * $quantity ;
-                        // Add product details to the items array
-
-                        $data = [
-                            'img' => $product->img,
-                            'name' => $product->title,
-                            "price" => number_format($product->price + $totalAttributePrice),
-                            "sale_price"  => number_format($product->sale_price + $totalAttributeSalePrice),
-                            'discounted_price' => number_format($product->sale_price + $totalAttributeSalePrice), // 10.99 - (10.99 * 0.2) = 8.79
-                            'discountPercentage' => $product->discountPercentage,
-                            'options' => $options,
-                        ];
-
-
-                    }
-
-                }
+        foreach($orders->items as $item){
+            if($item->id == $id){
+                $data = [
+                    'name' => $item->name,
+                    'price' => $item->price,
+                    'sale_price' => $item->sale_price,
+                    'discountPercentage' => $item->discountPercentage,
+                    'img' => $item->img, // اضافه کردن مقدار img
+                    'options' => $item->options
+                ];
             }
         }
-        else{
-            $user=Auth::user();
-            $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of use
-            $orders=$this->basket($order);
-            foreach($orders->items as $item){
-                if($item->id==$id){
-                    $data=(array) $item;
 
-                }
-            }
 
+        if (!$data) {
+            return response()->json(['html' => 'Item not found'], 404);
         }
 
-
-        // Render the Blade view
+        // رندر ویو و ارسال به صورت API response
         $html = View::make('components/cart-details', $data)->render();
 
-        // Return the HTML as an API response
         return response()->json(['html' => $html]);
     }
 
-    public function shipping(Request $request){
 
-        $user=Auth::user();
-        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
-        $orders=$this->basket($order);
-        //dd($orders);
-
-        return view('shipping',compact('orders','user'));
+    public function shipping(Request $request)
+    {
+        $user = Auth::user();
+        $orders = $this->getAuthenticatedOrder();
+        return view('shipping', compact('orders', 'user'));
     }
 
-    public function shippingStore(Request $request){
-
-        $cartCount = 0; // Initialize cart count
-        $totalPrice = 0; // Initialize total price
-        $items = []; // Initialize cart items array
-        $attributeNames = [];
-        $attributeSeries = [];
-        $totalDiscountPrice =0;
-
-
-        // Validate form data
-        $validatedData = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'mobile' => 'required|string|max:255',
-            'email' => 'nullable|email|max:255',
-            //'nationalcode' => 'nullable|string|max:255',
-            'country' => 'required|string|max:255',
-            'province' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:10',
-            'sendtoanotheraddress' => 'nullable|boolean',
-            'shipping_first_name' => 'nullable|string|max:255',
-            'shipping_last_name' => 'nullable|string|max:255',
-            'shipping_mobile' => 'nullable|string|max:255',
-            'shipping_nationalcode' => 'nullable|string|max:255',
-            'shipping_country' => 'nullable|string|max:255',
-            'shipping_province' => 'nullable|string|max:255',
-            'shipping_city' => 'nullable|string|max:255',
-            'shipping_address' => 'nullable|string|max:255',
-            'shipping_postal_code' => 'nullable|string|max:10',
-            'note' => 'nullable|string',
-        ]);
-
-        $user=Auth::user();
-        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
-        $orderId=$order->id;
-        $this->store($order,$validatedData);
-
-
-
-
-
-        $orders=$this->basket($order);
-        //dd($orders);
-
-
-
-        //redirect to delivery page
-        return redirect()->route("delivery", compact('orders'));
-
+    public function shippingStore(Request $request)
+    {
+        $validatedData = $request->validate($this->shippingValidationRules());
+        $order = $this->getAuthenticatedOrder();
+        if ($order) {
+            $this->store($order, $validatedData);
+            $orders = $order->basket();
+            return redirect()->route("delivery", compact('orders'));
+        }
+        return redirect()->route('shipping');
     }
 
-    public function delivery(Request $request,$deliveryType=null){
+    public function delivery(Request $request, $deliveryType = null)
+    {
+        $order = $this->getAuthenticatedOrder();
 
-
-        $availableTime=[
-            "dates"=>[
-                [
-                "dayWeek"=>"شنبه",
-                "dayMonth"=>"1403/01/24",
-                "time"=>[
-                    "9:30-13:00",
-                    "14:30-18:00",
-                    "19:30-22:00"
-                ]
-                ],
-                [
-                "dayWeek"=>"یکشنبه",
-                "dayMonth"=>"1403/01/25",
-                "time"=>[
-                    "9:30-13:00",
-                    "14:30-18:00",
-                    "19:30-22:00"
-                ]
-                ],
-                [
-                "dayWeek"=>"دوشنبه",
-                "dayMonth"=>"1403/01/26",
-                "time"=>[
-                    "9:30-13:00",
-                    "14:30-18:00",
-                    "19:30-22:00"
-                ]
-                ],
-            ]
-        ];
-
-
-        $user=Auth::user();
-        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
         if ($order) {
             $order->deliveryType = $deliveryType ?? 'store_delivery';
-            $order->save(); // Use save() instead of update() to update the model
-            $orders=$this->basket($order);
+            $order->save();
+
+            // سبد خرید را دریافت کنید
+            $basket = $order->basket();
+
+            // زمان‌های موجود را با توجه به سبد محاسبه کنید
+            $availableTime = $this->getAvailableTimeWithBasket($basket);
+
+            $orders = $order;
+            return view('delivery', compact('orders', 'availableTime'));
         }
 
-        if(!isset($order)) {return view('shipping',compact('user','orders'));}
-
-
-
-        return view('delivery',compact('orders','availableTime'));
+        return view('shipping', compact('user', 'orders'));
     }
 
-
-    public function storeDelivery(Request $request){
-        //request time parameter format is '1403/01/24 09:30-13:00'
-
-        $fulldate = explode(' ',$request->input('time'));
-        $time = $fulldate[1];
-        $date = $fulldate[0];
-
-        $user=Auth::user();
-        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
+    public function storeDelivery(Request $request)
+    {
+        $fullDate = explode(' ', $request->input('time'));
+        $date = $fullDate[0];
+        $time = $fullDate[1];
+        $order = $this->getAuthenticatedOrder();
         if ($order) {
-            $totalTime=$this->calculateTotalTime($order);
             $order->deliveryType = $request->input('deliveryType');
             $order->shipping_price = $this->deliveryCost($order);
             $order->delivery_date = Jalalian::fromFormat('Y/m/d', $date)->toCarbon()->toDateString();
             $order->delivery_time = $time;
-            $order->save(); // Use save() instead of update() to update the model
-            $orders=$this->basket($order);
+            $order->save();
+            $orders = $order->basket();
+            return redirect()->route("payment");
         }
-
-        if(!isset($order)) {return view('shipping',compact('user','orders'));}
-
-
-        return redirect()->route("payment");
-
+        return view('shipping', compact('user', 'orders'));
     }
 
-    public function payment(Request $request,$paymentMethod=null){
-
-        $user=Auth::user();
-        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
+    public function payment(Request $request, $paymentMethod = null)
+    {
+        $user = Auth::user();
+        $order = $this->getAuthenticatedOrder();
         if ($order) {
-            if ($user->check_payment_active and $paymentMethod=='check') {
-                $order->paymentMethod = $paymentMethod;
-            }
-            elseif($user->credit_payment_active and $paymentMethod=='credit'){
-                $order->paymentMethod = $paymentMethod;
-            }
-            else{
-                $order->paymentMethod = 'cash';
-            }
+            $order->paymentMethod = $this->determinePaymentMethod($paymentMethod);
             $order->save();
-            $orders=$this->basket($order);
+            $orders = $order;
+            return view('payment', compact('user', 'orders'));
         }
-
-
-        return view('payment',compact('user','orders'));
+        return redirect()->route('shipping');
     }
-
-    public function complete(Request $request){
-
-        $user=Auth::user();
-
-        $order = Order::where(['user_id'=>$user->id,'status'=>'basket'])->latest()->first();//get last order of user
-        return redirect("https://bankmelat.ir");
-
-    }
-
-    private function editCartArray($cartItems,$id,$newKey,$newValue) : array
+    public function complete(Request $request)
     {
-
-        if ($cartItems[$id]) {
-            if(!is_null($newValue)){
-                // اضافه کردن کلید و مقدار جدید به ردیف فعلی
-                $cartItems[$id][$newKey] = $newValue;
-            }
-            else{
-                unset($cartItems[$id][$newKey]);
-            }
+        $order = $this->getAuthenticatedOrder();
+        if ($order) { // Handle order completion logic
+            return redirect("https://bankmelat.ir");
         }
-
-        return $cartItems;
+        return redirect()->route('shipping');
     }
-
-    private function store($order,$validatedData)
+    private function store($order, $validatedData)
     {
-
-
-        // Create a new instance of Order model
-
-        if(isset($validatedData['sendtoanotheraddress']) && $validatedData['sendtoanotheraddress']) {
-
-            // Fill the model with validated form data for shipping to another address
-
-            $order->customer_name = $validatedData['shipping_first_name'] . ' '. $validatedData['shipping_last_name'];
-            $order->customer_email = $validatedData['email']; // Assuming customer email is still used for communication
-            $order->customer_phone_number = $validatedData['shipping_mobile'];
-            $order->shipping_country = $validatedData['shipping_country'];
-            $order->shipping_province = $validatedData['shipping_province'];
-            $order->shipping_city = $validatedData['shipping_city'];
-            $order->shipping_address = $validatedData['shipping_address'];
-            $order->shipping_postal_code = $validatedData['shipping_postal_code'];
-            $order->shipping_phone = $validatedData['shipping_mobile']; // Assuming shipping phone is the same as customer phone
+        $data = ['customer_name' => $validatedData['first_name'] . ' ' . $validatedData['last_name'], 'customer_email' => $validatedData['email'], 'customer_phone_number' => $validatedData['mobile'], 'shipping_country' => $validatedData['country'], 'shipping_province' => $validatedData['province'], 'shipping_city' => $validatedData['city'], 'shipping_address' => $validatedData['address'], 'shipping_postal_code' => $validatedData['postal_code'], 'shipping_phone' => $validatedData['mobile'],];
+        if (isset($validatedData['sendtoanotheraddress']) && $validatedData['sendtoanotheraddress']) {
+            $data['customer_name'] = $validatedData['shipping_first_name'] . ' ' . $validatedData['shipping_last_name'];
+            $data['shipping_phone'] = $validatedData['shipping_mobile'];
             $order->is_self_delivery = false;
-            $order->save();
-        }
-        else{
-            // Fill the model with validated form data
-
-            $order->customer_name = $validatedData['first_name'] . ' '. $validatedData['last_name'];
-            $order->customer_email = $validatedData['email'];
-            $order->customer_phone_number = $validatedData['mobile'];
-            $order->shipping_country = $validatedData['country'];
-            $order->shipping_province = $validatedData['province'];
-            $order->shipping_city = $validatedData['city'];
-            $order->shipping_address = $validatedData['address'];
-            $order->shipping_postal_code = $validatedData['postal_code'];
-            $order->shipping_phone = $validatedData['mobile']; // Assuming shipping phone is the same as customer phone
+        } else {
             $order->is_self_delivery = true;
-            $order->save();
-
         }
-
-        // return order id from function  save() to use it in cart table update
-
+        $order->fill($data);
+        $order->save();
+        return $order->id;
     }
-
     private function firstStore()
     {
 
-
-        // Create a new instance of Order model
         $order = new Order();
-
-        $user= Auth::user();
-        // Fill the model with validated form data for shipping to another address
-        $order->user_id = $user->id;
-        $order->is_self_delivery = true;
-        $order->customer_phone_number = $user->mobile;
-        $order->customer_name = $user->first_name .' '.$user->last_name;
+        $user = Auth::user();
+        $order->fill(['user_id' => $user->id, 'is_self_delivery' => true, 'customer_phone_number' => $user->mobile, 'customer_name' => $user->first_name . ' ' . $user->last_name,]);
         $order->save();
 
-        // return order id from function  save() to use it in cart table update
         return $order->id;
     }
-
-    private function transferCookie(Request $request,$orderId)
+    private function transferCookie(Request $request, $orderId)
     {
+        $orders = $this->basketCookie($request);
+        $cartCount = 0;
+        $totalPrice = 0;
+        $totalDiscountPrice = 0;
 
-        $orders=$this->basketCookie($request);
+        // Get the current cookie data
+        $cartItems = $request->cookie('cart') ? json_decode($request->cookie('cart'), true) : [];
 
         foreach ($orders->items as $item) {
-            // Save data to order_items table
-            // بررسی وجود مورد با این آی دی
+            // Check if the item already exists in the database
             if (!OrderItem::where('id', $item->id)->exists()) {
-                // اگر مورد موجود نباشد، مورد جدید را ایجاد کنید
-                $orderItem = new OrderItem([
-                    'id' =>  $item->id,
-                    'order_id' => $orderId, // جایگزین شود با آی دی واقعی سفارش
+                // Convert formatted strings to plain numbers
+                $price = floatval(str_replace(',', '', $item->price));
+                $salePrice = floatval(str_replace(',', '', $item->sale_price));
+                $total = floatval(str_replace(',', '', $item->total));
+
+                // Create the OrderItem
+                $orderItem = OrderItem::create([
+                    'id' => $item->id,
+                    'order_id' => $orderId,
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
                     'installer' => $item->installer ?? null,
                     'designer' => $item->designer ?? null,
                     'sewing' => $item->sewing ?? null,
-                    'price' => $item->price,
-                    'sale_price' => $item->sale_price,
-                    'total' => $item->total,
+                    'price' => $price,
+                    'sale_price' => $salePrice,
+                    'total' => $total,
                 ]);
-                $orderItem->save();
 
-                $all_attribute = $orderItem->product->attributes;
-
-                $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
-
-                // Save data to order_attribute_items table
-                foreach ($item->attributeSeries as $key => $value) {
-                    if (!is_array($value) && is_numeric($key)) {
-
-                        $attr = (object)collect($productAttributeItems[$key])->where('name', $value)->first();
-                        $name = $productAttributeItems[$key];
-                        $attribute= (object)collect($all_attribute)->where('id',$key)->first();
-                        $name = $attribute->name;
-                        $orderAttributeItem = new OrderAttributeItem([
-                            'order_item_id' => $item->id,
-                            'attribute_item_id' => $key, // Replace with actual attribute item ID
-                            'name' =>  $name,
-                            'value' => $attr->name ?? null, // Assuming $item->services is an object containing service information
-                            'price' => $attr->price, // Replace with actual price
-                            'sale_price' => $attr->sale_price ?? null, // Replace with actual sale price
-                            'total' => ($attr->sale_price ?? $attr->price) * $item->quantity,
-                        ]);
-                        $orderAttributeItem->save();
-                    }
-
-                }
-            }
-
-        };
-
-
-    }
-
-
-    private function basket($order){
-
-        $cartCount = 0; // Initialize cart count
-        $totalPrice = 0; // Initialize total price
-        $availableCreditPlan = 0;
-        $items = []; // Initialize cart items array
-        $attributeNames = [];
-        $options = [];
-        $totalDiscountPrice =0;
-        $summedAmounts=[];
-        if($order){
-
-            $cartItems = $order->orderItems;
-
-
-            foreach ($cartItems as  $cartItem) {
-
-                $totalAttributePrice = 0;
-                $totalAttributeSalePrice =0;
-
-                // Assuming the product ID is provided as 'product'
-                $product = $cartItem->product;
-
-
+                // Retrieve the product to process attributes
+                $product = Product::find($item->product_id);
 
                 if ($product) {
+                    // Process product attributes
+                    $attributes = $this->processProductAttributes($item->id, $product, $item->attribute);
 
-                    $attributes = $cartItem->orderAttributeItems;
-                    // Extract quantity from the item using regular expressions
-                    $quantity =  $cartItem->quantity;
-                    $cartCount += $quantity;
-
-                    // Extract attribute items for the product
-
-                    foreach($attributes as $attributeItem){
-
-                        $priceAttr = $attributeItem->sale_price ?? $attributeItem->price ;
-                        if (!is_null($priceAttr)){
-                            $attributeNames[] = $attributeItem->name;
-                            $totalAttributeSalePrice += $priceAttr;
-                            $totalAttributePrice += $attributeItem->price ;
-                            $options[] = [$attributeItem->name =>$attributeItem->value];
-                        }
-
-
-                    }
-
-                    // Check if the product has a sale price
-                    $price = $product->sale_price ?? $product->price;
-
-                    $totalProductPrice= ($price + $totalAttributeSalePrice ) * $quantity;
-                    $totalPrice += $totalProductPrice;
-
-
-                    $credit=$product->creditInstallmentTimeline($totalProductPrice);
-                    $productTimeline = $credit->timeline;
-
-                    foreach ($productTimeline as $key => $value) {
-                        // اگر مقدار مشابه وجود داشته باشد، به آن اضافه شود، در غیر این صورت ایجاد شود
-                        if (isset($summedAmounts[$key])) {
-                            $summedAmounts[$key] += $value->amount;
-                        } else {
-                            $summedAmounts[$key] = $value->amount;
-                        }
-                    }
-
-                    $availableCreditPlan += $credit->totalCredit;
-                    // Add product details to the items array
-                    $items[] = (object)[
-                        "id" => $cartItem->id,
-                        "product_id" => $product->id,
-                        "name" => $product->title,
-                        "img" => $product->img,
-                        "link" => $product->link,
-                        "price" => $product->price + $totalAttributePrice,
-                        "sale_price"  => $product->sale_price + $totalAttributeSalePrice,
-                        "discountPercentage" => $product->discountPercentage,
-                        'options' => $options,
-                        "quantity" => $quantity,
-                        "attribute" => $attributeNames,
-                        "credit" => $credit,
-                        "service" => $product->service,
-                        "services" =>(object) [
-                            "sewing" => $product->services()->where('type', 'sewing')->first(),
-                            "installer" => $product->services()->where('type', 'installer')->first(),
-                            "design" => $product->services()->where('type', 'design')->first(),
-                        ],
-                        "installer" => $cartItem->installer ?? null,
-                        "sewing" => $cartItem->sewing ?? null,
-                        "design" => $cartItem->design ?? null,
-                        "total" => ($product->sale_price ?? $product->price + $totalAttributeSalePrice ) * $quantity  , // Calculate total price for each item
-                    ];
+                    // Update cart count and total prices
+                    $cartCount += $item->quantity;
+                    $totalPrice += $attributes['independentPriceAdjustment'] + $attributes['dependentPriceAdjustment'];
+                    $totalDiscountPrice += $attributes['independentSalePriceAdjustment'] + $attributes['dependentSalePriceAdjustment'];
                 }
 
+                // Remove the item from the cookie
+                unset($cartItems[$item->id]);
             }
-
-
-            // ایجاد timeline کلی با مقادیر جمع شده
-
-            $totalTimeline=$this->calculateDueDates($summedAmounts);
-
-            $availableCreditPlan=($order->paymentMethod=='credit') ? $availableCreditPlan :0;
-            $availableCheck = ($order->paymentMethod=='check') ? $order->getTotalUnpaidChecksAmount() :0;
-
-            $deliveryCost = $this->deliveryCost($order);
-            $orders =(object) [
-                "cart" =>(object) [
-
-                    "count" => $cartCount,
-                    "total" => number_format($totalPrice), // Format the total price
-                    'deliveryType' => $order->deliveryType ,
-                    'paymentMethod' => $order->paymentMethod,
-                    'deliveryCost' => $deliveryCost,
-                    'availableCreditPlan' => number_format($availableCreditPlan),
-                    "availableCheck"  => number_format($availableCheck),
-                    'totalTimeline'  => $totalTimeline,
-                    'totalCheckTimeline' => $order->checks,
-                    "totalPayed" => number_format($totalPrice + $totalDiscountPrice + $deliveryCost - $availableCreditPlan -$availableCheck ),
-                ],
-                "items" => $items, // Add items to the response
-            ];
-        }
-        else{
-            $orders =(object) [
-                "cart" =>(object) [
-                    "count" => $cartCount,
-                    "total" => 0, // Format the total price
-                    'deliveryType' => 'cash' ,
-                    'paymentMethod' => 'cash',
-                    'deliveryCost' => 0,
-                    'availableCreditPlan' => 0,
-                    "availableCheck"  => 0,
-                    'totalTimeline'  => [],
-                    'totalCheckTimeline' => [],
-                    "totalPayed" => 0,
-                ],
-                "items" => [], // Add items to the response
-            ];
         }
 
-        return $orders;
+        // Prepare the response
+        $response = response()->json(compact('cartCount', 'totalPrice', 'totalDiscountPrice'));
+
+        // Update the cookie with the remaining items
+        $response->cookie('cart', json_encode($cartItems), 60);
+
+        return $response;
     }
-
-    private function basketCookie($request){
-        $cartCount = 0; // Initialize cart count
-        $totalPrice = 0; // Initialize total price
-        $items = []; // Initialize cart items array
-        $attributeNames = [];
-        $totalDiscountPrice =0;
-
+    private function basket($order)
+    {
+        return $order->basket();
+    }
+    private function basketCookie($request)
+    {
+        $cartCount = 0;
+        $totalPrice = 0;
+        $items = [];
+        $totalDiscountPrice = 0;
         if ($request->cookie('cart')) {
-            // Get the current cart items from the cookie
             $cartItems = json_decode($request->cookie('cart'), true);
-
-            // Iterate through each cart item to calculate the total price
             foreach ($cartItems as $key => $cartItem) {
-                if(!isset($cartItem['product']))
-                continue;
-                $totalAttributePrice = 0;
-                $totalAttributeSalePrice =0;
-
-                // Assuming the product ID is provided as 'product'
-                $productId = $cartItem['product'];
-                // Retrieve the product from the database
+                $productId = $cartItem['product'] ?? null;
+                if (!$productId) continue;
                 $product = Product::find($productId);
+                if (!$product) continue;
+                $quantity = $cartItem['quantity'] ?? 1;
+                $cartCount += $quantity;
+                $attributeData = $this->processProductAttributes(null, $product, $cartItem);
+                $basePrice = $product->price;
+                $baseSalePrice = $product->sale_price ?? $basePrice;
+                $totalAttributePrice = $attributeData['independentPriceAdjustment'] + $attributeData['dependentPriceAdjustment'];
+                $totalAttributeSalePrice = $attributeData['independentSalePriceAdjustment'] + $attributeData['dependentSalePriceAdjustment'];
 
-
-                if ($product) {
-
-                    $all_attribute = $product->attributes;
-                    // Extract quantity from the item using regular expressions
-
-                    $quantity =  $cartItem['quantity'] ?? 1;
-                    $cartCount += $quantity;
-                    // Extract attribute items for the product
-                    $productAttributeItems = $all_attribute->pluck('items', 'id')->toArray();
-
-                    $attr=null;
-                    $attributeSeries =[];
-
-                    foreach($cartItem as $keyItem=>$vItem){
-                        if (!is_array($vItem) && is_numeric($keyItem)) {
-                            if (isset($productAttributeItems[$keyItem]) && is_array($productAttributeItems[$keyItem])) {
-
-                                $attr = (object)collect($productAttributeItems[$keyItem])->where('name', $vItem)->first();
-
-
-                                if($attr){
-                                    $priceAttr = $attr->sale_price ?? $attr->price ;
-                                    if (!is_null($priceAttr)){
-                                        $attributeNames[] = $attr->name;
-                                        $totalAttributeSalePrice += $priceAttr;
-                                        $totalAttributePrice += $attr->price ;
-                                        $attributeSeries[$keyItem] = $vItem;
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                    // Check if the product has a sale price
-                    $price = $product->sale_price ?? $product->price;
-
-                    $totalPrice += ($price + $totalAttributeSalePrice ) * $quantity ;
-                    // Add product details to the items array
-                    $items[] = (object)[
-                        "id" => $key,
-                        "product_id" => $product->id,
-                        "name" => $product->title,
-                        "img" => $product->img,
-                        "link" => $product->link,
-                        "price" =>$product->price + $totalAttributePrice,
-                        "sale_price"  => $product->sale_price + $totalAttributeSalePrice,
-                        "discountPercentage" => $product->discountPercentage,
-                        "quantity" => $quantity,
-                        "attribute" => $attributeNames,
-                        "service" => $product->service,
-                        "attributeSeries" => $attributeSeries,
-                        "services" =>(object) [
-                            "sewing" => $product->services()->where('type', 'sewing')->first(),
-                            "installer" => $product->services()->where('type', 'installer')->first(),
-                            "design" => $product->services()->where('type', 'design')->first(),
-                        ],
-                        "installer" => $cartItem["installer"] ?? null,
-                        "sewing" => $cartItem["sewing"] ?? null,
-                        "design" => $cartItem["design"] ?? null,
-                        "total" => ($product->sale_price ?? $product->price + $totalAttributeSalePrice ) * $quantity, // Calculate total price for each item
-                    ];
-
-                }
-
+                $totalItemPrice = ($baseSalePrice + $totalAttributeSalePrice) * $quantity;
+                $totalPrice += $totalItemPrice;
+                $items[] = (object)["id" => $key, "product_id" => $product->id, "name" => $product->title, "img" => asset($product->img), "link" => $product->link, "price" => number_format($basePrice + $attributeData['independentPriceAdjustment'] + $attributeData['dependentPriceAdjustment']), "sale_price" => number_format($baseSalePrice + $attributeData['independentSalePriceAdjustment'] + $attributeData['dependentSalePriceAdjustment']), "discountPercentage" => $product->discountPercentage, "quantity" => $quantity, "attribute" => $cartItem, "service" => $product->service, "attributeSeries" => $attributeData['selectedAttributes'], "services" => (object)["sewing" => $product->services()->where('type', 'sewing')->first(), "installer" => $product->services()->where('type', 'installer')->first(), "design" => $product->services()->where('type', 'design')->first(),], "installer" => $cartItem["installer"] ?? null, "sewing" => $cartItem["sewing"] ?? null, "design" => $cartItem["design"] ?? null, "total" => number_format($totalItemPrice), "unavailable" => !$attributeData['independentStockAvailable'] || !$attributeData['dependentStockAvailable'],];
             }
-
         }
-
-
-
-
-        $orders =(object) [
-            "cart" =>(object) [
-                "count" => $cartCount,
-                "total" => number_format($totalPrice), // Format the total price
-
-                "totalPayed" => number_format($totalPrice + $totalDiscountPrice),
-            ],
-            "items" => $items, // Add items to the response
-        ];
-
-
+        $orders = (object)["cart" => (object)["count" => $cartCount, "total" => number_format($totalPrice), "totalPayed" => number_format($totalPrice + $totalDiscountPrice),], "items" => $items,];
         return $orders;
     }
-
-    private function deliveryCost($order){
-        if($order->deliveryType=='home_delivery'){
-            return 250000;
-        }
-        else{
-            return 0;
-        }
+    private function deliveryCost($order): int
+    {
+        return $order->deliveryType === 'home_delivery' ? 250000 : 0;
     }
-
-    private function calculateTotalTime($order){
-        $totalTime=0;
+    private function calculateTotalTime($order): int
+    {
+        $totalTime = 0;
         $cartItems = $order->orderItems;
-
-
-        foreach ($cartItems as  $cartItem) {
-
-
-
-            // Assuming the product ID is provided as 'product'
+        foreach ($cartItems as $cartItem) {
             $product = $cartItem->product;
-
-
-
             if ($product) {
-
                 $attributes = $cartItem->orderAttributeItems;
-                // Extract quantity from the item using regular expressions
-
                 $quantity = $cartItem->quantity ?? 1;
-
-
-                // Extract attribute items for the product
-
-                foreach($attributes as $attribute){
+                foreach ($attributes as $attribute) {
                     $attributeItem = $attribute->attributeItem;
-
-                    if($attributeItem){
-                        $totalTime += ($attributeItem->unit_factor=="countable") ? $attributeItem->getTotalTime($attribute->value) : $attributeItem->getTotalTime();
+                    if ($attributeItem) {
+                        $totalTime += ($attributeItem->unit_factor === "countable") ? $attributeItem->getTotalTime($attribute->value) : $attributeItem->getTotalTime();
                     }
-
                 }
-
             }
-
-
         }
-
         return $totalTime;
     }
-
-    private function CalculationNearestTime(){
-
-    }
+    private function CalculationNearestTime() {}
 
     private function calculateDueDates(array $summedAmounts): array
     {
-        // تاریخ فعلی را دریافت می‌کنیم
-        $currentDate = Jalalian::now();
-
-        // آرایه‌ای برای نگهداری تاریخ‌های سررسید و مقادیر
+        $currentDate = Jalalian::now(); // آرایه‌ای برای نگهداری تاریخ‌های سررسید و مقادیر
         $totalTimeline = [];
-
-        foreach ($summedAmounts as $month => $amount) {
-            // محاسبه تاریخ سررسید بر اساس فاصله ماه و تاریخ فعلی
-            $dueDate = $currentDate->addMonths($month);
-
-            // اضافه کردن تاریخ و مقدار به timeline کلی
-            $totalTimeline[$dueDate->format('Y/m/d')] = (object) [
-                'month' => $dueDate->format('Y/m/d'),
-                'amount' => $amount,
-            ];
+        foreach ($summedAmounts as $month => $amount) { // محاسبه تاریخ سررسید بر اساس فاصله ماه و تاریخ فعلی
+            $dueDate = $currentDate->addMonths($month); // اضافه کردن تاریخ و مقدار به timeline کلی
+            $totalTimeline[$dueDate->format('Y/m/d')] = (object) ['month' => $dueDate->format('Y/m/d'), 'amount' => $amount,];
+        }
+        return $totalTimeline;
+    }
+    // Helper Methods
+    private function updateCartArray(array $cartItems, array $params, $randomNumber, $remove = false) {
+        if (isset($params['installer'])) {
+            $cartItems = $this->editCartArray($cartItems, $params['installer'], 'installer', $remove ? null : $randomNumber);
+            unset($params["installer"]);
         }
 
-        return $totalTimeline;
+        if (isset($params['sewing'])) {
+            $cartItems = $this->editCartArray($cartItems, $params['sewing'], 'sewing', $remove ? null : $randomNumber);
+            unset($params["sewing"]);
+        }
+
+        if (isset($params['design'])) {
+            $cartItems = $this->editCartArray($cartItems, $params['design'], 'design', $remove ? null : $randomNumber);
+            unset($params["design"]);
+        }
+
+        if (!$remove) {
+            $cartItems[$randomNumber] = $params;
+        }
+
+        return $cartItems;
+    }
+    private function processProductAttributes(string $orderItemId=null, Product $product, array $param)
+    {
+
+        $basePrice = $product->price;
+        $baseSalePrice = $product->sale_price ?? $basePrice;
+        $independentAttributes = [];
+        $dependentAttributes = [];
+        $independentPriceAdjustment = 0;
+        $independentSalePriceAdjustment = 0;
+        $independentStockAvailable = true;
+        $dependentPriceAdjustment = 0;
+        $dependentSalePriceAdjustment = 0;
+        $dependentStockAvailable = true;
+        $selectedAttributes = [];
+        $selectedDependentAttributes = [];
+
+
+        foreach ($product->attributes as $attribute) {
+            if ($attribute->independent) {
+                $independentAttributes[] = $attribute;
+            } else {
+                $dependentAttributes[] = $attribute;
+            }
+        } // Process independent attributes
+
+        foreach ($independentAttributes as $attribute) {
+            $selectedValue = $param[$attribute->id] ?? null;
+
+
+            if ($selectedValue) {
+                $combination = $product->getIndependentCombinationDetails($attribute->id, $selectedValue);
+
+                if ($combination) {
+
+                    $independentPriceAdjustment += $combination->price;
+                    $independentSalePriceAdjustment += $combination->sale_price ?? $combination->price;
+                    if ($orderItemId) {
+                        OrderItemCombination::create(['order_item_id' => $orderItemId, 'combination_id' => $combination->id,]);
+                    }
+                }
+                else {
+                    $independentStockAvailable = false;
+                    break;
+                }
+            }
+        }
+
+        // Process dependent attributes
+        foreach ($dependentAttributes as $attribute) {
+            $selectedValue = $param[$attribute->id] ?? null;
+            if ($selectedValue) {
+                $selectedDependentAttributes[$attribute->id] = $selectedValue;
+            }
+        }
+
+
+        if (!empty($selectedDependentAttributes)) {
+            $combination = $product->getCombinationDetails($selectedDependentAttributes);
+
+
+            if ($combination) {
+                $dependentPriceAdjustment += $combination->price;
+                $dependentSalePriceAdjustment += $combination->sale_price ?? $combination->price;
+
+                if ($orderItemId) {
+
+                    OrderItemCombination::create(['order_item_id' => $orderItemId, 'combination_id' => $combination->id,]);
+                }
+            }
+            else {
+                $dependentStockAvailable = false;
+            }
+        }
+
+        return ['independentPriceAdjustment' => $independentPriceAdjustment, 'independentSalePriceAdjustment' => $independentSalePriceAdjustment, 'independentStockAvailable' => $independentStockAvailable, 'dependentPriceAdjustment' => $dependentPriceAdjustment, 'dependentSalePriceAdjustment' => $dependentSalePriceAdjustment, 'dependentStockAvailable' => $dependentStockAvailable, 'selectedAttributes' => $selectedAttributes];
+    }
+    private function handleAuthenticatedAddToCart(Request $request, array $param)
+    {
+        $user = Auth::user();
+        $order = Order::where(['user_id' => $user->id, 'status' => 'basket'])->latest()->first() ?: $this->firstStore();
+        $product = Product::find($param['product']);
+        $randomNumber = rand(1000000, 9999999);
+        $orderItem = OrderItem::create(['id' => $randomNumber, 'order_id' => $order->id, 'product_id' => $param['product'], 'quantity' => $param['quantity'] ?? 1, 'price' => $product->price, 'sale_price' => $product->sale_price, 'total' => ($product->sale_price ?? $product->price) * ($param['quantity'] ?? 1),]);
+        $this->processProductAttributes($orderItem, $product, $param);
+        $this->updateOrderItemAttributes($orderItem, $param);
+        $orders = $order->basket();
+        return response()->json(["status" => "success", "message" => "محصول با موفقیت به سبد خرید اضافه شد.", "cart" => ["count" => $orders->cart->count],]);
+    }
+    private function handleGuestAddToCart(Request $request, array $param)
+    {
+        $param = $request->input('param');
+        $cartCount = 0;
+        $cartItems = $request->cookie('cart') ? json_decode($request->cookie('cart'), true) : [];
+        $randomNumber = rand(1000000, 9999999);
+
+        // Update cart items with provided parameters
+        $cartItems = $this->updateCartArray($cartItems, $param, $randomNumber);
+
+        // Update cart count
+        $cartCount = count($cartItems);
+
+        // Store the updated cart items in the cookie
+        return response()->json([
+            "status" => "success",
+            "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
+            "cart" => ["count" => $cartCount],
+        ])->cookie('cart', json_encode($cartItems));
+
+    }
+    //Private Methods
+    private function getAuthenticatedOrder()
+    {
+        $user = Auth::user();
+        $order = Order::where(['user_id' => $user->id, 'status' => 'basket'])->latest()->first();
+
+        if (!$order) {
+            $order = $this->firstStore();
+        }
+        return $order;
+    }
+    private function getAuthenticatedMiniCart(Request $request)
+    {
+        $order = $this->getAuthenticatedOrder();
+        if ($request->cookie('cart')) {
+
+            $this->transferCookie($request, $order->id);
+        }
+        return $order->basket();
+    }
+    private function getGuestMiniCart(Request $request)
+    {
+        return $this->basketCookie($request);
+    }
+    private function removeItemAuthenticated($id) {
+        $user = Auth::user();
+        $orderItem = OrderItem::find($id);
+
+        if ($orderItem) {
+            $orderItem->delete();
+        }
+
+        $order = $this->getAuthenticatedOrder();
+        $orders = $order->basket();
+
+        $response = [
+            "status" => "success",
+            "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+            "cart" => ["count" => $orders->cart->count, "total" => $orders->cart->total],
+            "items" => $orders->items,
+        ];
+
+        return response()->json($response);
+    }
+    private function removeItemGuest(Request $request, $id)
+    {
+        // Retrieve the cart from the cookie and decode it
+        $cartItems = json_decode($request->cookie('cart'), true) ?? [];
+
+        // Initialize variables for total price and item details
+        $totalPrice = 0;
+        $items = [];
+
+        // Remove the item from the cart if it exists
+        if (isset($cartItems[$id])) {
+            unset($cartItems[$id]);
+        }
+
+        // Process each item in the cart
+        foreach ($cartItems as $key => $cartItem) {
+            // Fetch the product based on product ID
+            $product = Product::find($cartItem['product']);
+
+            if ($product) {
+                // Calculate the base price and sale price
+                $basePrice = $product->price;
+                $baseSalePrice = $product->sale_price ?? $basePrice;
+
+                // Calculate the final price based on attributes
+                $attributeData = $this->processProductAttributes(null, $product, $cartItem ?? []);
+                $finalPrice = $baseSalePrice + $attributeData['independentSalePriceAdjustment'] + $attributeData['dependentSalePriceAdjustment'];
+
+                // Update the item's price and total price
+                $totalItemPrice = $finalPrice * $cartItem['quantity'];
+                $totalPrice += $totalItemPrice;
+
+                // Prepare the item details object
+                $items[] = (object)[
+                    "id" => $key,
+                    "product_id" => $product->id,
+                    "name" => $product->title,
+                    "img" => asset($product->img),
+                    "link" => $product->link,
+                    "price" => number_format($basePrice + $attributeData['independentPriceAdjustment'] + $attributeData['dependentPriceAdjustment']),
+                    "sale_price" => number_format($baseSalePrice + $attributeData['independentSalePriceAdjustment'] + $attributeData['dependentSalePriceAdjustment']),
+                    "discountPercentage" => $product->discountPercentage,
+                    "quantity" => $cartItem['quantity'],
+                    "attribute" => array_keys($cartItem),
+                    "service" => $product->service,
+                    "attributeSeries" => $attributeData['selectedAttributes'],
+                    "services" => (object)[
+                        "sewing" => $product->services()->where('type', 'sewing')->first(),
+                        "installer" => $product->services()->where('type', 'installer')->first(),
+                        "design" => $product->services()->where('type', 'design')->first(),
+                    ],
+                    "installer" => $cartItem["installer"] ?? null,
+                    "sewing" => $cartItem["sewing"] ?? null,
+                    "design" => $cartItem["design"] ?? null,
+                    "total" => number_format($totalItemPrice),
+                    "unavailable" => !$attributeData['independentStockAvailable'] || !$attributeData['dependentStockAvailable'],
+                ];
+            }
+        }
+
+        // Recalculate the cart count
+        $cartCount = count($cartItems);
+
+        // Prepare the response
+        $response = [
+            "status" => "success",
+            "message" => "محصول با موفقیت از سبد خرید حذف شد.",
+            "cart" => [
+                "count" => $cartCount,
+                "total" => number_format($totalPrice, 2) // Format total price to 2 decimal places
+            ],
+            "items" => $items, // Return the updated item details
+        ];
+
+        // Return the updated cart details in the cookie and as a JSON response
+        return response()->json($response)
+            ->cookie('cart', json_encode($cartItems), 60 * 24); // Cookie expiry time (1 day)
+    }
+    private function removeAllAuthenticatedCart()
+    {
+        Order::where(['user_id' => Auth::id(), 'status' => 'basket'])->delete();
+        return response()->json(["status" => "success", "message" => "All items removed from cart."]);
+    }
+    private function removeAllGuestCart(Request $request, $response)
+    {
+        if ($request->cookie('cart')) {
+            return response()->json($response)->cookie('cart', null);
+        }
+        return response()->json($response);
+    }
+    private function updateCartAuthenticated($id, $count)
+    {
+        $orderItem = OrderItem::find($id);
+        if ($orderItem) {
+            $orderItem->quantity = $count;
+            $orderItem->save();
+        }
+        $order = $this->getAuthenticatedOrder();
+        $orders = $order->basket();
+        return response()->json(["cart" => ["count" => $orders->cart->count, "total" => $orders->cart->total], "items" => $orders->items,]);
+    }
+    private function updateCartGuest(Request $request, $id, $count)
+    {
+        $cookieData = json_decode($request->cookie('cart'), true);
+        if (isset($cookieData[$id])) {
+            $this->updateCartArray($cookieData, $cookieData[$id], $count);
+            $cartData = $this->calculateCartData($cookieData);
+            return response()->json($cartData)->cookie('cart', json_encode($cookieData));
+        }
+        return response()->json(["status" => "error", "message" => "Item not found in cart."]);
+    }
+    private function getAuthenticatedCartItemCount()
+    {
+        $order = $this->getAuthenticatedOrder();
+        $count = $order ? $order->basket()->cart->count : 0;
+        return $count;
+    }
+    private function getGuestCartItemCount(Request $request)
+    {
+        $cookieData = json_decode($request->cookie('cart'), true);
+        $count = $cookieData ? array_sum(array_column($cookieData, 'quantity')) : 0;
+        return $count;
+    }
+    private function determinePaymentMethod($paymentMethod)
+    {
+        return in_array($paymentMethod, ['online', 'cod']) ? $paymentMethod : 'cod';
+    }
+    private function shippingValidationRules()
+    {
+        return [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'mobile' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'country' => 'required|string',
+            'province' => 'required|string',
+            'city' => 'required|string',
+            'address' => 'required|string|max:500',
+            'postal_code' => 'required|string|size:10', // کد پستی باید دقیقا 10 رقمی باشد
+            'note' => 'nullable|string|max:1000', // یادداشت اختیاری است و نباید از 1000 کاراکتر بیشتر شود
+            'sendtoanotheraddress' => 'nullable|boolean', // چک‌کردن ارسال به آدرس دیگر
+
+            // اگر کاربر گزینه ارسال به آدرس دیگر را انتخاب کرده باشد:
+            'shipping_first_name' => 'nullable|string|max:255',
+            'shipping_last_name' => 'nullable|string|max:255',
+            'shipping_mobile' => 'nullable|string|max:15',
+            'shipping_country' => 'nullable|string',
+            'shipping_province' => 'nullable|string',
+            'shipping_city' => 'nullable|string',
+            'shipping_address' => 'nullable|string|max:500',
+            'shipping_postal_code' => 'nullable|string|size:10', // کد پستی باید دقیقا 10 رقمی باشد
+        ];
+    }
+
+    private function calculateCartData($cartItems)
+    {
+        $total = 0;
+        $count = 0;
+        foreach ($cartItems as $item) {
+            $count += $item['quantity'];
+            $total += $item['price'] * $item['quantity'];
+        }
+        return ["count" => $count, "total" => $total];
     }
 
 

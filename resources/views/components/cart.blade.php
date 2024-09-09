@@ -2,7 +2,7 @@
     <div class="tw-flex tw-flex-col lg:tw-flex-row tw-w-full">
         <div class="product-basket__image">
             <a href="{{ $order->link }}">
-                <img class="tw-size-[145px]" src="{{ $order->img }}" alt="">
+                <img class="tw-size-[145px]" src="{{ $order->product->img }}" alt="">
             </a>
         </div>
 
@@ -44,17 +44,18 @@
                         </div>
                     </div>
                     <div class="tw-flex tw-items-center tw-justify-between tw-mt-3 tw-w-full">
-                        <span class="tw-text-gray-500 lg:text-sm tw-text-sm font-medium">تخفیف:</span>
-                        <div class="tw-flex tw-items-end justify-end tw-flex-col tw-mr-3">
-                            <div class="badge tw-bg-[var(--sale-badge)]  rounded-pill">20%</div>
-                    @if ($order->discountPercentage!=0)
-                        <div class="tw-flex tw-items-center tw-justify-between tw-mt-3 tw-w-full">
-                            <span class="tw-text-gray-500 lg:text-sm tw-text-sm font-medium">تخفیف:</span>
-                            <div class="tw-flex tw-items-end justify-end tw-flex-col tw-mr-3">
-                                <div class="badge tw-bg-[var(--sale-badge)] rounded-pill">{{ $order->discountPercentage }}</div>
+
+                        @if ($order->discountPercentage!=0)
+                            <div class="tw-flex tw-items-center tw-justify-between tw-mt-3 tw-w-full">
+                                <span class="tw-text-gray-500 lg:text-sm tw-text-sm font-medium">تخفیف:</span>
+                                <div class="tw-flex tw-items-end justify-end tw-flex-col tw-mr-3">
+                                    <div class="badge tw-bg-[var(--sale-badge)] rounded-pill">{{ $order->discountPercentage }}</div>
+                                </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
+
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -69,71 +70,116 @@
             <div class="tw-w-full tw-overflow-x-auto tw-mt-4 tw-pb-6 tw-flex tw-items-center tw-snap-x tw-snap-mandatory">
                 <!-- START: Suggest box  ACTIVE -->
                 <!-- href is linked to cart-service.blade.php div -->
-                @if ($order->services->sewing)
-                    <a href="{{ isset($order->sewing) ? '#service_'.$order->sewing : $order->services->sewing->category->link ?? '/category/خدمت-دوخت' }}{{ !isset($order->sewing) ? '?sewing='.$order->id : '' }}" class="suggest-box {{ isset($order->sewing) ? 'active' : ''}}">
-                        <div class="tw-flex tw-flex-col tw-h-full">
-                            <p class="tw-text-sm">
-                                <span>
-                                    <i class="fa-solid fa-reel"></i>
-                                    آیا به خدمت دوخت برای پرده نیاز دارید ؟</span>
-                            </p>
-                            <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
-                                <button class="suggest-add-btn">
-                                    @if (isset($order->sewing))
-                                    <span class="added">افزوده شده</span>
-                                    @else
-                                    <span class="tw-font-semibold tw-ml-2">مشاهده</span>
-                                    @endif
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
+
+                @if (!$order->sewing && $order->product->services->where('type', 'sewing')->isNotEmpty())
+                    @php
+                        // گرفتن اولین سرویس دوخت مرتبط با این سفارش
+                        $sewingService = $order->product->services->where('type', 'sewing')->first();
+
+                        // بررسی اینکه سرویس دارای دسته‌بندی است و لینک معتبر دارد
+                        $sewingCategoryLink = $sewingService->categories()->exists() && !empty($sewingService->categories->first()->link)
+                            ? $sewingService->categories->first()->link
+                            : null; // مقدار null در صورت نبودن لینک معتبر
+                    @endphp
+
+                    @if ($sewingCategoryLink)
+                        <a href="{{ isset($order->sewing) ? '#service_'.$order->sewing : $sewingCategoryLink }}{{ !isset($order->sewing) ? '?sewing='.$order->id : '' }}" class="suggest-box {{ isset($order->sewing) ? 'active' : '' }}">
+                            <div class="tw-flex tw-flex-col tw-h-full">
+                                <p class="tw-text-sm">
+                                    <span>
+                                        <i class="fa-solid fa-reel"></i>
+                                        آیا به خدمت دوخت برای پرده نیاز دارید؟
+                                    </span>
+                                </p>
+                                <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                                    <button class="suggest-add-btn">
+                                        @if (isset($order->sewing))
+                                            <span class="added">افزوده شده</span>
+                                        @else
+                                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                                        @endif
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                @endif
-                <!-- END: Suggest box ACTIVE -->
-                @if ($order->services->installer)
-                    <a  href="{{ isset($order->installer) ? '#service_'.$order->installer : $order->services->installer->category->link ?? '/category/خدمت-نصب' }}{{ !isset($order->installer) ? '?installer='.$order->id : '' }}" class="suggest-box {{ isset($order->installer) ? 'active' : ''}}">
-                        <div class="tw-flex tw-flex-col tw-h-full">
-                            <p class="tw-text-sm">
-                                <span>
-                                    <i class="fa-solid fa-screwdriver-wrench"></i>
-                                    آیا به نصاب نیاز دارید ؟</span>
-                            </p>
-                            <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
-                                <button class="suggest-add-btn">
-                                    @if (isset($order->installer))
-                                        <span class="added">افزوده شده</span>
-                                    @else
-                                        <span class="tw-font-semibold tw-ml-2">مشاهده</span>
-                                    @endif
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    @endif
                 @endif
 
-                @if ($order->services->design)
-                    <a href="{{ isset($order->design) ? '#service_'.$order->design : $order->services->design->category->link ?? '/category/خدمت-طراحی' }}{{ !isset($order->design) ? '?design='.$order->id : '' }}" class="suggest-box {{ isset($order->design) ? 'active' : ''}}">
-                        <div class="tw-flex tw-flex-col tw-h-full">
-                            <p class="tw-text-sm">
-                                <span>
-                                    <i class="fa-solid fa-pen-ruler"></i>
-                                    آیا به خدمت  طراحی نیاز دارید ؟</span>
-                            </p>
-                            <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
-                                <button class="suggest-add-btn">
-                                    @if (isset($order->design))
-                                        <span class="added">افزوده شده</span>
-                                    @else
-                                        <span class="tw-font-semibold tw-ml-2">مشاهده</span>
-                                    @endif
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
+
+
+
+                @if (!$order->installer && $order->product->services->where('type', 'installer')->isNotEmpty())
+                    @php
+                        // گرفتن اولین سرویس نصاب مرتبط با این سفارش
+                        $installerService = $order->product->services->where('type', 'installer')->first();
+
+                        // بررسی اینکه سرویس دارای دسته‌بندی است و لینک معتبر دارد
+                        $installerCategoryLink = $installerService->categories()->exists() && !empty($installerService->categories->first()->link)
+                            ? $installerService->categories->first()->link
+                            : null; // مقدار null در صورت نبودن لینک معتبر
+                    @endphp
+
+                    @if ($installerCategoryLink)
+                        <a href="{{ isset($order->installer) ? '#service_'.$order->installer : $installerCategoryLink }}{{ !isset($order->installer) ? '?installer='.$order->id : '' }}" class="suggest-box {{ isset($order->installer) ? 'active' : '' }}">
+                            <div class="tw-flex tw-flex-col tw-h-full">
+                                <p class="tw-text-sm">
+                                    <span>
+                                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                                        آیا به نصاب نیاز دارید؟
+                                    </span>
+                                </p>
+                                <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                                    <button class="suggest-add-btn">
+                                        @if (isset($order->installer))
+                                            <span class="added">افزوده شده</span>
+                                        @else
+                                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                                        @endif
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    @endif
                 @endif
+
+                @if (!$order->design && $order->product->services->where('type', 'design')->isNotEmpty())
+                    @php
+                        // گرفتن اولین سرویس طراحی مرتبط با این سفارش
+                        $designService = $order->product->services->where('type', 'design')->first();
+
+                        // بررسی اینکه سرویس دارای دسته‌بندی است و لینک معتبر دارد
+                        $designCategoryLink = $designService->categories()->exists() && !empty($designService->categories->first()->link)
+                            ? $designService->categories->first()->link
+                            : null; // مقدار null در صورت نبودن لینک معتبر
+                    @endphp
+
+                    @if ($designCategoryLink)
+                        <a href="{{ isset($order->design) ? '#service_'.$order->design : $designCategoryLink }}{{ !isset($order->design) ? '?design='.$order->id : '' }}" class="suggest-box {{ isset($order->design) ? 'active' : '' }}">
+                            <div class="tw-flex tw-flex-col tw-h-full">
+                                <p class="tw-text-sm">
+                                    <span>
+                                        <i class="fa-solid fa-pen-ruler"></i>
+                                        آیا به خدمت طراحی نیاز دارید؟
+                                    </span>
+                                </p>
+                                <div class="tw-flex-grow-0 tw-mt-auto tw-mr-auto">
+                                    <button class="suggest-add-btn">
+                                        @if (isset($order->design))
+                                            <span class="added">افزوده شده</span>
+                                        @else
+                                            <span class="tw-font-semibold tw-ml-2">مشاهده</span>
+                                        @endif
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    @endif
+                @endif
+
+
             </div>
         </div>
     @endif

@@ -15,7 +15,7 @@
                 <div class="col-md-12 mb-4">
                     <label for="deliveryType1" class="payment-method">
                         <div class="tw-flex tw-items-start">
-                            <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="deliveryType" id="deliveryType1" value="home_delivery" {{($orders->cart->deliveryType=='home_delivery') ? 'checked' :''}}>
+                            <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="deliveryType" id="deliveryType1" value="home_delivery" {{($orders->basket()->cart->deliveryType=='home_delivery') ? 'checked' :''}}>
                             <i class="fas fa-shipping-fast  fs-3 tw-h-4"></i>
 
                         </div>
@@ -29,7 +29,7 @@
 
                     <label for="deliveryType2" class="payment-method">
                         <div class="tw-flex tw-items-start">
-                            <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="deliveryType" id="deliveryType2" value="store_delivery" {{($orders->cart->deliveryType=='store_delivery') ? 'checked' :''}}>
+                            <input class="form-check-input tw-ml-3 tw-w-4" type="radio" name="deliveryType" id="deliveryType2" value="store_delivery" {{($orders->basket()->cart->deliveryType=='store_delivery') ? 'checked' :''}}>
                             <i class="fa-solid fa-shop fs-3 tw-h-4"></i>
                         </div>
                         <a href="/delivery/store_delivery" style="color:black">
@@ -76,7 +76,7 @@
                 <div class="border px-3 py-1 pb-3 tw-rounded-xl mt-5">
                     <form class="tab-content mt-4" name="deliveryForm" id="deliveryForm" method="post" action="{{ route('delivery.store')}}">
                         @csrf
-                        <input type="hidden" name="deliveryType" value="{{ $orders->cart->deliveryType }}">
+                        <input type="hidden" name="deliveryType" value="{{ $orders->basket()->cart->deliveryType }}">
                         <ul class="nav nav-tabs mb-3" id="" role="tablist">
                             @foreach ($availableTime['dates'] as $key => $date)
                                 <li class="nav-item" role="presentation">
@@ -121,10 +121,10 @@
         <div class="all-price d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
             <p class="fs-7 fw-bold">
                 قیمت کالاها
-                <span>({{ $orders->cart->count  }})</span>
+                <span>({{ $orders->basket()->cart->count  }})</span>
             </p>
             <p class="fs-7 gray-600 fw-bold">
-            {{ $orders->cart->total  }} تومان
+            {{ $orders->basket()->cart->total  }} تومان
             </p>
         </div>
         <!--                            All Prices:end-->
@@ -135,7 +135,7 @@
                 تخفیف
             </p>
             <p class="fs-7 gray-600 fw-bold">
-                0 تومان
+                {{ $orders->basket()->cart->discount_amount}} تومان
             </p>
         </div>
         <!--                            All Prices Discounted:end-->
@@ -145,7 +145,7 @@
                 هزینه ارسال
             </p>
             <p class="fs-7 gray-600 fw-bold">
-                {{ $orders->cart->deliveryCost }} تومان
+                {{ $orders->basket()->cart->deliveryCost }} تومان
             </p>
         </div>
         <!--                            All Prices delivery:end-->
@@ -155,7 +155,7 @@
                 مبلغ قابل پرداخت
             </p>
             <p class="fs-6 fw-bold text-primary">
-                <b id="total">{{ $orders->cart->totalPayed  }}</b> تومان
+                <b id="total">{{ $orders->basket()->cart->totalPayed  }}</b> تومان
             </p>
         </div>
         <!--                            Purchase:end-->

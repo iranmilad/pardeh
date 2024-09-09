@@ -199,10 +199,10 @@
         <div class="all-price d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
             <p class="fs-7 fw-bold">
                 قیمت کالاها
-                <span>({{ $orders->cart->count  }})</span>
+                <span>({{ $orders->basket()->cart->count  }})</span>
             </p>
             <p class="fs-7 gray-600 fw-bold">
-            {{ $orders->cart->total  }} تومان
+            {{ $orders->basket()->cart->total  }} تومان
             </p>
         </div>
         <!--                            All Prices:end-->
@@ -213,7 +213,7 @@
                 تخفیف
             </p>
             <p class="fs-7 gray-600 fw-bold">
-                0 تومان
+                {{ $orders->basket()->cart->discount_amount}} تومان
             </p>
         </div>
         <!--                            All Prices Discounted:end-->
@@ -224,7 +224,7 @@
                 مبلغ قابل پرداخت
             </p>
             <p class="fs-6 fw-bold  tw-text-[var(--primary)]">
-                {{ $orders->cart->total  }} تومان
+                {{ $orders->basket()->cart->totalPayed  }} تومان
             </p>
         </div>
         <!--                            Purchase:end-->

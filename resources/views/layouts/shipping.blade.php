@@ -12,25 +12,25 @@ $notActive = "gray-700 pay basket";
         <div class="payment-header border-radius-xl my-3 border-0 mb-5">
             <!--            Payment Timeline:start-->
             <div class="payment-timeline d-flex shipping justify-content-center align-items-baseline my-3">
-                <a href="/cart" class="{{ Route::current()->uri() == 'cart' ? $activeClass : $notActive }}  mx-3 d-flex justify-content-between align-items-center">
+                <a href="/cart" class="{{ Route::is("cart*") ? $activeClass : $notActive }}  mx-3 d-flex justify-content-between align-items-center">
                     <p>
                         <i class="fa fa-shopping-cart rotate-3d"></i>
                         سبد خرید
                     </p>
                 </a>
-                <a href="/shipping" class="{{ Route::current()->uri() == 'shipping' ? $activeClass : $notActive }} mx-3 d-flex justify-content-between align-items-center">
+                <a href="/shipping" class="{{ Route::is("shipping*")  ? $activeClass : $notActive }} mx-3 d-flex justify-content-between align-items-center">
                     <p>
                         <i class="fa fa-truck rotate-3d"></i>
                         <span>اطلاعات مشتری</span>
                     </p>
                 </a>
-                <a href="/delivery" class="{{ Route::current()->uri() == 'delivery' ? $activeClass : $notActive }} mx-3 d-flex justify-content-between align-items-center">
+                <a href="/delivery" class="{{ Route::is("delivery*") ? $activeClass : $notActive }} mx-3 d-flex justify-content-between align-items-center">
                     <p>
                         <i class="fa fa-calendar-clock rotate-3d"></i>
                         <span>زمان تحویل</span>
                     </p>
                 </a>
-                <a href="/payment" class="{{ Route::current()->uri() == 'payment' ? $activeClass : $notActive }} mx-3 d-flex justify-content-between align-items-center">
+                <a href="/payment" class="{{  Route::is('payment*')  ? $activeClass : $notActive }} mx-3 d-flex justify-content-between align-items-center">
                     <p>
                         <i class="fa fa-truck rotate-3d"></i>
                         <span>پرداخت</span>

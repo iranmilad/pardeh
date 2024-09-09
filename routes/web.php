@@ -16,6 +16,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
@@ -234,6 +235,9 @@ Route::get('/terms', function () {
 Route::group(['middleware' => ['auth']],function(){
     Route::get('/shipping', [OrderController::class,'shipping'])->name('shipping');
     Route::get('/cart', [OrderController::class,'showCart'])->name('cart');
+    Route::post('/{order}/apply-discount', [DiscountController::class, 'applyDiscount'])->name('applyDiscount');
+    Route::post('/{order}/remove-discount', [DiscountController::class, 'removeDiscount'])->name('removeDiscount');
+
     Route::post('/shipping', [OrderController::class,'shippingStore'])->name('shipping.store');
     Route::get('/delivery/{deliveryType?}', [OrderController::class,'delivery'])->name('delivery');
     Route::post('/delivery', [OrderController::class,'storeDelivery'])->name('delivery.store');

@@ -65,7 +65,7 @@
                     @endif
 
                     <div class="d-grid gap-2 mt-3">
-                        <button type="submit" class="btn custom-btn-primary btn-block border-radius-xl fw-bold tw-text-white">ادامه</button>
+                        <button type="submit" class="btn btn-primary btn-block border-radius-xl fw-bold tw-text-white">ادامه</button>
                     </div>
                 </form>
                 <p class="text-center mt-3 gray-600 fs-7">ورود شما به معنای پذیرش <a href="/terms" class="nav-link  d-inline-block text-dark fw-bold p-0"><span>شرایط و قوانین</span></a> <span class="">{{config('app.name')}}</span> است.</p>

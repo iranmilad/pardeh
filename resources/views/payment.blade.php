@@ -169,10 +169,10 @@
         <div class="all-price d-flex justify-content-between align-items-center mb-3 px-3 pt-2">
             <p class="fs-7 fw-bold">
                 قیمت کالاها
-                <span>({{ $orders->cart->count  }})</span>
+                <span>({{ $orders->basket()->cart->count  }})</span>
             </p>
             <p class="fs-7 gray-600 fw-bold">
-            {{ $orders->cart->total  }} تومان
+            {{ $orders->basket()->cart->total  }} تومان
             </p>
         </div>
         <!--                            All Prices:end-->
@@ -183,7 +183,7 @@
                 تخفیف
             </p>
             <p class="fs-7 gray-600 fw-bold">
-                0 تومان
+                {{ $orders->basket()->cart->discount_amount}} تومان
             </p>
         </div>
         <!--                            All Prices Discounted:end-->
@@ -193,7 +193,7 @@
                 هزینه ارسال
             </p>
             <p class="fs-7 gray-600 fw-bold">
-                {{ $orders->cart->deliveryCost }} تومان
+                {{ $orders->basket()->cart->deliveryCost }} تومان
             </p>
         </div>
         <!--                            All Prices delivery:end-->
@@ -204,7 +204,7 @@
                 کیف پول اعتباری
             </p>
             <p class="fs-7 gray-600 fw-bold">
-                {{ $orders->cart->availableCreditPlan }} تومان
+                {{ $orders->basket()->cart->availableCreditPlan }} تومان
             </p>
         </div>
         <!--                            All Prices delivery:end-->
@@ -215,7 +215,7 @@
                 استناد پرداختی
             </p>
             <p class="fs-7 gray-600 fw-bold">
-                {{ $orders->cart->availableCheck }} تومان
+                {{ $orders->basket()->cart->availableCheck }} تومان
             </p>
         </div>
         <!--                            All Prices delivery:end-->
@@ -226,7 +226,7 @@
                 مبلغ قابل پرداخت
             </p>
             <p class="fs-6 fw-bold text-primary">
-                <b id="total">{{ $orders->cart->totalPayed  }}</b> تومان
+                <b id="total">{{ $orders->basket()->cart->totalPayed  }}</b> تومان
             </p>
         </div>
         <!--                            Purchase:end-->
