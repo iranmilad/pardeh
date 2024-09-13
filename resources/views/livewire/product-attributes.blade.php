@@ -402,69 +402,63 @@
             @endforeach
 
             <!-- START: OTHER OPTIONS Count -->
+
+
+
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{ $product->attributes->count()+1  }}" aria-expanded="true" aria-controls="collapse">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col{{ $product->attributes->count()+1 }}" aria-expanded="true" aria-controls="collapse">
                         <div class="stepNum">
-                            <span>{{ $product->attributes->count()+1  }}</span>
+                            <span>{{ $product->attributes->count()+1 }}</span>
                             <i class="fa-regular fa-circle-exclamation"></i>
                         </div>
-                        تعداد سفارش
+                        @if ($product->measurement_unit == 'meter')
+                            متراژ سفارش
+                        @elseif ($product->measurement_unit == 'centimeter')
+                            سانتی‌متر سفارش
+                        @elseif ($product->measurement_unit == 'block')
+                            تعداد قواره سفارش
+                        @else
+                            تعداد سفارش
+                        @endif
                     </button>
                 </h2>
-                <div id="col{{ $product->attributes->count()+1  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="col{{ $product->attributes->count()+1 }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="alert alert-danger tw-text-sm">
                             <i class="fa-regular fa-circle-exclamation"></i>
-                            لطفا تعداد مورد نظر را انتخاب کنید
+                            لطفا
+                            @if ($product->measurement_unit == 'meter')
+                                متراژ
+                            @elseif ($product->measurement_unit == 'centimeter')
+                                سانتی‌متر
+                            @elseif ($product->measurement_unit == 'block')
+                                تعداد قواره
+                            @else
+                                تعداد
+                            @endif
+                            مورد نظر را انتخاب کنید.
                         </div>
                         <div class="mb-3 tw-w-36">
-
                             <label for="count_input" class="title form-label">
-                                تعداد سفارش
+                                @if ($product->measurement_unit == 'meter')
+                                    متراژ سفارش (متر)
+                                @elseif ($product->measurement_unit == 'centimeter')
+                                    مقدار سفارش (سانتی‌متر)
+                                @elseif ($product->measurement_unit == 'block')
+                                    تعداد قواره سفارش
+                                @else
+                                    تعداد سفارش
+                                @endif
                                 <a href="#"><i class="fa-regular fa-circle-question"></i></a>
                             </label>
-                            <input data-real="true" name="param[quantity]" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="عدد ">
+                            <input data-real="true" name="param[quantity]" type="number" class="form-control tw-w-full" min="0" value="1" id="count_input" placeholder="@if($product->measurement_unit == 'meter') متر @elseif($product->measurement_unit == 'centimeter') سانتی‌متر @elseif($product->measurement_unit == 'block') قواره @else عدد @endif">
                         </div>
-                        {{-- <div class="box">
-                            <div class="row mt-2">
-                                <div class="tw-hidden lg:tw-block col-lg-2">
-                                    <i class="fa-regular fa-shield-check tw-text-7xl tw-text-amber-500"></i>
-                                </div>
-                                <div class="col-12 col-lg-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="warranty" value="1warranty" id="warranty1">
-                                        <div>
-                                            <label class="form-check-label" for="warranty1">
-                                                3 سال گارانتی محدود
-                                            </label>
-                                            <span class="tw-text-[var(--primary)] ms-3">رایگان</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="warranty" value="2warranty" id="warranty2" checked>
-                                        <div>
-                                            <label class="form-check-label" for="warranty2">
-                                                5 سال گارانتی محدود
-                                            </label>
-                                            <span class="tw-text-[var(--primary)] ms-3">60 هزارتومان</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="warranty" value="3warranty" id="warranty3" checked>
-                                        <div>
-                                            <label class="form-check-label" for="warranty3">
-                                                5 سال گارانتی نامحدود
-                                            </label>
-                                            <span class="tw-text-[var(--primary)] ms-2">120 هزارتومان</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
+
+
 
         </div>
         <!-- END: OPTION -->

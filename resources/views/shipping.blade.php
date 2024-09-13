@@ -231,7 +231,7 @@
 
         <!--                            Checkout Btn:start-->
         <div class="d-grid gap-2 p-3">
-            <button type="submit" id="shipping-pay" class="btn tw-bg-primary tw-text-white border-radius-xl">ادامه فرایند خرید</button>
+            <button type="submit" id="shipping-pay" class="btn custom-btn-primary border-radius-xl">ادامه فرایند خرید</button>
         </div>
         <!--                            Checkout Btn:end-->
     </div>

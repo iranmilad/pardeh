@@ -244,7 +244,7 @@ export const MiniCartBox = ({items,removeFunc,updateFunc}) => {
                                 <div className="tw-flex tw-items-center">
                                     <span className="tw-text-gray-500 tw-text-sm">قیمت:</span>
                                     <span className="tw-text-gray-800 tw-text-sm">
-                                    {item.sale_price !== 0 ? item.sale_price : item.price}
+                                    {item.sale_price !== 0  && item.sale_price !== null ? item.sale_price : item.price}
                                     <svg style="width: 16px; height: 16px; fill: var(--undefined);">
 
 

@@ -85,7 +85,7 @@
                         <div class="card-body" id="main-cart-price-details">
                             <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4">
                                 <span class="tw-text-gray-500">زمان تحویل : </span>
-                                <span>7 روز</span>
+                                <span>{{ round($product->time_per_unit/24,0)+2 }} روز</span>
                             </div>
                             @if ($product->discountPercentage!=0)
                                 <div class="tw-flex tw-items-center tw-text-sm tw-justify-between tw-py-4 border-top">
@@ -214,7 +214,7 @@
                             <span class="tw-text-gray-600 tw-font-semibold">
                                 <i class="fa-solid fa-truck-clock"></i>
                                 زمان تحویل: </span>
-                            <span class="tw-font-semibold tw-text-gray-700 time_delivery_sticky_tag">7 روز </span>
+                            <span class="tw-font-semibold tw-text-gray-700 time_delivery_sticky_tag">{{ round($product->time_per_unit/24,0)+2 }} روز </span>
                         </div>
                     </div>
                 </div>

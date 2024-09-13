@@ -22,7 +22,7 @@
                         <a href="/delivery/home_delivery" style="color:black">
                             <div class="tw-flex tw-items-start tw-flex-col tw-mr-3">
                                 <span class="tw-text-base fw-bold ">تحویل در محل (تحویل 3 تا 7 روزکاری)</span>
-                                <span class="tw-text-sm text-start"><b id="deliveryType_price">250000</b> تومان</span>
+                                <span class="tw-text-sm text-start"><b id="deliveryType_price">{{($orders->basket()->cart->deliveryType=='home_delivery') ?  $orders->basket()->cart->deliveryCost  . " تومان ": "" }}</b> </span>
                             </div>
                         </a>
                     </label>
@@ -35,12 +35,10 @@
                         <a href="/delivery/store_delivery" style="color:black">
                             <div class="tw-flex tw-items-start tw-flex-col tw-mr-3">
                                 <span class="tw-text-base fw-bold ">تحویل در فروشگاه</span>
-                                <span class="tw-text-sm text-start"> رایگان</span>
+                                <span class="tw-text-sm text-start"> {{($orders->basket()->cart->deliveryType=='store_delivery') ? 'رایگان' :''}}</span>
                             </div>
                         </a>
                         </label>
-
-
 
                 </div>
                 <!-- <div class="tw-center tw-w-max mb-4">

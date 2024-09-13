@@ -8,15 +8,17 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
 
+use App\Traits\DeliveryTimeTrait;
 use Illuminate\Support\Facades\Log;
 use App\Models\OrderItemCombination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
-use App\Traits\DeliveryTimeTrait;
+use App\Traits\ShippingCostAndTimeCalculator;
 
 class OrderController extends Controller
 {
     use DeliveryTimeTrait;
+    use ShippingCostAndTimeCalculator;
 
     public function index()
     {
@@ -323,6 +325,22 @@ class OrderController extends Controller
         }
         return $totalTimeline;
     }
+    private function editCartArray($cartItems,$id,$newKey,$newValue) : array
+    {
+
+        if ($cartItems[$id]) {
+            if(!is_null($newValue)){
+                // اضافه کردن کلید و مقدار جدید به ردیف فعلی
+                $cartItems[$id][$newKey] = $newValue;
+            }
+            else{
+                unset($cartItems[$id][$newKey]);
+            }
+        }
+
+        return $cartItems;
+    }
+
     // Helper Methods
     private function updateCartArray(array $cartItems, array $params, $randomNumber, $remove = false) {
         if (isset($params['installer'])) {
@@ -346,9 +364,75 @@ class OrderController extends Controller
 
         return $cartItems;
     }
-    private function processProductAttributes(string $orderItemId=null, Product $product, array $param)
-    {
 
+    private function handleAuthenticatedAddToCart(Request $request, array $param)
+    {
+        $user = Auth::user();
+        $order = Order::where(['user_id' => $user->id, 'status' => 'basket'])->latest()->first() ?: $this->firstStore();
+        $product = Product::find($param['product']);
+        $randomNumber = rand(1000000, 9999999);
+
+        // زمان پایه محصول
+        $baseTime = $product->time_per_unit ?? 0;
+
+        // ایجاد OrderItem
+        $orderItem = new OrderItem([
+            'id' => $randomNumber,
+            'order_id' => $order->id,
+            'product_id' => $param['product'],
+            'quantity' => $param['quantity'] ?? 1,
+            'price' => $product->price,
+            'sale_price' => $product->sale_price,
+            'total' => ($product->sale_price ?? $product->price) * ($param['quantity'] ?? 1),
+        ]);
+        $orderItem->save();
+
+        // پردازش ویژگی‌های محصول
+        $attributesData = $this->processProductAttributes($orderItem->id, $product, $param);
+
+        // محاسبه زمان هر واحد (با افزودن زمان ویژگی‌ها به زمان پایه)
+        $timePerUnit = ($attributesData['time_per_unit'] ?? 0) + $baseTime;
+
+        // محاسبه زمان کل بر اساس تعداد
+        $timeTotal = $timePerUnit * ($param['quantity'] ?? 1);
+
+        // به‌روزرسانی زمان در OrderItem
+        $orderItem = OrderItem::find($randomNumber);
+        $orderItem->time_per_unit = $timePerUnit;
+        $orderItem->time_total = $timeTotal;
+        $orderItem->save();
+
+        // به‌روزرسانی installer, designer, sewing اگر موجود بود
+        if (isset($param['installer']) && $param['installer'] != null) {
+            $installerOrderItem = OrderItem::find($param['installer']);
+            $installerOrderItem->installer = $randomNumber;
+            $installerOrderItem->save();
+        }
+
+        if (isset($param['designer']) && $param['designer'] != null) {
+            $designerOrderItem = OrderItem::find($param['designer']);
+            $designerOrderItem->designer = $randomNumber;
+            $designerOrderItem->save();
+        }
+
+        if (isset($param['sewing']) && $param['sewing'] != null) {
+            $sewingOrderItem = OrderItem::find($param['sewing']);
+            $sewingOrderItem->sewing = $randomNumber;
+            $sewingOrderItem->save();
+        }
+
+        // سبد خرید را به‌روزرسانی کنید
+        $orders = $order->basket();
+
+        return response()->json([
+            "status" => "success",
+            "message" => "محصول با موفقیت به سبد خرید اضافه شد.",
+            "cart" => ["count" => $orders->cart->count],
+        ]);
+    }
+
+    private function processProductAttributes(string $orderItemId = null, Product $product, array $param)
+    {
         $basePrice = $product->price;
         $baseSalePrice = $product->sale_price ?? $basePrice;
         $independentAttributes = [];
@@ -362,38 +446,45 @@ class OrderController extends Controller
         $selectedAttributes = [];
         $selectedDependentAttributes = [];
 
+        $totalTimePerUnit = 0; // متغیر برای محاسبه‌ی زمان کل هر واحد محصول
 
+        // دسته‌بندی ویژگی‌ها
         foreach ($product->attributes as $attribute) {
             if ($attribute->independent) {
                 $independentAttributes[] = $attribute;
             } else {
                 $dependentAttributes[] = $attribute;
             }
-        } // Process independent attributes
+        }
 
+        // پردازش ویژگی‌های مستقل
         foreach ($independentAttributes as $attribute) {
             $selectedValue = $param[$attribute->id] ?? null;
-
 
             if ($selectedValue) {
                 $combination = $product->getIndependentCombinationDetails($attribute->id, $selectedValue);
 
                 if ($combination) {
-
                     $independentPriceAdjustment += $combination->price;
                     $independentSalePriceAdjustment += $combination->sale_price ?? $combination->price;
+
+                    // افزودن زمان تولید هر واحد برای ترکیب مستقل
+                    $totalTimePerUnit += $combination->time_per_unit;
+
                     if ($orderItemId) {
-                        OrderItemCombination::create(['order_item_id' => $orderItemId, 'combination_id' => $combination->id,]);
+                        OrderItemCombination::create([
+                            'order_item_id' => $orderItemId,
+                            'combination_id' => $combination->id,
+                        ]);
                     }
-                }
-                else {
+                } else {
                     $independentStockAvailable = false;
                     break;
                 }
             }
         }
 
-        // Process dependent attributes
+        // پردازش ویژگی‌های وابسته
         foreach ($dependentAttributes as $attribute) {
             $selectedValue = $param[$attribute->id] ?? null;
             if ($selectedValue) {
@@ -401,39 +492,40 @@ class OrderController extends Controller
             }
         }
 
-
         if (!empty($selectedDependentAttributes)) {
             $combination = $product->getCombinationDetails($selectedDependentAttributes);
-
 
             if ($combination) {
                 $dependentPriceAdjustment += $combination->price;
                 $dependentSalePriceAdjustment += $combination->sale_price ?? $combination->price;
 
-                if ($orderItemId) {
+                // افزودن زمان تولید هر واحد برای ترکیب وابسته
+                $totalTimePerUnit += $combination->time_per_unit;
 
-                    OrderItemCombination::create(['order_item_id' => $orderItemId, 'combination_id' => $combination->id,]);
+                if ($orderItemId) {
+                    OrderItemCombination::create([
+                        'order_item_id' => $orderItemId,
+                        'combination_id' => $combination->id,
+                    ]);
                 }
-            }
-            else {
+            } else {
                 $dependentStockAvailable = false;
             }
         }
 
-        return ['independentPriceAdjustment' => $independentPriceAdjustment, 'independentSalePriceAdjustment' => $independentSalePriceAdjustment, 'independentStockAvailable' => $independentStockAvailable, 'dependentPriceAdjustment' => $dependentPriceAdjustment, 'dependentSalePriceAdjustment' => $dependentSalePriceAdjustment, 'dependentStockAvailable' => $dependentStockAvailable, 'selectedAttributes' => $selectedAttributes];
+        return [
+            'independentPriceAdjustment' => $independentPriceAdjustment,
+            'independentSalePriceAdjustment' => $independentSalePriceAdjustment,
+            'independentStockAvailable' => $independentStockAvailable,
+            'dependentPriceAdjustment' => $dependentPriceAdjustment,
+            'dependentSalePriceAdjustment' => $dependentSalePriceAdjustment,
+            'dependentStockAvailable' => $dependentStockAvailable,
+            'selectedAttributes' => $selectedAttributes,
+            'time_per_unit' => $totalTimePerUnit, // بازگرداندن زمان هر واحد
+        ];
     }
-    private function handleAuthenticatedAddToCart(Request $request, array $param)
-    {
-        $user = Auth::user();
-        $order = Order::where(['user_id' => $user->id, 'status' => 'basket'])->latest()->first() ?: $this->firstStore();
-        $product = Product::find($param['product']);
-        $randomNumber = rand(1000000, 9999999);
-        $orderItem = OrderItem::create(['id' => $randomNumber, 'order_id' => $order->id, 'product_id' => $param['product'], 'quantity' => $param['quantity'] ?? 1, 'price' => $product->price, 'sale_price' => $product->sale_price, 'total' => ($product->sale_price ?? $product->price) * ($param['quantity'] ?? 1),]);
-        $this->processProductAttributes($orderItem, $product, $param);
-        $this->updateOrderItemAttributes($orderItem, $param);
-        $orders = $order->basket();
-        return response()->json(["status" => "success", "message" => "محصول با موفقیت به سبد خرید اضافه شد.", "cart" => ["count" => $orders->cart->count],]);
-    }
+
+
     private function handleGuestAddToCart(Request $request, array $param)
     {
         $param = $request->input('param');
@@ -484,12 +576,25 @@ class OrderController extends Controller
         $orderItem = OrderItem::find($id);
 
         if ($orderItem) {
+            // حذف آیتم اصلی
             $orderItem->delete();
+
+            // جستجو در تمامی سفارش‌ها برای یافتن آیتم‌هایی که دارای id در ستون sewing, designer یا installer هستند
+            OrderItem::Where('designer', $id)
+                ->update(['designer' => null]);
+
+            OrderItem::where('sewing', $id)
+                ->update(['sewing' => null]);
+
+            OrderItem::Where('installer', $id)
+                ->update(['installer' => null]);
         }
 
+        // دریافت سبد خرید کاربر
         $order = $this->getAuthenticatedOrder();
         $orders = $order->basket();
 
+        // پاسخ JSON
         $response = [
             "status" => "success",
             "message" => "محصول با موفقیت از سبد خرید حذف شد.",
@@ -499,6 +604,8 @@ class OrderController extends Controller
 
         return response()->json($response);
     }
+
+
     private function removeItemGuest(Request $request, $id)
     {
         // Retrieve the cart from the cookie and decode it

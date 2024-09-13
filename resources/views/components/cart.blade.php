@@ -1,7 +1,7 @@
 <div class="product-basket tw-py-5"  id="{{ 'service_'.$order->id }}">
     <div class="tw-flex tw-flex-col lg:tw-flex-row tw-w-full">
         <div class="product-basket__image">
-            <a href="{{ $order->link }}">
+            <a href="{{ $order->product->link }}">
                 <img class="tw-size-[145px]" src="{{ $order->product->img }}" alt="">
             </a>
         </div>
@@ -22,12 +22,27 @@
             </div>
 
             <div class="tw-flex tw-flex-col lg:tw-flex-row lg:tw-items-center tw-justify-between tw-mt-4">
-                <div class="product-counter"><small class="tw-ml-3 tw-text-sm">تعداد:</small>
+                <div class="product-counter">
+                    <small class="tw-ml-3 tw-text-sm">
+                        @if ($order->product->measurement_unit == 'meter')
+                            متراژ سفارش:
+                        @elseif ($order->product->measurement_unit == 'centimeter')
+                            سانتی‌متر سفارش:
+                        @elseif ($order->product->measurement_unit == 'block')
+                            تعداد قواره سفارش:
+                        @else
+                            تعداد سفارش:
+                        @endif
+                    </small>
                     <div class="product-counter-inner has-toast" data-max="2" data-min="1">
-                        <span>عدد</span>
-                        <button class="count-minus d-none"  title="" target="_self" style="opacity: 0.3;"><i class="fal fa-minus font-semibold"></i></button>
+                        <span>{{ $order->product->measurement_unit == 'meter' ? 'متر' : ($order->product->measurement_unit == 'centimeter' ? 'سانتی‌متر' : ($order->product->measurement_unit == 'block' ? 'قواره' : 'عدد')) }}</span>
+                        <button class="count-minus d-none" title="" target="_self" style="opacity: 0.3;">
+                            <i class="fal fa-minus font-semibold"></i>
+                        </button>
                         <input class="item-counter basket-items" type="number" id="ProductCount" min="1" value="{{ $order->quantity }}" name="count">
-                        <button class="count-plus d-none"  title="" target="_self"><i class="fal fa-plus font-semibold"></i></button>
+                        <button class="count-plus d-none" title="" target="_self">
+                            <i class="fal fa-plus font-semibold"></i>
+                        </button>
                     </div>
                 </div>
                 <div>
@@ -37,15 +52,13 @@
                             @if ($order->sale_price)
                                 <b class="lg:text-sm tw-text-sm tw-text-[var(--primary)] tw-line-through">{{ $order->price }} تومان</b>
                                 <b class="lg:text-sm tw-text-xs tw-text-gray-500">{{ $order->sale_price }} تومان</b>
-
                             @else
                                 <b class="lg:text-sm tw-text-xs tw-text-gray-500">{{ $order->price }} تومان</b>
                             @endif
                         </div>
                     </div>
                     <div class="tw-flex tw-items-center tw-justify-between tw-mt-3 tw-w-full">
-
-                        @if ($order->discountPercentage!=0)
+                        @if ($order->discountPercentage != 0)
                             <div class="tw-flex tw-items-center tw-justify-between tw-mt-3 tw-w-full">
                                 <span class="tw-text-gray-500 lg:text-sm tw-text-sm font-medium">تخفیف:</span>
                                 <div class="tw-flex tw-items-end justify-end tw-flex-col tw-mr-3">
@@ -53,14 +66,13 @@
                                 </div>
                             </div>
                         @endif
-
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
-    @if (!$order->service)
+    @if (!$order->product->service)
         <div class="tw-w-full border-top tw-pt-3 tw-mt-4 tour-guide">
 
 
@@ -71,7 +83,7 @@
                 <!-- START: Suggest box  ACTIVE -->
                 <!-- href is linked to cart-service.blade.php div -->
 
-                @if (!$order->sewing && $order->product->services->where('type', 'sewing')->isNotEmpty())
+                @if ($order->product->services->where('type', 'sewing')->isNotEmpty())
                     @php
                         // گرفتن اولین سرویس دوخت مرتبط با این سفارش
                         $sewingService = $order->product->services->where('type', 'sewing')->first();
@@ -80,6 +92,9 @@
                         $sewingCategoryLink = $sewingService->categories()->exists() && !empty($sewingService->categories->first()->link)
                             ? $sewingService->categories->first()->link
                             : null; // مقدار null در صورت نبودن لینک معتبر
+
+                        //dd($order);
+
                     @endphp
 
                     @if ($sewingCategoryLink)
@@ -106,10 +121,7 @@
                     @endif
                 @endif
 
-
-
-
-                @if (!$order->installer && $order->product->services->where('type', 'installer')->isNotEmpty())
+                @if ($order->product->services->where('type', 'installer')->isNotEmpty())
                     @php
                         // گرفتن اولین سرویس نصاب مرتبط با این سفارش
                         $installerService = $order->product->services->where('type', 'installer')->first();
@@ -144,7 +156,7 @@
                     @endif
                 @endif
 
-                @if (!$order->design && $order->product->services->where('type', 'design')->isNotEmpty())
+                @if ($order->product->services->where('type', 'design')->isNotEmpty())
                     @php
                         // گرفتن اولین سرویس طراحی مرتبط با این سفارش
                         $designService = $order->product->services->where('type', 'design')->first();
