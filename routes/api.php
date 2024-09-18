@@ -582,6 +582,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/file/upload', [FileController::class,'upload'])->name('api.dashboard.upload');
     Route::delete('/file/remove', [FileController::class,'remove'])->name('api.dashboard.remove');
+    Route::post("/product",  [ProductController::class,'getTotalPrice'])->name('api.product.getTotalPrice');
 });
 
-Route::post("/product",  [ProductController::class,'getTotalPrice'])->name('api.product.getTotalPrice');

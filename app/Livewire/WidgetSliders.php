@@ -19,7 +19,7 @@ class WidgetSliders extends Component
 
         $sliderName = $this->options['name'] ?? null;
         if ($this->type == "selection") {
-            $imageIds = $this->options['images'] ?? [];
+
             $this->sliders = Slider::where('name', $sliderName)->get();
         }
         else{

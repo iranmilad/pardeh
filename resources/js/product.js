@@ -32,6 +32,9 @@ inputs
         $.ajax({
             type: "POST",
             url: "/api/product",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: data,
             beforeSend: function () {
                 block.block();

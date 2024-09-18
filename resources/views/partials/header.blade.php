@@ -9,7 +9,7 @@
                     <i class="fa-regular fa-heart"></i>
                 </a>
             </div>
-            <a href="/"><img class="navbar-logo" src="{{ Vite::asset('resources/images/logo.svg') }}" alt=""></a>
+            <a href="/"><img class="navbar-logo" src="{{ $setting->settings['logo'] }}" alt=""></a>
             <div class="tw-hidden lg:tw-block pre-main-search">
                 @livewire('search')
             </div>

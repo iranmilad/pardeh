@@ -119,8 +119,8 @@ class WidgetSeeder extends Seeder
         ]);
 
         $data = [
-            '{"title":"","name":"Slider 1","link":"","type":"template1","count":"2","data":"selection","images":[1,2]}',
-            '{"title":"","name":"Slider 2","link":"","type":"template1","count":"4","data":"selection","images":[1,2,3,4]}',
+            '{"title":"","name":"Slider 1","link":"","type":"template1","data":"selection","images":[1,2]}',
+            '{"title":"","name":"Slider 2","link":"","type":"template1","data":"selection","images":[1,2,3,4]}',
         ];
         // Create sample data
         BlockWidget::create([

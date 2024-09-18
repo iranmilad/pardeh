@@ -19,12 +19,7 @@ class WidgetBanners extends Component
 
         if ($this->type == "selection") {
             $bannerName = $this->options['name'] ?? null;
-            $imageIds = $this->options['images'] ?? [];
-
-            $this->banners = Banner::where('name', $bannerName)
-                ->whereHas('images', function ($query) use ($imageIds) {
-                    $query->whereIn('id', $imageIds);
-                })->get();
+            $this->banners = Banner::where('name', $bannerName)->first();
         }
 
     }

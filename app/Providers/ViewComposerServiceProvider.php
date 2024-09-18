@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Menu;
+use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
@@ -38,9 +39,12 @@ class ViewComposerServiceProvider extends ServiceProvider
 
             $orderController = new OrderController();
             $cartCount = $orderController->getCartItemCount(request());
-
+            $setting = Setting::where('group', "general")->first();
             $view->with('cartCount', $cartCount);
+
+            $view->with('setting', $setting);
         });
+
 
 
     }

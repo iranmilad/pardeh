@@ -400,6 +400,9 @@ class OrderController extends Controller
         $orderItem = OrderItem::find($randomNumber);
         $orderItem->time_per_unit = $timePerUnit;
         $orderItem->time_total = $timeTotal;
+        $orderItem->price = $product->price + $attributesData['dependentPriceAdjustment'] + $attributesData['independentPriceAdjustment'] ;
+        $orderItem->sale_price = ($product->sale_price ?? $product->price) + ($attributesData['dependentSalePriceAdjustment'] ?? $attributesData['dependentPriceAdjustment']) + ($attributesData['independentSalePriceAdjustment'] ?? $attributesData['independentPriceAdjustment']) ;
+        $orderItem->total = (($product->sale_price ?? $product->price) + ($attributesData['dependentSalePriceAdjustment'] ?? $attributesData['dependentPriceAdjustment']) + ($attributesData['independentSalePriceAdjustment'] ?? $attributesData['independentPriceAdjustment']) ) * ($param['quantity'] ?? 1);
         $orderItem->save();
 
         // به‌روزرسانی installer, designer, sewing اگر موجود بود
@@ -720,6 +723,7 @@ class OrderController extends Controller
     private function getAuthenticatedCartItemCount()
     {
         $order = $this->getAuthenticatedOrder();
+
         $count = $order ? $order->basket()->cart->count : 0;
         return $count;
     }

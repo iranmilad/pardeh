@@ -27,6 +27,7 @@ class ProductController extends Controller
     {
         $params = $request->input("param");
         $totalPrice = 0;
+        $totalSalePrice = 0;
         $productId = $params["product"];
         $product = Product::find($productId);
 
@@ -62,14 +63,17 @@ class ProductController extends Controller
             }
 
             // محاسبه قیمت محصول
-            $productPrice = $product->sale_price ?? $product->price;
+            $productPrice = $product->price;
+            $productSalePrice = $product->sale_price ?? $product->price;
 
             // بررسی ویژگی‌های مستقل
             foreach ($selectedIndependentAttributes as $attributeId => $selectedValue) {
                 $combination = $product->getIndependentCombinationDetails($attributeId, $selectedValue);
                 if ($combination) {
-                    $price = $combination->sale_price ?? $combination->price;
+                    $price = $combination->price;
+                    $salePrice = $combination->sale_price ?? $combination->price;
                     $productPrice += $price;
+                    $productSalePrice += $salePrice;
                 }
             }
 
@@ -77,21 +81,24 @@ class ProductController extends Controller
             if (!empty($selectedDependentAttributes)) {
                 $combination = $product->getCombinationDetails($selectedDependentAttributes);
                 if ($combination) {
-                    $price = $combination->sale_price ?? $combination->price;
+                    $price = $combination->price;
+                    $salePrice = $combination->sale_price ?? $combination->price;
                     $productPrice += $price;
+                    $productSalePrice += $salePrice;
                 }
             }
 
             // محاسبه قیمت کل
             $totalPrice = $productPrice * $quantity;
+            $totalSalePrice = $productSalePrice * $quantity;
 
             // محاسبه زمان کل انجام کار
             $totalWorkTime = $this->calculateTotalWorkTime($selectedIndependentAttributes, $selectedDependentAttributes, $product);
 
-            // تبدیل زمان انجام کار به روز (هر 24 ساعت = 1 روز)
+            // تبدیل زمان انجام کار به روز
             $workDays = ceil($totalWorkTime / 24);
 
-            // استفاده از ترايت برای محاسبه تاریخ تحویل
+            // استفاده از ترایت برای محاسبه تاریخ تحویل
             $deliveryDate = $this->calculateDeliveryDateWithWorkTime(Carbon::now(), $this->baseDeliveryDays, $totalWorkTime);
 
             // محاسبه تعداد روزهای باقی‌مانده تا زمان تحویل
@@ -101,12 +108,12 @@ class ProductController extends Controller
             $response = [
                 "name" => $product->title,
                 "images" => $product->images->pluck('url')->toArray(),
-                "regular_price" => number_format($product->price),
-                "sale_price" => number_format($totalPrice),
+                "regular_price" => number_format($totalPrice),
+                "sale_price" => number_format($totalSalePrice),
                 "discount" => $product->discountPercentage,
                 "delivery_date" => $deliveryDate->toDateString(),
-                "time_delivery" => $workDays, // تعداد روزهایی که برای تکمیل کار لازم است
-                "days_until_delivery" => $daysUntilDelivery // تعداد روزهای تا زمان تحویل
+                "time_delivery" => $workDays,
+                "days_until_delivery" => $daysUntilDelivery
             ];
         } else {
             $response = ["error" => "Product not found"];
@@ -114,6 +121,7 @@ class ProductController extends Controller
 
         return response()->json($response);
     }
+
 
 
 

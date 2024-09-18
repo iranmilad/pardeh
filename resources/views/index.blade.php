@@ -34,19 +34,19 @@
 <!--Header::start-->
 
 <header class="header">
-    <livewire:LoadWidget blockId="block_6" />
+    <livewire:LoadWidget blockId="Slider_slider 4" />
 </header>
 <!--Header::end-->
 
     <livewire:LoadWidget blockId="block_7" />
 
 
-    <livewire:LoadWidget blockId="block_5" />
+    <livewire:LoadWidget blockId="Banner_banner 1" />
 
 
 
     <div class="tw-py-5 mt-5 tw-mb-5">
-        <livewire:LoadWidget blockId="block_8" />
+        <livewire:LoadWidget blockId="menu_future" />
     </div>
 
 
