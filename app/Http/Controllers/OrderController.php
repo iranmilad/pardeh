@@ -701,14 +701,48 @@ class OrderController extends Controller
     }
     private function updateCartAuthenticated($id, $count)
     {
+        // پیدا کردن آیتم سفارش بر اساس id
         $orderItem = OrderItem::find($id);
         if ($orderItem) {
-            $orderItem->quantity = $count;
-            $orderItem->save();
+            $product = Product::find($orderItem->product_id);
+
+            // اگر محصول یافت شد
+            if ($product) {
+                // زمان پایه محصول
+                $baseTime = $product->time_per_unit ?? 0;
+
+                // پردازش ویژگی‌های محصول برای به‌روزرسانی قیمت‌ها
+                $attributesData = $this->processProductAttributes($orderItem->id, $product, ['quantity' => $count]);
+
+                // محاسبه زمان و قیمت
+                $timePerUnit = ($attributesData['time_per_unit'] ?? 0) + $baseTime;
+                $timeTotal = $timePerUnit * $count;
+                $price = $product->price + $attributesData['dependentPriceAdjustment'] + $attributesData['independentPriceAdjustment'];
+                $salePrice = ($product->sale_price ?? $product->price) + ($attributesData['dependentSalePriceAdjustment'] ?? $attributesData['dependentPriceAdjustment']) + ($attributesData['independentSalePriceAdjustment'] ?? $attributesData['independentPriceAdjustment']);
+                $total = $salePrice * $count;
+
+                // به‌روزرسانی آیتم سفارش با مقادیر جدید
+                $orderItem->quantity = $count;
+                $orderItem->time_per_unit = $timePerUnit;
+                $orderItem->time_total = $timeTotal;
+                $orderItem->price = $price;
+                $orderItem->sale_price = $salePrice;
+                $orderItem->total = $total;
+                $orderItem->save();
+            }
         }
+
+        // دریافت سبد خرید به‌روزرسانی‌شده
         $order = $this->getAuthenticatedOrder();
         $orders = $order->basket();
-        return response()->json(["cart" => ["count" => $orders->cart->count, "total" => $orders->cart->total], "items" => $orders->items,]);
+
+        return response()->json([
+            "cart" => [
+                "count" => $orders->cart->count,
+                "total" => $orders->cart->total,
+            ],
+            "items" => $orders->items,
+        ]);
     }
     private function updateCartGuest(Request $request, $id, $count)
     {

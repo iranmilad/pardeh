@@ -298,6 +298,7 @@ class Order extends Model
                     'createdAtDate' => $this->gregorianToJalalian($order->created_at_date),
                     "totalPayed" => number_format($totalPayed), // نمایش مبلغ نهایی قابل پرداخت
                     'totalTime' => number_format($totalTime), // نمایش زمان کل
+                    'tax' => 0 ,
                     'time_delivery' => round($totalTime/24)+2,
                 ],
                 "items" => $items,
@@ -320,6 +321,7 @@ class Order extends Model
                     'createdAtDate' => '',
                     "totalPayed" => 0,
                     'totalTime' => 0, // زمان کل
+                    'tax' => 0 ,
                     'time_delivery' => 2,
                 ],
                 "items" => [],
