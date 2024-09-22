@@ -8,6 +8,27 @@
 <!--Header::start-->
 
 <div class="container tw-mb-14">
+    <div class="row">
+        <!-- برای چپ چین یا راست چین فقط المان رو جابجا کنید -->
+        <!-- برای چپ چین یا راست چین فقط المان رو جابجا کنید -->
+        <!-- برای چپ چین یا راست چین فقط المان رو جابجا کنید -->
+        <!-- برای چپ چین یا راست چین فقط المان رو جابجا کنید -->
+        <div class="col-lg-6">
+            <div class="tw-flex tw-flex-col tw-items-center text-center tw-gap-10 tw-pt-10">
+                <h2 class="fw-bold">20% تخفیف بهار تابستان</h2>
+                <p >
+                    با آغاز فصل بهار و تابستان، از تخفیف ویژه 20% برای خرید پرده‌های شیک و باکیفیت بهره‌مند شوید. پرده‌های ما با طراحی‌های مدرن، زیبایی و حریم خصوصی را به خانه شما هدیه می‌دهند. همین حالا سفارش دهید و لذت ببرید!
+                </p>
+                <button class="btn btn-dark fs-7 tw-py-3 tw-px-6">اکنون بخرید</button>
+            </div>
+        </div>
+        <div class="col-lg-6 -tw-order-1 lg:tw-order-none">
+            <img class="tw-h-[300px] md:tw-h-[400px] lg:tw-h-[500px] tw-w-full tw-rounded-2xl" src="{{ Vite::asset('resources/images/single-product/1.jpg') }}" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="container tw-mb-14">
     <div class="swiper usersSlider">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
