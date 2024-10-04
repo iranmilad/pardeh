@@ -33,6 +33,20 @@
 
 <body>
   @include('partials.header')
+  <div class="float-btn-container">
+      <div class="float-btn" id="main-btn"><i class="fa-solid fa-phone-volume"></i></div>
+
+      <!-- Social Icons -->
+      <div class="social-item" id="item-1">
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div class="social-item" id="item-2">
+        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+      </div>
+      <div class="social-item" id="item-3">
+        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
   <main class="tw-mt-11">
     @yield('content')
     <svg>

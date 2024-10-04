@@ -127,9 +127,14 @@
                             </div>
                             <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
                                 <!-- ADD TO FAVORITE BUTTON -->
-                                <button class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-toggle="tooltip" data-bs-title="This top tooltip is themed via CSS variables.">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
+                                <div>
+                                    <button type="button" class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                    <button type="button" class="btn tw-bg-slate-400 hover:tw-bg-slate-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-target="#shareModal" data-bs-toggle="modal">
+                                        <i class="fa-light fa-share-nodes"></i>
+                                    </button>
+                                </div>
                                 <!-- ADD TO CART BUTTON -->
                                 <x-add-to-cart />
                             </div>
@@ -200,6 +205,48 @@
     </div>
 </div>
 
+<div class="container">
+    <section class="mt-5 tw-flex tw-flex-col lg:tw-flex-row tw-items-center tw-justify-between">
+        <h2 class="text-right  tw-w-max fw-bold fs-6">محصولات مرتبط</h2>
+        <div class="tw-w-full tw-h-1 tw-bg-gray-300 tw-space-x-0 tw-mx-14 tw-hidden "></div>
+        <div class="tw-flex tw-flex-row-reverse tw-items-center">
+            <button class="" id="discounted-products-next"><i class="fa fa-chevron-left"></i></button>
+            <button class="" id="discounted-products-prev"><i class="fa fa-chevron-right"></i></button>
+        </div>
+    </section>
+    <div class="swiper discountedSwiper tw-mt-6">
+        <div class="swiper-wrapper tw-flex tw-items-stretch">
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="tw-z-[9999]">
     <!-- START:STICKY -->
     <div class="sticky-bottom active">
@@ -245,5 +292,49 @@
 <a href="#firstPixel" id="backtotop">
     <i class="fa-solid fa-arrow-up"></i>
 </a>
+
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="exampleshareModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">اشتراک گذاری</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="social-share-container">
+                    <a href="mailto:?subject=Hello&body=Hello%20there!" class="social-share email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+
+                    <a href="https://wa.me/yourphonenumber?text=Hello" class="social-share whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+
+                    <a href="https://t.me/yourusername?text=Hello" class="social-share telegram" target="_blank">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+
+
+                    <a href="https://x.com/intent/tweet?text=Hello" class="social-share x" target="_blank">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+
+
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://example.com&text=Hello" class="social-share linkedin" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+
+                </div>
+                <div class="mt-5">
+                    <label class="form-label">لینک محصول</label>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary form-group-copy" type="button" id="button-addon1">کپی کردن</button>
+                        <input type="text" class="form-control" readonly value="https://google.com" dir="ltr">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

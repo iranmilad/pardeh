@@ -629,3 +629,63 @@ if ($("#commentModal").length > 0) {
         window["productId"] = "";
     });
 }
+
+$(document).ready(function () {
+    $("#main-btn").on("click", function () {
+        let delay = 0;
+        const spacing = 60; // Define the dynamic spacing between each item
+
+        // Loop through each social item
+        $(".social-item").each(function (index) {
+            const translateYValue = -(spacing * (index + 1)); // Dynamically calculate the translateY value
+
+            if (!$(this).hasClass("show")) {
+                // If the item is hidden, show it with the calculated spacing
+                $(this)
+                    .css("display", "block")
+                    .delay(delay)
+                    .queue(function (next) {
+                        $(this)
+                            .addClass("show")
+                            .css({
+                                transform: `translateY(${translateYValue}px)`,
+                                opacity: 1,
+                            });
+                        next();
+                    });
+            } else {
+                // If the item is visible, hide it completely
+                $(this)
+                    .delay(delay)
+                    .queue(function (next) {
+                        $(this).removeClass("show").css({
+                            transform: "translateY(0)",
+                            opacity: 0,
+                        });
+                        next();
+                    })
+                    .delay(400)
+                    .queue(function (next) {
+                        $(this).css("display", "none"); // Fully hide the element after transition
+                        next();
+                    });
+            }
+
+            delay += 100; // Delay between showing each item
+        });
+    });
+});
+
+$(".form-group-copy").on("click", function () {
+    let copyText = $(this).parent().find("input");
+    if (copyText.val() == "") {
+        return;
+    }
+    copyText.select();
+    document.execCommand("copy");
+    // remove btn-dark and add btn-success for 2 seconds. after 2 seconds revert back to btn-dark
+    $(this).removeClass("btn-dark").addClass("btn-success");
+    setTimeout(() => {
+        $(this).removeClass("btn-success").addClass("btn-dark");
+    }, 2000);
+});

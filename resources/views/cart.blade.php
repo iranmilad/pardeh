@@ -45,5 +45,47 @@
     <!-- END: Header -->
     <x-cart-service />
 
+    <div class="container">
+    <section class="mt-5 tw-flex tw-flex-col lg:tw-flex-row tw-items-center tw-justify-between">
+        <h2 class="text-right  tw-w-max fw-bold fs-6">محصولات مرتبط</h2>
+        <div class="tw-w-full tw-h-1 tw-bg-gray-300 tw-space-x-0 tw-mx-14 tw-hidden "></div>
+        <div class="tw-flex tw-flex-row-reverse tw-items-center">
+            <button class="" id="discounted-products-next"><i class="fa fa-chevron-left"></i></button>
+            <button class="" id="discounted-products-prev"><i class="fa fa-chevron-right"></i></button>
+        </div>
+    </section>
+    <div class="swiper discountedSwiper tw-mt-6">
+        <div class="swiper-wrapper tw-flex tw-items-stretch">
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/1.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" link="/product" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/2.jpg')}}" />
+            </div>
+            <div class="swiper-slide index-product">
+                <x-product name="پرده جدیده کتان" price="12,000,000" discount="5%" discountedPrice="10,000,000" image="{{Vite::asset('resources/images/single-product/3.jpg')}}" />
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 @endsection
