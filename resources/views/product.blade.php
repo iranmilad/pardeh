@@ -19,7 +19,18 @@
         <!-- <div class="mobile-review-product">
             <img src="https://placehold.co/600x400" alt="">
         </div> -->
-        <div class="col-lg-4 col-xl-5 tw-h-full lg:tw-sticky lg:tw-top-[5px] image-reviews">
+        <div class="col-lg-4 col-xl-5 tw-h-full lg:tw-sticky lg:tw-top-[5px] image-reviews tw-relative">
+            <div class="tw-absolute tw-right-7 tw-top-2 tw-z-50 tw-flex tw-flex-col tw-items-center tw-gap-2">
+                <button type="button" class="btn wishlist-btn floated-circle-button">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button type="button" class="btn floated-circle-button">
+                    <i class="fa-regular fa-shuffle"></i>
+                </button>
+                <button type="button" class="btn floated-circle-button" data-bs-target="#shareModal" data-bs-toggle="modal">
+                    <i class="fa-regular fa-share-nodes"></i>
+                </button>
+            </div>
             <div class="swiper productImage">
                 <div class="swiper-wrapper tw-max-h-[700px]">
                     <div class="swiper-slide">
@@ -125,16 +136,8 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-between">
+                            <div class="tw-w-full tw-pt-4 border-top tw-flex-row  tw-flex tw-items-center tw-justify-end">
                                 <!-- ADD TO FAVORITE BUTTON -->
-                                <div>
-                                    <button type="button" class="btn wishlist-btn tw-bg-emerald-400 hover:tw-bg-emerald-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max">
-                                        <i class="fa-regular fa-heart"></i>
-                                    </button>
-                                    <button type="button" class="btn tw-bg-slate-400 hover:tw-bg-slate-500 hover:tw-text-white tw-text-white tw-rounded-xl tw-text-sm tw-w-max" data-bs-target="#shareModal" data-bs-toggle="modal">
-                                        <i class="fa-light fa-share-nodes"></i>
-                                    </button>
-                                </div>
                                 <!-- ADD TO CART BUTTON -->
                                 <x-add-to-cart />
                             </div>

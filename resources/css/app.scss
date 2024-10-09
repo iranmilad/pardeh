@@ -2627,3 +2627,13 @@ label.category-label-checkbox {
 .social-share.linkedin {
     background-color: #0077b5; /* LinkedIn's color */
 }
+
+.floated-circle-button{
+    @apply tw-bg-primary hover:tw-bg-primary hover:tw-text-white tw-text-white tw-text-sm
+     tw-w-max tw-size-8 tw-flex tw-items-center tw-justify-center tw-rounded-full
+     active:tw-bg-primary active:tw-text-white active:tw-border-primary
+     ;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+}
