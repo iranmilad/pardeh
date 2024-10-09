@@ -9,13 +9,6 @@
     <h3 class="fw-bold tw-text-right">مقایسه محصول</h3>
 
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;

@@ -10,20 +10,23 @@
                 </a>
             </div>
             <a href="/"><img class="navbar-logo" src="{{ Vite::asset('resources/images/logo.svg') }}" alt=""></a>
-            <div class="tw-hidden lg:tw-block pre-main-search">
+            <div class="tw-hidden lg:tw-block pre-main-search xl:-tw-ml-[9%]">
                 @livewire('search')
             </div>
             <div class="tw-flex tw-items-center tw-flex-row-reverse lg:tw-flex-row  ">
                 @if(Auth::guest())
                 <a href="{{ route('login') }}" class="login-register-btn tw-h-[46px]">
                     <i class="fa-solid fa-user-large"></i>
-                    <span class="tw-hidden md:tw-block">ورود/ثبت نام</span>
+                    <span class="tw-hidden xl:tw-block">ورود/ثبت نام</span>
                 </a>
                 @else
                 <a href="{{ route('dashboard.home') }}" class="login-register-btn tw-h-[46px]">
                     <i class="fa-solid fa-user-large"></i>
                 </a>
                 @endif
+                <a href="{{ route('compare') }}" class="compare-btn tw-hidden lg:tw-flex tw-h-[46px] tw-mr-3">
+                    <i class="fa-solid fa-shuffle"></i>
+                </a>
                 @if (Route::current()->uri() == 'cart')
                     <button aria-controls="miniCart" class="btn navbar-cart tw-ml-3 lg:tw-mx-4">
                         <i class="fa-solid fa-basket-shopping"></i>
@@ -41,7 +44,7 @@
                     <a href="{{ route('dashboard.favorites') }}" class="navbar-favorite tw-hidden lg:tw-flex">
                 @endif
                     <i class="fa-regular fa-heart"></i>
-                </a>
+                    </a>
             </div>
         </div>
     </div>

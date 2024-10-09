@@ -2637,3 +2637,38 @@ label.category-label-checkbox {
     width: 40px;
     height: 40px;
 }
+
+.compare-btn {
+    align-items: center;
+    line-height: 50px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 5px 15px rgba(33, 35, 65, 0.07);
+    -moz-box-shadow: 0 5px 15px rgba(33, 35, 65, 0.07);
+    box-shadow: 0 5px 15px rgba(33, 35, 65, 0.07);
+    border: 1px solid #efefef;
+    color: #212341 #{!important};
+    text-align: center;
+    font-size: 14px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    font-weight: 700;
+    @apply hover:tw-bg-[#0f002b] hover:tw-text-white tw-transition-all tw-px-3 lg:tw-px-[13px] tw-py-[10px];
+}
+
+.compare-btn span {
+    margin-right: 15px;
+}
+
+.compare-btn:hover {
+    color: white #{!important};
+}
+
+.compare-btn i {
+    @apply tw-text-[var(--primary)] tw-transition-all;
+    font-size: 18px;
+}
+
+.compare-btn:hover i {
+    color: white;
+}

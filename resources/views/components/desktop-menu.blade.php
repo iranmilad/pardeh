@@ -1,7 +1,10 @@
 <div class="">
     <div class="container tw-py-4 tw-bg-[var(--header-bg)] tw-rounded-b-2xl">
-        <div class="tw-w-full md:tw-w-[70%] tw-mx-auto tw-flex tw-justify-center lg:tw-hidden">
+        <div class="tw-w-full md:tw-w-[70%] tw-mx-auto tw-flex tw-justify-center lg:tw-hidden tw-gap-4">
             @livewire('search')
+            <a href="{{ route('compare') }}" class="login-register-btn tw-h-[46px]">
+                <i class="fa-solid fa-shuffle"></i>
+            </a>
         </div>
         <nav class="tw-items-center tw-justify-center navbar-link-main tw-hidden lg:tw-flex">
             <a href="{{ route('home') }}" class="navbar-link-menu">
