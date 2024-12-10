@@ -34,39 +34,39 @@
 <!--Header::start-->
 
 <header class="header">
-    <livewire:LoadWidget blockId="Slider_slider 4" />
+    <livewire:LoadWidget blockId="اسلایدر 4" />
 </header>
 <!--Header::end-->
 
-    <livewire:LoadWidget blockId="block_7" />
+    <livewire:LoadWidget blockId="منو دسته بندی" />
 
 
-    <livewire:LoadWidget blockId="Banner_banner 1" />
+    <livewire:LoadWidget blockId="بنر 1" />
 
 
 
     <div class="tw-py-5 mt-5 tw-mb-5">
-        <livewire:LoadWidget blockId="menu_future" />
+        <livewire:LoadWidget blockId="منو ویژگی" />
     </div>
 
 
 
-    <livewire:LoadWidget blockId="block_1" />
+    <livewire:LoadWidget blockId="کالکشن محصولات جدید" />
 
-    <livewire:LoadWidget blockId="block_2" />
-
-
+    <livewire:LoadWidget blockId="کالکشن محصولات تخفیف دار" />
 
 
 
-    <livewire:LoadWidget blockId="block_3" />
+
+
+    <livewire:LoadWidget blockId="کالکشن محصولات دسته بندی" />
 
 
     <div class="tw-py-5 tw-px-5 mt-5 tw-mb-5">
-        <livewire:LoadWidget blockId="block_9" />
+        <livewire:LoadWidget blockId="اسلایدر 2" />
     </div>
 
-    <livewire:LoadWidget blockId="block_4" />
+    <livewire:LoadWidget blockId="اخرین مطالب" />
 
 @endsection
 

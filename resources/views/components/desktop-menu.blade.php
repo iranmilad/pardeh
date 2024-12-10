@@ -4,7 +4,7 @@
             @livewire('search')
         </div>
         <nav class="tw-items-center tw-justify-center navbar-link-main tw-hidden lg:tw-flex">
-            @foreach($menus->childMenus as $mainItem)
+            @foreach($menu->childMenus as $mainItem)
                 @if ($mainItem->link)
                 <a href="{{ $mainItem->link }}" class="navbar-link-menu">
                     {{ $mainItem->title }}

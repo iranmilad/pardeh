@@ -9,13 +9,15 @@ use Illuminate\Contracts\View\View;
 
 class FooterMenu extends Component
 {
-    public $menus;
+    public $menu;
+    private $menu_style;
     /**
      * Create a new component instance.
      */
-    public function __construct($alias)
+    public function __construct($alias,$style=null)
     {
-        $this->menus  = Menu::where(['alias'=>$alias,])
+        $this->menu_style = $style;
+        $this->menu  = Menu::where(['alias'=>$alias,])
         ->first();
     }
 
@@ -24,6 +26,7 @@ class FooterMenu extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.footer-menu', ['menus' => $this->menus]);
+
+        return view('components.footer-menu', ['menu' => $this->menu,'menu_style'=>$this->menu_style]);
     }
 }
